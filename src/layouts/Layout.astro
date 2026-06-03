@@ -1,0 +1,39 @@
+---
+import '../styles/global.scss';
+import '@fontsource/raleway/300.css';
+import '@fontsource/raleway/400.css';
+import '@fontsource/raleway/500.css';
+import '@fontsource/raleway/700.css';
+import '@fontsource/raleway/900.css';
+import Header from '../components/Header.astro';
+import ChatIcon from '../components/ChatIcon.astro';
+
+const { description = "E3 Entegral Solutions provides design-build energy efficiency solutions, LED lighting, HVAC, and water conservation upgrades for Texas public facilities." } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+        <meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>E3 Entegral Solutions</title>
+        <slot name="head" />
+	</head>
+	<body>
+        <Header />
+		<slot />
+        <ChatIcon />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

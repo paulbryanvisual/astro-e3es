@@ -1,0 +1,13 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Desktop overrides using responsive-up
+@include responsive-up($breakpoint-md) {
+  .site-header {
+    padding: 2rem;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+}

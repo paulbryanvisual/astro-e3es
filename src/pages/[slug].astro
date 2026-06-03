@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPages } from '../lib/wordpress';
+
+export async function getStaticPaths() {
+  const pages = await getPages();
+  return pages.map((page: any) => {
+    return {
+      params: { slug: page.slug },
+      props: { page }
+    };
+  });
+}
+
+const { page } = Astro.props;
+
+// Get featured image if exists
+let bgImage = "/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg";
+if (page._embedded && page._embedded['wp:featuredmedia'] && page._embedded['wp:featuredmedia'][0]) {
+    bgImage = page._embedded['wp:featuredmedia'][0].source_url;
+}
+---
+
+<Layout>
+    <!-- Intro Banner (like k12.html) -->
+    <section class="db-page-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.7), rgba(14, 53, 27, 0.7)), url('${bgImage}');`}>
+        <div class="db-page-hero__container">
+            <h1 class="db-page-hero__title" set:html={page.title.rendered}></h1>
+            {page.excerpt && page.excerpt.rendered && (
+                <div class="db-page-hero__intro" set:html={page.excerpt.rendered}></div>
+            )}
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="services" style="padding: 6rem 2rem; background: var(--color-bg-white);">
+        <div class="services__container" style="max-width: 1200px; margin: 0 auto; font-size: 1.15rem; line-height: 1.8;">
+            <div set:html={page.content.rendered} />
+        </div>
+    </main>
+</Layout>

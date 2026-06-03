@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPosts } from '../../lib/wordpress';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post: any) => {
+    return {
+      params: { slug: post.slug },
+      props: { post }
+    };
+  });
+}
+
+const { post } = Astro.props;
+---
+
+<Layout>
+  <main class="page-content">
+    <div class="site-header">
+      <a href="/">← Back to Home</a>
+      <h1 class="site-title" set:html={post.title.rendered}></h1>
+    </div>
+    <div class="page-body" style="padding: 1rem;" set:html={post.content.rendered} />
+  </main>
+</Layout>

@@ -1,0 +1,313 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPosts } from '../lib/wordpress';
+
+import { getImage, Picture } from 'astro:assets';
+import bg1 from '../assets/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
+import bg2 from '../assets/images/commerce-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
+import bg3 from '../assets/images/water-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
+import bg4 from '../assets/images/53969622794_b49535a782_k-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
+
+import tipsLogo from '../assets/images/dl_TIPS-TC-Logo-300x132-1-800x600-800x600-800x600-800x600-800x600-800x600.png';
+import coopLogo from '../assets/images/dl_images-800x600-800x600-800x600-800x600-800x600-800x600.png';
+import constrImg from '../assets/images/Texas20Funding20Solutions-600x400-600x400-600x400-600x400-600x400-600x400.jpg';
+import mapImg from '../assets/images/static-map-600x400-600x400-600x400.png';
+
+const highBg1 = await getImage({src: bg1, format: 'webp'});
+const highBg2 = await getImage({src: bg2, format: 'webp'});
+const highBg3 = await getImage({src: bg3, format: 'webp'});
+const highBg4 = await getImage({src: bg4, format: 'webp'});
+
+const midBg1 = await getImage({src: bg1, format: 'webp', width: 1080});
+const midBg2 = await getImage({src: bg2, format: 'webp', width: 1080});
+const midBg3 = await getImage({src: bg3, format: 'webp', width: 1080});
+const midBg4 = await getImage({src: bg4, format: 'webp', width: 1080});
+
+const phoneBg1 = await getImage({src: bg1, format: 'webp', width: 720});
+const phoneBg2 = await getImage({src: bg2, format: 'webp', width: 720});
+const phoneBg3 = await getImage({src: bg3, format: 'webp', width: 720});
+const phoneBg4 = await getImage({src: bg4, format: 'webp', width: 720});
+
+const lowBg1 = await getImage({src: bg1, format: 'webp', width: 50});
+const lowBg2 = await getImage({src: bg2, format: 'webp', width: 50});
+const lowBg3 = await getImage({src: bg3, format: 'webp', width: 50});
+const lowBg4 = await getImage({src: bg4, format: 'webp', width: 50});
+
+
+// We can fetch data here from WP if needed, but for now we'll match the mockup HTML exactly 
+// to ensure perfect visual fidelity, as requested. 
+// "use all of the data from the descriptive goldfish site so it is automatically updated"
+// I will fetch posts to use them, but the layout is complex.
+const posts = await getPosts();
+---
+
+<Layout>
+    <Fragment slot="head">
+        <link rel="preload" as="image" href={phoneBg1.src} imagesrcset={`${phoneBg1.src} 720w, ${midBg1.src} 1080w, ${highBg1.src} 1920w`} imagesizes="(max-width: 768px) 100vw, 25vw" fetchpriority="high" />
+    </Fragment>
+
+    <main>
+    <!-- Verticals First Hero Section -->
+    <section class="verticals-hero">
+        <div class="verticals-hero__container">
+            <div class="verticals-hero__accordion" id="heroAccordion">
+                <div class="accordion-option" data-high-res={highBg1.src}>
+                    <img src={phoneBg1.src} srcset={`${phoneBg1.src} 720w, ${midBg1.src} 1080w, ${highBg1.src} 1920w`} sizes="(max-width: 768px) 100vw, 25vw" class="accordion-bg" alt="K-12 Schools Background" loading="eager" fetchpriority="high" />
+                    <div class="accordion-shadow"></div>
+                    <div class="accordion-label">
+                        <div class="accordion-info">
+                            <div class="accordion-main">K-12 Schools</div>
+                            <div class="accordion-reveal">
+                                <p class="accordion-copy">Optimized environments for modern learning, prioritizing student health, security, and district-wide energy savings.</p>
+                                <a href="/k12" class="btn btn--outline mockup-clickable">View Solutions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-option blurry" data-phone-res={phoneBg2.src} data-mid-res={midBg2.src} data-high-res={highBg2.src}>
+                    <img src={lowBg2.src} class="accordion-bg" alt="Higher Education Background" loading="lazy" fetchpriority="low" />
+                    <div class="accordion-shadow"></div>
+                    <div class="accordion-label">
+                        <div class="accordion-info">
+                            <div class="accordion-main">Higher Education</div>
+                            <div class="accordion-reveal">
+                                <p class="accordion-copy">Campus-wide upgrades reducing maintenance backlogs and enhancing student life through comprehensive energy strategies.</p>
+                                <a href="#" class="btn btn--outline mockup-clickable">View Solutions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-option blurry" data-phone-res={phoneBg3.src} data-mid-res={midBg3.src} data-high-res={highBg3.src}>
+                    <img src={lowBg3.src} class="accordion-bg" alt="Municipal Background" loading="lazy" fetchpriority="low" />
+                    <div class="accordion-shadow"></div>
+                    <div class="accordion-label">
+                        <div class="accordion-info">
+                            <div class="accordion-main">Municipal</div>
+                            <div class="accordion-reveal">
+                                <p class="accordion-copy">Reliable infrastructure improvements that serve the community while responsibly managing taxpayer funds.</p>
+                                <a href="#" class="btn btn--outline mockup-clickable">View Solutions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-option blurry" data-phone-res={phoneBg4.src} data-mid-res={midBg4.src} data-high-res={highBg4.src}>
+                    <img src={lowBg4.src} class="accordion-bg" alt="Healthcare Background" loading="lazy" fetchpriority="low" />
+                    <div class="accordion-shadow"></div>
+                    <div class="accordion-label">
+                        <div class="accordion-info">
+                            <div class="accordion-main">Healthcare</div>
+                            <div class="accordion-reveal">
+                                <p class="accordion-copy">Critical facility enhancements focused on indoor air quality, compliance, and resilient operations.</p>
+                                <a href="#" class="btn btn--outline mockup-clickable">View Solutions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design+Build Explainer -->
+    <section class="design-build">
+        <div class="design-build__container">
+            <div style="max-width: 900px; margin: 0 auto 4rem auto; text-align: center;">
+                <h2 class="section-title" style="color: white; margin-bottom: 1.5rem;">The Design<span style="color: var(--color-primary-green)">+</span>Build Advantage</h2>
+                <p style="color: var(--color-bg-white); font-size: 1.25rem; line-height: 1.6; opacity: 0.9;">Our Design+Build model is the ultimate "easy button" for your facility. We illuminate a clear, fast path to execution - cutting out the friction and finger-pointing.</p>
+            </div>
+            
+            <div class="design-build__grid" style="gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+                <div class="design-build__card" style="padding: 1.5rem;">
+                    <div class="design-build__icon" style="margin-bottom: 1rem;">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3 class="design-build__card-title" style="font-size: 1.25rem;">2x Faster Timelines</h3>
+                    <p class="design-build__card-text" style="font-size: 0.95rem;">We design, audit, and secure funding simultaneously to accelerate your project delivery.</p>
+                </div>
+                <div class="design-build__card" style="padding: 1.5rem;">
+                    <div class="design-build__icon" style="margin-bottom: 1rem;">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3 class="design-build__card-title" style="font-size: 1.25rem;">Single Point Accountability</h3>
+                    <p class="design-build__card-text" style="font-size: 0.95rem;">Our in-house engineers and project managers collaborate closely to completely eliminate finger-pointing.</p>
+                </div>
+                <div class="design-build__card" style="padding: 1.5rem;">
+                    <div class="design-build__icon" style="margin-bottom: 1rem;">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h3 class="design-build__card-title" style="font-size: 1.25rem;">Forget about change orders</h3>
+                    <p class="design-build__card-text" style="font-size: 0.95rem;">We contractually guarantee to deliver your agreed-upon scope of work at the exact stated price.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="/design-build" class="btn btn--primary btn--large mockup-clickable" style="border: 2px solid white;">Read More About Our Approach</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding Solutions Section -->
+    <section class="db-feature db-feature--grey" style="overflow: visible; padding: 3rem 2rem;">
+        <div class="db-feature__container db-feature__container--reverse">
+            <div class="db-feature__content">
+                <div class="db-feature__icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h2>Experts in Texas Funding Solutions</h2>
+                <p>We help you navigate complex government grants like SECO and LoanSTAR programs to completely fund your project. We don't just upgrade your facility's infrastructure - we are the Texas-based experts in securing the money to pay for it. Plus, through our purchasing cooperatives, you can <strong>skip the RFP</strong> process completely.</p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <Picture src={tipsLogo} alt="TIPS Purchasing Cooperative" style="max-height: 40px; max-width: 100%; object-fit: contain;" widths={[150, 300]} sizes="(max-width: 768px) 150px, 300px" formats={["avif", "webp"]} />
+                    <Picture src={coopLogo} alt="Purchasing Cooperatives" style="max-height: 40px; max-width: 100%; object-fit: contain;" widths={[150, 300]} sizes="(max-width: 768px) 150px, 300px" formats={["avif", "webp"]} />
+                </div>
+                <a href="/funding" class="btn btn--primary btn--large mockup-clickable" style="margin-top: 2rem;">Explore Funding Options</a>
+            </div>
+            <div class="db-feature__image-wrapper">
+                <Picture src={constrImg} alt="Construction Progress" class="db-feature__image" widths={[400, 800]} sizes="(max-width: 768px) 400px, 800px" formats={["avif", "webp"]} />
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Posts Section (Dynamic from WP) -->
+    <section class="services">
+        <div class="services__container">
+            <h2 class="section-title" style="text-align: center;">Recent Posts from CMS</h2>
+            <div class="services__grid">
+                {posts.map((post: any) => (
+                    <div class="services__card">
+                        <div class="services__card-content">
+                            <a href={`/blog/${post.slug}`} style="text-decoration: none; color: inherit;">
+                                <h3 class="services__card-title" set:html={post.title.rendered}></h3>
+                            </a>
+                            <div class="services__card-text" set:html={post.excerpt.rendered}></div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Reference Map / Case Studies -->
+    <section class="case-studies db-feature--map-spill" style="overflow: visible; padding: 6rem 2rem;">
+        <div class="db-feature__container">
+            <div class="db-feature__content" style="flex: 1;">
+                <h2 class="section-title section-title--light" style="text-align: left; margin-bottom: 1.5rem;">Proven Across Texas</h2>
+                <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 2rem; color: var(--color-bg-white);">E3 Entegral Solutions has successfully partnered with public entities across the entire state of Texas. From K-12 school districts to municipal governments and healthcare facilities, our dedicated teams deliver tailored, localized support and transformative energy solutions that benefit communities from the Panhandle to the Gulf Coast.</p>
+                <a href="/clients" class="btn btn--primary btn--large mockup-clickable">Explore our Client List</a>
+            </div>
+            <div class="db-feature__image-wrapper db-feature__image-wrapper--spill" style="flex: 1;">
+                <Picture src={mapImg} alt="Texas Service Map" class="db-feature__image" widths={[400, 800]} sizes="(max-width: 768px) 400px, 800px" formats={["avif", "webp"]} />
+            </div>
+        </div>
+    </section>
+    </main>
+</Layout>
+
+<script>
+    const options = Array.from(document.querySelectorAll('.accordion-option'));
+    let hoverTimeout;
+    const DEBOUNCE_MS = 250;
+    const HIGH_RES_BREAKPOINT = 1024;
+    
+    // Determine screen-based target resolution
+    const getTargetResolution = () => {
+        const width = window.innerWidth;
+        if (width <= 768) return 'phone';
+        if (width <= HIGH_RES_BREAKPOINT) return 'mid';
+        return 'high';
+    };
+
+    // Helper to load image
+    const loadImage = (url, callback) => {
+        if (!url) return;
+        const img = new Image();
+        img.onload = callback;
+        img.src = url;
+    };
+
+    // Upgrade an option's background based on screen size or force resolution
+    const upgradeBackground = (option, forceRes) => {
+        const res = forceRes || getTargetResolution();
+        const url = option.getAttribute(`data-${res}-res`);
+        if (!url) return;
+        
+        loadImage(url, () => {
+            const bgImg = option.querySelector('.accordion-bg');
+            if (bgImg) bgImg.src = url;
+            option.classList.remove('blurry');
+            option.removeAttribute(`data-${res}-res`);
+        });
+    };
+
+    // Sequential preload of the appropriate resolution
+    const preloadNext = (index) => {
+        if (index >= options.length) {
+            // If done with preloading the target resolution, prefetch high-res on desktop
+            if (window.innerWidth > HIGH_RES_BREAKPOINT) {
+                options.forEach(opt => upgradeBackground(opt, 'high'));
+            }
+            return;
+        }
+        
+        const option = options[index];
+        const res = getTargetResolution();
+        const url = option.getAttribute(`data-${res}-res`);
+        if (url) {
+            loadImage(url, () => {
+                const bgImg = option.querySelector('.accordion-bg');
+                if (bgImg) bgImg.src = url;
+                option.classList.remove('blurry');
+                option.removeAttribute(`data-${res}-res`);
+                preloadNext(index + 1);
+            });
+        } else {
+            preloadNext(index + 1);
+        }
+    };
+
+    // Start sequential preload only when browser is idle to boost FCP/LCP
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            setTimeout(() => preloadNext(0), 1000);
+        });
+    } else {
+        setTimeout(() => preloadNext(0), 2000);
+    }
+
+    // Interaction logic
+    const expandOption = (option) => {
+        options.forEach(opt => {
+            if (opt !== option) opt.classList.remove('active');
+        });
+        option.classList.add('active');
+        
+        // Prioritize higher-res load on interaction
+        upgradeBackground(option);
+    };
+
+    options.forEach(option => {
+        // Debounced hover for desktop
+        option.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            option.classList.add('hovering');
+            hoverTimeout = setTimeout(() => {
+                expandOption(option);
+            }, DEBOUNCE_MS);
+        });
+
+        option.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+            option.classList.remove('hovering');
+        });
+
+        // Immediate tap for mobile
+        option.addEventListener('touchstart', (e) => {
+            clearTimeout(hoverTimeout);
+            // If it's already active, let link clicks pass through
+            if (!option.classList.contains('active')) {
+                // Prevent immediate link click if just opening the accordion
+                if (e.target.closest('a')) e.preventDefault();
+                option.classList.add('hovering');
+                expandOption(option);
+            }
+        }, {passive: false});
+    });
+</script>
