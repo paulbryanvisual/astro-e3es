@@ -315,4 +315,15 @@
   .wp-block-gallery.columns-4 {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  /* FAQ Section desktop overrides */
+  .faq-section {
+    padding: 5rem 2rem;
+
+    h3,
+    .wp-block-heading[class*="h3"],
+    h3.wp-block-heading {
+      font-size: 1.25rem;
+    }
+  }
 }

@@ -121,18 +121,18 @@ const heroOptions = [
         <div class="verticals-hero__container">
             <div class="verticals-hero__accordion">
                 {heroOptions.map((option, i) => (
-                    <div class={`accordion-option ${i === 0 ? 'active' : ''}`} style={`--bg:url(${option.bg})`}>
+                    <a href={option.btnLink} class={`accordion-option ${i === 0 ? 'active' : ''}`} style={`--bg:url(${option.bg})`}>
                         <div class="accordion-shadow"></div>
                         <div class="accordion-label">
                             <div class="accordion-info">
                                 <div class="accordion-main">{option.label}</div>
                                 <div class="accordion-reveal">
                                     <p class="accordion-copy">{option.copy}</p>
-                                    <a href={option.btnLink} class="btn btn--primary">{option.btnText}</a>
+                                    <span class="btn btn--primary mockup-clickable">{option.btnText}</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </div>
@@ -141,28 +141,28 @@ const heroOptions = [
     <!-- Design+Build Advantage Section -->
     <section class="design-build">
         <div class="design-build__container">
-            <div style="max-width: 900px; margin: 0 auto 4rem auto; text-align: center;">
-                <h2 class="section-title" style="color: white; margin-bottom: 1.5rem;">The Design<span style="color: var(--color-primary-green)">+</span>Build Advantage</h2>
-                <p style="color: var(--color-bg-white); font-size: 1.25rem; line-height: 1.6; opacity: 0.9;">Our Design+Build model is the ultimate &ldquo;easy button&rdquo; for your facility. We illuminate a clear, fast path to execution &ndash; cutting out the friction and finger-pointing.</p>
+            <div class="design-build__intro">
+                <h2 class="section-title section-title--light">The Design<span style="color: var(--color-primary-green)">+</span>Build Advantage</h2>
+                <p>Our Design+Build model is the ultimate &ldquo;easy button&rdquo; for your facility. We illuminate a clear, fast path to execution &ndash; cutting out the friction and finger-pointing.</p>
             </div>
             
-            <div class="design-build__grid" style="gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
-                <div class="design-build__card" style="padding: 1.5rem;">
-                    <div class="design-build__icon" style="margin-bottom: 1rem;">
+            <div class="design-build__grid">
+                <div class="design-build__card">
+                    <div class="design-build__icon">
                         <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     </div>
                     <h3 class="design-build__card-title">2x Faster Timelines</h3>
                     <p class="design-build__card-text">We design, audit, and secure funding simultaneously to accelerate your project delivery.</p>
                 </div>
-                <div class="design-build__card" style="padding: 1.5rem;">
-                    <div class="design-build__icon" style="margin-bottom: 1rem;">
+                <div class="design-build__card">
+                    <div class="design-build__icon">
                         <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
                     <h3 class="design-build__card-title">Single Point Accountability</h3>
                     <p class="design-build__card-text">Our in-house engineers and project managers collaborate closely to completely eliminate finger-pointing.</p>
                 </div>
-                <div class="design-build__card" style="padding: 1.5rem;">
-                    <div class="design-build__icon" style="margin-bottom: 1rem;">
+                <div class="design-build__card">
+                    <div class="design-build__icon">
                         <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                     </div>
                     <h3 class="design-build__card-title">Forget about change orders</h3>
@@ -170,8 +170,8 @@ const heroOptions = [
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 4rem;">
-                <a href="/our-approach" class="btn btn--primary btn--large" style="border: 2px solid white;">Read More About Our Approach</a>
+            <div class="design-build__actions">
+                <a href="/our-approach" class="btn btn--primary btn--large mockup-clickable">Read More About Our Approach</a>
             </div>
         </div>
     </section>
@@ -189,7 +189,7 @@ const heroOptions = [
                     <img src="/images/dl_TIPS-TC-Logo-300x132-1-800x600-800x600-800x600-800x600-800x600-800x600.png" alt="TIPS Purchasing Cooperative" style="max-height: 40px; max-width: 100%; object-fit: contain;" loading="lazy" decoding="async">
                     <img src="/images/dl_images-800x600-800x600-800x600-800x600-800x600-800x600.png" alt="Purchasing Cooperatives" style="max-height: 40px; max-width: 100%; object-fit: contain;" loading="lazy" decoding="async">
                 </div>
-                <a href="/funding" class="btn btn--primary btn--large" style="margin-top: 2rem;">Explore Funding Options</a>
+                <a href="/funding" class="btn btn--primary btn--large mockup-clickable" style="margin-top: 2rem;">Explore Funding Options</a>
             </div>
             <div class="db-feature__image-wrapper">
                 <img src="/images/Texas20Funding20Solutions-600x400-600x400-600x400-600x400-600x400-600x400.jpg" alt="Texas Funding Solutions" class="db-feature__image" loading="lazy" decoding="async">

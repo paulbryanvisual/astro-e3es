@@ -164,3 +164,27 @@ Renders the regional vector map. Interactivity is hydrated client-side on the BE
     </div>
 </section>
 ```
+
+---
+
+## 8. FAQ Section (`e3es/faq-section`)
+Renders a styled FAQ wrapper at the bottom of pages. Headings (H3) become question headers and paragraphs/lists become answers, all styled contextually by being inside the wrapper.
+
+### HTML Structure
+```html
+<section class="wp-block-e3es-faq-section faq-section">
+    <div class="faq-section__container">
+        <!-- ::before pseudo-element generates "Frequently Asked Questions" title -->
+
+        <!-- Repeat H3 + P/UL/OL pairs for each Q&A -->
+        <h3>Question text here?</h3>
+        <p>Answer paragraph text here.</p>
+
+        <h3>Another question?</h3>
+        <ul>
+            <li>Answer as a list item</li>
+            <li>Another list item</li>
+        </ul>
+    </div>
+</section>
+```
