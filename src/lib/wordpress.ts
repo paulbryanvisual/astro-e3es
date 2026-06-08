@@ -1,4 +1,8 @@
-const WP_URL = 'http://e3es2026.local/wp-json/wp/v2';
+const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD 
+  ? 'https://descriptive-goldfish.flywheelstaging.com/wp-json/wp/v2'
+  : 'http://e3es2026.local/wp-json/wp/v2');
+
+const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
 async function wpFetch(urlPath: string) {
   const separator = urlPath.includes('?') ? '&' : '?';
@@ -111,15 +115,15 @@ export async function getClients() {
 export function optimizeHtmlImages(html: string): string {
   if (!html) return '';
 
-  // 1. Rewrite relative paths to absolute local server paths for dev rendering
+  // 1. Rewrite relative paths to absolute WordPress server paths
   let processedHtml = html
-    .replace(/(url\(["']?)\/images\//gi, '$1http://e3es2026.local/images/')
-    .replace(/(url\(["']?)\/wp-content\//gi, '$1http://e3es2026.local/wp-content/')
-    .replace(/(src=["'])\/images\//gi, '$1http://e3es2026.local/images/')
-    .replace(/(src=["'])\/wp-content\//gi, '$1http://e3es2026.local/wp-content/')
-    .replace(/(srcset=["'])\/images\//gi, '$1http://e3es2026.local/images/')
-    .replace(/(srcset=["'])\/wp-content\//gi, '$1http://e3es2026.local/wp-content/')
-    .replace(/(href=["'])\/wp-content\//gi, '$1http://e3es2026.local/wp-content/');
+    .replace(/(url\(["']?)\/images\//gi, `$1${WP_BASE_URL}/images/`)
+    .replace(/(url\(["']?)\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
+    .replace(/(src=["'])\/images\//gi, `$1${WP_BASE_URL}/images/`)
+    .replace(/(src=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
+    .replace(/(srcset=["'])\/images\//gi, `$1${WP_BASE_URL}/images/`)
+    .replace(/(srcset=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
+    .replace(/(href=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`);
 
   let isFirstImage = true;
 
