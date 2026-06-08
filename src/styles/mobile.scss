@@ -1270,6 +1270,20 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         overflow: hidden;
         transform: skewX(-5deg);
         filter: drop-shadow(-10px 15px 20px rgba(0,0,0,0.18));
+        --aw: 16px; /* Arrow width */
+        --ah: 14px; /* Arrow half-height */
+        clip-path: polygon(
+            var(--aw) 0%, 
+            100% 0%, 
+            100% calc(50% - var(--ah)), 
+            calc(100% - var(--aw)) 50%, 
+            100% calc(50% + var(--ah)), 
+            100% 100%, 
+            var(--aw) 100%, 
+            var(--aw) calc(50% + var(--ah)), 
+            0% 50%, 
+            var(--aw) calc(50% - var(--ah))
+        );
 
         .wp-block-cover__image-background {
             transform: skewX(5deg) scale(1.15) !important;
@@ -1301,7 +1315,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
         &:hover {
             .wp-block-cover__image-background {
-                transform: skewX(5deg) scale(1.25) !important;
+                transform: skewX(5deg) scale(1.15) !important;
             }
             .wp-block-cover__background { opacity: 1; }
             .wp-block-cover__inner-container {
@@ -1317,6 +1331,20 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     .wp-block-cover {
         transform: skewX(5deg);
         filter: drop-shadow(10px 15px 20px rgba(0,0,0,0.18));
+        --aw: 16px; /* Arrow width */
+        --ah: 14px; /* Arrow half-height */
+        clip-path: polygon(
+            0% 0%,
+            calc(100% - var(--aw)) 0%,
+            calc(100% - var(--aw)) calc(50% - var(--ah)),
+            100% 50%,
+            calc(100% - var(--aw)) calc(50% + var(--ah)),
+            calc(100% - var(--aw)) 100%,
+            0% 100%,
+            0% calc(50% + var(--ah)),
+            var(--aw) 50%,
+            0% calc(50% - var(--ah))
+        );
 
         .wp-block-cover__image-background {
             transform: skewX(-5deg) scale(1.15) !important;
@@ -1326,7 +1354,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         }
         &:hover {
             .wp-block-cover__image-background {
-                transform: skewX(-5deg) scale(1.25) !important;
+                transform: skewX(-5deg) scale(1.15) !important;
             }
             .wp-block-cover__inner-container {
                 transform: translateY(0) skewX(-5deg);
