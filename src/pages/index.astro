@@ -1,118 +1,149 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPosts } from '../lib/wordpress';
+import { getPageById, optimizeHtmlImages } from '../lib/wordpress';
 
-import { getImage, Picture } from 'astro:assets';
-import bg1 from '../assets/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
-import bg2 from '../assets/images/commerce-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
-import bg3 from '../assets/images/water-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
-import bg4 from '../assets/images/53969622794_b49535a782_k-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg';
+const page = await getPageById(7);
 
-import tipsLogo from '../assets/images/dl_TIPS-TC-Logo-300x132-1-800x600-800x600-800x600-800x600-800x600-800x600.png';
-import coopLogo from '../assets/images/dl_images-800x600-800x600-800x600-800x600-800x600-800x600.png';
-import constrImg from '../assets/images/Texas20Funding20Solutions-600x400-600x400-600x400-600x400-600x400-600x400.jpg';
-import mapImg from '../assets/images/static-map-600x400-600x400-600x400.png';
+// Service card data matching the mockup
+const serviceCards = [
+    {
+        title: 'HVAC System Upgrades and Replacements',
+        text: 'E3 designs, replaces, and upgrades outdated heating, ventilation, and air conditioning systems to create comfortable indoor environments and improve operational efficiency.',
+        image: '/images/hvac-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'HVAC System Upgrades',
+        link: '/services/hvac-2'
+    },
+    {
+        title: 'LED Lighting Upgrades and Sports Lighting',
+        text: 'E3 provides true turnkey lighting solutions - including auditing, design, procurement, and installation - for building interiors, exteriors, and specialized sports complexes.',
+        image: '/images/led-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'LED Lighting',
+        link: '/services/lighting'
+    },
+    {
+        title: 'Indoor Air Quality Analysis and Improvements',
+        text: 'E3 assesses and upgrades facility environments to ensure safe, healthy, and high-quality indoor air for building occupants.',
+        image: '/images/air-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Indoor Air Quality',
+        link: '/services/indoor-air-quality'
+    },
+    {
+        title: 'Building Automation Systems (BAS)',
+        text: 'E3 optimizes and commissions intelligent building control systems, allowing facilities to efficiently monitor and manage their energy usage.',
+        image: '/images/automation-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Building Automation Systems',
+        link: '/services/building-automation'
+    },
+    {
+        title: 'Municipal Water Treatment (Bicarbus)',
+        text: 'A budget-neutral water quality technology that descales aging municipal water pipes, effectively eliminating scale, microbial growth, and bacteria. This process greatly reduces a city\'s reliance on heavy chlorine treatments.',
+        image: '/images/water-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Municipal Water Treatment',
+        link: '/services/water-treatment-2'
+    },
+    {
+        title: 'Wastewater Sludge Remediation (Nanobubbles)',
+        text: 'A highly efficient process that injects microscopic, low-rising oxygen bubbles into dead wastewater lagoons, providing municipalities with a significantly faster and cheaper alternative to traditional dredging.',
+        image: '/images/SLUDGE-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Wastewater Sludge Remediation',
+        link: '/services/wastewater-2'
+    },
+    {
+        title: 'Water Meter Installation',
+        text: 'As part of larger, bundled municipal infrastructure packages, E3 rehabilitates failing lift stations and installs new water, gas, and electric meters for small- to mid-sized cities.',
+        image: '/images/WATER20Meter20Installation-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Water Meter Installation',
+        link: '/services/water-meter'
+    },
+    {
+        title: 'Energy Auditing and Business Case Analysis (BCA)',
+        text: 'E3 conducts free, comprehensive facility studies to catalog old equipment, assess deferred maintenance needs, and identify energy waste.',
+        image: '/images/Energy20Auditing-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Energy Auditing',
+        link: '/services/facility-assessments'
+    },
+    {
+        title: 'Grant and Funding Procurement',
+        text: 'E3 actively helps underfunded public entities find and secure complex financing options, such as SECO grants, LoanSTAR programs, and new market tax credits.',
+        image: '/images/Grant20and20Funding20Procurement-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Grant Procurement',
+        link: '/services/cooperative-purchasing'
+    },
+    {
+        title: 'Water Conservation and Ongoing Performance Management',
+        text: 'E3 implements solutions to reduce facility water usage and provides ongoing monitoring and management to guarantee long-term operational efficiency.',
+        image: '/images/Water20Conservation20and20Ongoing20Performance20Management-500x220-500x220-500x220-500x220-500x220-500x220.jpg',
+        alt: 'Water Conservation',
+        link: '/services/water-conservation-2'
+    }
+];
 
-const highBg1 = await getImage({src: bg1, format: 'webp'});
-const highBg2 = await getImage({src: bg2, format: 'webp'});
-const highBg3 = await getImage({src: bg3, format: 'webp'});
-const highBg4 = await getImage({src: bg4, format: 'webp'});
-
-const midBg1 = await getImage({src: bg1, format: 'webp', width: 1080});
-const midBg2 = await getImage({src: bg2, format: 'webp', width: 1080});
-const midBg3 = await getImage({src: bg3, format: 'webp', width: 1080});
-const midBg4 = await getImage({src: bg4, format: 'webp', width: 1080});
-
-const phoneBg1 = await getImage({src: bg1, format: 'webp', width: 720});
-const phoneBg2 = await getImage({src: bg2, format: 'webp', width: 720});
-const phoneBg3 = await getImage({src: bg3, format: 'webp', width: 720});
-const phoneBg4 = await getImage({src: bg4, format: 'webp', width: 720});
-
-const lowBg1 = await getImage({src: bg1, format: 'webp', width: 50});
-const lowBg2 = await getImage({src: bg2, format: 'webp', width: 50});
-const lowBg3 = await getImage({src: bg3, format: 'webp', width: 50});
-const lowBg4 = await getImage({src: bg4, format: 'webp', width: 50});
-
-
-// We can fetch data here from WP if needed, but for now we'll match the mockup HTML exactly 
-// to ensure perfect visual fidelity, as requested. 
-// "use all of the data from the descriptive goldfish site so it is automatically updated"
-// I will fetch posts to use them, but the layout is complex.
-const posts = await getPosts();
+// Accordion hero options
+const heroOptions = [
+    {
+        label: 'K-12 Schools',
+        copy: 'Enhancing learning environments while reducing energy costs and maintenance backlogs.',
+        btnText: 'View K-12',
+        btnLink: '/solutions-for/k12',
+        bg: '/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg'
+    },
+    {
+        label: 'Higher Education',
+        copy: 'Campus-wide solutions that balance sustainability, comfort, and operational budgets.',
+        btnText: 'View Higher Ed',
+        btnLink: '/solutions-for/higher-ed',
+        bg: '/images/commerce-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg'
+    },
+    {
+        label: 'Municipal',
+        copy: 'Modernizing municipal infrastructure to better serve communities. We utilize innovative technologies like Bicarbus and Nanobubbles.',
+        btnText: 'View Municipal',
+        btnLink: '/solutions-for/municipal',
+        bg: '/images/water-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg'
+    },
+    {
+        label: 'Healthcare',
+        copy: 'Optimizing critical facilities for reliability, efficiency, and superior patient care.',
+        btnText: 'View Healthcare',
+        btnLink: '/solutions-for/healthcare',
+        bg: '/images/53969622794_b49535a782_k-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg'
+    }
+];
 ---
 
 <Layout>
     <Fragment slot="head">
-        <link rel="preload" as="image" href={phoneBg1.src} imagesrcset={`${phoneBg1.src} 720w, ${midBg1.src} 1080w, ${highBg1.src} 1920w`} imagesizes="(max-width: 768px) 100vw, 25vw" fetchpriority="high" />
+        <link rel="preload" as="image" href="/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg" fetchpriority="high" />
     </Fragment>
 
-    <main>
-    <!-- Verticals First Hero Section -->
+    <!-- Verticals Hero Accordion Section -->
     <section class="verticals-hero">
         <div class="verticals-hero__container">
-            <div class="verticals-hero__accordion" id="heroAccordion">
-                <div class="accordion-option" data-high-res={highBg1.src}>
-                    <img src={phoneBg1.src} srcset={`${phoneBg1.src} 720w, ${midBg1.src} 1080w, ${highBg1.src} 1920w`} sizes="(max-width: 768px) 100vw, 25vw" class="accordion-bg" alt="K-12 Schools Background" loading="eager" fetchpriority="high" />
-                    <div class="accordion-shadow"></div>
-                    <div class="accordion-label">
-                        <div class="accordion-info">
-                            <div class="accordion-main">K-12 Schools</div>
-                            <div class="accordion-reveal">
-                                <p class="accordion-copy">Optimized environments for modern learning, prioritizing student health, security, and district-wide energy savings.</p>
-                                <a href="/k12" class="btn btn--outline mockup-clickable">View Solutions</a>
+            <div class="verticals-hero__accordion">
+                {heroOptions.map((option, i) => (
+                    <div class={`accordion-option ${i === 0 ? 'active' : ''}`} style={`--bg:url(${option.bg})`}>
+                        <div class="accordion-shadow"></div>
+                        <div class="accordion-label">
+                            <div class="accordion-info">
+                                <div class="accordion-main">{option.label}</div>
+                                <div class="accordion-reveal">
+                                    <p class="accordion-copy">{option.copy}</p>
+                                    <a href={option.btnLink} class="btn btn--primary">{option.btnText}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-option blurry" data-phone-res={phoneBg2.src} data-mid-res={midBg2.src} data-high-res={highBg2.src}>
-                    <img src={lowBg2.src} class="accordion-bg" alt="Higher Education Background" loading="lazy" fetchpriority="low" />
-                    <div class="accordion-shadow"></div>
-                    <div class="accordion-label">
-                        <div class="accordion-info">
-                            <div class="accordion-main">Higher Education</div>
-                            <div class="accordion-reveal">
-                                <p class="accordion-copy">Campus-wide upgrades reducing maintenance backlogs and enhancing student life through comprehensive energy strategies.</p>
-                                <a href="#" class="btn btn--outline mockup-clickable">View Solutions</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-option blurry" data-phone-res={phoneBg3.src} data-mid-res={midBg3.src} data-high-res={highBg3.src}>
-                    <img src={lowBg3.src} class="accordion-bg" alt="Municipal Background" loading="lazy" fetchpriority="low" />
-                    <div class="accordion-shadow"></div>
-                    <div class="accordion-label">
-                        <div class="accordion-info">
-                            <div class="accordion-main">Municipal</div>
-                            <div class="accordion-reveal">
-                                <p class="accordion-copy">Reliable infrastructure improvements that serve the community while responsibly managing taxpayer funds.</p>
-                                <a href="#" class="btn btn--outline mockup-clickable">View Solutions</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-option blurry" data-phone-res={phoneBg4.src} data-mid-res={midBg4.src} data-high-res={highBg4.src}>
-                    <img src={lowBg4.src} class="accordion-bg" alt="Healthcare Background" loading="lazy" fetchpriority="low" />
-                    <div class="accordion-shadow"></div>
-                    <div class="accordion-label">
-                        <div class="accordion-info">
-                            <div class="accordion-main">Healthcare</div>
-                            <div class="accordion-reveal">
-                                <p class="accordion-copy">Critical facility enhancements focused on indoor air quality, compliance, and resilient operations.</p>
-                                <a href="#" class="btn btn--outline mockup-clickable">View Solutions</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     </section>
 
-    <!-- Design+Build Explainer -->
+    <!-- Design+Build Advantage Section -->
     <section class="design-build">
         <div class="design-build__container">
             <div style="max-width: 900px; margin: 0 auto 4rem auto; text-align: center;">
                 <h2 class="section-title" style="color: white; margin-bottom: 1.5rem;">The Design<span style="color: var(--color-primary-green)">+</span>Build Advantage</h2>
-                <p style="color: var(--color-bg-white); font-size: 1.25rem; line-height: 1.6; opacity: 0.9;">Our Design+Build model is the ultimate "easy button" for your facility. We illuminate a clear, fast path to execution - cutting out the friction and finger-pointing.</p>
+                <p style="color: var(--color-bg-white); font-size: 1.25rem; line-height: 1.6; opacity: 0.9;">Our Design+Build model is the ultimate &ldquo;easy button&rdquo; for your facility. We illuminate a clear, fast path to execution &ndash; cutting out the friction and finger-pointing.</p>
             </div>
             
             <div class="design-build__grid" style="gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
@@ -120,27 +151,27 @@ const posts = await getPosts();
                     <div class="design-build__icon" style="margin-bottom: 1rem;">
                         <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     </div>
-                    <h3 class="design-build__card-title" style="font-size: 1.25rem;">2x Faster Timelines</h3>
-                    <p class="design-build__card-text" style="font-size: 0.95rem;">We design, audit, and secure funding simultaneously to accelerate your project delivery.</p>
+                    <h3 class="design-build__card-title">2x Faster Timelines</h3>
+                    <p class="design-build__card-text">We design, audit, and secure funding simultaneously to accelerate your project delivery.</p>
                 </div>
                 <div class="design-build__card" style="padding: 1.5rem;">
                     <div class="design-build__icon" style="margin-bottom: 1rem;">
                         <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
-                    <h3 class="design-build__card-title" style="font-size: 1.25rem;">Single Point Accountability</h3>
-                    <p class="design-build__card-text" style="font-size: 0.95rem;">Our in-house engineers and project managers collaborate closely to completely eliminate finger-pointing.</p>
+                    <h3 class="design-build__card-title">Single Point Accountability</h3>
+                    <p class="design-build__card-text">Our in-house engineers and project managers collaborate closely to completely eliminate finger-pointing.</p>
                 </div>
                 <div class="design-build__card" style="padding: 1.5rem;">
                     <div class="design-build__icon" style="margin-bottom: 1rem;">
                         <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--color-primary-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                     </div>
-                    <h3 class="design-build__card-title" style="font-size: 1.25rem;">Forget about change orders</h3>
-                    <p class="design-build__card-text" style="font-size: 0.95rem;">We contractually guarantee to deliver your agreed-upon scope of work at the exact stated price.</p>
+                    <h3 class="design-build__card-title">Forget about change orders</h3>
+                    <p class="design-build__card-text">We contractually guarantee to deliver your agreed-upon scope of work at the exact stated price.</p>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 4rem;">
-                <a href="/design-build" class="btn btn--primary btn--large mockup-clickable" style="border: 2px solid white;">Read More About Our Approach</a>
+                <a href="/our-approach" class="btn btn--primary btn--large" style="border: 2px solid white;">Read More About Our Approach</a>
             </div>
         </div>
     </section>
@@ -153,52 +184,52 @@ const posts = await getPosts();
                     <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
                 <h2>Experts in Texas Funding Solutions</h2>
-                <p>We help you navigate complex government grants like SECO and LoanSTAR programs to completely fund your project. We don't just upgrade your facility's infrastructure - we are the Texas-based experts in securing the money to pay for it. Plus, through our purchasing cooperatives, you can <strong>skip the RFP</strong> process completely.</p>
+                <p>We help you navigate complex government grants like SECO and LoanSTAR programs to completely fund your project. We don&rsquo;t just upgrade your facility&rsquo;s infrastructure &ndash; we are the Texas-based experts in securing the money to pay for it. Plus, through our purchasing cooperatives, you can <strong>skip the RFP</strong> process completely.</p>
                 <div style="margin-top: 1.5rem; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                    <Picture src={tipsLogo} alt="TIPS Purchasing Cooperative" style="max-height: 40px; max-width: 100%; object-fit: contain;" widths={[150, 300]} sizes="(max-width: 768px) 150px, 300px" formats={["avif", "webp"]} />
-                    <Picture src={coopLogo} alt="Purchasing Cooperatives" style="max-height: 40px; max-width: 100%; object-fit: contain;" widths={[150, 300]} sizes="(max-width: 768px) 150px, 300px" formats={["avif", "webp"]} />
+                    <img src="/images/dl_TIPS-TC-Logo-300x132-1-800x600-800x600-800x600-800x600-800x600-800x600.png" alt="TIPS Purchasing Cooperative" style="max-height: 40px; max-width: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                    <img src="/images/dl_images-800x600-800x600-800x600-800x600-800x600-800x600.png" alt="Purchasing Cooperatives" style="max-height: 40px; max-width: 100%; object-fit: contain;" loading="lazy" decoding="async">
                 </div>
-                <a href="/funding" class="btn btn--primary btn--large mockup-clickable" style="margin-top: 2rem;">Explore Funding Options</a>
+                <a href="/funding" class="btn btn--primary btn--large" style="margin-top: 2rem;">Explore Funding Options</a>
             </div>
             <div class="db-feature__image-wrapper">
-                <Picture src={constrImg} alt="Construction Progress" class="db-feature__image" widths={[400, 800]} sizes="(max-width: 768px) 400px, 800px" formats={["avif", "webp"]} />
+                <img src="/images/Texas20Funding20Solutions-600x400-600x400-600x400-600x400-600x400-600x400.jpg" alt="Texas Funding Solutions" class="db-feature__image" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
 
-    <!-- Recent Posts Section (Dynamic from WP) -->
+    <!-- Our Turnkey Services Section -->
     <section class="services">
         <div class="services__container">
-            <h2 class="section-title" style="text-align: center;">Recent Posts from CMS</h2>
+            <h2 class="section-title" style="text-align: center;">Our Turnkey Services</h2>
             <div class="services__grid">
-                {posts.map((post: any) => (
+                {serviceCards.map((card) => (
                     <div class="services__card">
-                        <div class="services__card-content">
-                            <a href={`/blog/${post.slug}`} style="text-decoration: none; color: inherit;">
-                                <h3 class="services__card-title" set:html={post.title.rendered}></h3>
-                            </a>
-                            <div class="services__card-text" set:html={post.excerpt.rendered}></div>
-                        </div>
+                        <a href={card.link} style="text-decoration: none; color: inherit;">
+                            <img src={card.image} alt={card.alt} class="services__card-image" loading="lazy" decoding="async">
+                            <div class="services__card-content">
+                                <h3 class="services__card-title">{card.title}</h3>
+                                <p class="services__card-text">{card.text}</p>
+                            </div>
+                        </a>
                     </div>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- Reference Map / Case Studies -->
-    <section class="case-studies db-feature--map-spill" style="overflow: visible; padding: 6rem 2rem;">
+    <!-- Proven Across Texas Section -->
+    <section class="db-feature db-feature--green db-feature--map-spill" style="overflow: visible; padding: 6rem 2rem;">
         <div class="db-feature__container">
             <div class="db-feature__content" style="flex: 1;">
                 <h2 class="section-title section-title--light" style="text-align: left; margin-bottom: 1.5rem;">Proven Across Texas</h2>
                 <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 2rem; color: var(--color-bg-white);">E3 Entegral Solutions has successfully partnered with public entities across the entire state of Texas. From K-12 school districts to municipal governments and healthcare facilities, our dedicated teams deliver tailored, localized support and transformative energy solutions that benefit communities from the Panhandle to the Gulf Coast.</p>
-                <a href="/clients" class="btn btn--primary btn--large mockup-clickable">Explore our Client List</a>
+                <a href="/clients" class="btn btn--primary btn--large">Explore our Client List</a>
             </div>
             <div class="db-feature__image-wrapper db-feature__image-wrapper--spill" style="flex: 1;">
-                <Picture src={mapImg} alt="Texas Service Map" class="db-feature__image" widths={[400, 800]} sizes="(max-width: 768px) 400px, 800px" formats={["avif", "webp"]} />
+                <img src="/images/static-map-600x400-600x400-600x400.png" alt="Texas Service Map" class="db-feature__image" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
-    </main>
 </Layout>
 
 <script>

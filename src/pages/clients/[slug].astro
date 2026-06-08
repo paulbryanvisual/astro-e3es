@@ -1,0 +1,288 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getClients, optimizeHtmlImages } from '../../lib/wordpress';
+import { Image } from 'astro:assets';
+
+// Static imports for client logos
+import boydLogo from '../../assets/images/Boyd_ISD_-_2024_Bond.png';
+import bishopLogo from '../../assets/images/Bishop_CISD.png';
+import granburyLogo from '../../assets/images/Granbury_ISD.png';
+import donnaLogo from '../../assets/images/Donna_ISD.png';
+import caldwellLogo from '../../assets/images/Caldwell_ISD.png';
+import bryanLogo from '../../assets/images/Bryan_ISD.png';
+
+const logoMap: Record<string, any> = {
+  'boyd-isd': boydLogo,
+  'bishop-cisd': bishopLogo,
+  'granbury-isd': granburyLogo,
+  'donna-isd': donnaLogo,
+  'caldwell-isd': caldwellLogo,
+  'bryan-isd': bryanLogo
+};
+
+export async function getStaticPaths() {
+  const clients = await getClients();
+  return clients.map((client: any) => ({
+    params: { slug: client.slug },
+    props: { client, allClients: clients }
+  }));
+}
+
+const { slug } = Astro.params;
+const { client, allClients } = Astro.props;
+
+const optimizedContent = optimizeHtmlImages(client.content.rendered);
+
+// Featured image banner background
+let bgImage = "/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg";
+if (client._embedded && client._embedded['wp:featuredmedia'] && client._embedded['wp:featuredmedia'][0]) {
+    bgImage = client._embedded['wp:featuredmedia'][0].source_url;
+}
+
+// Client metadata & focal point
+const industry = client.meta?._e3_client_industry || 'K-12';
+const fpX = client.meta?._e3_client_focal_point_x !== undefined ? parseFloat(client.meta._e3_client_focal_point_x) : 0.5;
+const fpY = client.meta?._e3_client_focal_point_y !== undefined ? parseFloat(client.meta._e3_client_focal_point_y) : 0.5;
+const focalPositionStyle = `background-position: ${fpX * 100}% ${fpY * 100}%;`;
+
+// Native Taxonomies Parsing (Region & Virtial)
+const embeddedTerms = client._embedded?.['wp:term'] || [];
+let regionName = '';
+let virtialName = '';
+
+embeddedTerms.forEach((taxonomyTerms: any[]) => {
+  if (Array.isArray(taxonomyTerms)) {
+    taxonomyTerms.forEach((term: any) => {
+      if (term.taxonomy === 'region') {
+        regionName = term.name;
+      }
+      if (term.taxonomy === 'virtial') {
+        virtialName = term.name;
+      }
+    });
+  }
+});
+
+// Fallback to legacy metadata or other
+const regionMeta = client.meta?._e3_client_region || 'other';
+const regionNames: Record<string, string> = {
+  'panhandle': 'West Texas',
+  'west': 'Far West Texas',
+  'north': 'North Texas',
+  'northeast': 'North East Texas',
+  'southeast': 'South East Texas',
+  'central': 'Central Texas',
+  'hill-country': 'Hill Country',
+  'south': 'South Texas'
+};
+const friendlyRegion = regionName || regionNames[regionMeta] || regionMeta;
+
+// Client logo (DB meta value or static map fallback)
+const logoUrlFromMeta = client.meta?._e3_client_logo || '';
+const clientLogo = logoUrlFromMeta || logoMap[slug] || null;
+
+// Dynamic breadcrumbs
+const clientsDropdown = [
+  { label: "K-12 Schools", href: "/clients?industry=K-12" },
+  { label: "Higher Education", href: "/clients?industry=Higher+Education" },
+  { label: "Municipal", href: "/clients?industry=Municipalities" },
+  { label: "Healthcare", href: "/clients?industry=Healthcare" }
+];
+
+const regionsDropdown = [
+  { label: "West Texas", href: "/clients?region=panhandle" },
+  { label: "Far West Texas", href: "/clients?region=west" },
+  { label: "North Texas", href: "/clients?region=north" },
+  { label: "North East Texas", href: "/clients?region=northeast" },
+  { label: "South East Texas", href: "/clients?region=southeast" },
+  { label: "Central Texas", href: "/clients?region=central" },
+  { label: "Hill Country", href: "/clients?region=hill-country" },
+  { label: "South Texas", href: "/clients?region=south" }
+];
+
+const industryLink = industry === 'K-12' ? '/k12' : (industry === 'Higher Education' ? '/higher-education' : '/clients');
+
+const breadcrumbItems = [
+  {
+    label: "Home",
+    href: "/",
+    dropdown: [
+      { label: "Solutions for K-12", href: "/k12" },
+      { label: "Design+Build", href: "/design-build" },
+      { label: "Partners in Funding", href: "/funding" },
+      { label: "Clients", href: "/clients" },
+      { label: "Services", href: "/services" }
+    ]
+  },
+  {
+    label: "Clients",
+    href: "/clients",
+    dropdown: clientsDropdown
+  },
+  {
+    label: industry,
+    href: industryLink,
+    dropdown: regionsDropdown
+  },
+  {
+    label: client.title.rendered
+  }
+];
+---
+
+<Layout description={`Case study page for ${client.title.rendered} detailing facility improvement projects.`}>
+  <!-- Breadcrumb Bar -->
+  <Breadcrumb items={breadcrumbItems} />
+
+  <!-- Main Content -->
+  <main style="background: var(--color-bg-white); padding: 0;">
+    <Fragment set:html={optimizedContent} />
+  </main>
+
+  <style>
+    /* Styling to support desktop layout inside this component */
+    @media (min-width: 768px) {
+      .project-columns {
+        grid-template-columns: 2fr 1fr !important;
+      }
+    }
+  </style>
+
+  <!-- Dynamic Lightbox -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Collect all clickable images: gallery, comparison, and standalone figures
+      const selectors = [
+        '.project-section__hero-img',
+        '.wp-block-gallery .wp-block-image img',
+        '.db-comparison__img',
+        '.project-gallery__img',
+        'figure.wp-block-image img'
+      ];
+      const images = Array.from(document.querySelectorAll(selectors.join(',')));
+      if (images.length === 0) return;
+
+      // Deduplicate by src
+      const seen = new Set();
+      const uniqueImages = images.filter(img => {
+        const src = img.currentSrc || img.src;
+        if (seen.has(src)) return false;
+        seen.add(src);
+        return true;
+      });
+
+      if (uniqueImages.length === 0) return;
+
+      // Create a single reusable dialog
+      const dialog = document.createElement('dialog');
+      dialog.className = 'lightbox-dialog';
+      dialog.innerHTML = `
+        <div class="lightbox-dialog__wrapper">
+          <img class="lightbox-dialog__img" src="" alt="" />
+          <p class="lightbox-dialog__caption"></p>
+          <button class="lightbox-dialog__close" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <button class="lightbox-dialog__arrow lightbox-dialog__arrow--prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="lightbox-dialog__arrow lightbox-dialog__arrow--next" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      `;
+      document.body.appendChild(dialog);
+
+      const lbImg = dialog.querySelector('.lightbox-dialog__img');
+      const lbCaption = dialog.querySelector('.lightbox-dialog__caption');
+      const prevBtn = dialog.querySelector('.lightbox-dialog__arrow--prev');
+      const nextBtn = dialog.querySelector('.lightbox-dialog__arrow--next');
+      const closeBtn = dialog.querySelector('.lightbox-dialog__close');
+      let currentIndex = 0;
+
+      function showImage(idx) {
+        currentIndex = (idx + uniqueImages.length) % uniqueImages.length;
+        const img = uniqueImages[currentIndex];
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = img.alt || '';
+        lbCaption.textContent = img.alt || '';
+        lbCaption.style.display = img.alt ? '' : 'none';
+        const multi = uniqueImages.length > 1;
+        prevBtn.style.display = multi ? '' : 'none';
+        nextBtn.style.display = multi ? '' : 'none';
+      }
+
+      uniqueImages.forEach((img, i) => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          showImage(i);
+          dialog.showModal();
+        });
+      });
+
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
+      closeBtn.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+      dialog.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); showImage(currentIndex - 1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); showImage(currentIndex + 1); }
+      });
+    });
+  </script>
+
+  <!-- Diagonal Mask Scroll Effect on Hero Images -->
+  <script is:inline>
+    (function() {
+      function initMasks() {
+        var heroes = document.querySelectorAll('.project-section__hero');
+        if (!heroes.length) return;
+        var masks = [];
+
+        heroes.forEach(function(hero) {
+          var left = hero.querySelector('.project-section__mask--left');
+          var right = hero.querySelector('.project-section__mask--right');
+          if (!left) {
+            left = document.createElement('div');
+            left.className = 'project-section__mask project-section__mask--left';
+            hero.appendChild(left);
+          }
+          if (!right) {
+            right = document.createElement('div');
+            right.className = 'project-section__mask project-section__mask--right';
+            hero.appendChild(right);
+          }
+          masks.push({ hero: hero, left: left, right: right });
+        });
+
+        if (!masks.length) return;
+
+        function update() {
+          var vh = window.innerHeight;
+          for (var i = 0; i < masks.length; i++) {
+            var rect = masks[i].hero.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > vh) continue;
+            var progress = 1 - (rect.bottom / (vh + rect.height));
+            progress = Math.max(0, Math.min(1, progress));
+            masks[i].left.style.transform = 'skewX(-5deg) translateX(' + ((1 - progress) * -120) + '%)';
+            masks[i].right.style.transform = 'skewX(-5deg) translateX(' + (progress * 120) + '%)';
+          }
+        }
+
+        // Listen on all possible scroll targets
+        window.addEventListener('scroll', function() { requestAnimationFrame(update); }, { passive: true });
+        document.addEventListener('scroll', function() { requestAnimationFrame(update); }, { passive: true, capture: true });
+        update();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMasks);
+      } else {
+        initMasks();
+      }
+    })();
+  </script>
+</Layout>

@@ -5,6 +5,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   output: 'static',
   image: {
+    domains: ['e3es2026.local'],
     remotePatterns: [{ protocol: 'https' }]
   }
 });

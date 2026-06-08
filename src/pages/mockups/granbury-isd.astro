@@ -1,0 +1,433 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image, getImage } from 'astro:assets';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+// Import client-specific logo and hero background
+import clientLogo from '../../assets/images/Granbury_ISD.png';
+import heroBg from '../../assets/images/flickr/e3_best_of/e3-best-of_rio-hondo-after-dsc05809_51975939640.jpg';
+
+// Import testimonial avatars
+import avatarSuper from '../../assets/images/superintendent-400x400.png';
+import avatarFac from '../../assets/images/facilities_director-400x400.png';
+
+// Import image assets for the galleries
+import energyImg1 from '../../assets/images/54474213788_147e72a636_k.jpg';
+import energyImg2 from '../../assets/images/hvac.png';
+import energyImg3 from '../../assets/images/led.jpg';
+import energyImg4 from '../../assets/images/51670228367_9daa14b611_k.jpg';
+
+import waterImg1 from '../../assets/images/water.jpg';
+import waterImg2 from '../../assets/images/51551511268_f74e3b930e_k.jpg';
+import waterImg3 from '../../assets/images/51554219241_702ee4717f_k.jpg';
+import waterImg4 from '../../assets/images/53969622794_b49535a782_k.jpg';
+
+import beforeImg from '../../assets/images/flickr/e3_best_of/e3-best-of_rio-hondo-interior-lighting-after_51974381892.jpg';
+import afterImg from '../../assets/images/flickr/e3_best_of/e3-best-of_rio-hondo-interior-lighting-before_51499860007.jpg';
+import sidebarImg from '../../assets/images/flickr/e3_best_of/e3-best-of_rio-hondo-interior-lighting-before_51500902443.jpg';
+
+const optimizedHeroBg = await getImage({ src: heroBg, format: 'webp' });
+
+const breadcrumbItems = [
+  {
+    label: "Home",
+    href: "/",
+    dropdown: [
+      { label: "Solutions for K-12", href: "/k12" },
+      { label: "Design+Build", href: "/design-build" },
+      { label: "Partners in Funding", href: "/funding" },
+      { label: "Clients", href: "/clients" },
+      { label: "Services", href: "/services" }
+    ]
+  },
+  {
+    label: "Clients",
+    href: "/clients",
+    dropdown: [
+      { label: "Boyd ISD", href: "/mockups/boyd-isd" },
+      { label: "Bishop CISD", href: "/mockups/bishop-cisd" },
+      { label: "Granbury ISD", href: "/mockups/granbury-isd" }
+    ]
+  },
+  {
+    label: "K-12",
+    href: "/k12",
+    dropdown: [
+      { label: "K-12 Schools", href: "/k12" },
+      { label: "Higher Education", href: "/higher-education" },
+      { label: "Municipal", href: "/municipal" },
+      { label: "Healthcare", href: "/healthcare" }
+    ]
+  },
+  {
+    label: "Granbury ISD"
+  }
+];
+---
+
+<Layout description="Mockup page for Granbury ISD detailing mechanical overhauls, lighting, and water conservation.">
+  <!-- Breadcrumb Bar -->
+  <Breadcrumb items={breadcrumbItems} />
+
+  <!-- Client Hero Banner -->
+  <section class="db-page-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.85), rgba(14, 53, 27, 0.85)), url(${optimizedHeroBg.src});`}>
+    <div class="db-page-hero__container">
+      <div class="db-page-hero__logo-wrapper">
+        <Image src={clientLogo} alt="Granbury ISD Logo" class="db-page-hero__logo-img" />
+      </div>
+      <div>
+        <h1 class="db-page-hero__title" style="margin-bottom: 1rem;">Granbury ISD</h1>
+        <div class="db-page-hero__intro">
+          <p>K-12 Public Schools | Region: North Texas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main style="background: var(--color-bg-white); padding: 4rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+
+      <!-- Case Study Video Section -->
+      <section class="db-video-section">
+        <h3 class="db-video-section__title">Granbury ISD Case Study Video</h3>
+        <div class="db-video-wrapper">
+          <iframe src="https://player.vimeo.com/video/227283498?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Granbury ISD Case Study Video"></iframe>
+        </div>
+      </section>
+
+      <!-- Table of Contents -->
+      <nav class="db-toc" aria-label="Table of Contents">
+        <span class="db-toc__label">Jump to project:</span>
+        <a href="#project-energy" class="db-toc__link">HVAC Upgrades & Lighting Retrofits</a>
+        <span class="db-toc__divider">|</span>
+        <a href="#project-water" class="db-toc__link">Water Conservation & Turf Upgrades</a>
+      </nav>
+
+      <!-- PROJECT 1 SECTION -->
+      <section class="project-section" id="project-energy">
+        <div class="project-section__header">
+          <div class="project-section__hero" onclick="document.getElementById('dialog-energy-1').showModal()">
+            <Image src={energyImg1} alt="HVAC Upgrades & Lighting Retrofits" class="project-section__hero-img" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" formats={["webp"]} />
+          </div>
+          <div class="project-section__info">
+            <span class="project-section__eyebrow">Project 1</span>
+            <h3 class="project-section__title">HVAC Upgrades & Lighting Retrofits</h3>
+          </div>
+        </div>
+        
+        <!-- Compact Project Details Block -->
+        <div class="project-details">
+
+          <div class="project-details__item">
+            <span class="project-details__label">Project Scope</span>
+            <span class="project-details__value">200+ HVAC replacements, T8 LED Retrofit</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Value / Savings</span>
+            <span class="project-details__value">$5,481,279 / $323,362 Actual Yr 1 Savings</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Type</span>
+            <span class="project-details__value">Performance Contract</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Year</span>
+            <span class="project-details__value">Completed 2013</span>
+          </div>
+        </div>
+
+        <!-- Project Description & Testimonial Grid -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 3rem; align-items: start;" class="project-columns">
+          <div style="font-size: 1.1rem; line-height: 1.8;">
+            <p style="margin-bottom: 1rem;">
+              E3 designed a program that replaced more than 200 HVAC units older than 20 years and completed a districtwide T8 lighting retrofit with controls.
+            </p>
+            <p style="margin-bottom: 1.5rem;">
+              To minimize disruption to summer classes and normal district workflows, construction was tightly coordinated. This included a notable single-day helicopter lift to place 160 HVAC units across rooftops, allowing summer school and facility cleaning to proceed on schedule. Actual energy savings exceeded expectations, delivering $323,362 in Year 1 ($41,500 over the guaranteed target).
+            </p>
+          </div>
+
+          <!-- Sidebar Image Callout -->
+          <div style="box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;">
+            <Image src={sidebarImg} alt="Granbury ISD School Facility Chiller Installation" style="width: 100%; height: auto; display: block; aspect-ratio: 4/5; object-fit: cover;" />
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="db-testimonial">
+          <div class="db-testimonial__avatar-wrapper">
+            <Image src={avatarSuper} alt="Dr. James Largent" class="db-testimonial__avatar db-testimonial__avatar--placeholder" />
+          </div>
+          <div class="db-testimonial__body">
+            <blockquote class="db-testimonial__quote">
+              "E3 did everything they said they would. The audit was very thorough and the team walked us through every step and each recommendation. The installation was quick and seamless... E3 also worked well with our maintenance staff."
+            </blockquote>
+          </div>
+          <div class="db-testimonial__divider"></div>
+          <div class="db-testimonial__author">
+            - Dr. James Largent, Superintendent
+          </div>
+        </div>
+
+        <!-- Before & After Comparison -->
+        <div class="db-comparison">
+          <h4 class="db-comparison__title">Before & After comparison</h4>
+          <div class="db-comparison__grid">
+            <div class="db-comparison__card">
+              <span class="db-comparison__label">Before</span>
+              <Image src={afterImg} alt="HVAC Equipment Before Upgrades" class="db-comparison__img" widths={[600]} formats={["webp"]} />
+            </div>
+            <div class="db-comparison__card">
+              <span class="db-comparison__label">After</span>
+              <Image src={beforeImg} alt="HVAC Equipment After Upgrades" class="db-comparison__img" widths={[600]} formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Gallery -->
+        <div class="project-gallery">
+          <h4 class="project-gallery__title">Project Gallery</h4>
+          <div class="project-gallery__grid">
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-energy-1').showModal()">
+              <Image src={energyImg1} alt="Helicopter HVAC Placement" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-energy-2').showModal()">
+              <Image src={energyImg2} alt="Completed mechanical room" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-energy-3').showModal()">
+              <Image src={energyImg3} alt="Stadium LED Retrofit" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-energy-4').showModal()">
+              <Image src={energyImg4} alt="Outdoor School Lighting" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox Dialogs -->
+        <dialog id="dialog-energy-1" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-energy-1').close()">&times;</button>
+            <Image src={energyImg1} alt="Helicopter HVAC Placement" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-energy-2" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-energy-2').close()">&times;</button>
+            <Image src={energyImg2} alt="Completed mechanical room" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-energy-3" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-energy-3').close()">&times;</button>
+            <Image src={energyImg3} alt="Stadium LED Retrofit" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-energy-4" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-energy-4').close()">&times;</button>
+            <Image src={energyImg4} alt="Outdoor School Lighting" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+      </section>
+
+      <!-- PROJECT 2 SECTION -->
+      <section class="project-section" id="project-water">
+        <div class="project-section__header">
+          <div class="project-section__hero" onclick="document.getElementById('dialog-water-1').showModal()">
+            <Image src={waterImg1} alt="District-wide Water Conservation & Turf Upgrades" class="project-section__hero-img" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" formats={["webp"]} />
+          </div>
+          <div class="project-section__info">
+            <span class="project-section__eyebrow">Project 2</span>
+            <h3 class="project-section__title">District-wide Water Conservation & Turf Upgrades</h3>
+          </div>
+        </div>
+        
+        <!-- Compact Project Details Block -->
+        <div class="project-details">
+
+          <div class="project-details__item">
+            <span class="project-details__label">Project Scope</span>
+            <span class="project-details__value">Water Conservation Retrofits, Field Turf</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Value</span>
+            <span class="project-details__value">Included in Program</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Type</span>
+            <span class="project-details__value">Performance Contract</span>
+          </div>
+        </div>
+
+        <!-- Project Description -->
+        <div style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem;">
+          <p>
+            To address the district’s high water bills, E3 designed and performed a comprehensive water conservation retrofit, upgrading restroom plumbing and faucets across campuses. To deliver additional water savings and eliminate intensive maintenance requirements, E3 coordinated the installation of low-maintenance synthetic field turf on the varsity athletic fields.
+          </p>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="db-testimonial">
+          <div class="db-testimonial__avatar-wrapper">
+            <Image src={avatarFac} alt="Randy Leach" class="db-testimonial__avatar db-testimonial__avatar--placeholder" />
+          </div>
+          <div class="db-testimonial__body">
+            <blockquote class="db-testimonial__quote">
+              "The water conservation retrofits and new synthetic field turf significantly reduced our utility bills and field maintenance hours. A great investment for the district."
+            </blockquote>
+          </div>
+          <div class="db-testimonial__divider"></div>
+          <div class="db-testimonial__author">
+            - Randy Leach, Director of Facilities
+          </div>
+        </div>
+
+        <!-- Project Gallery -->
+        <div class="project-gallery">
+          <h4 class="project-gallery__title">Project Gallery</h4>
+          <div class="project-gallery__grid">
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-water-1').showModal()">
+              <Image src={waterImg1} alt="Water Conservation Installation" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-water-2').showModal()">
+              <Image src={waterImg2} alt="Controls and Plumbing panel" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-water-3').showModal()">
+              <Image src={waterImg3} alt="Pressure regulators" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-water-4').showModal()">
+              <Image src={waterImg4} alt="Newly installed field turf" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox Dialogs -->
+        <dialog id="dialog-water-1" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-water-1').close()">&times;</button>
+            <Image src={waterImg1} alt="Water Conservation Installation" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-water-2" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-water-2').close()">&times;</button>
+            <Image src={waterImg2} alt="Controls and Plumbing panel" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-water-3" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-water-3').close()">&times;</button>
+            <Image src={waterImg3} alt="Pressure regulators" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-water-4" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-water-4').close()">&times;</button>
+            <Image src={waterImg4} alt="Newly installed field turf" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+      </section>
+
+
+
+    </div>
+  </main>
+
+  <style>
+    @media (min-width: 768px) {
+      .project-columns {
+        grid-template-columns: 2fr 1fr !important;
+      }
+    }
+  </style>
+
+  <!-- Lightbox Navigation and Close Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dialogs = Array.from(document.querySelectorAll('dialog.lightbox-dialog'));
+      if (dialogs.length === 0) return;
+
+      dialogs.forEach((dialog, index) => {
+        const wrapper = dialog.querySelector('.lightbox-dialog__wrapper');
+        if (!wrapper) return;
+
+        // Fallback for click outside to close (backdrop click)
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (!isDialogContent) {
+            dialog.close();
+          }
+        });
+
+        // Add arrows only if there is more than 1 image on the page
+        if (dialogs.length > 1) {
+          // Prev Button
+          const prevBtn = document.createElement('button');
+          prevBtn.className = 'lightbox-dialog__arrow lightbox-dialog__arrow--prev';
+          prevBtn.setAttribute('aria-label', 'Previous photo');
+          prevBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          `;
+
+          // Next Button
+          const nextBtn = document.createElement('button');
+          nextBtn.className = 'lightbox-dialog__arrow lightbox-dialog__arrow--next';
+          nextBtn.setAttribute('aria-label', 'Next photo');
+          nextBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          `;
+
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dialog.close();
+            const prevIndex = (index - 1 + dialogs.length) % dialogs.length;
+            dialogs[prevIndex].showModal();
+          });
+
+          nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dialog.close();
+            const nextIndex = (index + 1) % dialogs.length;
+            dialogs[nextIndex].showModal();
+          });
+
+          wrapper.appendChild(prevBtn);
+          wrapper.appendChild(nextBtn);
+
+          // Keyboard arrow key navigation
+          dialog.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              dialog.close();
+              const prevIndex = (index - 1 + dialogs.length) % dialogs.length;
+              dialogs[prevIndex].showModal();
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              dialog.close();
+              const nextIndex = (index + 1) % dialogs.length;
+              dialogs[nextIndex].showModal();
+            }
+          });
+        }
+      });
+    });
+  </script>
+</Layout>

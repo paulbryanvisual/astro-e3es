@@ -1,0 +1,406 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image, getImage } from 'astro:assets';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+// Import client-specific logo and hero background
+import clientLogo from '../../assets/images/Bishop_CISD.png';
+import heroBg from '../../assets/images/flickr/general_marketing/general-marketing_brochure-2_51586540330.jpg';
+
+// Import testimonial avatars
+import avatarSuper from '../../assets/images/superintendent-400x400.png';
+import avatarFac from '../../assets/images/facilities_director-400x400.png';
+
+// Import image assets for the galleries
+import mechImg1 from '../../assets/images/54474213788_147e72a636_k.jpg';
+import mechImg2 from '../../assets/images/54811959968_9493f28880_k.jpg';
+import mechImg3 from '../../assets/images/hvac.png';
+import mechImg4 from '../../assets/images/51551255896_f97e3d97b1_k.jpg';
+
+import lightImg1 from '../../assets/images/led.jpg';
+import lightImg2 from '../../assets/images/51670228367_9daa14b611_k.jpg';
+import lightImg3 from '../../assets/images/51671231498_f84028afe5_k.jpg';
+import lightImg4 from '../../assets/images/53969622794_b49535a782_k.jpg';
+
+import sidebarImg from '../../assets/images/flickr/e3_best_of/e3-best-of_rio-hondo-construction-dsc05586_52177149681.jpg';
+
+const optimizedHeroBg = await getImage({ src: heroBg, format: 'webp' });
+
+const breadcrumbItems = [
+  {
+    label: "Home",
+    href: "/",
+    dropdown: [
+      { label: "Solutions for K-12", href: "/k12" },
+      { label: "Design+Build", href: "/design-build" },
+      { label: "Partners in Funding", href: "/funding" },
+      { label: "Clients", href: "/clients" },
+      { label: "Services", href: "/services" }
+    ]
+  },
+  {
+    label: "Clients",
+    href: "/clients",
+    dropdown: [
+      { label: "Boyd ISD", href: "/mockups/boyd-isd" },
+      { label: "Bishop CISD", href: "/mockups/bishop-cisd" },
+      { label: "Granbury ISD", href: "/mockups/granbury-isd" }
+    ]
+  },
+  {
+    label: "K-12",
+    href: "/k12",
+    dropdown: [
+      { label: "K-12 Schools", href: "/k12" },
+      { label: "Higher Education", href: "/higher-education" },
+      { label: "Municipal", href: "/municipal" },
+      { label: "Healthcare", href: "/healthcare" }
+    ]
+  },
+  {
+    label: "Bishop CISD"
+  }
+];
+---
+
+<Layout description="Mockup page for Bishop CISD detailing HVAC replacements and LED lighting upgrades.">
+  <!-- Breadcrumb Bar -->
+  <Breadcrumb items={breadcrumbItems} />
+
+  <!-- Client Hero Banner -->
+  <section class="db-page-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.85), rgba(14, 53, 27, 0.85)), url(${optimizedHeroBg.src});`}>
+    <div class="db-page-hero__container">
+      <div class="db-page-hero__logo-wrapper">
+        <Image src={clientLogo} alt="Bishop CISD Logo" class="db-page-hero__logo-img" />
+      </div>
+      <div>
+        <h1 class="db-page-hero__title" style="margin-bottom: 1rem;">Bishop CISD</h1>
+        <div class="db-page-hero__intro">
+          <p>K-12 Public Schools | Region: South Texas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main style="background: var(--color-bg-white); padding: 4rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+
+      <!-- Table of Contents -->
+      <nav class="db-toc" aria-label="Table of Contents">
+        <span class="db-toc__label">Jump to project:</span>
+        <a href="#project-mechanical" class="db-toc__link">Mechanical Upgrades</a>
+        <span class="db-toc__divider">|</span>
+        <a href="#project-lighting" class="db-toc__link">LED Lighting Retrofits</a>
+      </nav>
+
+      <!-- PROJECT 1 SECTION -->
+      <section class="project-section" id="project-mechanical">
+        <div class="project-section__header">
+          <div class="project-section__hero" onclick="document.getElementById('dialog-mech-1').showModal()">
+            <Image src={mechImg1} alt="Luehrs Junior High & Badger Den Mechanical Upgrades" class="project-section__hero-img" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" formats={["webp"]} />
+          </div>
+          <div class="project-section__info">
+            <span class="project-section__eyebrow">Project 1</span>
+            <h3 class="project-section__title">Luehrs Junior High & Badger Den Mechanical Upgrades</h3>
+          </div>
+        </div>
+        
+        <!-- Compact Project Details Block -->
+        <div class="project-details">
+          <div class="project-details__item">
+            <span class="project-details__label">Project Scope</span>
+            <span class="project-details__value">Packaged RTUs, Natural Gas, Electric Upgrades</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Value</span>
+            <span class="project-details__value">$1,036,716 (Total Program)</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Type</span>
+            <span class="project-details__value">Design-Build</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Year</span>
+            <span class="project-details__value">Completed 2018</span>
+          </div>
+        </div>
+
+        <!-- Project Description & Contact Grid -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 3rem; align-items: start;" class="project-columns">
+          <div style="font-size: 1.1rem; line-height: 1.8;">
+            <p style="margin-bottom: 1rem;">
+              E3 designed and installed 18 high-efficiency packaged rooftop units (RTUs) with natural gas furnaces at the Luehrs Junior High campus. The scope of work also included providing new electrical service, structural support, routing and insulating condensate drain lines, and integrating existing controls.
+            </p>
+            <p>
+              In addition, E3 replaced two older RTUs on the Badger Den facilities, increasing cooling capacity from 5 to 6 tons to improve indoor climate control and ventilation, along with installing additional supply vents.
+            </p>
+          </div>
+
+          <!-- Sidebar Image Callout -->
+          <div style="box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;">
+            <Image src={sidebarImg} alt="Bishop CISD School Facility Construction" style="width: 100%; height: auto; display: block; aspect-ratio: 4/5; object-fit: cover;" />
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="db-testimonial">
+          <div class="db-testimonial__avatar-wrapper">
+            <Image src={avatarSuper} alt="Manny Tamez" class="db-testimonial__avatar db-testimonial__avatar--placeholder" />
+          </div>
+          <div class="db-testimonial__body">
+            <blockquote class="db-testimonial__quote">
+              "Installing the packaged RTUs resolved our cooling issues at Luehrs Junior High. E3 managed the helicopter lifts and electrical setup seamlessly."
+            </blockquote>
+          </div>
+          <div class="db-testimonial__divider"></div>
+          <div class="db-testimonial__author">
+            - Manny Tamez, Director of Finance
+          </div>
+        </div>
+
+        <!-- Project Gallery -->
+        <div class="project-gallery">
+          <h4 class="project-gallery__title">Project Gallery</h4>
+          <div class="project-gallery__grid">
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-mech-1').showModal()">
+              <Image src={mechImg1} alt="Rooftop HVAC Installation" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-mech-2').showModal()">
+              <Image src={mechImg2} alt="New Condensate Piping" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-mech-3').showModal()">
+              <Image src={mechImg3} alt="Packaged Gas RTUs" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-mech-4').showModal()">
+              <Image src={mechImg4} alt="Helicopter Lift Prep" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox Dialogs -->
+        <dialog id="dialog-mech-1" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-mech-1').close()">&times;</button>
+            <Image src={mechImg1} alt="Rooftop HVAC Installation" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-mech-2" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-mech-2').close()">&times;</button>
+            <Image src={mechImg2} alt="New Condensate Piping" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-mech-3" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-mech-3').close()">&times;</button>
+            <Image src={mechImg3} alt="Packaged Gas RTUs" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-mech-4" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-mech-4').close()">&times;</button>
+            <Image src={mechImg4} alt="Helicopter Lift Prep" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+      </section>
+
+      <!-- PROJECT 2 SECTION -->
+      <section class="project-section" id="project-lighting">
+        <div class="project-section__header">
+          <div class="project-section__hero" onclick="document.getElementById('dialog-light-1').showModal()">
+            <Image src={lightImg1} alt="Districtwide LED Lighting Retrofits" class="project-section__hero-img" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" formats={["webp"]} />
+          </div>
+          <div class="project-section__info">
+            <span class="project-section__eyebrow">Project 2</span>
+            <h3 class="project-section__title">Districtwide LED Lighting Retrofits</h3>
+          </div>
+        </div>
+        
+        <!-- Compact Project Details Block -->
+        <div class="project-details">
+          <div class="project-details__item">
+            <span class="project-details__label">Project Scope</span>
+            <span class="project-details__value">5,212 LED Fixtures, Energy Audit</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Guaranteed Savings</span>
+            <span class="project-details__value">$90,824 Annual Savings</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Type</span>
+            <span class="project-details__value">Guaranteed Savings Performance Contract</span>
+          </div>
+        </div>
+
+        <!-- Project Description -->
+        <div style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem;">
+          <p>
+            E3 designed, supplied, and installed modern LED lamps and fixtures across all Bishop CISD buildings. Retrofitting a total of 5,212 interior and exterior fixtures resulted in improved lighting quality, lower heat output, reduced maintenance costs, and contractually guaranteed annual utility savings of $90,824.
+          </p>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="db-testimonial">
+          <div class="db-testimonial__avatar-wrapper">
+            <Image src={avatarFac} alt="Texas School District" class="db-testimonial__avatar db-testimonial__avatar--placeholder" />
+          </div>
+          <div class="db-testimonial__body">
+            <blockquote class="db-testimonial__quote">
+              "The new lighting not only improved visibility but dramatically reduced our utility bills. We realized our annual savings estimate in just over eight months of tracking."
+            </blockquote>
+          </div>
+          <div class="db-testimonial__divider"></div>
+          <div class="db-testimonial__author">
+            - Texas School District
+          </div>
+        </div>
+
+        <!-- Project Gallery -->
+        <div class="project-gallery">
+          <h4 class="project-gallery__title">Project Gallery</h4>
+          <div class="project-gallery__grid">
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-light-1').showModal()">
+              <Image src={lightImg1} alt="Gymnasium LED Fixtures" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-light-2').showModal()">
+              <Image src={lightImg2} alt="Classroom LED Retrofit" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-light-3').showModal()">
+              <Image src={lightImg3} alt="Exterior Canopy LED" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-light-4').showModal()">
+              <Image src={lightImg4} alt="Office Lighting Panel" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox Dialogs -->
+        <dialog id="dialog-light-1" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-light-1').close()">&times;</button>
+            <Image src={lightImg1} alt="Gymnasium LED Fixtures" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-light-2" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-light-2').close()">&times;</button>
+            <Image src={lightImg2} alt="Classroom LED Retrofit" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-light-3" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-light-3').close()">&times;</button>
+            <Image src={lightImg3} alt="Exterior Canopy LED" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-light-4" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-light-4').close()">&times;</button>
+            <Image src={lightImg4} alt="Office Lighting Panel" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+      </section>
+
+
+
+    </div>
+  </main>
+
+  <style>
+    @media (min-width: 768px) {
+      .project-columns {
+        grid-template-columns: 2fr 1fr !important;
+      }
+    }
+  </style>
+
+  <!-- Lightbox Navigation and Close Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dialogs = Array.from(document.querySelectorAll('dialog.lightbox-dialog'));
+      if (dialogs.length === 0) return;
+
+      dialogs.forEach((dialog, index) => {
+        const wrapper = dialog.querySelector('.lightbox-dialog__wrapper');
+        if (!wrapper) return;
+
+        // Fallback for click outside to close (backdrop click)
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (!isDialogContent) {
+            dialog.close();
+          }
+        });
+
+        // Add arrows only if there is more than 1 image on the page
+        if (dialogs.length > 1) {
+          // Prev Button
+          const prevBtn = document.createElement('button');
+          prevBtn.className = 'lightbox-dialog__arrow lightbox-dialog__arrow--prev';
+          prevBtn.setAttribute('aria-label', 'Previous photo');
+          prevBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          `;
+
+          // Next Button
+          const nextBtn = document.createElement('button');
+          nextBtn.className = 'lightbox-dialog__arrow lightbox-dialog__arrow--next';
+          nextBtn.setAttribute('aria-label', 'Next photo');
+          nextBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          `;
+
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dialog.close();
+            const prevIndex = (index - 1 + dialogs.length) % dialogs.length;
+            dialogs[prevIndex].showModal();
+          });
+
+          nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dialog.close();
+            const nextIndex = (index + 1) % dialogs.length;
+            dialogs[nextIndex].showModal();
+          });
+
+          wrapper.appendChild(prevBtn);
+          wrapper.appendChild(nextBtn);
+
+          // Keyboard arrow key navigation
+          dialog.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              dialog.close();
+              const prevIndex = (index - 1 + dialogs.length) % dialogs.length;
+              dialogs[prevIndex].showModal();
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              dialog.close();
+              const nextIndex = (index + 1) % dialogs.length;
+              dialogs[nextIndex].showModal();
+            }
+          });
+        }
+      });
+    });
+  </script>
+</Layout>

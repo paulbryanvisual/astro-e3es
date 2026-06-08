@@ -1,0 +1,511 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image, getImage } from 'astro:assets';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+// Import client-specific logo and hero background
+import clientLogo from '../../assets/images/Boyd_ISD_-_2024_Bond.png';
+import heroBg from '../../assets/images/flickr/boyd_construction/boyd-isd-construction_boyd-construction-0003_54400148852.jpg';
+
+// Import testimonial avatars
+import avatarSuper from '../../assets/images/superintendent-400x400.png';
+import avatarFac from '../../assets/images/facilities_director-400x400.png';
+
+// Import image assets for the galleries
+import hvacImg1 from '../../assets/images/hvac.png';
+import hvacImg2 from '../../assets/images/51551511268_f74e3b930e_k.jpg';
+import hvacImg3 from '../../assets/images/51554219241_702ee4717f_k.jpg';
+import hvacImg4 from '../../assets/images/54845433725_c85916126a_k.jpg';
+
+import ledImg1 from '../../assets/images/led.jpg';
+import ledImg2 from '../../assets/images/51670228367_9daa14b611_k.jpg';
+import ledImg3 from '../../assets/images/51671231498_f84028afe5_k.jpg';
+import ledImg4 from '../../assets/images/53969622794_b49535a782_k.jpg';
+
+import sidebarImg from '../../assets/images/flickr/e3_best_of/e3-best-of_rio-hondo-constructionrio-hondo-after-dsc05778_51983014624.jpg';
+
+const optimizedHeroBg = await getImage({ src: heroBg, format: 'webp' });
+
+// Load Flickr images dynamically
+const beforeImages = Object.values(import.meta.glob('../../assets/images/flickr/boyd_before/*.jpg', { eager: true })).map((m: any) => m.default);
+const afterImages = Object.values(import.meta.glob('../../assets/images/flickr/boyd_after/*.jpg', { eager: true })).map((m: any) => m.default);
+const constructionImages = Object.values(import.meta.glob('../../assets/images/flickr/boyd_construction/*.jpg', { eager: true })).map((m: any) => m.default);
+
+const breadcrumbItems = [
+  {
+    label: "Home",
+    href: "/",
+    dropdown: [
+      { label: "Solutions for K-12", href: "/k12" },
+      { label: "Design+Build", href: "/design-build" },
+      { label: "Partners in Funding", href: "/funding" },
+      { label: "Clients", href: "/clients" },
+      { label: "Services", href: "/services" }
+    ]
+  },
+  {
+    label: "Clients",
+    href: "/clients",
+    dropdown: [
+      { label: "Boyd ISD", href: "/mockups/boyd-isd" },
+      { label: "Bishop CISD", href: "/mockups/bishop-cisd" },
+      { label: "Granbury ISD", href: "/mockups/granbury-isd" }
+    ]
+  },
+  {
+    label: "K-12",
+    href: "/k12",
+    dropdown: [
+      { label: "K-12 Schools", href: "/k12" },
+      { label: "Higher Education", href: "/higher-education" },
+      { label: "Municipal", href: "/municipal" },
+      { label: "Healthcare", href: "/healthcare" }
+    ]
+  },
+  {
+    label: "Boyd ISD"
+  }
+];
+---
+
+<Layout description="Mockup page for Boyd ISD detailing multiple facility improvement projects.">
+  <!-- Breadcrumb Bar -->
+  <Breadcrumb items={breadcrumbItems} />
+
+  <!-- Client Hero Banner -->
+  <section class="db-page-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.85), rgba(14, 53, 27, 0.85)), url(${optimizedHeroBg.src});`}>
+    <div class="db-page-hero__container">
+      <div class="db-page-hero__logo-wrapper">
+        <Image src={clientLogo} alt="Boyd ISD Logo" class="db-page-hero__logo-img" />
+      </div>
+      <div>
+        <h1 class="db-page-hero__title" style="margin-bottom: 1rem;">Boyd ISD</h1>
+        <div class="db-page-hero__intro">
+          <p>K-12 Public Schools | Region: North Texas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Info Bar / Sidebar context in main container -->
+  <main style="background: var(--color-bg-white); padding: 4rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+
+      <!-- Case Study Video Section -->
+      <section class="db-video-section">
+        <h3 class="db-video-section__title">Boyd ISD Case Study Video</h3>
+        <div class="db-video-wrapper">
+          <iframe src="https://player.vimeo.com/video/1179578579?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Boyd ISD Case Study Video"></iframe>
+        </div>
+      </section>
+
+      <!-- Table of Contents -->
+      <nav class="db-toc" aria-label="Table of Contents">
+        <span class="db-toc__label">Jump to project:</span>
+        <a href="#project-hvac" class="db-toc__link">HVAC & Controls Upgrades</a>
+        <span class="db-toc__divider">|</span>
+        <a href="#project-lighting" class="db-toc__link">LED Sports Lighting</a>
+      </nav>
+
+      <!-- PROJECT 1 SECTION -->
+      <section class="project-section" id="project-hvac">
+        <div class="project-section__header">
+          <div class="project-section__hero" onclick="document.getElementById('dialog-hvac-1').showModal()">
+            <Image src={hvacImg1} alt="Districtwide HVAC & Controls Upgrades" class="project-section__hero-img" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" formats={["webp"]} />
+          </div>
+          <div class="project-section__info">
+            <span class="project-section__eyebrow">Project 1</span>
+            <h3 class="project-section__title">Districtwide HVAC & Controls Upgrades</h3>
+          </div>
+        </div>
+        
+        <!-- Compact Project Details Block -->
+        <div class="project-details">
+          <div class="project-details__item">
+            <span class="project-details__label">Project Scope</span>
+            <span class="project-details__value">HVAC, Controls, Commissioning</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Amount</span>
+            <span class="project-details__value">$3,156,127</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Funding Source</span>
+            <span class="project-details__value">Bond 2024</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Year</span>
+            <span class="project-details__value">Completed 2024</span>
+          </div>
+        </div>
+
+        <!-- Project Description & Contact Grid -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 3rem; align-items: start;" class="project-columns">
+          <div style="font-size: 1.1rem; line-height: 1.8;">
+            <p style="margin-bottom: 1rem;">
+              The first phase of work involved a complete mechanical life-cycle replacement program across five district campuses: Boyd Elementary, Boyd Intermediate, Boyd Middle School, Boyd High School, and various auxiliary facilities. E3 evaluated equipment condition and life-cycle status to design a project that minimized disruption to instruction.
+            </p>
+            <h4 style="color: var(--color-primary-dark); margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Key Deliverables Included:</h4>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>Full HVAC life-cycle replacements districtwide (including package rooftop RTUs).</li>
+              <li>Districtwide Energy Management System (EMS) integration and programming.</li>
+              <li>Turnkey mechanical engineering design and construction management.</li>
+              <li>Verification of ongoing performance metrics and post-construction commissioning.</li>
+            </ul>
+          </div>
+
+          <!-- Sidebar Image Callout -->
+          <div style="box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;">
+            <Image src={sidebarImg} alt="Boyd ISD School Facility HVAC Installation" style="width: 100%; height: auto; display: block; aspect-ratio: 4/5; object-fit: cover;" />
+          </div>
+        </div>
+
+        <!-- Project Video Showcase -->
+        <div style="margin-bottom: 3rem;">
+          <h4 style="color: var(--color-primary-dark); margin-bottom: 1.25rem; font-weight: 700; font-size: 1.2rem;">Project Video: HVAC Upgrades in Action</h4>
+          <div class="db-video-wrapper">
+            <iframe src="https://player.vimeo.com/video/1065940484?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Boyd ISD HVAC Upgrades Video"></iframe>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="db-testimonial">
+          <div class="db-testimonial__avatar-wrapper">
+            <Image src={avatarSuper} alt="Tom Woody" class="db-testimonial__avatar db-testimonial__avatar--placeholder" />
+          </div>
+          <div class="db-testimonial__body">
+            <blockquote class="db-testimonial__quote">
+              "E3’s phased mechanical upgrades were executed with minimal disruption to our classrooms. The energy management system gives us total control over our energy use."
+            </blockquote>
+          </div>
+          <div class="db-testimonial__divider"></div>
+          <div class="db-testimonial__author">
+            - Tom Woody, Superintendent
+          </div>
+        </div>
+
+        <!-- Project Gallery -->
+        <div class="project-gallery">
+          <h4 class="project-gallery__title">Project Gallery</h4>
+          <div class="project-gallery__grid">
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-hvac-1').showModal()">
+              <Image src={hvacImg1} alt="HVAC Equipment Replacement" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-hvac-2').showModal()">
+              <Image src={hvacImg2} alt="Controls Panel Installation" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-hvac-3').showModal()">
+              <Image src={hvacImg3} alt="Completed mechanical room" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-hvac-4').showModal()">
+              <Image src={hvacImg4} alt="Roof RTU placement" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox Dialogs -->
+        <dialog id="dialog-hvac-1" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-hvac-1').close()">&times;</button>
+            <Image src={hvacImg1} alt="HVAC Equipment Replacement" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-hvac-2" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-hvac-2').close()">&times;</button>
+            <Image src={hvacImg2} alt="Controls Panel Installation" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-hvac-3" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-hvac-3').close()">&times;</button>
+            <Image src={hvacImg3} alt="Completed mechanical room" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-hvac-4" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-hvac-4').close()">&times;</button>
+            <Image src={hvacImg4} alt="Roof RTU placement" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+      </section>
+
+      <!-- PROJECT 2 SECTION -->
+      <section class="project-section" id="project-lighting">
+        <div class="project-section__header">
+          <div class="project-section__hero" onclick="document.getElementById('dialog-led-1').showModal()">
+            <Image src={ledImg1} alt="LED Sports Lighting & Auxiliary Upgrades" class="project-section__hero-img" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" formats={["webp"]} />
+          </div>
+          <div class="project-section__info">
+            <span class="project-section__eyebrow">Project 2</span>
+            <h3 class="project-section__title">LED Sports Lighting & Auxiliary Upgrades</h3>
+          </div>
+        </div>
+        
+        <!-- Compact Project Details Block -->
+        <div class="project-details">
+          <div class="project-details__item">
+            <span class="project-details__label">Project Scope</span>
+            <span class="project-details__value">LED Sports Lighting, Auditing</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Contract Amount</span>
+            <span class="project-details__value">$650,000 (Estimated)</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Funding Source</span>
+            <span class="project-details__value">ESPC</span>
+          </div>
+          <div class="project-details__item">
+            <span class="project-details__label">Year</span>
+            <span class="project-details__value">Completed 2025</span>
+          </div>
+        </div>
+
+        <!-- Project Description & Details -->
+        <div style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem;">
+          <p>
+            Following the success of the mechanical upgrades, Boyd ISD re-engaged E3 to install energy-efficient LED sports lighting at the high school football stadium, baseball field, and tennis courts. By switching to high-output, directional LED fixtures, the district dramatically improved spectator and player visibility while cutting athletic utility costs by 45%.
+          </p>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="db-testimonial">
+          <div class="db-testimonial__avatar-wrapper">
+            <Image src={avatarFac} alt="Texas School District" class="db-testimonial__avatar db-testimonial__avatar--placeholder" />
+          </div>
+          <div class="db-testimonial__body">
+            <blockquote class="db-testimonial__quote">
+              "The new lighting not only improved visibility but dramatically reduced our utility bills. We realized our annual savings estimate in just over eight months of tracking."
+            </blockquote>
+          </div>
+          <div class="db-testimonial__divider"></div>
+          <div class="db-testimonial__author">
+            - Texas School District
+          </div>
+        </div>
+
+        <!-- Project Gallery -->
+        <div class="project-gallery">
+          <h4 class="project-gallery__title">Project Gallery</h4>
+          <div class="project-gallery__grid">
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-led-1').showModal()">
+              <Image src={ledImg1} alt="Stadium LED Lighting" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-led-2').showModal()">
+              <Image src={ledImg2} alt="LED Classroom Fixture" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-led-3').showModal()">
+              <Image src={ledImg3} alt="Tennis Court Lighting" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+            <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-led-4').showModal()">
+              <Image src={ledImg4} alt="Hallway Lighting Retrofit" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lightbox Dialogs -->
+        <dialog id="dialog-led-1" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-led-1').close()">&times;</button>
+            <Image src={ledImg1} alt="Stadium LED Lighting" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-led-2" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-led-2').close()">&times;</button>
+            <Image src={ledImg2} alt="LED Classroom Fixture" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-led-3" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-led-3').close()">&times;</button>
+            <Image src={ledImg3} alt="Tennis Court Lighting" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+
+        <dialog id="dialog-led-4" class="lightbox-dialog" closedby="any">
+          <div class="lightbox-dialog__wrapper">
+            <button class="lightbox-dialog__close" onclick="document.getElementById('dialog-led-4').close()">&times;</button>
+            <Image src={ledImg4} alt="Hallway Lighting Retrofit" class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+          </div>
+        </dialog>
+      </section>
+
+      <!-- Flickr Project Documentation Section -->
+      <section style="margin-top: 4rem; border-top: 2px solid #eee; padding-top: 4rem;">
+        <h2 style="font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 2rem;">Flickr Project Documentation</h2>
+        <p style="font-size: 1.15rem; line-height: 1.8; color: var(--color-text-main); margin-bottom: 3rem;">
+          These archive photos document the progress of renovations at Boyd ISD, capturing the before conditions, the construction phase, and final completed systems.
+        </p>
+
+        <!-- Boyd ISD Before Album -->
+        {beforeImages.length > 0 && (
+          <div class="project-gallery" style="margin-bottom: 4rem;">
+            <h4 class="project-gallery__title">Boyd ISD - Before Upgrades (Flickr Archive)</h4>
+            <div class="project-gallery__grid">
+              {beforeImages.map((img, idx) => (
+                <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-before-${idx}').showModal()`}>
+                  <Image src={img} alt={`Boyd before upgrades ${idx + 1}`} class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+                </div>
+              ))}
+            </div>
+            
+            {beforeImages.map((img, idx) => (
+              <dialog id={`dialog-flickr-before-${idx}`} class="lightbox-dialog" closedby="any">
+                <div class="lightbox-dialog__wrapper">
+                  <button class="lightbox-dialog__close" onclick={`document.getElementById('dialog-flickr-before-${idx}').close()`}>&times;</button>
+                  <Image src={img} alt={`Boyd before upgrades ${idx + 1}`} class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+                </div>
+              </dialog>
+            ))}
+          </div>
+        )}
+
+        <!-- Boyd ISD After Album -->
+        {afterImages.length > 0 && (
+          <div class="project-gallery" style="margin-bottom: 4rem;">
+            <h4 class="project-gallery__title">Boyd ISD - Completed Projects (Flickr Archive)</h4>
+            <div class="project-gallery__grid">
+              {afterImages.map((img, idx) => (
+                <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-after-${idx}').showModal()`}>
+                  <Image src={img} alt={`Boyd after upgrades ${idx + 1}`} class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+                </div>
+              ))}
+            </div>
+            
+            {afterImages.map((img, idx) => (
+              <dialog id={`dialog-flickr-after-${idx}`} class="lightbox-dialog" closedby="any">
+                <div class="lightbox-dialog__wrapper">
+                  <button class="lightbox-dialog__close" onclick={`document.getElementById('dialog-flickr-after-${idx}').close()`}>&times;</button>
+                  <Image src={img} alt={`Boyd after upgrades ${idx + 1}`} class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+                </div>
+              </dialog>
+            ))}
+          </div>
+        )}
+
+        <!-- Boyd ISD Construction Album -->
+        {constructionImages.length > 0 && (
+          <div class="project-gallery" style="margin-bottom: 4rem;">
+            <h4 class="project-gallery__title">Boyd ISD - Construction Phase (Flickr Archive)</h4>
+            <div class="project-gallery__grid">
+              {constructionImages.map((img, idx) => (
+                <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-construction-${idx}').showModal()`}>
+                  <Image src={img} alt={`Boyd construction ${idx + 1}`} class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
+                </div>
+              ))}
+            </div>
+            
+            {constructionImages.map((img, idx) => (
+              <dialog id={`dialog-flickr-construction-${idx}`} class="lightbox-dialog" closedby="any">
+                <div class="lightbox-dialog__wrapper">
+                  <button class="lightbox-dialog__close" onclick={`document.getElementById('dialog-flickr-construction-${idx}').close()`}>&times;</button>
+                  <Image src={img} alt={`Boyd construction ${idx + 1}`} class="lightbox-dialog__img" widths={[1200]} formats={["webp"]} />
+                </div>
+              </dialog>
+            ))}
+          </div>
+        )}
+      </section>
+
+    </div>
+  </main>
+
+  <style>
+    /* Styling to support desktop layout inside this component */
+    @media (min-width: 768px) {
+      .project-columns {
+        grid-template-columns: 2fr 1fr !important;
+      }
+    }
+  </style>
+
+  <!-- Lightbox Navigation and Close Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dialogs = Array.from(document.querySelectorAll('dialog.lightbox-dialog'));
+      if (dialogs.length === 0) return;
+
+      dialogs.forEach((dialog, index) => {
+        const wrapper = dialog.querySelector('.lightbox-dialog__wrapper');
+        if (!wrapper) return;
+
+        // Fallback for click outside to close (backdrop click)
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (!isDialogContent) {
+            dialog.close();
+          }
+        });
+
+        // Add arrows only if there is more than 1 image on the page
+        if (dialogs.length > 1) {
+          // Prev Button
+          const prevBtn = document.createElement('button');
+          prevBtn.className = 'lightbox-dialog__arrow lightbox-dialog__arrow--prev';
+          prevBtn.setAttribute('aria-label', 'Previous photo');
+          prevBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          `;
+
+          // Next Button
+          const nextBtn = document.createElement('button');
+          nextBtn.className = 'lightbox-dialog__arrow lightbox-dialog__arrow--next';
+          nextBtn.setAttribute('aria-label', 'Next photo');
+          nextBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          `;
+
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dialog.close();
+            const prevIndex = (index - 1 + dialogs.length) % dialogs.length;
+            dialogs[prevIndex].showModal();
+          });
+
+          nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dialog.close();
+            const nextIndex = (index + 1) % dialogs.length;
+            dialogs[nextIndex].showModal();
+          });
+
+          wrapper.appendChild(prevBtn);
+          wrapper.appendChild(nextBtn);
+
+          // Keyboard arrow key navigation
+          dialog.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              dialog.close();
+              const prevIndex = (index - 1 + dialogs.length) % dialogs.length;
+              dialogs[prevIndex].showModal();
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              dialog.close();
+              const nextIndex = (index + 1) % dialogs.length;
+              dialogs[nextIndex].showModal();
+            }
+          });
+        }
+      });
+    });
+  </script>
+</Layout>

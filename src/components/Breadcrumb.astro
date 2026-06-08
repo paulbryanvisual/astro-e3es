@@ -1,0 +1,43 @@
+---
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  dropdown?: { label: string; href: string; }[];
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumb-bar">
+    <div class="breadcrumb-bar__container">
+        {items.map((item, idx) => (
+            <>
+                <div class="breadcrumb-bar__item">
+                    {item.href ? (
+                        <a href={item.href} class="breadcrumb-bar__link">{item.label}</a>
+                    ) : (
+                        <span class="breadcrumb-bar__link" style={idx === items.length - 1 ? "color: var(--color-primary-green);" : ""}>{item.label}</span>
+                    )}
+                    {item.dropdown && item.dropdown.length > 0 && (
+                        <div class="breadcrumb-bar__dropdown">
+                            {item.dropdown.map(drop => (
+                                <a href={drop.href} class="breadcrumb-bar__dropdown-link">{drop.label}</a>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                {idx < items.length - 1 && (
+                    <span class="breadcrumb-bar__separator">
+                        <svg viewBox="0 0 20 40" preserveAspectRatio="none">
+                            <path d="M 14 0 L 13 12 L 3 20 L 11 28 L 10 40 L 20 40 L 20 0 Z" fill="#F4F6F8"></path>
+                        </svg>
+                    </span>
+                )}
+            </>
+        ))}
+    </div>
+</nav>

@@ -10,4 +10,309 @@
   .site-title {
     font-size: 2rem;
   }
+
+  /* Gutenberg Editor Desktop Overrides */
+  .editor-styles-wrapper:not(:has(.is-mobile-preview)):not(:has(.is-tablet-preview)) {
+    // Desktop layout for Verticals Hero in editor
+    .wp-block[data-type="e3es/verticals-hero"] {
+      height: 72vh !important;
+      display: flex !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      max-width: none !important;
+      overflow: hidden !important;
+      
+      .verticals-hero,
+      .verticals-hero__container,
+      .verticals-hero__accordion,
+      .block-editor-inner-blocks {
+        height: 100% !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
+      
+      .block-editor-block-list__layout {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        height: 100% !important;
+        width: calc(100% + 60px) !important;
+        max-width: none !important;
+        margin-left: -30px !important;
+        margin-right: -30px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        gap: 0 !important;
+      }
+    }
+
+    .wp-block[data-type="e3es/verticals-hero-option"] {
+      flex: 1 !important;
+      height: 100% !important;
+      margin: 0 !important;
+      display: flex !important;
+      transform: skewX(-5deg) !important; // Skew block wrapper directly
+
+      &:has(.accordion-option.active) {
+        flex: 5 !important;
+      }
+
+      .accordion-option {
+        transform: none !important; // Remove skew from inner element
+        height: 100% !important;
+        width: 100% !important;
+        min-height: 100% !important;
+        border-right: 8px solid #FFFFFF !important;
+        border-bottom: none !important;
+        box-shadow: inset -2px 0 0 #FFFFFF, 1px 0 0 #FFFFFF !important;
+
+        &::before {
+          content: "" !important;
+          position: absolute !important;
+          top: -50px !important;
+          left: -50px !important;
+          right: -50px !important;
+          bottom: -50px !important;
+          background-image: var(--bg) !important;
+          background-size: cover !important;
+          background-position: center !important;
+          z-index: 0 !important;
+          transform: skewX(5deg) scale(1.1) !important; // Keep unskew on background image
+          transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+
+        &::after {
+          display: block !important;
+          border-right-color: #FFFFFF !important; // Force triangle pointer color to white
+        }
+        
+        .accordion-label {
+          transform: skewX(5deg) !important; // Unskew the label container
+          padding: 3rem 2rem !important;
+        }
+        .accordion-main {
+          transform: rotate(-85deg) translateY(50px) translateX(20px) !important;
+          transform-origin: bottom left !important;
+          white-space: nowrap !important;
+          font-size: 2.5rem !important;
+        }
+        &.active {
+          .accordion-main {
+            transform: rotate(0deg) translateY(0) translateX(0) !important;
+          }
+        }
+      }
+    }
+
+    .wp-block[data-type="e3es/verticals-hero-option"]:first-child .accordion-option .accordion-label {
+      padding-left: calc(2rem + 30px) !important;
+    }
+
+    .wp-block[data-type="e3es/verticals-hero-option"]:last-child .accordion-option .accordion-label {
+      padding-right: calc(2rem + 30px) !important;
+    }
+
+    // Custom Design-Build Grid desktop overrides
+    .wp-block[data-type="e3es/design-build-advantage"] {
+      width: 100% !important;
+      
+      .design-build__grid {
+        display: block !important;
+        width: 100% !important;
+        max-width: 1200px !important; // Match mockup grid width
+        margin: 0 auto !important; // Center the grid
+      }
+      .block-editor-inner-blocks,
+      .block-editor-block-list__layout {
+        width: 100% !important;
+        max-width: none !important;
+      }
+      .block-editor-block-list__layout {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 2rem !important;
+      }
+      .wp-block[data-type="e3es/design-build-card"] {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        height: 100% !important;
+        display: flex !important;
+        
+        .design-build__card {
+          height: 100% !important;
+          width: 100% !important;
+        }
+      }
+    }
+
+    // Enforce full width, padding, and inner container width on Design-Build Cover block in editor
+    .wp-block-cover:has([data-type="e3es/design-build-advantage"]) {
+      width: 100% !important;
+      max-width: none !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-top: 6rem !important;
+      padding-bottom: 6rem !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+
+      .wp-block-cover__inner-container {
+        width: 100% !important;
+        max-width: 1200px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+
+    // Desktop layout for Design-Build Columns in editor (fallbacks for core columns block)
+    .design-build {
+      .wp-block-columns,
+      .wp-block-columns > .block-editor-inner-blocks > .block-editor-block-list__layout {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 2rem !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin-top: 4rem !important;
+        margin-bottom: 0 !important;
+      }
+      .wp-block-columns > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-editor-block-list__block {
+        flex-basis: calc(33.333% - 1.333rem) !important;
+        max-width: none !important;
+        width: auto !important;
+        margin: 0 !important;
+        flex-grow: 1 !important;
+      }
+      .wp-block-column {
+        padding: 3rem 2rem !important;
+        margin-bottom: 0 !important;
+        height: 100% !important;
+      }
+    }
+
+    // ─── E3 Two-Column: full Astro WYSIWYG preview ─────────────────────────
+    .wp-block[data-type="e3es/two-column"] {
+      overflow: visible !important;
+      padding: 0 !important;
+      margin: 0 !important;
+
+      // Allow shadows to escape the block wrapper
+      .block-editor-inner-blocks,
+      .block-editor-block-list__layout {
+        overflow: visible !important;
+      }
+
+      // Section background/padding on section.db-feature (from mobile.scss)
+      .wp-block-e3es-two-column {
+        padding: 3rem 2rem !important;
+      }
+
+      // Flex columns side-by-side
+      .wp-block[data-type="core/columns"] {
+        width: 100% !important;
+        max-width: none !important;
+        overflow: visible !important;
+
+        > .block-editor-inner-blocks > .block-editor-block-list__layout {
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          align-items: stretch !important;
+          gap: 4rem !important;
+          width: 100% !important;
+          max-width: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        // 55% content column
+        > .block-editor-inner-blocks > .block-editor-block-list__layout
+          > .block-editor-block-list__block:has(.db-feature__content-col) {
+          flex: 0 0 55% !important;
+          max-width: 55% !important;
+          margin: 0 !important;
+        }
+
+        // 45% image column — allow shadow overflow
+        > .block-editor-inner-blocks > .block-editor-block-list__layout
+          > .block-editor-block-list__block:has(.db-feature__image-col) {
+          flex: 0 0 45% !important;
+          max-width: 45% !important;
+          margin: 0 !important;
+          overflow: visible !important;
+        }
+      }
+
+      // Content column: flex column, centered vertically
+      .wp-block-column.db-feature__content-col {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 1rem 0 !important;
+      }
+
+      // Typography matching Astro output ─────────────────────────────────────
+      .db-feature__content-col h2.wp-block-heading {
+        font-family: 'Raleway', sans-serif !important;
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        line-height: 1.1 !important;
+        color: var(--color-primary-dark, #215734) !important;
+        margin-bottom: 0.25rem !important;
+      }
+
+      .db-feature__content-col h3.wp-block-heading {
+        font-family: 'Raleway', sans-serif !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        color: var(--color-primary-green, #7DA044) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        margin-top: -0.25rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .db-feature__content-col p {
+        font-family: 'Raleway', sans-serif !important;
+        font-size: 1.1rem !important;
+        line-height: 1.8 !important;
+        color: var(--color-text-main, #333333) !important;
+      }
+
+      // Cover block wrapper: allow overflow, no transform on wrapper itself
+      .wp-block[data-type="core/cover"] {
+        overflow: visible !important;
+        height: 100% !important;
+        transform: none !important;
+      }
+
+      // Skew is applied via mobile.scss (.db-feature .db-feature__image-col .wp-block-cover).
+      // In the editor, make the curtain and overlay text semi-visible
+      // so editors can see hover placeholder content without hovering.
+      .db-feature__image-col .wp-block-cover .wp-block-cover__background {
+        opacity: 0.6 !important;
+      }
+
+      .db-feature__image-col .wp-block-cover .wp-block-cover__inner-container {
+        opacity: 1 !important;
+        transform: skewX(5deg) translateY(0) !important;
+
+        * { color: #ffffff !important; }
+      }
+
+      // Reverse layout: flip inner-container counter-skew
+      .db-feature__container--reverse .db-feature__image-col
+        .wp-block-cover .wp-block-cover__inner-container {
+        transform: skewX(-5deg) translateY(0) !important;
+      }
+    }
+  }
+
+  .project-gallery__grid,
+  .wp-block-gallery.columns-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

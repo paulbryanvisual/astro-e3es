@@ -11,12 +11,48 @@ const mappedClients = wpClients.map((client: any) => {
         imageUrl = client._embedded['wp:featuredmedia'][0].source_url;
     }
 
+    // Parse native taxonomies
+    const embeddedTerms = client._embedded?.['wp:term'] || [];
+    let nativeRegionSlug = '';
+    let nativeVirtialName = '';
+    let nativeServices: string[] = [];
+
+    embeddedTerms.forEach((taxonomyTerms: any[]) => {
+      if (Array.isArray(taxonomyTerms)) {
+        taxonomyTerms.forEach((term: any) => {
+          if (term.taxonomy === 'region') {
+            nativeRegionSlug = term.slug;
+          }
+          if (term.taxonomy === 'virtial') {
+            nativeVirtialName = term.name;
+          }
+          if (term.taxonomy === 'client-services') {
+            nativeServices.push(term.name);
+          }
+        });
+      }
+    });
+
+    const regionMeta = client.meta?._e3_client_region || 'other';
+    const region = nativeRegionSlug || regionMeta;
+
+    const industryMeta = client.meta?._e3_client_industry || 'Other';
+    const industries = ['K-12', 'Higher Education', 'Municipal', 'Healthcare'];
+    const matchedIndustry = industries.find(ind => 
+        nativeVirtialName.toLowerCase() === ind.toLowerCase() || 
+        (nativeVirtialName === 'K-12 Schools' && ind === 'K-12') ||
+        (nativeVirtialName === 'Municipalities' && ind === 'Municipal')
+    );
+    const industry = matchedIndustry || industryMeta;
+
+    const services = nativeServices.length > 0 ? nativeServices : (client.meta?._e3_client_services || []);
+
     return {
         name: client.title.rendered,
-        url: client.meta?._e3_client_project_url || '#',
-        industry: client.meta?._e3_client_industry || 'Other',
-        region: client.meta?._e3_client_region || 'other',
-        services: client.meta?._e3_client_services || [],
+        url: client.meta?._e3_client_project_url || `/clients/${client.slug}`,
+        industry: industry,
+        region: region,
+        services: services,
         image: imageUrl
     };
 });
@@ -381,6 +417,23 @@ const mappedClients = wpClients.map((client: any) => {
                     }, 250);
                 });
             });
+
+            // Parse query parameters on page load to set initial filters
+            const urlParams = new URLSearchParams(window.location.search);
+            const regionParam = urlParams.get('region');
+            const industryParam = urlParams.get('industry');
+            const serviceParam = urlParams.get('service');
+
+            if (regionParam && regionFilter) {
+                regionFilter.value = regionParam;
+                updateMapHighlights(regionParam);
+            }
+            if (industryParam && industryFilter) {
+                industryFilter.value = industryParam;
+            }
+            if (serviceParam && serviceFilter) {
+                serviceFilter.value = serviceParam;
+            }
 
             // Initial render call
             filterClients();
