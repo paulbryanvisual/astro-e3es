@@ -289,7 +289,31 @@
         transform: none !important;
       }
 
-      // Skew is applied via mobile.scss (.db-feature .db-feature__image-col .wp-block-cover).
+      // Force skew, clip-path, and drop-shadow in the editor for the cover block
+      .db-feature__image-col .wp-block-cover {
+        transform: skewX(-5deg) !important;
+        filter: drop-shadow(-10px 15px 20px rgba(0,0,0,0.18)) !important;
+        --aw: 16px;
+        --ah: 14px;
+        clip-path: polygon(
+            var(--aw) 0%, 
+            100% 0%, 
+            100% calc(50% - var(--ah)), 
+            calc(100% - var(--aw)) 50%, 
+            100% calc(50% + var(--ah)), 
+            100% 100%, 
+            var(--aw) 100%, 
+            var(--aw) calc(50% + var(--ah)), 
+            0% 50%, 
+            var(--aw) calc(50% - var(--ah))
+        ) !important;
+      }
+
+      // Counter-skew the background image in normal layout
+      .db-feature__image-col .wp-block-cover .wp-block-cover__image-background {
+        transform: skewX(5deg) scale(1.15) !important;
+      }
+
       // In the editor, make the curtain and overlay text semi-visible
       // so editors can see hover placeholder content without hovering.
       .db-feature__image-col .wp-block-cover .wp-block-cover__background {
@@ -301,6 +325,31 @@
         transform: skewX(5deg) translateY(0) !important;
 
         * { color: #ffffff !important; }
+      }
+
+      // Reverse layout: skew the opposite way and apply mirrored clip-path
+      .db-feature__container--reverse .db-feature__image-col .wp-block-cover {
+        transform: skewX(5deg) !important;
+        filter: drop-shadow(10px 15px 20px rgba(0,0,0,0.18)) !important;
+        --aw: 16px;
+        --ah: 14px;
+        clip-path: polygon(
+            0% 0%,
+            calc(100% - var(--aw)) 0%,
+            calc(100% - var(--aw)) calc(50% - var(--ah)),
+            100% 50%,
+            calc(100% - var(--aw)) calc(50% + var(--ah)),
+            calc(100% - var(--aw)) 100%,
+            0% 100%,
+            0% calc(50% + var(--ah)),
+            var(--aw) 50%,
+            0% calc(50% - var(--ah))
+        ) !important;
+      }
+
+      // Counter-skew the background image in reverse layout
+      .db-feature__container--reverse .db-feature__image-col .wp-block-cover .wp-block-cover__image-background {
+        transform: skewX(-5deg) scale(1.15) !important;
       }
 
       // Reverse layout: flip inner-container counter-skew
