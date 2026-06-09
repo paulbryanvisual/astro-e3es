@@ -198,11 +198,17 @@
       overflow: visible !important;
       padding: 0 !important;
       margin: 0 !important;
+      max-width: none !important;
+      width: 100% !important;
 
-      // Allow shadows to escape the block wrapper
+      // Allow shadows to escape the block wrapper, and constrain/center the layout to 1200px
       .block-editor-inner-blocks,
       .block-editor-block-list__layout {
         overflow: visible !important;
+        width: 100% !important;
+        max-width: 1200px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
 
       // Section background/padding on section.db-feature (from mobile.scss)
@@ -323,6 +329,7 @@
       .db-feature__image-col .wp-block-cover .wp-block-cover__inner-container {
         opacity: 1 !important;
         transform: skewX(5deg) translateY(0) !important;
+        padding: 50px !important;
 
         * { color: #ffffff !important; }
       }
