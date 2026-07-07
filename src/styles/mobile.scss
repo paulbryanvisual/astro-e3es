@@ -4321,150 +4321,154 @@ main > .wp-block-e3es-full-width-testimonial {
       width: 100%;
     }
 
-    // Material-inspired heading sizes & weights
-    > h2.wp-block-heading {
-      font-size: 1.75rem; // Mobile h2
-      font-weight: 800;
+  }
+}
+
+/* ── Global Typography & Gutenberg Styles for all pages ──────────── */
+main, .editor-styles-wrapper {
+  // Material-inspired heading sizes & weights
+  h2.wp-block-heading {
+    font-size: 1.75rem; // Mobile h2
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-align: left; // Left-aligned
+
+    &::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 4px;
+      background: var(--color-primary-green);
+      border-radius: 0; // sharp corners
+      margin: 0.75rem 0 0 0; // left-aligned underline
+    }
+  }
+
+  h3.wp-block-heading {
+    font-size: 1.35rem; // Mobile h3
+    font-weight: 700;
+    color: var(--color-primary-green);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    text-align: left; // Left-aligned
+  }
+
+  // Material-inspired paragraphs
+  p.wp-block-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-main);
+    margin-bottom: 1.75rem;
+    text-wrap: pretty;
+    text-align: left; // Left-aligned
+
+    strong {
       color: var(--color-primary-dark);
-      margin-top: 3.5rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      text-align: left; // Left-aligned
-
-      &::after {
-        content: '';
-        display: block;
-        width: 48px;
-        height: 4px;
-        background: var(--color-primary-green);
-        border-radius: 0; // sharp corners
-        margin: 0.75rem 0 0 0; // left-aligned underline
-      }
-    }
-
-    > h3.wp-block-heading {
-      font-size: 1.35rem; // Mobile h3
       font-weight: 700;
-      color: var(--color-primary-green);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.4;
-      text-align: left; // Left-aligned
     }
+  }
 
-    // Material-inspired paragraphs
-    > p.wp-block-paragraph {
-      font-size: 1.05rem;
-      line-height: 1.8;
+  // Modern list card structure with E3 site angles and no rounded corners
+  ul.wp-block-list, > ol.wp-block-list {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem auto;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+
+    li {
+      position: relative;
+      z-index: 1;
+      padding: 1.25rem 2rem;
+      margin-left: 10px; // account for skew offset
       color: var(--color-text-main);
-      margin-bottom: 1.75rem;
-      text-wrap: pretty;
-      text-align: left; // Left-aligned
+      font-size: 1.05rem;
+      line-height: 1.6;
+      text-align: left;
+
+      // Angled background and border-left matching the site's skew aesthetic
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--color-bg-light);
+        border-left: 5px solid var(--color-primary-green);
+        border-radius: 0; // sharp corners
+        transform: skewX(-6deg); // angled parallelogram card
+        z-index: -1;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
 
       strong {
         color: var(--color-primary-dark);
         font-weight: 700;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 1.1rem;
+      }
+
+      &:hover {
+        &::before {
+          background-color: var(--color-bg-sage);
+          border-left-color: var(--color-primary-dark);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+          transform: skewX(-6deg) translateY(-2px); // lift on hover while preserving angle
+        }
       }
     }
 
-    // Modern list card structure with E3 site angles and no rounded corners
-    > ul.wp-block-list, > ol.wp-block-list {
-      list-style: none;
-      padding: 0;
-      margin: 2.5rem auto;
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: 1fr;
+    // Revert custom cards style back to normal bullet points/numbers
+    &.is-style-normal-bullets {
+      display: block;
+      padding-left: 2.5rem;
+      margin: 1.5rem auto;
 
       li {
-        position: relative;
-        z-index: 1;
-        padding: 1.25rem 2rem;
-        margin-left: 10px; // account for skew offset
+        position: static;
+        z-index: auto;
+        padding: 0;
+        margin: 0.5rem 0 0.5rem 0;
         color: var(--color-text-main);
         font-size: 1.05rem;
-        line-height: 1.6;
+        line-height: 1.8;
         text-align: left;
 
-        // Angled background and border-left matching the site's skew aesthetic
         &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: var(--color-bg-light);
-          border-left: 5px solid var(--color-primary-green);
-          border-radius: 0; // sharp corners
-          transform: skewX(-6deg); // angled parallelogram card
-          z-index: -1;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-          transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+          display: none !important;
         }
 
         strong {
-          color: var(--color-primary-dark);
-          font-weight: 700;
-          display: block;
-          margin-bottom: 0.25rem;
-          font-size: 1.1rem;
+          display: inline;
+          font-size: inherit;
+          color: inherit;
+          margin-bottom: 0;
         }
 
         &:hover {
-          &::before {
-            background-color: var(--color-bg-sage);
-            border-left-color: var(--color-primary-dark);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-            transform: skewX(-6deg) translateY(-2px); // lift on hover while preserving angle
-          }
-        }
-      }
-
-      // Revert custom cards style back to normal bullet points/numbers
-      &.is-style-normal-bullets {
-        display: block;
-        padding-left: 2.5rem;
-        margin: 1.5rem auto;
-
-        li {
-          position: static;
-          z-index: auto;
-          padding: 0;
-          margin: 0.5rem 0 0.5rem 0;
-          color: var(--color-text-main);
-          font-size: 1.05rem;
-          line-height: 1.8;
-          text-align: left;
-
+          transform: none;
           &::before {
             display: none !important;
           }
-
-          strong {
-            display: inline;
-            font-size: inherit;
-            color: inherit;
-            margin-bottom: 0;
-          }
-
-          &:hover {
-            transform: none;
-            &::before {
-              display: none !important;
-            }
-          }
         }
       }
     }
+  }
 
-    > ul.wp-block-list.is-style-normal-bullets {
-      list-style: disc;
-    }
+  ul.wp-block-list.is-style-normal-bullets {
+    list-style: disc;
+  }
 
-    > ol.wp-block-list.is-style-normal-bullets {
-      list-style: decimal;
-    }
+  ol.wp-block-list.is-style-normal-bullets {
+    list-style: decimal;
   }
 }

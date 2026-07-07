@@ -31,3 +31,20 @@
 - `e3es-headless-helper/editor-styles.css`
 - `src/pages/clients/[slug].astro`
 - `src/lib/wordpress.ts` (Fixed an unclosed parameter type that caused Vite build failures)
+
+## 2026-07-07: Headless Workflow & Git Hygiene Audit
+
+**Architectural Decisions:**
+- Investigated the historical existence and subsequent disappearance of the `wp-post-id` meta tag on Astro pages. Verified that the tag was added by an agent on June 16 but abandoned as an uncommitted local change, which was eventually wiped out.
+- Implemented the tag permanently in `Layout.astro` and bound it to `wpPostId` props across dynamic route templates (`[...slug].astro`, `clients/[slug].astro`).
+- Implemented a strictly enforced "Zero-Delay Commit Rule" in global `AGENTS.md` to guarantee that all agents immediately commit file modifications before pausing for user review, preventing future loss of local, uncommitted code.
+- Wrapped the `set:html={optimizedContent}` string within a new `<div class="services-page__content">` div inside `[...slug].astro` to fix layout constraints.
+
+**Dependencies Added:**
+- None.
+
+**Core Files Modified:**
+- `src/layouts/Layout.astro`
+- `src/pages/[...slug].astro`
+- `src/pages/clients/[slug].astro`
+- `~/.gemini/config/AGENTS.md`
