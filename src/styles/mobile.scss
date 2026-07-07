@@ -1247,9 +1247,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     align-items: center;
     font-weight: 700;
     font-size: 0.95rem;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
+    text-decoration: none;
     margin-top: 0.25rem;
 
     &::after {
@@ -1261,7 +1259,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     &:hover {
         background-color: transparent !important;
         color: var(--color-primary-green) !important;
-        text-decoration: underline !important;
+        text-decoration: none !important;
         border: none !important;
 
         &::after {
