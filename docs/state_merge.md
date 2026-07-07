@@ -62,3 +62,16 @@
 **Core Files Modified:**
 - Astro: `src/lib/cache.ts` (New), `src/lib/wordpress.ts`, `src/pages/services.astro`
 - WP Plugin: `website/wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php`
+
+## 2026-07-07T22:36:00Z - Comparison Table Layout & Background Spacing Fixes
+**Architectural Decisions:**
+- Addressed an issue where Gutenberg Block Editor CSS overrides for the `.comparison-table` leaked into the frontend Astro template, causing tables to collapse horizontally due to `display: flex`. Scoped the editor styles safely within `.editor-styles-wrapper`.
+- Added `.wp-block-e3es-comparison-table` to the CSS Grid breakout items in `mobile.scss` so its background stretches across the full viewport, while keeping its internal content constrained to a 1200px max-width wrapper.
+- Introduced a global SCSS adjacent sibling utility using `:is()` pseudo-selectors on `.services-page__content` to automatically collapse `margin-top: 0` between adjacent full-width background blocks (like Comparison Tables and FAQ Sections), eliminating unintended white space gaps.
+- Handled exclusion rules for headings/paragraphs within two-column components.
+
+**New Dependencies:**
+- None
+
+**Core Files Modified:**
+- `src/styles/mobile.scss`
