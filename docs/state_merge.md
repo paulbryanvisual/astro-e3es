@@ -13,3 +13,21 @@
 - `src/pages/clients.astro`
 - `src/components/ClientsList.astro`
 - `src/components/ProjectHistory.astro`
+
+## 2026-07-07: E3 Project Hero Image Mask Styles
+
+**Architectural Decisions:**
+- Added three distinct Gutenberg block style variations for the `e3es/project` hero component: Default, White Mask, and Green Texture Behind Photo.
+- Implemented a parallax mask effect where the photo itself remains fixed as the masks animate across the screen. This was achieved by passing a CSS variable `--hero-img` via the block container and dynamically binding it to `background-image` on the mask elements in SCSS.
+- Safely applied the `--hero-img` inline property via JavaScript on the Astro frontend to avoid any potential filtering issues in WordPress.
+- Re-synced Astro SCSS to the WordPress editor visual styles to ensure 1-to-1 feature parity in the Gutenberg editor.
+
+**Dependencies Added:**
+- None. Used native CSS masking, background-attachment properties, and vanilla JS.
+
+**Core Files Modified:**
+- `e3es-headless-helper/editor-blocks.js`
+- `src/styles/mobile.scss`
+- `e3es-headless-helper/editor-styles.css`
+- `src/pages/clients/[slug].astro`
+- `src/lib/wordpress.ts` (Fixed an unclosed parameter type that caused Vite build failures)

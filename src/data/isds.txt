@@ -1,0 +1,268 @@
+Goodrich ISD	Goodrich, TX 
+Pecos Barstow Toyah ISD #4	Pecos, TX 
+Splendora ISD - E3L	Splendora, TX 
+Killeen ISD - E3L	Killeen, TX
+New Boston ISD	New Boston, TX 
+Latexo ISD	Latexo, TX 
+Edcouch-Elsa ISD	Edcouch, TX 
+Royal ISD	Pattison, TX  
+Lipan ISD	Lipan, TX 
+Edgewood ISD East TX	Edgewood, TX 
+Silsbee ISD	Silsbee, TX  
+Balmorhea ISD	Balmorhea, TX  
+Community ISD - E3L	Nevada, TX 
+Normangee ISD	Normangee, TX 
+Bay City ISD - E3L	Bay City, TX 
+East Bernard ISD - E3L	East Bernard, TX  
+Moulton ISD	Moulton, TX 
+Sudan ISD - E3L	Sudan, TX  
+Sweeny ISD	Sweeny, TX  
+Hearne ISD	Hearne, TX 
+Hallettsville ISD	Hallettsville, TX  
+Venus ISD - E3L	Venus, TX 
+Snook ISD	Snook, TX  
+Donna ISD	Donna, TX 
+Georgetown ISD 	Georgetown, TX  
+Center ISD	Center, TX  
+Hemphill ISD	Hemphill, TX  
+Goliad ISD	Goliad, TX  
+Sudan ISD  Phase II	Sudan, TX  
+Brenham ISD	Brenham, TX  
+Ferris ISD	Ferris, TX 
+Trenton ISD	Tenton, TX  
+Ben Bolt-Palito Blanco ISD	Ben Bolt, TX  
+Chico ISD	Chico, TX
+Marble Falls ISD	Marble Falls, TX 
+Crossroads ISD	Malakoff, TX 
+Westphalia ISD - E3L	Lott, TX  
+Balmorhea ISD Phase II - E3L	Balmorhea, TX 
+Sabine ISD	Gladewater, TX
+Allen ISD Phase II	Allen, TX  
+West Hardin CCISD	Saratoga, TX  
+Seguin ISD	Seguin, TX 
+Hawkins ISD	Hawkins, TX  
+Cleveland ISD	Cleveland, TX  
+Needville ISD - Phase II	Needville, TX  
+Lubbock ISD - E3L	Lubbock, TX  
+Iola ISD	Iola, TX  
+Lubbock ISD - E3L Ph II	Lubbock, TX  
+Kountze ISD	Kountze, TX  
+Manor ISD Ph I	Manor, TX 
+Refugio ISD - E3L	Refugio, TX  
+Manor ISD Ph II	Manor, TX 
+Bishop CISD	Bishop, TX  
+Italy ISD Ph I	Italy, TX  
+DeSoto ISD	DeSoto, TX
+Lubbock ISD - E3L PH III	Lubbock, TX  
+Fayetteville ISD	Fayetteville, TX  
+Valley View ISD - Phase II 	Pharr, TX 
+Needville ISD - Phase III	Needville, TX  
+Greenville ISD E3L Ph II	Greenville, TX 
+Huffman ISD	Huffman, TX  
+Anderson Shiro CISD	Anderson, TX  
+Edgewood ISD San Antonio	San Antonio, TX
+Reagan County ISD	Big Lake, TX 
+Lubbock ISD - E3L PH V (Monterey HS)	Lubbock, TX 
+Rio Grande City CISD	Rio Grande City, TX
+Charlotte ISD - E3L	Charlotte, TX 
+Italy ISD Ph II	Italy, TX  
+Newton ISD	Newton, TX  
+Silsbee ISD Ph II (SECO)	Silsbee, TX  
+Caldwell ISD	Caldwell, TX 
+Hull-Daisetta ISD	Daisetta, TX  
+Buna ISD	Buna, TX  
+Vidor ISD	Vidor, TX  
+Needville ISD - Phase IV	Needville, TX  
+Bowie ISD	Bowie, TX  
+Medina ISD	Medina,  TX
+Llano ISD	Llano, TX  
+Cedar Hill ISD	Cedar Hill, TX 
+Silsbee ISD Ph III	Silsbee, TX  
+Brownsville ISD Ph I (Lighting)	Brownsville, TX  
+Brownsville ISD Ph II (DX & Controls)	Brownsville, TX  
+Sierra Blanca ISD	Sierra Blanca, TX  
+Caldwell ISD - E3L	Caldwell, TX  
+Vidor ISD Ph II	Vidor, TX  
+Katy ISD E3L	Katy, TX  
+Brownsville ISD (Stillman Chiller)	Brownsville, TX  
+Skidmore-Tynan ISD	Skidmore, TX  
+McLeod ISD	McLeod, TX  
+Woodville ISD Ph II	Woodville, TX  
+Brownsville ISD PH III (CHW)	Brownsville, TX 
+Lubbock ISD - E3L PH VI	Lubbock, TX  
+Corsicana ISD Ph II	Corsicana, TX 
+Jim Hogg County ISD	Hebbronville, TX  
+San Benito CISD - E3L	San Benito, TX  
+Brenham ISD	Brenham, TX  
+Bryson ISD	Bryson, TX  
+Nacogdoches ISD	Nacogdoches, TX  
+Katy ISD E3L - 2019 LED RFP	Katy, TX  
+Warren ISD	Warren, TX  
+Corsicana ISD - Phase III (HVAC)	Corsicana, TX 
+Anderson Shiro CISD Ph II	Anderson, TX  
+Center ISD Phase II (+CO #1)	Center, TX  
+Marble Falls ISD Ph I	Marble Falls, TX  
+Needville ISD - Phase V (Elem HVAC)	Needville, TX  
+Gruver ISD	Gruver, TX  
+Perryton ISD - E3L	Perryton, TX  
+Rusk ISD	Rusk, TX  
+McLeod ISD Ph II	McLeod, TX  
+Lubbock ISD - E3L Ph VII (Dunbar)	Lubbock, TX 
+Saint Jo ISD	Saint Jo, TX  
+Galena Park ISD	Houston, TX  
+Vernon ISD	Vernon, TX  
+Marble Falls ISD Ph II	Marble Falls, TX  
+Brackett ISD	Brackettville, TX
+Newcastle ISD - E3L	Newcastle, TX  
+Thrall ISD	Thrall, TX  
+Liberty ISD	Liberty, TX  
+Austin ISD	Ausitn, TX  
+Eagle Pass ISD	Eagle Pass, TX 
+Harts Bluff ISD	Mount Pleasant, TX  
+San Angelo ISD	San Angelo, TX 
+Columbia-Brazoria ISD	West Columbia, TX  
+Shepherd ISD	Shepherd, TX  
+Llano ISD	Llano, TX 
+Harts Bluff ISD Sports Lighting	Mount Pleasant, TX  
+Warren ISD RCx	Warren, TX  
+Jasper ISD	Jasper, TX 
+Nocona ISD	Nocona, TX  
+Bellevue ISD	Bellevue, TX  
+Raymondville ISD - Cafeteria	Raymondville, TX 
+Katy ISD E3L - 2020 Multi Campus Ext	Katy, TX 
+Katy ISD E3L - 2020 Alex & Wms	Katy, TX  
+Katy ISD E3L - ESC/Merrill Ctr	Katy, TX  
+Lubbock ISD E3L Ph VIII (Smiley/Wilson - McCool)	Lubbock, TX 
+Raymondville ISD Ph II - Ionizers	Raymondville, TX
+Bryan ISD	Bryan, TX  
+Lake Worth ISD	Lake Worth, TX  
+Argyle ISD	Argyle, TX  
+Santa Rosa ISD	Santa Rosa, TX 
+Santa Rosa ISD Ph II	Santa Rosa, TX  
+Mesquite ISD 	Mesquite, TX  
+Raymondville ISD E3L - Stadium Lighting	Raymondville, TX
+Malta ISD	New Boston, TX 
+Banquete ISD	Banquete, TX  
+Baird ISD	Baird, TX  
+Odem Edroy ISD	Odem, TX  
+Lufkin ISD	Lufkin, TX  
+Marble Falls ISD Ph III	Marble Falls, TX 
+Georgetown ISD E3L Ph II (Exterior)	Georgetown, TX
+Caddo Mills ISD	Caddo Mills, TX 
+Lamesa ISD - HVAC & Controls	Lamesa, TX 
+Santa Rosa ISD (Emergency IT)	Santa Rosa, TX  
+Saint Jo ISD - LED & Ecobee	Saint Jo, TX  
+Ricardo ISD	Kingsville, TX  
+Childress ISD - E3L 2021	Childress, TX  
+Raymondville ISD Ph III	Raymondville, TX 
+Marble Falls ISD Ph IV	Marble Falls, TX 
+Mesquite ISD - Ph 2 (Ionizers)	Mesquite, TX  
+Castleberry ISD	Fort Worth, TX  
+Katy ISD E3L - Shafer ES Parking Lot	Katy, TX  
+Rio Hondo ISD	Rio Hondo, TX  
+Murchison ISD	Murchison, TX  
+Vidor ISD Ph III	Vidor, TX  
+Paradise ISD 2021	Paradise, TX  
+Roscoe Collegiate ISD (Emergency RTUs)	Roscoe, TX  
+Bowie ISD - Ionizers	Bowie, TX  
+Snook ISD Ph II	Snook, TX  
+East Bernard ISD - 2021	East Bernard, TX  
+Roscoe Collegiate ISD	Roscoe, TX 
+Paducah ISD - 2021	Paducah, TX  
+Lancaster ISD - Ph 1 HS Chiller	Lancaster, TX 
+East Bernard ISD - E3L	East Bernard, TX  
+Malta ISD - Ph II	New Boston, TX 
+Columbia-Brazoria ISD - 2021	West Columbia, TX  
+Graham ISD E3L	Graham, TX  
+Leary ISD E3L	Hooks, TX  
+Wells ISD	Wells, TX  
+Pine Tree ISD	Longview, TX  
+Royal ISD Ph II	Pattison, TX  
+Vidor ISD - TIPS JOC for HVAC	Vidor, TX 
+Lancaster ISD  - Ph 2	Lancaster, TX  
+Kilgore ISD	Kilgore, TX  
+Spearman ISD E3L	Spearman, TX  
+Needville ISD - Ph VI Roof coating	Needville, TX  
+Donna ISD - ESSER	Donna, TX 
+Wellington ISD	Wellington, TX  
+Bushland ISD	Bushland, TX 
+Cleveland ISD E3L	Cleveland, TX  
+Lubbock ISD - E3L Ph IX (B&W)	Lubbock, TX  
+Edcouch-Elsa ISD - ESSER HVAC	Edcouch, TX 
+Evadale ISD	Evadale, TX 
+Fairfield ISD	Fairfield, TX  
+Jackson Constr-Carrollton FB ISD Powergy	Quitman, TX  
+Fruitvale ISD	Fruitvale, TX  
+Lufkin ISD Ph II	Lufkin, TX 
+Simms ISD E3L	Simms, TX  
+Shepherd ISD Ph 2	Shepherd, TX  
+Moulton ISD - Old Gym	Moulton, TX 
+Mexia ISD	Mexia, TX  
+Comanche ISD	Comanche, TX  
+Caldwell ISD (Ventilation)	Caldwell, TX  
+Campbell ISD	Campbell, TX  
+Ballinger ISD E3L	Ballinger, TX  
+Clarksville ISD	Clarksville, TX  
+Thorndale ISD	Thorndale, TX  
+East Bernard ISD - E3L Ph 2	East Bernard, TX 
+New Braunfels ISD (valve replacement)	New Braunfels, TX  
+Wolfe City ISD E3L	Wolfe City, TX  
+Somerset ISD	Somerset, TX  
+New Braunfels ISD E3L	New Braunfels, TX  
+Prosper ISD E3L	Prosper, TX  
+Socorro ISD E3L - ESSER Ltg	El Paso, TX  
+Valley View ISD NTX	Valley View, TX  
+Trinity ISD	Trinity, TX  
+Ballinger ISD	Ballinger, TX  
+Electra ISD - 2021	Electra, TX  
+Kennedale ISD - ESSER	Kennedale, TX
+Socorro ISD E3L - ESSER Ltg Ph 2	El Paso, TX  
+Columbia Brazoria ISD Ph 2	West Columbia, TX  
+Port Neches-Groves ISD	Port Neches, TX 
+Bryan ISD - Bond MEP	Bryan, TX  
+Jacksboro ISD	Jacksboro, TX  
+Llano ISD - 2023 Bond	Llano, TX  
+Carrollton Farmers Branch ISD E3L	Carrollton, TX  
+Highland Park ISD - CHW-HW	Highland Park, TX 
+Elysian Fields ISD E3L - Grant	Waskom, TX 
+Grandview ISD E3L - Grant	Grandview, TX  
+Huckabay ISD E3L - Grant	Stephenville, TX 
+Kennedale ISD - Comp	Kennedale, TX  
+LaPoynor ISD E3L - Grant	LaRue, TX  
+May ISD E3L - Grant	May, TX  
+Forestburg ISD E3L - Grant	Forestburg, TX 
+Kilgore ISD E3L - Grant	Kilgore, TX  
+Barlett ISD E3L - Grant	Bartlett, TX  
+Jacksboro ISD E3L - Grant	Jacksboro, TX  
+Brady ISD E3L - Grant	Brady, TX  
+Tom Bean ISD E3L - Grant	Tom Bean, TX  
+Rivercrest ISD E3L - Grant	Bogata, TX  
+Highland Park ISD - Ph 2	Highland Park, TX  
+Highland ISD E3L - Grant	Roscoe, TX  
+Highland ISD E3L (not SECO grant)	Roscoe, TX  
+New Braunfels ISD E3L - Grant	New Braunfels, TX  
+Teague ISD E3L Grant	Teague, TX  
+Kountze ISD - HS Roof	Kountze, TX  
+Alba-Golden ISD - E3L - Grant	Alba, TX  
+Pflugerville ISD E3L	Pflugerville, TX  
+Boles ISD E3L - Grant	Quinlan, TX 
+Grandview ISD E3L	Grandview, TX  
+Burkeville ISD - 2023 Bond	Burkeville, TX 
+Boyd ISD - 2024 Bond	Boyd, TX  
+Shepherd ISD - Ph 3	Shepherd, TX  
+Colmesneil ISD - Ag Ed Bldg	Colmesneil, TX  
+Penelope ISD	Penelope, TX  
+Crosby ISD (Cool Chillers)	Crosby, TX  
+Royal ISD - Electrical 	Pattison, TX  
+Alba-Goldent ISD E3L - Café	Alba, TX  
+Hardin-Jefferson ISD	Sour Lake, TX  
+Aldine ISD E3L	Houston, TX  
+Columbia-Brazoria ISD - Pump	West Columbia, TX  
+Elgin ISD - HVAC	Elgin, TX 
+Eagle Pass ISD - HVAC & Con	Eagle Pass, TX 
+Ferris ISD - Ph 2.1	Ferris, TX 
+Ponder ISD	Ponder, TX 
+Shepherd ISD - Ph 4 HVAC	Shepherd, TX  
+Highland Park ISD - Ph 3 (FCU)	Dallas, TX  
+Columbia-Brazoria ISD - Ph 3	West Columbia, TX  
+Highland Park ISD E3L	Dallas, TX  

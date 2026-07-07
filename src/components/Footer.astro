@@ -1,0 +1,54 @@
+---
+import { getMenu } from '../lib/wordpress';
+const footerMenu = await getMenu('Footer Menu');
+
+function getRelativeUrl(url: string) {
+    if (!url) return '#';
+    try {
+        const u = new URL(url);
+        return u.pathname + u.search + u.hash;
+    } catch {
+        return url;
+    }
+}
+---
+<footer class="footer" style="background: var(--color-primary-green); color: var(--color-bg-white); padding: 4rem 2rem; margin-top: auto;">
+    <div class="footer__container" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+        <div class="footer__brand">
+            <h3 style="color: white; margin-bottom: 1rem;">E3 Entegral Solutions</h3>
+            <p style="max-width: 300px; opacity: 0.8;">Empowering Texas public entities with modernized, energy-efficient infrastructure.</p>
+        </div>
+        <div class="footer__links" style="display: flex; gap: 4rem; flex-wrap: wrap;">
+            {footerMenu && footerMenu.length > 0 ? (
+                <div class="footer__col">
+                    <h4 style="color: white; margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        {footerMenu.map((item: any) => (
+                            <li style="margin-bottom: 0.5rem;"><a href={getRelativeUrl(item.url)} style="color: white; text-decoration: none; opacity: 0.8;">{item.title}</a></li>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <div class="footer__col">
+                    <h4 style="color: white; margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="/k12" style="color: white; text-decoration: none; opacity: 0.8;">K-12 Schools</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="/municipalities" style="color: white; text-decoration: none; opacity: 0.8;">Municipalities</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="/services" style="color: white; text-decoration: none; opacity: 0.8;">Services</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="/clients" style="color: white; text-decoration: none; opacity: 0.8;">Clients</a></li>
+                    </ul>
+                </div>
+            )}
+            <div class="footer__col">
+                <h4 style="color: white; margin-bottom: 1rem;">Contact</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;"><a href="tel:+18005550199" style="color: white; text-decoration: none; opacity: 0.8;">(800) 555-0199</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="mailto:info@e3es.com" style="color: white; text-decoration: none; opacity: 0.8;">info@e3es.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom" style="max-width: 1200px; margin: 0 auto; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; opacity: 0.6; font-size: 0.9rem;">
+        <p>&copy; {new Date().getFullYear()} E3 Entegral Solutions. All rights reserved.</p>
+    </div>
+</footer>

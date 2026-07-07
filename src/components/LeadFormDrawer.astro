@@ -1,0 +1,355 @@
+---
+// LeadFormDrawer.astro
+import txhsLogos from '../data/txhs_logos.json';
+
+// Get all Texas districts from our massive JSON and sort them alphabetically
+const allTexasDistricts = Object.keys(txhsLogos).sort((a, b) => a.localeCompare(b));
+---
+
+<div id="lead-form-drawer" class="lead-drawer">
+    <button id="lead-drawer-toggle" class="lead-drawer__toggle">
+        <span class="lead-drawer__toggle-text">Get Started</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lead-drawer__icon">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+        </svg>
+    </button>
+
+    <div class="lead-drawer__panel">
+        <div class="lead-drawer__header">
+            <h3>Let's Connect</h3>
+            <button id="lead-drawer-close" class="lead-drawer__close" aria-label="Close form">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="lead-drawer__form">
+            <input type="hidden" name="oid" value="YOUR_SALESFORCE_OID_HERE">
+            <input type="hidden" name="retURL" value="https://e3es.com/thank-you">
+
+            <!-- Name -->
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required />
+            </div>
+
+            <!-- Job Title -->
+            <div class="form-group">
+                <label for="title">Job Title</label>
+                <input id="title" maxlength="40" name="title" size="20" type="text" required />
+            </div>
+
+            <!-- Contact -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" maxlength="80" name="email" size="20" type="email" required />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input id="phone" maxlength="40" name="phone" size="20" type="tel" />
+            </div>
+
+            <!-- Industry -->
+            <div class="form-group">
+                <label for="industry">Industry</label>
+                <select id="industry" name="industry" required>
+                    <option value="">Select Industry...</option>
+                    <option value="K-12 Education">K-12 Education</option>
+                    <option value="Higher Education">Higher Education</option>
+                    <option value="Municipal">Municipal / Local Government</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- School District -->
+            <div class="form-group" id="district-group">
+                <label for="company">School District / Organization</label>
+                <select id="company" name="company" required>
+                    <option value="">Select Organization...</option>
+                    {allTexasDistricts.map(district => (
+                        <option value={district}>{district}</option>
+                    ))}
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Services Interested In (Multi-select) -->
+            <div class="form-group">
+                <label>Services Interested In</label>
+                <div class="multi-select-boxes">
+                    <label><input type="checkbox" name="services[]" value="Design+Build"> Design+Build</label>
+                    <label><input type="checkbox" name="services[]" value="Funding Procurement"> Funding Procurement</label>
+                    <label><input type="checkbox" name="services[]" value="HVAC"> HVAC & Controls</label>
+                    <label><input type="checkbox" name="services[]" value="Lighting"> LED Lighting</label>
+                    <label><input type="checkbox" name="services[]" value="Water Conservation"> Water Conservation</label>
+                </div>
+            </div>
+
+            <!-- Region Map Reference -->
+            <div class="form-group">
+                <label>Texas Region</label>
+                <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 8px;">Select your region on the map below</p>
+                <div class="region-map-placeholder" style="background: #fff; text-align: center; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; position: relative;">
+                    <img src="/images/static-map.png" alt="Texas Region Map" style="width: 100%; height: auto; display: block;" />
+                </div>
+                <select id="selected-region" name="region" style="margin-top: 10px;" required>
+                    <option value="">Select Region...</option>
+                    <option value="Region 1">Region 1 (South)</option>
+                    <option value="Region 4">Region 4 (Southeast)</option>
+                    <option value="Region 7">Region 7 (East)</option>
+                    <option value="Region 10">Region 10 (North)</option>
+                    <option value="Region 13">Region 13 (Central)</option>
+                    <option value="Region 16">Region 16 (Panhandle)</option>
+                    <option value="Region 18">Region 18 (West)</option>
+                    <option value="Region 20">Region 20 (Hill Country)</option>
+                </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group">
+                <label for="description">Notes</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Request</button>
+        </form>
+    </div>
+</div>
+
+<style>
+.lead-drawer {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+}
+
+.lead-drawer__toggle {
+    background-color: var(--color-primary-green, #16a34a);
+    color: white;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    padding: 16px 12px;
+    cursor: pointer;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.lead-drawer__toggle:hover {
+    background-color: var(--color-primary-dark, #11411d);
+}
+
+.lead-drawer__toggle-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transform: rotate(180deg);
+}
+
+.lead-drawer__panel {
+    position: absolute;
+    top: 50%;
+    right: -400px;
+    transform: translateY(-50%);
+    width: 400px;
+    max-height: 90vh;
+    background: white;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+    border-radius: 12px 0 0 12px;
+    transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.lead-drawer.is-open .lead-drawer__panel {
+    right: 0;
+}
+
+.lead-drawer.is-open .lead-drawer__toggle {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lead-drawer__header {
+    background: #f8fafc;
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.lead-drawer__header h3 {
+    margin: 0;
+    color: var(--color-primary-dark, #11411d);
+    font-size: 1.5rem;
+}
+
+.lead-drawer__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.lead-drawer__close:hover {
+    color: #ef4444;
+}
+
+.lead-drawer__form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-green, #16a34a);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.multi-select-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.multi-select-boxes label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: var(--color-primary-green, #16a34a);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: var(--color-primary-dark, #11411d);
+}
+
+/* Scrollbar styling for panel */
+.lead-drawer__panel::-webkit-scrollbar {
+    width: 8px;
+}
+.lead-drawer__panel::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+.lead-drawer__panel::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+.lead-drawer__panel::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('lead-drawer-toggle');
+        const closeBtn = document.getElementById('lead-drawer-close');
+        const drawer = document.getElementById('lead-form-drawer');
+        const industrySelect = document.getElementById('industry');
+        const districtGroup = document.getElementById('district-group');
+
+        if (toggleBtn && closeBtn && drawer) {
+            toggleBtn.addEventListener('click', () => {
+                drawer.classList.add('is-open');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                drawer.classList.remove('is-open');
+            });
+
+            // Close on click outside
+            document.addEventListener('click', (e) => {
+                if (drawer.classList.contains('is-open') && 
+                    !drawer.contains(e.target) && 
+                    e.target !== toggleBtn) {
+                    drawer.classList.remove('is-open');
+                }
+            });
+        }
+
+        // Handle Industry conditional logic for School District
+        if (industrySelect && districtGroup) {
+            industrySelect.addEventListener('change', (e) => {
+                if (e.target.value === 'K-12 Education') {
+                    districtGroup.style.display = 'flex';
+                } else {
+                    districtGroup.style.display = 'none';
+                }
+            });
+            // Initial state
+            districtGroup.style.display = industrySelect.value === 'K-12 Education' ? 'flex' : 'none';
+        }
+    });
+</script>

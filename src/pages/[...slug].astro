@@ -64,7 +64,7 @@ const optimizedContent = optimizeHtmlImages(page.content.rendered);
 
 ---
 
-<Layout>
+<Layout wpPostId={page.id}>
     <!-- Main Content (Intro Banner is now handled natively via the WordPress Block inside optimizedContent) -->
     <main class="services-page">
         <div class="services-page__container" style="padding-top: 0;" set:html={optimizedContent} />

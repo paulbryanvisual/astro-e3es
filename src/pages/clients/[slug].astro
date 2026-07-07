@@ -131,7 +131,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<Layout description={`Case study page for ${decodeHtmlEntities(client.title.rendered)} detailing facility improvement projects.`}>
+<Layout description={`Case study page for ${decodeHtmlEntities(client.title.rendered)} detailing facility improvement projects.`} wpPostId={client.id}>
   <!-- Breadcrumb Bar -->
   <Breadcrumb items={breadcrumbItems} />
 
