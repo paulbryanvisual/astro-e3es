@@ -1205,7 +1205,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 2rem 1.5rem 3.5rem;
     text-align: left;
     box-sizing: border-box;
     transform: translateY(100%);
@@ -1253,7 +1253,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     margin-top: 0.25rem;
 
     &::after {
-        content: none !important;
+        content: ' →' !important;
+        display: inline-block;
+        transition: transform 0.25s ease;
     }
 
     &:hover {
@@ -1261,6 +1263,10 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         color: var(--color-primary-green) !important;
         text-decoration: underline !important;
         border: none !important;
+
+        &::after {
+            transform: translateX(4px);
+        }
     }
 }
 
