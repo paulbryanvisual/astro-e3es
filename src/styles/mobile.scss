@@ -1887,6 +1887,16 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Gutenberg Block Editor styling for Comparison Table */
+.wp-block-e3es-comparison-table,
+.wp-block[data-type="e3es/comparison-table"] {
+    max-width: none !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .comparison-table {
     display: flex !important;
     flex-direction: column !important;
@@ -1911,7 +1921,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
     thead tr,
     .wp-block-e3es-comparison-row,
-    .wp-block-e3es-comparison-row > div {
+    .wp-block-e3es-comparison-row > div,
+    [data-type="e3es/comparison-row"],
+    [data-type="e3es/comparison-row"] > div {
         display: flex !important;
         width: 100% !important;
         max-width: none !important;
@@ -1927,7 +1939,11 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     .wp-block-e3es-comparison-row th,
     .wp-block-e3es-comparison-row td,
     .wp-block-e3es-comparison-row .th,
-    .wp-block-e3es-comparison-row .td {
+    .wp-block-e3es-comparison-row .td,
+    [data-type="e3es/comparison-row"] th,
+    [data-type="e3es/comparison-row"] td,
+    [data-type="e3es/comparison-row"] .th,
+    [data-type="e3es/comparison-row"] .td {
         display: block !important;
         box-sizing: border-box !important;
         flex: 0 0 auto !important;
