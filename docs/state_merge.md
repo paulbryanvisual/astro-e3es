@@ -48,3 +48,17 @@
 - `src/pages/[...slug].astro`
 - `src/pages/clients/[slug].astro`
 - `~/.gemini/config/AGENTS.md`
+
+## 2026-07-07T22:29:00Z - Headless Live Preview Cache Fix
+**Architectural Decisions:**
+- Replaced the slow `npm run build` and ineffective `touch astro.config.mjs` background commands in the WordPress headless plugin with a lightweight File-based Cache Invalidation workflow.
+- Created a cache-buster module (`src/lib/cache.ts`) in the Astro app and linked it to `wordpress.ts` fetch client (`?t=...&cb=...`).
+- Configured the WP plugin to update this timestamp via `echo` on post updates, instantly triggering Vite HMR, clearing Astro's `getStaticPaths` cache, and bypassing the WP REST API cache.
+- Removed invalid `export const prerender = false` directive from `services.astro` to fix static build errors.
+
+**New Dependencies:**
+- None
+
+**Core Files Modified:**
+- Astro: `src/lib/cache.ts` (New), `src/lib/wordpress.ts`, `src/pages/services.astro`
+- WP Plugin: `website/wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php`
