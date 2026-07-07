@@ -658,7 +658,7 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
     background-position: center;
     color: var(--color-bg-white);
-    padding: 3rem 2rem; /* Shorter */
+    padding: 6rem 2rem; /* Shorter */
     text-align: center;
     width: 100%;
 }
@@ -2257,7 +2257,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     }
     
     .db-page-hero {
-        padding: 2rem 1.5rem;
+        padding: 4rem 1.5rem;
     }
     
     .db-page-hero__title {
@@ -4338,7 +4338,7 @@ main > .wp-block-e3es-full-width-testimonial {
 /* ── Global Typography & Gutenberg Styles for all pages ──────────── */
 main, .editor-styles-wrapper {
   // Material-inspired heading sizes & weights
-  h2.wp-block-heading {
+  h2.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
     font-size: 1.75rem; // Mobile h2
     font-weight: 800;
     color: var(--color-primary-dark);
@@ -4359,7 +4359,7 @@ main, .editor-styles-wrapper {
     }
   }
 
-  h3.wp-block-heading {
+  h3.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
     font-size: 1.35rem; // Mobile h3
     font-weight: 700;
     color: var(--color-primary-green);
@@ -4370,7 +4370,7 @@ main, .editor-styles-wrapper {
   }
 
   // Material-inspired paragraphs
-  p.wp-block-paragraph {
+  p.wp-block-paragraph:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
     font-size: 1.05rem;
     line-height: 1.8;
     color: var(--color-text-main);
@@ -4385,7 +4385,8 @@ main, .editor-styles-wrapper {
   }
 
   // Modern list card structure with E3 site angles and no rounded corners
-  ul.wp-block-list, > ol.wp-block-list {
+  ul.wp-block-list:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *),
+  ol.wp-block-list:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
     list-style: none;
     padding: 0;
     margin: 2.5rem auto;
