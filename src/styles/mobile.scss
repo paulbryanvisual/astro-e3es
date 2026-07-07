@@ -4325,6 +4325,13 @@ main > .wp-block-e3es-full-width-testimonial {
       width: 100%;
     }
 
+    // Prevent white gaps between adjacent full-width background blocks
+    > :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .has-background) {
+      & + :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .has-background) {
+        margin-top: 0 !important;
+      }
+    }
+
   }
 }
 
