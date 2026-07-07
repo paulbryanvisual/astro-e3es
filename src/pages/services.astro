@@ -4,11 +4,6 @@ import LeadFormDrawer from '../components/LeadFormDrawer.astro';
 import { getServices } from '../lib/wordpress';
 import { Image } from 'astro:assets';
 
-export const prerender = false;
-
-// Cache on the Edge for 60 seconds. If stale, serve stale and rebuild in the background.
-Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=60, stale-while-revalidate=31536000');
-
 const allServices = await getServices();
 const excludeSlugs = ['k-12', 'municipal', 'healthcare', 'higher-education', 'buyboard', 'tips', 'job-order-contracting', 'energy-savings-performance-contracting', 'seco', 'water-2__trashed', 'hvac-2__trashed', 'higher-ed__trashed', 'controls', 'wastewater', 'water-treatment'];
 

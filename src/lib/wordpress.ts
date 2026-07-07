@@ -1,3 +1,5 @@
+import { cacheBuster } from './cache.ts';
+
 const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD 
   ? 'https://descriptive-goldfish.flywheelstaging.com/wp-json/wp/v2'
   : 'http://e3es2026.local/wp-json/wp/v2');
@@ -6,7 +8,7 @@ const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
 async function wpFetch(urlPath: string) {
   const separator = urlPath.includes('?') ? '&' : '?';
-  const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}`;
+  const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
   return fetch(url, { cache: 'no-store' });
 }
 
