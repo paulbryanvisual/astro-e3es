@@ -1915,86 +1915,88 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Gutenberg Block Editor styling for Comparison Table */
-.wp-block-e3es-comparison-table,
-.wp-block[data-type="e3es/comparison-table"] {
-    max-width: none !important;
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
+.editor-styles-wrapper {
+    .wp-block-e3es-comparison-table,
+    .wp-block[data-type="e3es/comparison-table"] {
+        max-width: none !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 
-.comparison-table {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-    border-collapse: collapse !important;
-
-    thead, tbody {
+    .comparison-table {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
-    }
+        border-collapse: collapse !important;
 
-    .block-editor-inner-blocks,
-    .block-editor-block-list__layout {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
+        thead, tbody {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+        }
 
-    thead tr,
-    .wp-block-e3es-comparison-row,
-    .wp-block-e3es-comparison-row > div,
-    [data-type="e3es/comparison-row"],
-    [data-type="e3es/comparison-row"] > div {
-        display: flex !important;
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-    }
+        .block-editor-inner-blocks,
+        .block-editor-block-list__layout {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
 
-    thead tr th,
-    thead tr td,
-    thead tr .th,
-    thead tr .td,
-    .wp-block-e3es-comparison-row th,
-    .wp-block-e3es-comparison-row td,
-    .wp-block-e3es-comparison-row .th,
-    .wp-block-e3es-comparison-row .td,
-    [data-type="e3es/comparison-row"] th,
-    [data-type="e3es/comparison-row"] td,
-    [data-type="e3es/comparison-row"] .th,
-    [data-type="e3es/comparison-row"] .td {
-        display: block !important;
-        box-sizing: border-box !important;
-        flex: 0 0 auto !important;
-    }
+        thead tr,
+        .wp-block-e3es-comparison-row,
+        .wp-block-e3es-comparison-row > div,
+        [data-type="e3es/comparison-row"],
+        [data-type="e3es/comparison-row"] > div {
+            display: flex !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+        }
 
-    th .block-editor-rich-text,
-    td .block-editor-rich-text {
-        width: 100%;
-    }
-    
-    .block-editor-rich-text__editable {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        outline: none !important;
-        min-height: auto !important;
-        color: inherit !important;
-        font-family: inherit !important;
-        font-size: inherit !important;
-        font-weight: inherit !important;
-        line-height: inherit !important;
+        thead tr th,
+        thead tr td,
+        thead tr .th,
+        thead tr .td,
+        .wp-block-e3es-comparison-row th,
+        .wp-block-e3es-comparison-row td,
+        .wp-block-e3es-comparison-row .th,
+        .wp-block-e3es-comparison-row .td,
+        [data-type="e3es/comparison-row"] th,
+        [data-type="e3es/comparison-row"] td,
+        [data-type="e3es/comparison-row"] .th,
+        [data-type="e3es/comparison-row"] .td {
+            display: block !important;
+            box-sizing: border-box !important;
+            flex: 0 0 auto !important;
+        }
+
+        th .block-editor-rich-text,
+        td .block-editor-rich-text {
+            width: 100%;
+        }
+        
+        .block-editor-rich-text__editable {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            outline: none !important;
+            min-height: auto !important;
+            color: inherit !important;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
     }
 }
 
@@ -4311,6 +4313,7 @@ main > .wp-block-e3es-full-width-testimonial {
     > .faq-section,
     > .cta-banner,
     > .wp-block-e3es-intro-banner,
+    > .wp-block-e3es-comparison-table,
     > .alignfull {
       grid-column: full;
       width: 100%;
