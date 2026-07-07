@@ -104,6 +104,29 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-bg-white);
 }
 
+/* White outline button — used on dark backgrounds (image overlays, dark hero sections) */
+.btn--outline-white {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+
+    &::after {
+        content: ' →';
+        display: inline-block;
+        transition: transform 0.25s ease;
+    }
+}
+
+.btn--outline-white:hover {
+    background-color: #ffffff;
+    color: var(--color-primary-dark);
+    border-color: #ffffff;
+
+    &::after {
+        transform: translateX(4px);
+    }
+}
+
 /* Region Map Buttons Hit Area Expansion */
 .region-link {
     position: relative;
@@ -638,7 +661,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 3rem 2rem; /* Shorter */
     text-align: center;
     width: 100%;
-    margin-bottom: 4rem;
 }
 
 // Reduce margin-bottom to 1rem when Jump to project block immediately follows the hero
@@ -1063,6 +1085,25 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     flex-shrink: 0;
 }
 
+/* e3es/section-icon block — size and color tokens */
+.e3es-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    line-height: 0;
+
+    svg {
+        display: block;
+    }
+
+    &--sm svg { width: 32px; height: 32px; }
+    &--md svg { width: 48px; height: 48px; }
+    &--lg svg { width: 64px; height: 64px; }
+
+    &--green { color: var(--color-primary-green); }
+    &--dark  { color: var(--color-primary-dark);  }
+    &--white { color: #ffffff; }
+}
+
 .db-feature__content h2 {
     font-size: 2.5rem;
     margin-bottom: 0;
@@ -1078,6 +1119,38 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 .db-feature__content p {
     font-size: 1.15rem;
     line-height: 1.8;
+}
+
+.db-feature__content ul {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    
+    li {
+        margin-bottom: 1rem;
+        
+        a {
+            display: inline-block;
+            padding: 12px 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            background-color: transparent;
+            border: 2px solid var(--color-primary-green);
+            color: var(--color-primary-green);
+            
+            &:hover {
+                background-color: var(--color-primary-green);
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(125, 160, 68, 0.25);
+            }
+        }
+    }
 }
 
 .db-feature__image-wrapper {
@@ -1116,7 +1189,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     position: relative;
     z-index: 2;
     transform: skewX(5deg) scale(1.15);
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease, filter 0.6s ease;
 }
 
 .db-feature__image-overlay {
@@ -1125,14 +1198,14 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(14, 53, 27, 0.1) 0%, rgba(0, 0, 0, 0.85) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.92) 100%);
     z-index: 3;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    text-align: center;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 3rem;
+    text-align: left;
     box-sizing: border-box;
     transform: translateY(-100%);
     opacity: 0;
@@ -1144,14 +1217,15 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     transform: skewX(5deg);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
 }
 
 .db-feature__overlay-text {
     color: #ffffff;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     margin: 0;
     opacity: 0;
     transform: translateY(-20px);
@@ -1165,14 +1239,31 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0.7s ease 0.3s;
 }
 
+.db-feature__overlay-headline {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.08s, opacity 0.6s ease 0.08s;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    line-height: 1.15;
+}
+
 .db-feature__image-wrapper:hover {
     .db-feature__image {
         transform: skewX(5deg) scale(1.25);
+        filter: blur(3px) brightness(0.85);
     }
     .db-feature__image-overlay {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
+    }
+    .db-feature__overlay-headline {
+        opacity: 1;
+        transform: translateY(0);
     }
     .db-feature__overlay-text {
         opacity: 1;
@@ -1778,19 +1869,91 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
-.comparison-table td:nth-child(3) {
+.comparison-table tbody td:last-child,
+.comparison-table tbody th:last-child {
     background-color: #FFFFFF;
 }
-.comparison-table thead th:nth-child(3) {
+.comparison-table thead th:last-child {
     background-color: #7DA044;
     color: white;
 }
-.comparison-table tbody td:first-child {
+.comparison-table tbody td:first-child,
+.comparison-table tbody th:first-child {
     font-weight: 600;
 }
-.comparison-table tbody tr:last-child td {
+.comparison-table tbody tr:last-child td,
+.comparison-table tbody tr:last-child th {
     border-bottom: none;
 }
+
+/* Gutenberg Block Editor styling for Comparison Table */
+.comparison-table {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+
+    thead, tbody {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .block-editor-inner-blocks,
+    .block-editor-block-list__layout {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    thead tr,
+    .wp-block-e3es-comparison-row,
+    .wp-block-e3es-comparison-row > div {
+        display: flex !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    thead tr th,
+    thead tr td,
+    thead tr .th,
+    thead tr .td,
+    .wp-block-e3es-comparison-row th,
+    .wp-block-e3es-comparison-row td,
+    .wp-block-e3es-comparison-row .th,
+    .wp-block-e3es-comparison-row .td {
+        display: block !important;
+        box-sizing: border-box !important;
+        flex: 0 0 auto !important;
+    }
+
+    th .block-editor-rich-text,
+    td .block-editor-rich-text {
+        width: 100%;
+    }
+    
+    .block-editor-rich-text__editable {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        outline: none !important;
+        min-height: auto !important;
+        color: inherit !important;
+        font-family: inherit !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+    }
+}
+
 
 /* Mini Callout Boxes (Testimonials & Case Studies) */
 .mini-testimonial {
@@ -2753,17 +2916,53 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     bottom: -20px;
     z-index: 2;
     pointer-events: none;
-    background: var(--color-bg-white);
+    background-image: url('../assets/images/E3-background-layered-1920x1080.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     will-change: transform;
 
     &--left {
       left: -5%;
       width: 35%;
+      border-right: 8px solid #FFFFFF;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -4px; /* Pull deeper into the thick border to eliminate hairline gap */
+        transform: translateY(-50%) skewX(5deg);
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 14px solid #FFFFFF;
+        z-index: 10;
+        pointer-events: none;
+      }
     }
 
     &--right {
       right: -5%;
       width: 28%;
+      border-left: 8px solid #FFFFFF;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -4px; /* Pull deeper into the thick border to eliminate hairline gap */
+        transform: translateY(-50%) skewX(5deg);
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 14px solid #FFFFFF;
+        z-index: 10;
+        pointer-events: none;
+      }
     }
   }
 
@@ -2776,6 +2975,34 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     object-fit: cover;
     object-position: center center !important;
     display: block;
+    z-index: 1;
+  }
+
+  /* Style 2: White Mask */
+  &.is-style-white-mask &__mask {
+    background-image: none;
+    background-color: var(--color-bg-white, #FFFFFF);
+  }
+
+  /* Style 3: Green Texture Behind Photo */
+  &.is-style-green-texture-behind &__hero {
+    background-image: url('../assets/images/E3-background-layered-1920x1080.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  &.is-style-green-texture-behind &__hero-img {
+    /* Hide the actual image, because it will be shown by the masks */
+    opacity: 0;
+  }
+
+  &.is-style-green-texture-behind &__mask {
+    /* Use the photo as the background of the masks */
+    background-image: var(--hero-img);
+    background-attachment: fixed;
+    /* Optional: Remove the thick white borders if they shouldn't outline the 'photo' */
   }
 
   &__info {
@@ -3077,7 +3304,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Client Content Layout Constraints */
-main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section),
+main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.services-page__container),
 .client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section) {
   max-width: 1200px;
   margin-left: auto !important;
@@ -3091,6 +3318,7 @@ main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3
 main > .wp-block-e3es-intro-banner,
 main > .project-section,
 main > .wp-block-e3es-faq-section,
+main > .services-page__container,
 .client-content-wrapper > .wp-block-e3es-intro-banner,
 .client-content-wrapper > .project-section,
 .client-content-wrapper > .wp-block-e3es-faq-section {
@@ -3113,9 +3341,7 @@ main > .wp-block-e3es-faq-section,
     margin: 0 auto;
   }
 
-  /* Section title — generated via ::before */
-  &__container::before {
-    content: 'Frequently Asked Questions';
+  &__title {
     display: block;
     font-family: var(--font-main);
     font-size: 1.85rem;
@@ -3123,9 +3349,34 @@ main > .wp-block-e3es-faq-section,
     color: var(--color-primary-dark);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-top: 0;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 3px solid var(--color-primary-green);
+  }
+
+  &__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-primary-green);
+  }
+
+  &__keyword {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(125, 160, 68, 0.1);
+    border: 1px solid var(--color-primary-green);
+    border-radius: 20px;
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primary-dark);
+    cursor: default;
   }
 
   /* Each H3 inside is a question header */
@@ -3530,3 +3781,661 @@ main > .wp-block-e3es-faq-section,
 }
 
 
+// ─── Full-Width Testimonial ────────────────────────────────────────────────
+.full-width-testimonial {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-left: 4px solid var(--color-primary-green);
+  max-width: 1200px;
+
+  &--white { background: var(--color-bg-white); }
+  &--light  { background: var(--color-bg-light); }
+
+  &__avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--color-primary-green);
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__quote {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  &__byline {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+  }
+
+  &__link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary-green);
+    }
+  }
+}
+
+// ─── Rep Contact Card ─────────────────────────────────────────────────────
+.rep-contact-card {
+  background: var(--color-bg-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  text-align: center;
+  border-left: 4px solid var(--color-primary-green);
+
+  &__photo-wrap {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-primary-green);
+    margin: 0 auto 1.25rem;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__name {
+    color: var(--color-primary-dark);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  &__role {
+    color: var(--color-primary-green);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  &__bio {
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--color-text-main);
+    margin-bottom: 1.25rem;
+    border: none;
+    padding: 0;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+// ─── Region Showcase (client project card slider) ──────────────────────────
+.region-showcase {
+  padding: 5rem 2rem;
+
+  &--white { background: var(--color-bg-white); }
+  &--light  { background: var(--color-bg-light); }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  &__slider-wrap {
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem 0 1rem;
+  }
+
+  &__track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  // Individual project card inside the slider
+  .region-showcase-card {
+    min-width: calc(33.333% - 1.333rem);
+    background: var(--color-bg-light);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-bottom: 4px solid var(--color-primary-green);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    &__img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    &__body {
+      padding: 1.5rem 2rem 2rem;
+      flex: 1;
+    }
+
+    &__title {
+      color: var(--color-primary-dark);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    &__amount {
+      font-weight: 700;
+      color: var(--color-primary-green);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    &__text {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--color-text-main);
+    }
+  }
+
+  // Slider prev/next buttons
+  &__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-primary-green);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s;
+    z-index: 2;
+
+    &:hover    { background: var(--color-primary-dark); }
+    &:disabled { opacity: 0.4; cursor: not-allowed; background: #ccc; }
+
+    &--prev { left: -50px; }
+    &--next { right: -50px; }
+  }
+}
+
+// Editor full-bleed overrides for new blocks
+.editor-styles-wrapper {
+  .wp-block[data-type="e3es/full-width-testimonial"],
+  .wp-block[data-type="e3es/rep-contact-card"],
+  .wp-block[data-type="e3es/region-showcase"] {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+
+  // Styles for the core/list block to render as E3 card lists in Gutenberg by default
+  .is-root-container {
+      // Width constraints for blocks inside editor to match frontend layout columns
+      > .wp-block {
+        max-width: 850px !important;
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        box-sizing: border-box !important;
+
+        // Breakout blocks span full-bleed (width 100%, max-width none)
+        &[data-type="e3es/two-column"],
+        &[data-type="e3es/two-column-cover"],
+        &[data-type="e3es/intro-banner"],
+        &[data-type="e3es/faq-section"],
+        &[data-type="e3es/full-width-testimonial"],
+        &[data-type="e3es/rep-contact-card"],
+        &[data-type="e3es/region-showcase"],
+        &[data-type="e3es/texas-interactive-map"],
+        &[data-type="e3es/services-grid"],
+        &[data-type="e3es/clients-grid"],
+        &.alignfull,
+        &[data-align="full"] {
+          max-width: none !important;
+          width: 100% !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+
+      // Material-inspired heading sizes & weights in editor for parity
+      h2, .wp-block-heading h2,
+      .wp-block[data-type="core/heading"] h2 {
+        font-size: 1.75rem !important; // Mobile h2
+        font-weight: 800 !important;
+        color: var(--color-primary-dark) !important;
+        margin-top: 3.5rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.3 !important;
+        letter-spacing: -0.02em !important;
+        text-align: left !important;
+
+        &::after {
+          content: '' !important;
+          display: block !important;
+          width: 48px !important;
+          height: 4px !important;
+          background: var(--color-primary-green) !important;
+          border-radius: 0 !important;
+          margin: 0.75rem 0 0 0 !important;
+        }
+      }
+
+      h3, .wp-block-heading h3,
+      .wp-block[data-type="core/heading"] h3 {
+        font-size: 1.35rem !important; // Mobile h3
+        font-weight: 700 !important;
+        color: var(--color-primary-green) !important;
+        margin-top: 2.5rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.4 !important;
+        text-align: left !important;
+      }
+
+      p, .wp-block-paragraph,
+      .wp-block[data-type="core/paragraph"] p {
+        font-size: 1.05rem !important;
+        line-height: 1.8 !important;
+        color: var(--color-text-main) !important;
+        margin-bottom: 1.75rem !important;
+        text-align: left !important;
+
+        strong {
+          color: var(--color-primary-dark) !important;
+          font-weight: 700 !important;
+        }
+      }
+
+      // Style list blocks (ul/ol with .wp-block-list class) as slanted E3 cards
+      .wp-block-list {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 2.5rem auto !important;
+        display: grid !important;
+        gap: 1.5rem !important;
+        grid-template-columns: 1fr !important;
+
+        li {
+          position: relative !important;
+          z-index: 1 !important;
+          padding: 1.25rem 2rem !important;
+          margin-left: 10px !important; // account for skew offset
+          color: var(--color-text-main) !important;
+          font-size: 1.05rem !important;
+          line-height: 1.6 !important;
+          text-align: left !important;
+
+          &::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: var(--color-bg-light) !important;
+            border-left: 5px solid var(--color-primary-green) !important;
+            border-radius: 0 !important;
+            transform: skewX(-6deg) !important;
+            z-index: -1 !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+          }
+
+          strong {
+            color: var(--color-primary-dark) !important;
+            font-weight: 700 !important;
+            display: block !important;
+            margin-bottom: 0.25rem !important;
+            font-size: 1.1rem !important;
+          }
+
+          &:hover {
+            &::before {
+              background-color: var(--color-bg-sage) !important;
+              border-left-color: var(--color-primary-dark) !important;
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08) !important;
+              transform: skewX(-6deg) translateY(-2px) !important;
+            }
+          }
+        }
+
+        // Revert in editor when "Normal Bullets" block style is selected
+        &.is-style-normal-bullets {
+          display: block !important;
+          padding-left: 2.5rem !important;
+          margin: 1.5rem auto !important;
+
+          li {
+            position: static !important;
+            z-index: auto !important;
+            padding: 0 !important;
+            margin: 0.5rem 0 0.5rem 0 !important;
+            color: var(--color-text-main) !important;
+            font-size: 1.05rem !important;
+            line-height: 1.8 !important;
+            text-align: left !important;
+
+            &::before {
+              display: none !important;
+            }
+
+            strong {
+              display: inline !important;
+              font-size: inherit !important;
+              color: inherit !important;
+              margin-bottom: 0 !important;
+            }
+
+            &:hover {
+              transform: none !important;
+              &::before {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+
+      ul.wp-block-list.is-style-normal-bullets {
+        list-style: disc !important;
+      }
+
+      ol.wp-block-list.is-style-normal-bullets {
+        list-style: decimal !important;
+      }
+
+      // Styles for dark background blocks to ensure high contrast in the editor
+      .cta-banner,
+      .db-feature--green,
+      .wp-block-cover,
+      .db-page-hero,
+      .wp-block-e3es-intro-banner,
+      .wp-block[data-type="e3es/intro-banner"],
+      .wp-block-e3es-two-column-cover,
+      .wp-block[data-type="e3es/two-column-cover"],
+      .wp-block[data-type="e3es/full-width-testimonial"] {
+        h1, h2, h3, h4, h5, h6,
+        .wp-block-heading,
+        .wp-block-heading h1,
+        .wp-block-heading h2,
+        .wp-block-heading h3,
+        .wp-block[data-type="core/heading"] h1,
+        .wp-block[data-type="core/heading"] h2,
+        .wp-block[data-type="core/heading"] h3 {
+          color: var(--color-bg-white) !important;
+          &::after {
+            background: var(--color-bg-white) !important;
+          }
+        }
+
+        p, .wp-block-paragraph,
+        .wp-block[data-type="core/paragraph"] p {
+          color: var(--color-bg-white) !important;
+          opacity: 0.9 !important;
+        }
+
+        ul, ol, li,
+        .wp-block-list,
+        .wp-block-list li {
+          color: var(--color-bg-white) !important;
+        }
+      }
+    }
+  }
+
+// main full-bleed overrides for new blocks
+main > .wp-block-e3es-region-showcase,
+main > .wp-block-e3es-full-width-testimonial {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ── Services Page generic layout ──────────── */
+.services-page {
+  padding: 0;
+  background-color: var(--color-bg-white);
+
+  &__container {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  &__content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--color-text-main);
+    display: grid;
+    grid-template-columns: 
+      [full-start] minmax(2rem, 1fr) 
+      [breakout-start] minmax(0, 100px) 
+      [content-start] minmax(0, 850px) [content-end] 
+      minmax(0, 100px) [breakout-end] 
+      minmax(2rem, 1fr) [full-end];
+    padding: 2.5rem 0 4rem 0;
+
+    // Remove margin-top on the first child to avoid large gaps below the hero banner
+    > *:first-child {
+      margin-top: 0 !important;
+    }
+
+    // All direct children go to content by default
+    > * {
+      grid-column: content;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    // Breakout elements span from full-start to full-end
+    > .db-feature,
+    > .wp-block-e3es-two-column,
+    > .wp-block-e3es-two-column-cover,
+    > .faq-section,
+    > .cta-banner,
+    > .alignfull {
+      grid-column: full;
+      width: 100%;
+    }
+
+    // Wide align elements span from breakout-start to breakout-end
+    > .alignwide {
+      grid-column: breakout;
+      width: 100%;
+    }
+
+    // Material-inspired heading sizes & weights
+    > h2.wp-block-heading {
+      font-size: 1.75rem; // Mobile h2
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      text-align: left; // Left-aligned
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 4px;
+        background: var(--color-primary-green);
+        border-radius: 0; // sharp corners
+        margin: 0.75rem 0 0 0; // left-aligned underline
+      }
+    }
+
+    > h3.wp-block-heading {
+      font-size: 1.35rem; // Mobile h3
+      font-weight: 700;
+      color: var(--color-primary-green);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      text-align: left; // Left-aligned
+    }
+
+    // Material-inspired paragraphs
+    > p.wp-block-paragraph {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-text-main);
+      margin-bottom: 1.75rem;
+      text-wrap: pretty;
+      text-align: left; // Left-aligned
+
+      strong {
+        color: var(--color-primary-dark);
+        font-weight: 700;
+      }
+    }
+
+    // Modern list card structure with E3 site angles and no rounded corners
+    > ul.wp-block-list, > ol.wp-block-list {
+      list-style: none;
+      padding: 0;
+      margin: 2.5rem auto;
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+
+      li {
+        position: relative;
+        z-index: 1;
+        padding: 1.25rem 2rem;
+        margin-left: 10px; // account for skew offset
+        color: var(--color-text-main);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        text-align: left;
+
+        // Angled background and border-left matching the site's skew aesthetic
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--color-bg-light);
+          border-left: 5px solid var(--color-primary-green);
+          border-radius: 0; // sharp corners
+          transform: skewX(-6deg); // angled parallelogram card
+          z-index: -1;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+          transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        strong {
+          color: var(--color-primary-dark);
+          font-weight: 700;
+          display: block;
+          margin-bottom: 0.25rem;
+          font-size: 1.1rem;
+        }
+
+        &:hover {
+          &::before {
+            background-color: var(--color-bg-sage);
+            border-left-color: var(--color-primary-dark);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transform: skewX(-6deg) translateY(-2px); // lift on hover while preserving angle
+          }
+        }
+      }
+
+      // Revert custom cards style back to normal bullet points/numbers
+      &.is-style-normal-bullets {
+        display: block;
+        padding-left: 2.5rem;
+        margin: 1.5rem auto;
+
+        li {
+          position: static;
+          z-index: auto;
+          padding: 0;
+          margin: 0.5rem 0 0.5rem 0;
+          color: var(--color-text-main);
+          font-size: 1.05rem;
+          line-height: 1.8;
+          text-align: left;
+
+          &::before {
+            display: none !important;
+          }
+
+          strong {
+            display: inline;
+            font-size: inherit;
+            color: inherit;
+            margin-bottom: 0;
+          }
+
+          &:hover {
+            transform: none;
+            &::before {
+              display: none !important;
+            }
+          }
+        }
+      }
+    }
+
+    > ul.wp-block-list.is-style-normal-bullets {
+      list-style: disc;
+    }
+
+    > ol.wp-block-list.is-style-normal-bullets {
+      list-style: decimal;
+    }
+  }
+}
