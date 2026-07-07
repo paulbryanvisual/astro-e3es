@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getClients, optimizeHtmlImages } from '../../lib/wordpress';
+import { getClients, optimizeHtmlImages, decodeHtmlEntities } from '../../lib/wordpress';
 import { Image } from 'astro:assets';
 
 // Static imports for client logos
@@ -126,12 +126,12 @@ const breadcrumbItems = [
     dropdown: regionsDropdown
   },
   {
-    label: client.title.rendered
+    label: decodeHtmlEntities(client.title.rendered)
   }
 ];
 ---
 
-<Layout description={`Case study page for ${client.title.rendered} detailing facility improvement projects.`}>
+<Layout description={`Case study page for ${decodeHtmlEntities(client.title.rendered)} detailing facility improvement projects.`}>
   <!-- Breadcrumb Bar -->
   <Breadcrumb items={breadcrumbItems} />
 
