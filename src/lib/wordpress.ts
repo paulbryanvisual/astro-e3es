@@ -125,6 +125,13 @@ export function optimizeHtmlImages(html: string): string {
     .replace(/(srcset=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
     .replace(/(href=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`);
 
+  // Remove trailing arrows from db-feature overlay buttons to avoid doubling with CSS arrows
+  processedHtml = processedHtml.replace(
+    /(<a\s+[^>]*class=["'][^"']*db-feature__overlay-button[^"']*["'][^>]*>)(.*?)(?:\s*→|\s*&rarr;|\s*&#8594;)?(<\/a>)/gi,
+    '$1$2$3'
+  );
+
+
   let isFirstImage = true;
 
   return processedHtml.replace(/<img([^>]+)>/gi, (match, attrs) => {
