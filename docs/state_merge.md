@@ -193,3 +193,14 @@
   - `src/lib/wordpress.ts` (Renamed `optimizeHtmlImages` -> `processWordPressHtml`, added entity fixes)
   - `src/pages/[...slug].astro`, `src/pages/clients/[slug].astro`, `src/pages/index.astro`, `src/lib/cache.ts` (Updated to use new function name)
   - `wp_posts` database natively via one-shot PHP script.
+
+## Timestamp: 2026-07-08T03:35:00Z
+### Thread Summary: Mask Animation and Full Width Blocks
+- **Architectural Decisions**:
+  - Implemented dynamic script toggling of display properties for mask blocks (`.project-section__mask--left`/`right`) to support the "Green Texture Behind" variation without breaking standard layouts.
+  - Tweaked image scaling to `scale(1.15)` for the texture-behind style in SCSS to prevent white borders from bleeding on specific resolutions.
+  - Added `.wp-block-e3es-core-pillars` and `.db-pillars` natively to CSS grid full-bleed layout rules, and applied the sibling element top-margin collapse reset.
+- **New Dependencies**: None.
+- **Core Files Modified**:
+  - `src/pages/clients/[slug].astro`
+  - `src/styles/mobile.scss`
