@@ -437,27 +437,29 @@
   }
 
   /* --- Texas Map Section - Desktop Layout --- */
-  .map-section {
-    padding: 6rem 2rem;
-  }
-  .map-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    flex-direction: row;
-    gap: 4rem;
-    align-items: center;
-  }
-  .map-left {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-  .map-right {
-    flex: 1;
-  }
-  .map-content-img {
-    height: 350px;
+  main, .editor-styles-wrapper {
+    .map-section {
+      padding: 6rem 2rem;
+    }
+    .map-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex-direction: row;
+      gap: 4rem;
+      align-items: center;
+    }
+    .map-left {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .map-right {
+      flex: 1;
+    }
+    .map-content-img {
+      height: 350px;
+    }
   }
 }
