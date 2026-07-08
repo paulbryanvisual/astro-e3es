@@ -2165,7 +2165,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     & .wp-block[data-type="e3es/cta-banner"],
     & .wp-block-e3es-cta-banner {
         max-width: none !important;
-        width: 100% !important;
+        width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
     }
 
     & .is-root-container .cta-banner h1,
