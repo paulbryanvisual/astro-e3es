@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPages, getServices, optimizeHtmlImages } from '../lib/wordpress';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { getPages, getServices, optimizeHtmlImages, buildBreadcrumbs } from '../lib/wordpress';
 
 export async function getStaticPaths() {
   const [pages, services] = await Promise.all([getPages(), getServices()]);
+  const allItems = [...pages, ...services];
   
   const pagePaths = pages.map((page: any) => {
     try {
@@ -17,7 +19,7 @@ export async function getStaticPaths() {
       
       return {
         params: { slug: path },
-        props: { page }
+        props: { page, allItems }
       };
     } catch (e) {
       // Fallback to simple slug if link parsing fails
@@ -26,7 +28,7 @@ export async function getStaticPaths() {
       }
       return {
         params: { slug: page.slug },
-        props: { page }
+        props: { page, allItems }
       };
     }
   }).filter(Boolean);
@@ -42,7 +44,7 @@ export async function getStaticPaths() {
       
       return {
         params: { slug: path },
-        props: { page: service }
+        props: { page: service, allItems }
       };
     } catch (e) {
       if (!service.slug) {
@@ -51,7 +53,7 @@ export async function getStaticPaths() {
       const fallbackSlug = `services/${service.slug}`;
       return {
         params: { slug: fallbackSlug },
-        props: { page: service }
+        props: { page: service, allItems }
       };
     }
   }).filter(Boolean);
@@ -59,12 +61,15 @@ export async function getStaticPaths() {
   return [...pagePaths, ...servicePaths];
 }
 
-const { page } = Astro.props;
+const { page, allItems } = Astro.props;
 const optimizedContent = optimizeHtmlImages(page.content.rendered);
+const breadcrumbs = buildBreadcrumbs(page, allItems);
 
 ---
 
 <Layout wpPostId={page.id}>
+    <!-- Breadcrumb Bar -->
+    <Breadcrumb items={breadcrumbs} />
     <!-- Main Content (Intro Banner is now handled natively via the WordPress Block inside optimizedContent) -->
     <main class="services-page">
         <div class="services-page__container">
