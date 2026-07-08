@@ -10,8 +10,9 @@ export async function getStaticPaths() {
   const pagePaths = pages.map((page: any) => {
     try {
       const url = new URL(page.link);
-      const path = url.pathname.replace(/^\/|\/$/g, '');
-      
+      let path = url.pathname.replace(/^\/|\/$/g, '');
+      path = path.replace(/^home\/industries\//, '');
+      path = path.replace(/^home\//, '');
       // Skip the homepage and other reserved single pages that have their own astro templates
       if (!path || path === 'home' || path === 'clients') {
         return null;

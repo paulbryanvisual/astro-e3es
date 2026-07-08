@@ -228,11 +228,19 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
   // Reverse to get root -> child order
   path.reverse();
 
-  // Add Home
-  breadcrumbs.push({
-    label: 'Home',
-    href: '/'
-  });
+  // Check if the root of the path is the homepage
+  const hasHomepageInPath = path.length > 0 && 
+    (path[0].slug === 'home' || 
+     path[0].id === 7 || 
+     (path[0].title?.rendered || path[0].title || '').toLowerCase() === 'e3 homepage');
+
+  if (!hasHomepageInPath) {
+    // Add Home fallback
+    breadcrumbs.push({
+      label: 'Home',
+      href: '/'
+    });
+  }
 
   if (path.length > 0 && path[0].type === 'services') {
     const rootServices = allItems.filter(item => {
@@ -261,8 +269,13 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
       return childParentId === item.id;
     });
 
+    let label = item.title?.rendered || item.title || 'Untitled';
+    if (i === 0 && hasHomepageInPath) {
+      label = 'Home';
+    }
+
     breadcrumbs.push({
-      label: item.title?.rendered || item.title || 'Untitled',
+      label: label,
       href: isLast ? undefined : getRelativeUrl(item.link),
       dropdown: children.map(c => ({
         label: c.title?.rendered || c.title,
