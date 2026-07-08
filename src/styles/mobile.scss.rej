@@ -1,0 +1,11 @@
+@@ -2858,6 +2858,10 @@
+     border-radius: 0;
+     text-align: center;
+     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
++
++    @include responsive-up($breakpoint-md) {
++      flex: 1;
++    }
+   }
+ 
+   .wp-block-column h3,

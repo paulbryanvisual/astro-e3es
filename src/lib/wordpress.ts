@@ -114,7 +114,7 @@ export async function getClients() {
 /**
  * Server-side HTML utility to optimize images in Gutenberg block content.
  */
-export function optimizeHtmlImages(html: string): string {
+export function processWordPressHtml(html: string): string {
   if (!html) return '';
 
   // 1. Rewrite relative paths to absolute WordPress server paths
@@ -133,6 +133,10 @@ export function optimizeHtmlImages(html: string): string {
     '$1$2$3'
   );
 
+
+  // Fix double escaped entities that cause "&amp;" to show on screen
+  processedHtml = processedHtml.replace(/&amp;amp;/g, '&amp;')
+                               .replace(/&amp;#038;/g, '&#038;');
 
   let isFirstImage = true;
 
@@ -276,6 +280,7 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     });
 
     let label = item.title?.rendered || item.title || 'Untitled';
+    label = decodeHtmlEntities(label);
     if (i === 0 && hasHomepageInPath) {
       label = 'Home';
     }
