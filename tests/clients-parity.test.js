@@ -288,17 +288,21 @@ async function auditClientPage(client, failures) {
       }
     }
 
+    // Extract main content for relative indices validation
+    const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
+    const mainContent = mainMatch ? mainMatch[1] : html;
+
     // Check 5: Project details wrapper check
-    const hasDetails = hasClass(html, 'project-details');
-    const projectIdx = html.indexOf('wp-block-e3es-project') !== -1 ? html.indexOf('wp-block-e3es-project') : html.indexOf('project-section');
+    const hasDetails = hasClass(mainContent, 'project-details');
+    const projectIdx = mainContent.indexOf('wp-block-e3es-project') !== -1 ? mainContent.indexOf('wp-block-e3es-project') : mainContent.indexOf('project-section');
 
     if (hasDetails) {
       // Find all custom e3 project blocks
-      const blocks = findProjectBlocks(html);
+      const blocks = findProjectBlocks(mainContent);
       
       // Find index of first project details occurrence
       const detailsRegex = /class=["'][^"']*\bproject-details\b[^"']*["']/gi;
-      const detailsMatch = detailsRegex.exec(html);
+      const detailsMatch = detailsRegex.exec(mainContent);
       const detailsIdx = detailsMatch ? detailsMatch.index : -1;
       
       // Verify project details are wrapped
@@ -313,7 +317,7 @@ async function auditClientPage(client, failures) {
       const paragraphRegex = /<p[^>]*>([\s\S]*?(?:partnered|partnership|collaborated|cooperated)[\s\S]*?)<\/p>/gi;
       let paragraphMatch;
       let firstParagraphIdx = -1;
-      while ((paragraphMatch = paragraphRegex.exec(html)) !== null) {
+      while ((paragraphMatch = paragraphRegex.exec(mainContent)) !== null) {
         // Skip video intro text blocks
         if (paragraphMatch[0].includes('db-video-section') || paragraphMatch[0].includes('video-embed')) {
           continue;
@@ -328,7 +332,7 @@ async function auditClientPage(client, failures) {
         const clientKeyword = nameWords[0];
         if (clientKeyword && clientKeyword.length > 2) {
           const clientNameRegex = new RegExp(`<p[^>]*>([\\s\\S]*?${clientKeyword}[\\s\\S]*?)<\/p>`, 'i');
-          const clientNameMatch = html.match(clientNameRegex);
+          const clientNameMatch = mainContent.match(clientNameRegex);
           if (clientNameMatch) {
             firstParagraphIdx = clientNameMatch.index;
           }
