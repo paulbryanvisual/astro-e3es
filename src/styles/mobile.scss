@@ -2203,6 +2203,25 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     }
 }
 
+/* Editor overrides for E3 Intro Banner */
+.editor-styles-wrapper {
+    & .is-root-container > .wp-block[data-type="e3es/intro-banner"] .db-page-hero__intro,
+    & .is-root-container > .wp-block.wp-block-e3es-intro-banner .db-page-hero__intro {
+        text-align: center !important;
+        width: 100% !important;
+
+        p {
+            font-size: 1.25rem !important;
+            line-height: 1.8 !important;
+            margin-bottom: 1.5rem !important;
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            max-width: 800px !important;
+        }
+    }
+}
+
 .mini-case-study {
     background-color: var(--color-bg-light);
     border: 1px solid #e0e0e0;
