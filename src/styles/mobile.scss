@@ -3016,7 +3016,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
   /* Style 3: Green Texture Behind Photo */
   &.is-style-green-texture-behind &__hero {
-    background-image: url('../assets/images/E3-background-layered-1920x1080.jpg');
+    background-image: var(--hero-img);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -3024,15 +3024,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
   }
 
   &.is-style-green-texture-behind &__hero-img {
-    /* Hide the actual image, because it will be shown by the masks */
+    /* Hide the actual image, because it will be shown by the hero background */
     opacity: 0;
-  }
-
-  &.is-style-green-texture-behind &__mask {
-    /* Use the photo as the background of the masks */
-    background-image: var(--hero-img);
-    background-attachment: fixed;
-    /* Optional: Remove the thick white borders if they shouldn't outline the 'photo' */
   }
 
   &__info {

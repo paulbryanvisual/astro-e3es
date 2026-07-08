@@ -118,3 +118,18 @@
 
 **Core Files Modified:**
 - `src/lib/wordpress.ts`
+
+---
+### Timestamp: 2026-07-07T21:42:41-05:00
+**Architectural Decisions & Actions Taken:**
+- Restored missing `Breadcrumb` component and `buildBreadcrumbs` logic in `src/pages/[...slug].astro` and `src/lib/wordpress.ts` after they were accidentally removed in a recent template refactor.
+- Modified `buildBreadcrumbs` to accurately render child pages in the dropdown, rather than siblings, aligning the breadcrumbs with the site hierarchy.
+- The user independently introduced a top-level `Services` breadcrumb injection if the current path root is a service.
+
+**New Dependencies:**
+- None.
+
+**Core Files Modified:**
+- `src/pages/[...slug].astro`
+- `src/lib/wordpress.ts`
+
