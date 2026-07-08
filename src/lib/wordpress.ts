@@ -193,3 +193,68 @@ export function decodeHtmlEntities(text: string): string {
     .replace(/&nbsp;/g, ' ');
 }
 
+/**
+ * Build breadcrumb data for a given item based on parent/cross_post_parent relationships.
+ */
+export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
+  const breadcrumbs = [];
+  const itemMap = new Map(allItems.map(i => [i.id, i]));
+  
+  // Helper to get relative URL
+  const getRelativeUrl = (url: string) => {
+    if (!url) return '#';
+    try {
+      const u = new URL(url);
+      return u.pathname + u.search + u.hash;
+    } catch {
+      return url;
+    }
+  };
+
+  // Build hierarchy upwards
+  let current = currentItem;
+  const path = [];
+  while (current) {
+    path.push(current);
+    // Find parent via native parent OR cross_post_parent
+    const parentId = current.parent || (current.meta && parseInt(current.meta.cross_post_parent));
+    if (parentId && itemMap.has(parentId)) {
+      current = itemMap.get(parentId);
+    } else {
+      break;
+    }
+  }
+
+  // Reverse to get root -> child order
+  path.reverse();
+
+  // Add Home
+  breadcrumbs.push({
+    label: 'Home',
+    href: '/'
+  });
+
+  // Build breadcrumbs with dropdowns
+  for (let i = 0; i < path.length; i++) {
+    const item = path[i];
+    const isLast = i === path.length - 1;
+    
+    // Find children for dropdown (pages that have this item as their parent)
+    const children = allItems.filter(child => {
+      const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
+      return childParentId === item.id;
+    });
+
+    breadcrumbs.push({
+      label: item.title?.rendered || item.title || 'Untitled',
+      href: isLast ? undefined : getRelativeUrl(item.link),
+      dropdown: children.map(c => ({
+        label: c.title?.rendered || c.title,
+        href: getRelativeUrl(c.link)
+      }))
+    });
+  }
+
+  return breadcrumbs;
+}
+

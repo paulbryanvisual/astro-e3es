@@ -47,9 +47,13 @@ const mappedClients = wpClients.map((client: any) => {
 
     const services = nativeServices.length > 0 ? nativeServices : (client.meta?._e3_client_services || []);
 
+    const regionSlugs = ['south-texas', 'north-texas', 'central-texas', 'east-texas', 'west-texas', 'far-west-texas', 'south-east-texas', 'north-east-texas', 'panhandle', 'hill-country'];
+    const isRegionCard = regionSlugs.includes(client.slug);
+    const targetUrl = isRegionCard ? `/home/industries/k12/${client.slug}` : (client.meta?._e3_client_project_url || `/clients/${client.slug}`);
+
     return {
         name: decodeHtmlEntities(client.title.rendered),
-        url: client.meta?._e3_client_project_url || `/clients/${client.slug}`,
+        url: targetUrl,
         industry: industry,
         region: region,
         services: services,

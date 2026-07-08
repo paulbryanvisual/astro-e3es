@@ -75,3 +75,19 @@
 
 **Core Files Modified:**
 - `src/styles/mobile.scss`
+
+## 2026-07-07: Services Page Hybrid SSR Migration
+**Architectural Decisions:**
+- Transitioned the `/services/` and `/services/[slug]` routes to Hybrid Server-Side Rendering (SSR) via Cloudflare Workers to provide immediate frontend updates without requiring full site rebuilds.
+- Kept the project default output as `static`, selectively opting in dynamic routes with `export const prerender = false;`.
+- Implemented `stale-while-revalidate` Edge caching (`Cache-Control: public, max-age=0, s-maxage=60, stale-while-revalidate=31536000`) for the services pages to guarantee instant load times with background WP synchronization.
+- Rewrote the main `services.astro` template to dynamically pull parent (root) level WP service CPT items and their respective featured images, excluding irrelevant ones like `k-12`.
+
+**Dependencies Added:**
+- `@astrojs/cloudflare` (Astro Cloudflare adapter)
+
+**Core Files Modified:**
+- `astro.config.mjs`: Added cloudflare adapter and tested output mode configs.
+- `src/pages/services.astro`: Built dynamic grid pulling from `getServices()`, configured `prerender = false`, and added edge caching.
+- `src/pages/[...slug].astro`: Disabled `getStaticPaths()` pre-rendering for SSR compatibility; dynamically queries `Astro.params.slug` directly on the server to retrieve WordPress pages and services.
+- `src/pages/clients.astro`: Configured `prerender = false` and edge caching.
