@@ -21,13 +21,17 @@ Perform read-only exploration of the codebase to analyze styling updates require
 - Updated: 2026-07-08T15:11:29Z
 
 ## Investigation State
-- **Explored paths**: None yet
-- **Key findings**: None yet
-- **Unexplored areas**: SCSS stylesheets, component structure of `.design-build__pillars`, style synchronization scripts
+- **Explored paths**: `src/styles/mobile.scss`, `src/styles/desktop.scss`, `dist/design-build/index.html`, `sync-styles.js`
+- **Key findings**: `.design-build__pillars` is a native Gutenberg Group Block with an inner columns block child. It has no `.wp-block-group__inner-container` wrapper, meaning it requires direct child columns selectors to enforce the 1200px max-width constraint. Styles are synced to local WordPress staging via `node sync-styles.js`.
+- **Unexplored areas**: None, the styling and sync pipeline is fully mapped.
 
 ## Key Decisions Made
-- Initialized investigation folder and documentation files
+- Confirmed that direct child `> .wp-block-columns` styling is the most surgical BEM-compliant fix.
+- Synchronized frontend and editor rules for complete visual parity.
 
 ## Artifact Index
 - ORIGINAL_REQUEST.md — The original user/parent request
 - BRIEFING.md — Context and status tracker
+- progress.md — Task completion list
+- analysis.md — Detailed styling analysis report
+- handoff.md — Official handoff report
