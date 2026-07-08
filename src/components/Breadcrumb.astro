@@ -18,14 +18,14 @@ const { items } = Astro.props;
             <>
                 <div class="breadcrumb-bar__item">
                     {item.href ? (
-                        <a href={item.href} class="breadcrumb-bar__link">{item.label}</a>
+                        <a href={item.href} class="breadcrumb-bar__link" set:html={item.label} />
                     ) : (
-                        <span class="breadcrumb-bar__link" style={idx === items.length - 1 ? "color: var(--color-primary-green);" : ""}>{item.label}</span>
+                        <span class="breadcrumb-bar__link" style={idx === items.length - 1 ? "color: var(--color-primary-green);" : ""} set:html={item.label} />
                     )}
                     {item.dropdown && item.dropdown.length > 0 && (
                         <div class="breadcrumb-bar__dropdown">
                             {item.dropdown.map(drop => (
-                                <a href={drop.href} class="breadcrumb-bar__dropdown-link">{drop.label}</a>
+                                <a href={drop.href} class="breadcrumb-bar__dropdown-link" set:html={drop.label} />
                             ))}
                         </div>
                     )}

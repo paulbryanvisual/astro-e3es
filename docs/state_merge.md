@@ -229,3 +229,29 @@
 **Dependencies Added**: None
 **Core Files Modified**:
 - `src/styles/mobile.scss`
+
+### Session Wrapup: 2026-07-08T14:11:00Z
+**Task:** Fix HTML Entity Decoding in Breadcrumbs
+
+**Architectural Decisions**:
+- Updated the `Breadcrumb` component to natively parse and decode HTML entities (like `&#8230;` for ellipses) by leveraging Astro's `set:html` directive instead of outputting literal escaped strings.
+
+**New Dependencies**:
+- None
+
+**Core Files Modified**:
+- `src/components/Breadcrumb.astro`
+
+## Session Wrapup: 2026-07-08T09:11:00-05:00
+**Architectural Decisions & Actions Taken:**
+- Addressed a complex rendering issue with the slanted clipping mask on `.is-style-green-texture-behind` blocks.
+- Realized standard `<img>` limits (`max-width: 100%`) caused the photo to artificially stop short of the right clipping boundary when shifted; overridden with `max-width: none !important`.
+- Restructured `clients/[slug].astro` JS to fire dynamically on `astro:page-load` supporting Astro's ViewTransitions (SPA router), ensuring the `inner-wrapper` is created reliably across client-side navigations and HMR events.
+- Re-aligned the `::before` and `::after` arrows outward to `-31px` so their base cleanly hits the outer edge of the 10px white border, preventing bleeding into the photograph area.
+
+**New Dependencies:**
+- None.
+
+**Core Files Modified:**
+- `src/styles/mobile.scss`
+- `src/pages/clients/[slug].astro`
