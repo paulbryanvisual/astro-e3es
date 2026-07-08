@@ -1,3 +1,19 @@
+## 2026-07-07: Global Typography & Angled Block Exclusions
+
+**Architectural Decisions:**
+- Implemented global typography overrides in `mobile.scss` using specific `:not()` exclusions (`:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *)`) to ensure Gutenberg styles apply to standard content universally across all pages, while preserving the custom layouts of angled feature blocks.
+- Added standard Gutenberg layout wrappers to Astro's `clients/[slug].astro` and `blog/[slug].astro` templates to enforce consistent spacing and typography hierarchy across dynamic routes.
+- Adjusted padding variables in `mobile.scss` for `.db-page-hero` to increase visual whitespace per the user's manual commits.
+
+**Dependencies Added:**
+- None.
+
+**Core Files Modified:**
+- `src/styles/mobile.scss`
+- `src/pages/[...slug].astro`
+- `src/pages/clients/[slug].astro`
+- `src/pages/blog/[slug].astro`
+
 ## 2026-07-07: HTML Entity Decoding Fix
 
 **Architectural Decisions:**
