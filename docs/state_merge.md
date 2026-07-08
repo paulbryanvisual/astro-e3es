@@ -91,3 +91,14 @@
 - `src/pages/services.astro`: Built dynamic grid pulling from `getServices()`, configured `prerender = false`, and added edge caching.
 - `src/pages/[...slug].astro`: Disabled `getStaticPaths()` pre-rendering for SSR compatibility; dynamically queries `Astro.params.slug` directly on the server to retrieve WordPress pages and services.
 - `src/pages/clients.astro`: Configured `prerender = false` and edge caching.
+
+## 2026-07-07: Clean Breadcrumb Labels
+**Architectural Decisions:**
+- Added a `cleanLabel` helper in `src/lib/wordpress.ts` to automatically strip the words "Solutions" and "Services" from the end of breadcrumb labels as they are built in Astro.
+- This allows keeping the WordPress titles intact while displaying cleaner names (e.g., "Decarbonization, Solar & Storage") in the breadcrumbs menu.
+
+**Dependencies Added:**
+- None.
+
+**Core Files Modified:**
+- `src/lib/wordpress.ts`
