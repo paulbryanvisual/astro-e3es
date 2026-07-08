@@ -255,3 +255,16 @@
 **Core Files Modified:**
 - `src/styles/mobile.scss`
 - `src/pages/clients/[slug].astro`
+
+## Session Wrapup: 2026-07-08T09:57:08-05:00
+**Architectural Decisions & Actions Taken:**
+- Resolved a conflict where Gutenberg's strict layout constraints (`max-width: 850px` on `.editor-styles-wrapper .is-root-container > .wp-block`) prevented the CTA Banner from appearing full width in the editor.
+- Implemented a high-specificity CSS override in Astro's `mobile.scss` utilizing attribute selectors (`.wp-block[data-type="e3es/cta-banner"]`) to securely break out of the editor root container limits without impacting the frontend.
+- Synced the updated Astro BEM styles to the WordPress headless helper plugin.
+
+**New Dependencies:**
+- None.
+
+**Core Files Modified:**
+- `src/styles/mobile.scss` (Astro)
+- `editor-styles.css` (Headless Helper Plugin)
