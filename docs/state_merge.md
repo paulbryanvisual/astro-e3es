@@ -268,3 +268,23 @@
 **Core Files Modified:**
 - `src/styles/mobile.scss` (Astro)
 - `editor-styles.css` (Headless Helper Plugin)
+
+## Session Wrapup: 2026-07-08T10:00:13-05:00
+**Architectural Decisions & Actions Taken:**
+- Resolved interactive Texas map layout issues on K-12 page to display side-by-side on desktop views.
+- Aligned CSS specificity for `.map-container` and `.map-section` by nesting desktop overrides inside `main, .editor-styles-wrapper` inside `desktop.scss` to prevent mobile vertical layout overrides.
+- Conformed the K-12 map layout to flat-design rules by removing `border-radius` from the map region photos (`.map-content-img`).
+- Fixed missing and broken routing links in the SVG map and button links by parsing and relative-normalizing WordPress permalinks to Astro-compatible clean URLs (e.g. `/k12/south-texas`).
+- Implemented a fallback map within `e3es-headless-helper.php` to map regions to active URLs even when connection settings on the WordPress block are empty.
+- Prevented button layout shifts on hover by keeping the `.btn--outline` class constantly on the buttons and toggling a new `.active` class instead of swapping the classes dynamically.
+- Reserved space for the map description container (`.map-right`) to prevent vertical layout shifts when hovering over different regional descriptions.
+- Bumped the `cacheBuster` timestamp in `src/lib/cache.ts` to trigger a clean data pull from the WordPress API.
+
+**New Dependencies:**
+- None.
+
+**Core Files Modified:**
+- `src/styles/mobile.scss` (Astro)
+- `src/styles/desktop.scss` (Astro)
+- `src/lib/cache.ts` (Astro)
+- `wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php` (WordPress helper plugin)
