@@ -4617,3 +4617,31 @@ main, .editor-styles-wrapper {
   }
 }
 
+/* --- Texas Map Staggered Animation --- */
+.texas-svg-map.is-visible .texas-region {
+  animation: mapRegionFadeIn 0.8s ease forwards;
+}
+.texas-svg-map:not(.is-visible) .texas-region {
+  opacity: 0;
+}
+
+@keyframes mapRegionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.texas-svg-map .texas-region:nth-child(1) { animation-delay: 0.1s; }
+.texas-svg-map .texas-region:nth-child(2) { animation-delay: 0.2s; }
+.texas-svg-map .texas-region:nth-child(3) { animation-delay: 0.3s; }
+.texas-svg-map .texas-region:nth-child(4) { animation-delay: 0.4s; }
+.texas-svg-map .texas-region:nth-child(5) { animation-delay: 0.5s; }
+.texas-svg-map .texas-region:nth-child(6) { animation-delay: 0.6s; }
+.texas-svg-map .texas-region:nth-child(7) { animation-delay: 0.7s; }
+.texas-svg-map .texas-region:nth-child(8) { animation-delay: 0.8s; }
+
