@@ -99,7 +99,8 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid var(--color-primary-dark);
 }
 
-.btn--outline:hover {
+.btn--outline:hover,
+.btn--outline.active {
     background-color: var(--color-primary-dark);
     color: var(--color-bg-white);
 }
