@@ -334,6 +334,51 @@
         * { color: #ffffff !important; }
       }
 
+      // In the editor, make the custom image overlay and its elements visible
+      // and styled with Raleway to match the Astro design.
+      .db-feature__image-overlay {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      .db-feature__overlay-headline,
+      .db-feature__overlay-text,
+      .db-feature__overlay-button {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        font-family: 'Raleway', sans-serif !important;
+      }
+
+      .db-feature__overlay-headline {
+        font-size: 1.4rem !important;
+        font-weight: 700 !important;
+        line-height: 1.15 !important;
+        color: #ffffff !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+      }
+
+      .db-feature__overlay-text {
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        line-height: 1.6 !important;
+        color: #ffffff !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+      }
+
+      .db-feature__overlay-button {
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+
+        &:hover {
+          color: var(--color-primary-green, #7DA044) !important;
+        }
+      }
+
       // Reverse layout: skew the opposite way and apply mirrored clip-path
       .db-feature__container--reverse .db-feature__image-col .wp-block-cover {
         transform: skewX(5deg) !important;
