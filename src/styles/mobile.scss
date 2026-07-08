@@ -2162,12 +2162,12 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 /* Editor overrides for CTA Banner */
 .editor-styles-wrapper {
-    & .wp-block[data-type="e3es/cta-banner"],
-    & .wp-block-e3es-cta-banner {
+    & .is-root-container > .wp-block[data-type="e3es/cta-banner"],
+    & .is-root-container > .wp-block.wp-block-e3es-cta-banner {
         max-width: none !important;
-        width: 100vw !important;
-        margin-left: calc(50% - 50vw) !important;
-        margin-right: calc(50% - 50vw) !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     & .is-root-container .cta-banner h1,
