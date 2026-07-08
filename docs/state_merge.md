@@ -223,3 +223,9 @@
 
 **New Dependencies:** None.
 
+
+### 2026-07-08T08:59:52-05:00
+**Architectural Decisions**: Applied a universal `5rem` top margin to `.db-video-section` to maintain consistent 80px whitespace padding between the top hero banner and the case study video block across all client single pages. Also ensured the hero image in `mobile.scss` properly covers slanted edges.
+**Dependencies Added**: None
+**Core Files Modified**:
+- `src/styles/mobile.scss`
