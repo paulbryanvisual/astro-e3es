@@ -181,3 +181,15 @@
   - `src/styles/mobile.scss`: Adjusted spacing (` margin-top: 1.5rem`) and integrated manual user style updates (e.g. `.design-build__pillars`).
   - `src/styles/desktop.scss`: Added `.wp-block-columns` layout fallback for `.design-build`.
 - **Dependencies Added**: None.
+
+## Timestamp: 2026-07-08T03:30:00Z
+### Thread Summary: Button Injection and WP Process HTML
+- **Architectural Decisions**:
+  - Injected standard native Gutenberg `wp:buttons` directly into the backend WordPress post content (`wp:e3es/two-column` blocks) instead of using Astro frontend hacks, obeying the backend data accuracy rule.
+  - Used dynamically generated, accessible button text (e.g., "Explore Indoor Air Quality") based on the section heading instead of generic "Learn More" labels.
+  - Renamed the image optimization function in Astro to `processWordPressHtml` and implemented double-escaped HTML entity (`&amp;amp;`) cleanup inside it.
+- **New Dependencies**: None.
+- **Core Files Modified**:
+  - `src/lib/wordpress.ts` (Renamed `optimizeHtmlImages` -> `processWordPressHtml`, added entity fixes)
+  - `src/pages/[...slug].astro`, `src/pages/clients/[slug].astro`, `src/pages/index.astro`, `src/lib/cache.ts` (Updated to use new function name)
+  - `wp_posts` database natively via one-shot PHP script.
