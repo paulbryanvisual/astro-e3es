@@ -9,3 +9,9 @@
   - Constrained block editor mobile columns overrides to 1200px max-width and centered them.
   - Modified `src/styles/desktop.scss` block editor columns overrides to set `max-width: 1200px !important` and centered them.
 - **Breadcrumb Industry Fallback**: Fixed client page breadcrumb logic (`src/pages/clients/[slug].astro`) to check the native `industry` taxonomy terms before falling back to legacy meta fields or default K-12. This correctly assigns clients like Goodall-Witcher to Healthcare.
+- **South Texas Layout Update**: Re-aligned the layout of the South Texas page (`/k12/south-texas`) to match the live page design.
+  - Modified the seeder script `seed-south-texas.php` to wrap the Design+Build Advantage section in a group block styled as a grey `db-feature`, add a BEM avatar image container in the "Meet Bill" sidebar, and append the Superintendent testimonial.
+  - Updated the Funding section in the seeder to include the cooperatives logos (TIPS and BuyBoard) and the Facilities Director testimonial with BEM avatar image styling.
+  - Added `.bill-sidebar`, `.coop-logos`, and `.full-width-testimony` BEM avatar styles in `src/styles/mobile.scss` and responsive overrides in `src/styles/desktop.scss`.
+  - Styled standard columns blocks inside `.db-feature` to align with the layout container on desktop.
+  - Compiled and synced styles to the WordPress editor, and successfully ran the seeder script.

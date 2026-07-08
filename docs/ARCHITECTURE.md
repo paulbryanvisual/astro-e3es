@@ -10,3 +10,8 @@
 
 ## Breadcrumb Data Resolution
 - **Taxonomy Precedence**: When determining a client's industry for breadcrumb trails, native WordPress `industry` taxonomy terms take precedence over legacy ACF meta fields (`_e3_client_industry`). If both are missing, it defaults to K-12.
+
+## South Texas Page Layout Overrides
+- **Custom Sidebar & Testimonials**: To support asymmetrical sidebar layouts with avatars and testimonials, we created a `.bill-sidebar` column container class that adds a left green border and padding on desktop, and stacks gracefully on mobile. Avatars inside testimonials are styled using `.full-width-testimony__avatar-wrap` and `.full-width-testimony__avatar` BEM styles rather than inline styling.
+- **Cooperative Logos Grid**: Added the `.coop-logos` flex grid system to display purchasing cooperatives logos (BuyBoard/TIPS) cleanly inside section columns without inline styles.
+- **Columns Inside db-feature Overrides**: Core Gutenberg columns placed inside a `.db-feature` block are automatically styled on desktop to match the standard skewed feature layout alignment (`align-items: flex-start`, `gap: 6rem`), avoiding the need to code custom container wrappers in Gutenberg.
