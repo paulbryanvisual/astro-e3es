@@ -41,15 +41,15 @@ if (client._embedded && client._embedded['wp:featuredmedia'] && client._embedded
 }
 
 // Client metadata & focal point
-const industry = client.meta?._e3_client_industry || 'K-12';
 const fpX = client.meta?._e3_client_focal_point_x !== undefined ? parseFloat(client.meta._e3_client_focal_point_x) : 0.5;
 const fpY = client.meta?._e3_client_focal_point_y !== undefined ? parseFloat(client.meta._e3_client_focal_point_y) : 0.5;
 const focalPositionStyle = `background-position: ${fpX * 100}% ${fpY * 100}%;`;
 
-// Native Taxonomies Parsing (Region & Virtial)
+// Native Taxonomies Parsing (Region & Industry)
 const embeddedTerms = client._embedded?.['wp:term'] || [];
 let regionName = '';
 let virtialName = '';
+let taxonomyIndustry = '';
 
 embeddedTerms.forEach((taxonomyTerms: any[]) => {
   if (Array.isArray(taxonomyTerms)) {
@@ -60,9 +60,14 @@ embeddedTerms.forEach((taxonomyTerms: any[]) => {
       if (term.taxonomy === 'virtial') {
         virtialName = term.name;
       }
+      if (term.taxonomy === 'industry') {
+        taxonomyIndustry = term.name;
+      }
     });
   }
 });
+
+const industry = taxonomyIndustry || client.meta?._e3_client_industry || 'K-12';
 
 // Fallback to legacy metadata or other
 const regionMeta = client.meta?._e3_client_region || 'other';
