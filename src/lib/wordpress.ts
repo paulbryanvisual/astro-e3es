@@ -205,9 +205,15 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     if (!url) return '#';
     try {
       const u = new URL(url);
-      return u.pathname + u.search + u.hash;
+      let pathname = u.pathname;
+      pathname = pathname.replace(/^\/home\/industries\//, '/');
+      pathname = pathname.replace(/^\/home\//, '/');
+      return pathname + u.search + u.hash;
     } catch {
-      return url;
+      let pathname = url;
+      pathname = pathname.replace(/^\/home\/industries\//, '/');
+      pathname = pathname.replace(/^\/home\//, '/');
+      return pathname;
     }
   };
 
