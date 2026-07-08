@@ -212,7 +212,9 @@ h1, h2, h3, h4, h5, h6 {
     top: 100%;
     left: 0;
     background-color: var(--color-bg-white);
-    min-width: 220px;
+    min-width: 280px;
+    width: max-content;
+    max-width: 450px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     border-radius: 0;
     opacity: 0;
@@ -1546,7 +1548,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     top: 100%;
     left: -25px;
     background-color: var(--color-bg-white);
-    min-width: 220px;
+    min-width: 280px;
+    width: max-content;
+    max-width: 450px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     opacity: 0;
     visibility: hidden;
