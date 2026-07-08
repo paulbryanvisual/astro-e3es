@@ -99,7 +99,8 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid var(--color-primary-dark);
 }
 
-.btn--outline:hover {
+.btn--outline:hover,
+.btn--outline.active {
     background-color: var(--color-primary-dark);
     color: var(--color-bg-white);
 }
@@ -2164,7 +2165,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     & .wp-block[data-type="e3es/cta-banner"],
     & .wp-block-e3es-cta-banner {
         max-width: none !important;
-        width: 100% !important;
+        width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
     }
 
     & .is-root-container .cta-banner h1,
@@ -4600,7 +4603,11 @@ main, .editor-styles-wrapper {
   }
   .map-right {
     width: 100%;
-    min-height: 400px;
+    min-height: 500px;
+    
+    > div {
+      min-height: 500px !important;
+    }
   }
   .map-content-img {
     height: 250px;
