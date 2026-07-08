@@ -198,28 +198,34 @@ export function decodeHtmlEntities(text: string): string {
 }
 
 /**
+ * Normalize permalinks and URLs to match Astro's clean flat routing
+ */
+export function getRelativeUrl(url: string) {
+  if (!url) return '#';
+  try {
+    const u = new URL(url);
+    let pathname = u.pathname;
+    pathname = pathname.replace(/^\/home\/our-approach\//, '/');
+    pathname = pathname.replace(/^\/home\/about-us\//, '/');
+    pathname = pathname.replace(/^\/home\/industries\//, '/');
+    pathname = pathname.replace(/^\/home\//, '/');
+    return pathname + u.search + u.hash;
+  } catch {
+    let pathname = url;
+    pathname = pathname.replace(/^\/home\/our-approach\//, '/');
+    pathname = pathname.replace(/^\/home\/about-us\//, '/');
+    pathname = pathname.replace(/^\/home\/industries\//, '/');
+    pathname = pathname.replace(/^\/home\//, '/');
+    return pathname;
+  }
+}
+
+/**
  * Build breadcrumb data for a given item based on parent/cross_post_parent relationships.
  */
 export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
   const breadcrumbs = [];
   const itemMap = new Map(allItems.map(i => [i.id, i]));
-  
-  // Helper to get relative URL
-  const getRelativeUrl = (url: string) => {
-    if (!url) return '#';
-    try {
-      const u = new URL(url);
-      let pathname = u.pathname;
-      pathname = pathname.replace(/^\/home\/industries\//, '/');
-      pathname = pathname.replace(/^\/home\//, '/');
-      return pathname + u.search + u.hash;
-    } catch {
-      let pathname = url;
-      pathname = pathname.replace(/^\/home\/industries\//, '/');
-      pathname = pathname.replace(/^\/home\//, '/');
-      return pathname;
-    }
-  };
 
   // Build hierarchy upwards
   let current = currentItem;
