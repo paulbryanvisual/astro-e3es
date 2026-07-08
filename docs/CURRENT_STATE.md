@@ -8,3 +8,4 @@
   - Modified `src/styles/mobile.scss` to apply a maximum width of 1200px and centering to `.design-build` containers, including the direct `> .wp-block-columns` child.
   - Constrained block editor mobile columns overrides to 1200px max-width and centered them.
   - Modified `src/styles/desktop.scss` block editor columns overrides to set `max-width: 1200px !important` and centered them.
+- **Breadcrumb Industry Fallback**: Fixed client page breadcrumb logic (`src/pages/clients/[slug].astro`) to check the native `industry` taxonomy terms before falling back to legacy meta fields or default K-12. This correctly assigns clients like Goodall-Witcher to Healthcare.

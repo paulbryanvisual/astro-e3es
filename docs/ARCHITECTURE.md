@@ -7,3 +7,6 @@
 ## Design-Build Column Constraints
 - **1200px Grid Bounds**: Consistent with user layout restraints, standard Design-Build columns layout constraints are set to a max-width of `1200px` and centered on the page.
 - **Editor Synchronization**: SCSS files (`src/styles/mobile.scss` and `src/styles/desktop.scss`) configure these limits for both the frontend rendering and Gutenberg editor styling overrides. This prevents layout differences between the block editor view and the frontend.
+
+## Breadcrumb Data Resolution
+- **Taxonomy Precedence**: When determining a client's industry for breadcrumb trails, native WordPress `industry` taxonomy terms take precedence over legacy ACF meta fields (`_e3_client_industry`). If both are missing, it defaults to K-12.
