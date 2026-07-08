@@ -2160,36 +2160,44 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Editor overrides for CTA Banner */
-.wp-block-e3es-cta-banner {
-    max-width: none !important;
-    width: 100% !important;
-}
+.editor-styles-wrapper {
+    & .wp-block[data-type="e3es/cta-banner"],
+    & .wp-block-e3es-cta-banner {
+        max-width: none !important;
+        width: 100% !important;
+    }
 
-.cta-banner__title,
-.cta-banner h2.cta-banner__title {
-    font-size: 2rem;
-    font-weight: 900;
-    margin-bottom: 1rem;
-    color: var(--color-bg-white);
-}
+    & .is-root-container .cta-banner h1,
+    & .is-root-container .cta-banner h2,
+    & .is-root-container .cta-banner h3,
+    & .is-root-container .cta-banner__title {
+        font-size: 2rem !important;
+        font-weight: 900 !important;
+        margin-bottom: 1rem !important;
+        color: var(--color-bg-white) !important;
+    }
 
-.cta-banner__text,
-.cta-banner p.cta-banner__text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
+    & .is-root-container .cta-banner p,
+    & .is-root-container .cta-banner__text {
+        font-size: 1.1rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 2rem !important;
+        opacity: 0.9 !important;
+        color: var(--color-bg-white) !important;
+    }
 
-.cta-banner__btn,
-.cta-banner span.cta-banner__btn,
-.cta-banner a.cta-banner__btn {
-    display: inline-block;
-    padding: 0.85rem 2.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    & .is-root-container .cta-banner__btn,
+    & .is-root-container .cta-banner a.cta-banner__btn,
+    & .is-root-container .cta-banner span.cta-banner__btn {
+        display: inline-block !important;
+        padding: 0.85rem 2.5rem !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-bg-white) !important;
+        border: 2px solid var(--color-bg-white) !important;
+    }
 }
 
 .mini-case-study {
@@ -4399,7 +4407,8 @@ main > .wp-block-e3es-full-width-testimonial {
     > .wp-block-e3es-comparison-table,
     > .wp-block-e3es-core-pillars,
     > .db-pillars,
-    > .alignfull {
+    > .alignfull,
+    > .map-section {
       grid-column: full;
       width: 100%;
     }
@@ -4568,4 +4577,37 @@ main, .editor-styles-wrapper {
   ol.wp-block-list.is-style-normal-bullets {
     list-style: decimal;
   }
+
+  /* --- Texas Map Section --- */
+  .map-section {
+    padding: 3rem 1rem;
+    background-color: var(--color-bg-white, #ffffff);
+  }
+  .map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+  }
+  .map-left {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .map-right {
+    width: 100%;
+    min-height: 400px;
+  }
+  .map-content-img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
 }
+
