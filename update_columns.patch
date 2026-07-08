@@ -1,0 +1,13 @@
+--- src/styles/mobile.scss
++++ src/styles/mobile.scss
+@@ -2844,6 +2844,10 @@
+     gap: 2rem;
+     margin-top: 4rem;
+     margin-bottom: 0;
++
++    @include responsive-up($breakpoint-md) {
++      flex-direction: row;
++    }
+   }
+ 
+   .wp-block-column {

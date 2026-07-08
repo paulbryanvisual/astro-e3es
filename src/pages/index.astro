@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPageById, optimizeHtmlImages } from '../lib/wordpress';
+import { getPageById, processWordPressHtml } from '../lib/wordpress';
 
 const page = await getPageById(7);
 
