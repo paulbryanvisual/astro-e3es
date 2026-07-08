@@ -267,17 +267,8 @@ const breadcrumbItems = [
             if (rect.bottom < 0 || rect.top > vh) continue;
             var progress = 1 - (rect.bottom / (vh + rect.height));
             progress = Math.max(0, Math.min(1, progress));
-            
-            var section = masks[i].hero.closest('.project-section');
-            if (section && section.classList.contains('is-style-green-texture-behind')) {
-              masks[i].left.style.transform = 'skewX(-5deg) translateX(0%)';
-              masks[i].right.style.transform = 'skewX(-5deg) translateX(0%)';
-              masks[i].hero.style.backgroundPosition = (progress * 100) + '% center';
-            } else {
-              masks[i].left.style.transform = 'skewX(-5deg) translateX(' + ((1 - progress) * -120) + '%)';
-              masks[i].right.style.transform = 'skewX(-5deg) translateX(' + (progress * 120) + '%)';
-              masks[i].hero.style.backgroundPosition = '';
-            }
+            masks[i].left.style.transform = 'skewX(-5deg) translateX(' + ((1 - progress) * -120) + '%)';
+            masks[i].right.style.transform = 'skewX(-5deg) translateX(' + (progress * 120) + '%)';
           }
         }
 
