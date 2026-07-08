@@ -1,16 +1,6 @@
 ---
-import { getMenu } from '../lib/wordpress';
+import { getMenu, getRelativeUrl } from '../lib/wordpress';
 const footerMenu = await getMenu('Footer Menu');
-
-function getRelativeUrl(url: string) {
-    if (!url) return '#';
-    try {
-        const u = new URL(url);
-        return u.pathname + u.search + u.hash;
-    } catch {
-        return url;
-    }
-}
 ---
 <footer class="footer" style="background: var(--color-primary-green); color: var(--color-bg-white); padding: 4rem 2rem; margin-top: auto;">
     <div class="footer__container" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
