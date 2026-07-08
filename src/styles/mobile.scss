@@ -3042,15 +3042,52 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     position: absolute;
     top: -20px;
     bottom: -20px;
-    left: 20%;
-    width: 60%;
-    overflow: hidden;
+    left: 25%;
+    width: 50%;
     border-left: 10px solid #FFFFFF;
     border-right: 10px solid #FFFFFF;
     z-index: 5;
     will-change: transform;
-    /* initial state, replaced by JS */
-    transform: skewX(-5deg) translateX(-40%);
+    transform: skewX(-5deg) translateX(50%); /* initial state, replaced by JS */
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -28px;
+      transform: translateY(-50%) skewX(5deg);
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 28px solid #FFFFFF;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -28px;
+      transform: translateY(-50%) skewX(5deg);
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 28px solid #FFFFFF;
+      z-index: 10;
+      pointer-events: none;
+    }
+  }
+
+  &.is-style-green-texture-behind &__hero-img-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   &.is-style-green-texture-behind &__hero-img {
