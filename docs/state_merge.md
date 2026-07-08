@@ -193,3 +193,33 @@
   - `src/lib/wordpress.ts` (Renamed `optimizeHtmlImages` -> `processWordPressHtml`, added entity fixes)
   - `src/pages/[...slug].astro`, `src/pages/clients/[slug].astro`, `src/pages/index.astro`, `src/lib/cache.ts` (Updated to use new function name)
   - `wp_posts` database natively via one-shot PHP script.
+
+## Timestamp: 2026-07-08T03:35:00Z
+### Thread Summary: Mask Animation and Full Width Blocks
+- **Architectural Decisions**:
+  - Implemented dynamic script toggling of display properties for mask blocks (`.project-section__mask--left`/`right`) to support the "Green Texture Behind" variation without breaking standard layouts.
+  - Tweaked image scaling to `scale(1.15)` for the texture-behind style in SCSS to prevent white borders from bleeding on specific resolutions.
+  - Added `.wp-block-e3es-core-pillars` and `.db-pillars` natively to CSS grid full-bleed layout rules, and applied the sibling element top-margin collapse reset.
+- **New Dependencies**: None.
+- **Core Files Modified**:
+  - `src/pages/clients/[slug].astro`
+  - `src/styles/mobile.scss`
+
+
+### Session Wrapup - 2026-07-07 22:36:00
+**Task:** Resolving Persistent Layout & Routing Errors (Design-Build)
+**Core Files Modified:**
+- src/styles/mobile.scss
+- src/styles/desktop.scss
+- src/lib/wordpress.ts
+- src/pages/[...slug].astro
+- src/pages/clients/[slug].astro
+- ~/.gemini/config/AGENTS.md (Global configuration)
+
+**Architectural Decisions & Fixes:**
+1. **Frontend Desktop Layout Fixed:** Discovered that `desktop.scss` was completely wrapped in `.editor-styles-wrapper`, meaning frontend column layouts were silently ignored. Re-applied responsive `flex-direction: row` and `flex: 1` logic for `.wp-block-columns` outside of the editor wrappers so they apply to the Astro build.
+2. **Path Cleaning:** Restored and synchronized path cleaning logic in `src/pages/[...slug].astro` and `src/lib/wordpress.ts` to prevent 404s for regional/service pages like `/our-approach/design-build`.
+3. **Multi-Agent Collision Prevention:** Implemented Phase 5 (Git Worktree Isolation) into the global `AGENTS.md` rules. From now on, when the user opens multiple chats to do parallel development, agents will spawn isolated Git Worktrees to prevent overwriting local editor buffers simultaneously.
+
+**New Dependencies:** None.
+

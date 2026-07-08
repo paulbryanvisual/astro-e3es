@@ -3054,6 +3054,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
       content: '';
       position: absolute;
       top: 50%;
+<<<<<<< HEAD
       left: -21px;
       transform: translateY(-50%) skewX(5deg);
       width: 0;
@@ -3061,6 +3062,15 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
       border-top: 15px solid transparent;
       border-bottom: 15px solid transparent;
       border-right: 21px solid #FFFFFF;
+=======
+      left: -28px;
+      transform: translateY(-50%) skewX(5deg);
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 28px solid #FFFFFF;
+>>>>>>> main
       z-index: 10;
       pointer-events: none;
     }
@@ -3069,6 +3079,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
       content: '';
       position: absolute;
       top: 50%;
+<<<<<<< HEAD
       right: -21px;
       transform: translateY(-50%) skewX(5deg);
       width: 0;
@@ -3076,6 +3087,15 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
       border-top: 15px solid transparent;
       border-bottom: 15px solid transparent;
       border-left: 21px solid #FFFFFF;
+=======
+      right: -28px;
+      transform: translateY(-50%) skewX(5deg);
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 28px solid #FFFFFF;
+>>>>>>> main
       z-index: 10;
       pointer-events: none;
     }

@@ -277,13 +277,17 @@ const breadcrumbItems = [
               if (img && !wrapper) {
                 wrapper = document.createElement('div');
                 wrapper.className = 'project-section__hero-img-wrapper';
+                var inner = document.createElement('div');
+                inner.className = 'project-section__hero-img-inner';
+                
                 img.parentNode.insertBefore(wrapper, img);
-                wrapper.appendChild(img);
+                wrapper.appendChild(inner);
+                inner.appendChild(img);
               }
               if (wrapper) {
-                // Animation from LEFT to RIGHT
-                // At progress=0: move=-40%. At progress=1: move=+40%.
-                var move = (progress - 0.5) * 80;
+                // Animation from RIGHT to LEFT
+                // Use a smaller range (40% instead of 50%) so the skewed edges never go offscreen!
+                var move = (0.5 - progress) * 80; // goes from 40 to -40
                 wrapper.style.transform = 'skewX(-5deg) translateX(' + move + '%)';
               }
             } else {
