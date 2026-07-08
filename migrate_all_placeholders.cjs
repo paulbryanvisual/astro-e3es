@@ -9,8 +9,8 @@ const https = require('https');
 const http = require('http');
 
 const WP_DIR = '/Users/bryanpaul/Local Sites/e3es2026/app/public';
-const WP_CLI = path.join(WP_DIR, 'wp-cli.phar');
-const PHP_BIN = '/Users/bryanpaul/Library/Application Support/Local/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php';
+const WP_CLI = '/Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/wp-cli.phar';
+const PHP_BIN = '/Applications/Local.app/Contents/Resources/extraResources/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php';
 const TMP_DIR = path.join(require('os').tmpdir(), 'e3es-images');
 const PLACEHOLDER_LIST = require('./still_placeholder.json');
 
