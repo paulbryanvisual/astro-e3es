@@ -457,6 +457,11 @@
     }
     .map-right {
       flex: 1;
+      min-height: 600px;
+      
+      > div {
+        min-height: 600px !important;
+      }
     }
     .map-content-img {
       height: 350px;

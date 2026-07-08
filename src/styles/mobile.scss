@@ -4601,7 +4601,11 @@ main, .editor-styles-wrapper {
   }
   .map-right {
     width: 100%;
-    min-height: 400px;
+    min-height: 500px;
+    
+    > div {
+      min-height: 500px !important;
+    }
   }
   .map-content-img {
     height: 250px;
