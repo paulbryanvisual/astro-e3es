@@ -133,17 +133,7 @@
 - `src/pages/[...slug].astro`
 - `src/lib/wordpress.ts`
 
-## Session Wrapup: 2026-07-08T02:56:38Z
-
-**Architectural Decisions**:
-- Migrated  and  CSS definitions in  to use dynamic `width: max-content` bounded by `max-width: 450px` and `min-width: 280px` instead of a fixed 220px block. This ensures dropdowns expand to the right without collapsing lines.
-
-**New Dependencies**:
-- None.
-
-**Core Files Modified**:
-- `src/styles/mobile.scss`
-## Session Wrapup: $(date -u +'%Y-%m-%dT%H:%M:%SZ')
+## Session Wrapup: 2026-07-08T02:57:25Z
 
 **Architectural Decisions**:
 - Migrated `.breadcrumb-bar__dropdown` and `.header__dropdown-menu` CSS definitions in `mobile.scss` to use dynamic `width: max-content` bounded by `max-width: 450px` and `min-width: 280px` instead of a fixed 220px block. This ensures dropdowns expand to the right without collapsing lines.
@@ -165,4 +155,3 @@
 
 **Core Files Modified**:
 - `astro.config.mjs`
-
