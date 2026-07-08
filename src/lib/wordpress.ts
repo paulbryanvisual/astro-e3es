@@ -234,6 +234,22 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     href: '/'
   });
 
+  if (path.length > 0 && path[0].type === 'services') {
+    const rootServices = allItems.filter(item => {
+      const parentId = item.parent || (item.meta && parseInt(item.meta.cross_post_parent));
+      return item.type === 'services' && !parentId;
+    });
+
+    breadcrumbs.push({
+      label: 'Services',
+      href: '/services',
+      dropdown: rootServices.map(c => ({
+        label: c.title?.rendered || c.title,
+        href: getRelativeUrl(c.link)
+      }))
+    });
+  }
+
   // Build breadcrumbs with dropdowns
   for (let i = 0; i < path.length; i++) {
     const item = path[i];
