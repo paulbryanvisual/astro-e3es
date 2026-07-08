@@ -1325,27 +1325,31 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 /* Map spill overrides for funding page */
 .db-feature--map-spill {
-    overflow: visible;
+    overflow: visible !important;
     z-index: 10;
     position: relative;
-}
 
-.db-feature__image-wrapper--spill {
-    transform: scale(1.2) !important;
-    clip-path: none !important;
-    z-index: 10;
-    height: 400px;
-    overflow: visible !important;
-}
+    .db-feature__image-wrapper {
+        transform: scale(1.2) !important; // 1.2 scale creates roughly 10% overflow top & 10% bottom
+        clip-path: none !important;        // Prevent clipping by skewed arrow clip-path
+        overflow: visible !important;      // Allow image to overflow container
+        z-index: 10;
+        height: 400px;
 
-.db-feature__image-wrapper--spill .db-feature__image {
-    transform: none !important;
-    object-fit: contain !important;
+        .db-feature__image {
+            transform: none !important;    // Remove default counter-skew & zoom
+            object-fit: contain !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
 }
 
 @media (max-width: 768px) {
-    .db-feature__image-wrapper--spill {
-        height: 300px;
+    .db-feature--map-spill {
+        .db-feature__image-wrapper {
+            height: 300px;
+        }
     }
 }
 
