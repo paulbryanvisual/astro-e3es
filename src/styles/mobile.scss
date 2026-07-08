@@ -1041,6 +1041,15 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 .db-feature {
     padding: 3rem 2rem;
     overflow: hidden;
+
+    .wp-block-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 !important;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
 }
 
 .db-feature--white {
@@ -2575,6 +2584,23 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     padding: 1.5rem 2.5rem 1.5rem 3rem;
     background: transparent;
     margin: 2rem 0;
+
+    &__avatar-wrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--color-primary-green);
+        flex-shrink: 0;
+    }
+
+    &__avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.4);
+        transform-origin: top center;
+    }
 }
 .full-width-testimony::before {
     content: '';
@@ -4047,6 +4073,51 @@ main > .services-page__container,
     gap: 0.5rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+}
+
+// ─── Bill Contact Sidebar ──────────────────────────────────────────────────
+.bill-sidebar {
+  border-top: 4px solid var(--color-primary-green);
+  padding-top: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .rep-contact-card {
+    border-left: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+}
+
+// ─── Coop Logos Grid ───────────────────────────────────────────────────────
+.coop-logos {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__item {
+    padding: 1rem;
+    border: 2px solid #ddd;
+    background: var(--color-bg-white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    box-sizing: border-box;
+  }
+
+  &__img {
+    height: 40px;
+    width: auto;
+
+    &--tips {
+      height: 45px;
+    }
   }
 }
 
