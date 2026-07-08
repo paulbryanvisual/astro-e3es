@@ -469,4 +469,28 @@
       height: 350px;
     }
   }
+
+  // ─── Bill Contact Sidebar ──────────────────────────────────────────────────
+  .bill-sidebar {
+    border-top: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    border-left: 4px solid var(--color-primary-green) !important;
+    padding-left: 2rem !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .db-feature {
+    .wp-block-columns {
+      flex-direction: row !important;
+      align-items: flex-start !important;
+      gap: 6rem !important;
+
+      .wp-block-column {
+        margin: 0 !important;
+      }
+    }
+  }
 }
