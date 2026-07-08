@@ -144,3 +144,14 @@
 **Core Files Modified**:
 - `src/styles/mobile.scss`
 
+
+## Session Wrapup: 2026-07-08T03:08:07Z - Fix Broken Astro Image Links
+
+**Architectural Decisions**:
+- Configured Astro's built-in image optimization `remotePatterns` to support the `http` protocol in addition to `https`. This allows Astro to successfully proxy and optimize images fetched from the local HTTP WordPress instance (e3es2026.local) without returning 500 Internal Server Error.
+
+**New Dependencies**:
+- None.
+
+**Core Files Modified**:
+- `astro.config.mjs`
