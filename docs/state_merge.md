@@ -169,3 +169,15 @@
 - `src/lib/wordpress.ts`
 - `src/pages/[...slug].astro`
 - `src/lib/cache.ts`
+
+## Timestamp: 2026-07-08T03:23:00Z
+### Thread Summary: Services Parent Page Layout Updates
+- **Architectural Decisions**: 
+  - Dynamic generation of `wp:e3es/two-column` blocks for services parent pages based on their children pages.
+  - Integration of standard Gutenberg buttons inside the `db-feature__content` column to seamlessly link back to children pages.
+  - Refined layout styles: enforcing 1.5rem bottom margin for the added buttons on mobile/desktop, moving frontend desktop media queries to `desktop.scss` per project rules.
+- **Core Files Modified**:
+  - WordPress Database (`wp_posts`): Services post contents were recursively updated using custom scripts (`update_services.php` and `update_services_buttons.php`).
+  - `src/styles/mobile.scss`: Adjusted spacing (` margin-top: 1.5rem`) and integrated manual user style updates (e.g. `.design-build__pillars`).
+  - `src/styles/desktop.scss`: Added `.wp-block-columns` layout fallback for `.design-build`.
+- **Dependencies Added**: None.

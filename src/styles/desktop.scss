@@ -168,7 +168,8 @@
     }
 
     // Desktop layout for Design-Build Columns in editor (fallbacks for core columns block)
-    .design-build {
+    .design-build,
+    .design-build__pillars {
       .wp-block-columns,
       .wp-block-columns > .block-editor-inner-blocks > .block-editor-block-list__layout {
         flex-direction: row !important;
@@ -425,6 +426,13 @@
     .wp-block-heading[class*="h3"],
     h3.wp-block-heading {
       font-size: 1.25rem;
+    }
+  }
+
+  .design-build,
+  .design-build__pillars {
+    .wp-block-columns {
+      flex-direction: row;
     }
   }
 }
