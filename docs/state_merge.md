@@ -155,3 +155,17 @@
 
 **Core Files Modified**:
 - `astro.config.mjs`
+
+---
+### Timestamp: 2026-07-08T03:12:00Z
+**Architectural Decisions**:
+- Integrated the WordPress homepage node ("E3 Homepage") into the root breadcrumb "Home" instead of displaying it as a duplicate link, preserving its subpages dropdown menu at the root breadcrumb level.
+- Cleaned and normalized all relative URL outputs inside the breadcrumbs list and dropdown links by automatically stripping `/home/` and `/home/industries/` path prefixes to match Astro's clean routing.
+
+**New Dependencies**:
+- None.
+
+**Core Files Modified**:
+- `src/lib/wordpress.ts`
+- `src/pages/[...slug].astro`
+- `src/lib/cache.ts`
