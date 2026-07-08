@@ -3101,6 +3101,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     left: -10%;
     width: 120%;
     height: 100%;
+    max-width: none !important; /* Ensure the image is wide enough to cover the slanted edges */
     object-fit: cover;
     transform: skewX(5deg) scale(1.15); /* zoomed in slightly */
     opacity: 1; /* Reset opacity from previous override if any */
