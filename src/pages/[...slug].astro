@@ -12,6 +12,8 @@ export async function getStaticPaths() {
       const url = new URL(page.link);
       let path = url.pathname.replace(/^\/|\/$/g, '');
       path = path.replace(/^home\/industries\//, '');
+      path = path.replace(/^home\/our-approach\//, '');
+      path = path.replace(/^home\/about-us\//, '');
       path = path.replace(/^home\//, '');
       // Skip the homepage and other reserved single pages that have their own astro templates
       if (!path || path === 'home' || path === 'clients') {
