@@ -2159,21 +2159,31 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     margin: 0 auto;
 }
 
-.cta-banner__title {
+/* Editor overrides for CTA Banner */
+.wp-block-e3es-cta-banner {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+.cta-banner__title,
+.cta-banner h2.cta-banner__title {
     font-size: 2rem;
     font-weight: 900;
     margin-bottom: 1rem;
     color: var(--color-bg-white);
 }
 
-.cta-banner__text {
+.cta-banner__text,
+.cta-banner p.cta-banner__text {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 2rem;
     opacity: 0.9;
 }
 
-.cta-banner__btn {
+.cta-banner__btn,
+.cta-banner span.cta-banner__btn,
+.cta-banner a.cta-banner__btn {
     display: inline-block;
     padding: 0.85rem 2.5rem;
     font-size: 1rem;
