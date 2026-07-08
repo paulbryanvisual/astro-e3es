@@ -2875,7 +2875,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 .wp-block-cover:has(.wp-block-e3es-design-build-advantage),
 .wp-block-cover:has(.design-build__grid) {
   .wp-block-cover__inner-container,
-  .wp-block-group__inner-container {
+  .wp-block-group__inner-container,
+  > .wp-block-columns {
     width: 100% !important;
     max-width: 1200px !important;
     margin-left: auto !important;
@@ -3902,6 +3903,10 @@ main > .services-page__container,
     .wp-block-columns > .block-editor-inner-blocks > .block-editor-block-list__layout {
       flex-direction: column !important;
       gap: 2rem !important;
+      width: 100% !important;
+      max-width: 1200px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
     .wp-block-columns > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-editor-block-list__block,
     .wp-block-column {
