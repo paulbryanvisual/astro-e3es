@@ -51,12 +51,15 @@ Migrate client page content from live e3es.com to local WordPress, correct layou
 | Agent | Type | Work Item | Status | Conv ID |
 |-------|------|-----------|--------|---------|
 | M1 Auditor | teamwork_preview_explorer | Milestone 1 Audit | completed | 4f8e304f-08f3-4b27-8778-49ae7c8e107e |
-| M2/M3 Implementer | teamwork_preview_worker | Milestone 2/3 Content & Layout | in-progress | 393f60b5-f47c-459f-af96-719698ed1c5c |
+| M2/M3 Implementer | teamwork_preview_worker | Milestone 2/3 Content & Layout | completed | 393f60b5-f47c-459f-af96-719698ed1c5c |
+| M4 Reviewer | teamwork_preview_reviewer | Milestone 4 Review | in-progress | 2417c056-cf9e-4ca3-83d6-6b16d1a9a10e |
+| M4 Challenger | teamwork_preview_challenger | Milestone 4 Challenge | in-progress | 266b6c28-ccdf-48d4-89b5-8344bd73f3e8 |
+| M4 Auditor | teamwork_preview_auditor | Milestone 4 Forensic Audit | in-progress | d273d5a2-6ede-4a06-adc0-20c74d099270 |
 
 ## Succession Status
 - Succession required: no
-- Spawn count: 2 / 16
-- Pending subagents: 393f60b5-f47c-459f-af96-719698ed1c5c
+- Spawn count: 5 / 16
+- Pending subagents: 2417c056-cf9e-4ca3-83d6-6b16d1a9a10e, 266b6c28-ccdf-48d4-89b5-8344bd73f3e8, d273d5a2-6ede-4a06-adc0-20c74d099270
 - Predecessor: none
 - Successor: not yet spawned
 
