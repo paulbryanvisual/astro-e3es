@@ -58,6 +58,10 @@
 - **Flickr Image Downscaling & Gallery Blocks**: Resized, compressed, and imported Flickr photos for all matched clients, ensuring all files are under 300KB. Associated featured images, mapped images to multiple project blocks, and appended a native WordPress gallery block to the bottom of the content.
 - **Verified E2E Test Suite**: Ran E2E test suite checks for all 100 clients successfully (0 failures, 100% pass status).
 - **Production Build Check**: Verified that the Astro static build compiles successfully with no errors or warnings.
+- **Client Services Tagging & Detail Pages**: Added a dynamic Brand-styled header block to `src/pages/clients/[slug].astro` that extracts and displays Region, Industry, and Services Provided tags (HVAC, Lighting, Building Controls) cleanly at the top of client pages, mapped with fallback checks on post taxonomy terms and custom post metadata.
+- **Project Details Grid List Block Style**: Registered `grid-2-col` and `grid-3-col` block styles for Gutenberg's core list block in the WordPress plugin `e3es-headless-helper.php`. Designed responsive SASS grid layouts for `.is-style-grid-2-col` and `.is-style-grid-3-col` in `mobile.scss` that scale down to a single column on mobile viewports. Applied the 2-column grid style block to the "The Comprehensive Project Included:" list block inside Boyd ISD (post ID 12).
+- **Texas SVG Map Brand Colors & Stars**: Unified the regional map fills in `wordpress.ts` by setting all `.cls-1` through `.cls-8` styles in `TEXAS_MAP_SVG` to use the E3 primary brand green color (`#215734`). Replaced the client circle dot elements with 5-point star `<polygon>` shapes centered at the exact same coordinates.
+- **Design-Build Spacing Gap**: Modified `src/styles/mobile.scss` to set `margin-bottom: 0 !important` unconditionally on `> .wp-block-e3es-intro-banner` elements within `.services-page__content`. This collapses the margin-bottom spacing gap between the top page hero and any following full-width background blocks (like the gray core pillars group) on the dynamic dynamic pages.
 
 
 
