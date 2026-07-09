@@ -47,6 +47,11 @@
   - Changed the desktop grid layout in `src/styles/desktop.scss` for `.team-directory__grid` to be a 4-column grid instead of a 3-column grid.
   - Removed physical translation/movement (`transform: translateY(-4px)`) on hover of team member cards in `src/styles/mobile.scss` so they do not falsely indicate clickability.
   - Restructured the hover rules in `src/styles/mobile.scss` by nesting the `.team-directory__photo` zoom and grayscale-to-color transition directly inside the `&__card:hover` block. This ensures correct compilation of the photo hover transition and retains the default `filter: grayscale(100%)` and transition attributes on `&__photo`.
+- **Client Parity & Publishing**: Transitioned all 80 draft client posts to "publish" status. Configured `_e3_client_show_in_index` to show exactly 100 clients (matching the live site, excluding `south-texas` and duplicate `gwh` posts).
+- **Project Details Restored**: Restored missing project details blocks for `donna-isd`, `carrizo-springs-cisd`, and `caldwell-isd` by parsing details from `clients_dump.json`.
+- **Flickr Image Downscaling & Gallery Blocks**: Resized, compressed, and imported Flickr photos for all matched clients, ensuring all files are under 300KB. Associated featured images, mapped images to multiple project blocks, and appended a native WordPress gallery block to the bottom of the content.
+- **Verified E2E Test Suite**: Ran E2E test suite checks for all 100 clients successfully (0 failures, 100% pass status).
+- **Production Build Check**: Verified that the Astro static build compiles successfully with no errors or warnings.
 
 
 
