@@ -4540,8 +4540,8 @@ main > .wp-block-e3es-full-width-testimonial {
       }
     }
 
-    // Reduce margin-bottom of db-page-hero inside intro-banner when followed by full-width bg block
-    > .wp-block-e3es-intro-banner:has(+ :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .design-build__pillars, .has-background)) {
+    // Unconditionally remove margin-bottom from intro-banner to prevent spacing gaps at the top of pages
+    > .wp-block-e3es-intro-banner {
       &.db-page-hero {
         margin-bottom: 0 !important;
       }
@@ -4705,6 +4705,71 @@ main, .editor-styles-wrapper {
 
   ol.wp-block-list.is-style-normal-bullets {
     list-style: decimal;
+  }
+
+  ul.wp-block-list.is-style-grid-2-col {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem 1.5rem !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+
+    @media (min-width: 600px) {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    li {
+      margin-bottom: 0 !important;
+      position: relative !important;
+      padding-left: 1.5rem !important;
+      font-family: 'Raleway', sans-serif !important;
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      color: var(--color-text-main) !important;
+
+      &::before {
+        content: "•" !important;
+        color: var(--color-primary-green) !important;
+        font-size: 1.5rem !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: -0.15rem !important;
+      }
+    }
+  }
+
+  ul.wp-block-list.is-style-grid-3-col {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem 1.5rem !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+
+    @media (min-width: 600px) {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    li {
+      margin-bottom: 0 !important;
+      position: relative !important;
+      padding-left: 1.5rem !important;
+      font-family: 'Raleway', sans-serif !important;
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      color: var(--color-text-main) !important;
+
+      &::before {
+        content: "•" !important;
+        color: var(--color-primary-green) !important;
+        font-size: 1.5rem !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: -0.15rem !important;
+      }
+    }
   }
 
   /* --- Texas Map Section --- */
