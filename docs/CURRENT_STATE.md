@@ -15,3 +15,5 @@
   - Added `.bill-sidebar`, `.coop-logos`, and `.full-width-testimony` BEM avatar styles in `src/styles/mobile.scss` and responsive overrides in `src/styles/desktop.scss`.
   - Styled standard columns blocks inside `.db-feature` to align with the layout container on desktop.
   - Compiled and synced styles to the WordPress editor, and successfully ran the seeder script.
+- **Client Featured Photos Parity**: Fixed and synchronized all client card featured images locally. Resolved the 2 remaining mismatches (`eagle-pass-isd` and `edgewood-isd`) by converting/fixing filenames and importing them using WP-CLI media import, achieving 100% featured image parity with the live production database dump.
+
