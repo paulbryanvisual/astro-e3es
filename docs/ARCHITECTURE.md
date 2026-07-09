@@ -19,5 +19,6 @@
 ## Client Listing Visibility & Pagination
 - **Custom Visibility Toggle**: We register the `_e3_client_show_in_index` meta key (boolean) on the `clients` custom post type with `show_in_rest => true` to expose it in standard REST API calls. A Gutenberg `ToggleControl` in the editor sidebar UI enables post editors to toggle it in WordPress.
 - **REST API Pagination**: Since there are 105 clients total, the standard `/clients?per_page=100` queries truncate the list. We updated `getClients()` in `src/lib/wordpress.ts` to paginated page fetches, merging page 1 and page 2 to retrieve all 105 posts before filtering in Astro.
-- **Astro Listing Filtering**: The `/clients` page (`src/pages/clients.astro`) dynamically filters the retrieved clients array by `!!client.meta?._e3_client_show_in_index` before mapping, ensuring that the results grid, Texas SVG map dots, and region sidebar filters only display the selected clients.
+- **Astro Listing Filtering & Sorting**: The `/clients` page (`src/pages/clients.astro`) dynamically filters the retrieved clients array by `!!client.meta?._e3_client_show_in_index` before mapping, ensuring that the results grid, Texas SVG map dots, and region sidebar filters only display the selected clients. It then sorts the mapped clients array alphabetically using the standard JS `sort` method and `localeCompare` on the client names.
+
 

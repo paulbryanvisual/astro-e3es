@@ -17,5 +17,7 @@
   - Compiled and synced styles to the WordPress editor, and successfully ran the seeder script.
 - **Client Featured Photos Parity**: Fixed and synchronized all client card featured images locally. Resolved the 2 remaining mismatches (`eagle-pass-isd` and `edgewood-isd`) by converting/fixing filenames and importing them using WP-CLI media import, achieving 100% featured image parity with the live production database dump.
 - **Client Listing Visibility Custom Field**: Registered a new post meta field `_e3_client_show_in_index` in WordPress. Created a `ToggleControl` in Gutenberg to allow editors to toggle visibility on the clients search page. Seeded the field to only show the 25 target clients present on the live site. Updated Astro to fetch and merge all paginated clients (all 105) and dynamically filter the cards, map, and region filters based on this custom field.
+- **Alphabetical Sorting**: Updated `src/pages/clients.astro` to sort the client cards array alphabetically by client name (`localeCompare`), ensuring they list alphabetically on the frontend.
+
 
 
