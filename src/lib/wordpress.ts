@@ -127,17 +127,9 @@ const TEXAS_MAP_SVG = `<svg id="texas-map-svg" viewBox="0 0 941.76 907.17" class
   <defs>
     <style>
       .texas-svg-map { width: 100%; max-width: 650px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); }
-      .cls-1 { fill: #2b5434; }
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 { fill-rule: evenodd; }
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 { fill: #215734 !important; fill-rule: evenodd; }
       .cls-9 { fill: none; }
-      .cls-2 { fill: #598e64; }
-      .cls-3 { fill: #31623d; }
-      .cls-4 { fill: #034411; }
-      .cls-5 { fill: #5b8764; }
-      .cls-6 { fill: #65b776; }
-      .cls-7 { fill: #54725a; }
-      .cls-8 { fill: #115620; }
-      .client-dot { fill: #ffffff; stroke: #2b5434; stroke-width: 2.5; }
+      .client-star { fill: #ffffff; stroke: #215734; stroke-width: 1.5; }
     </style>
   </defs>
   <g id="Layer_1-2" data-name="Layer 1">
@@ -167,26 +159,26 @@ const TEXAS_MAP_SVG = `<svg id="texas-map-svg" viewBox="0 0 941.76 907.17" class
     </g>
     <rect class="cls-9" width="941.76" height="907.17"/>
   </g>
-  <circle cx="680" cy="360" r="8" class="client-dot" />
-  <circle cx="650" cy="370" r="8" class="client-dot" />
-  <circle cx="665" cy="365" r="8" class="client-dot" />
-  <circle cx="690" cy="340" r="8" class="client-dot" />
-  <circle cx="610" cy="580" r="8" class="client-dot" />
-  <circle cx="580" cy="640" r="8" class="client-dot" />
-  <circle cx="800" cy="580" r="8" class="client-dot" />
-  <circle cx="820" cy="615" r="8" class="client-dot" />
-  <circle cx="785" cy="595" r="8" class="client-dot" />
-  <circle cx="790" cy="540" r="8" class="client-dot" />
-  <circle cx="140" cy="420" r="8" class="client-dot" />
-  <circle cx="420" cy="160" r="8" class="client-dot" />
-  <circle cx="430" cy="260" r="8" class="client-dot" />
-  <circle cx="520" cy="400" r="8" class="client-dot" />
-  <circle cx="400" cy="450" r="8" class="client-dot" />
-  <circle cx="610" cy="840" r="8" class="client-dot" />
-  <circle cx="635" cy="850" r="8" class="client-dot" />
-  <circle cx="660" cy="740" r="8" class="client-dot" />
-  <circle cx="630" cy="470" r="8" class="client-dot" />
-  <circle cx="760" cy="390" r="8" class="client-dot" />
+  <polygon points="680,350 683,357 690,357 684,362 686,369 680,365 674,369 676,362 670,357 677,357" class="client-star" />
+  <polygon points="650,360 653,367 660,367 654,372 656,379 650,375 644,379 646,372 640,367 647,367" class="client-star" />
+  <polygon points="665,355 668,362 675,362 669,367 671,374 665,370 659,374 661,367 655,362 662,362" class="client-star" />
+  <polygon points="690,330 693,337 700,337 694,342 696,349 690,345 684,349 686,342 680,337 687,337" class="client-star" />
+  <polygon points="610,570 613,577 620,577 614,582 616,589 610,585 604,589 606,582 600,577 607,577" class="client-star" />
+  <polygon points="580,630 583,637 590,637 584,642 586,649 580,645 574,649 576,642 570,637 577,637" class="client-star" />
+  <polygon points="800,570 803,577 810,577 804,582 806,589 800,585 794,589 796,582 790,577 797,577" class="client-star" />
+  <polygon points="820,605 823,612 830,612 824,617 826,624 820,620 814,624 816,617 810,612 817,612" class="client-star" />
+  <polygon points="785,585 788,592 795,592 789,597 791,604 785,600 779,604 781,597 775,592 782,592" class="client-star" />
+  <polygon points="790,530 793,537 800,537 794,542 796,549 790,545 784,549 786,542 780,537 787,537" class="client-star" />
+  <polygon points="140,410 143,417 150,417 144,422 146,429 140,425 134,429 136,422 130,417 137,417" class="client-star" />
+  <polygon points="420,150 423,157 430,157 424,162 426,169 420,165 414,169 416,162 410,157 417,157" class="client-star" />
+  <polygon points="430,250 433,257 440,257 434,262 436,269 430,265 424,269 426,262 420,257 427,257" class="client-star" />
+  <polygon points="520,390 523,397 530,397 524,402 526,409 520,405 514,409 516,402 510,397 517,397" class="client-star" />
+  <polygon points="400,440 403,447 410,447 404,452 406,459 400,455 394,459 396,452 390,447 397,447" class="client-star" />
+  <polygon points="610,830 613,837 620,837 614,842 616,849 610,845 604,849 606,842 600,837 607,837" class="client-star" />
+  <polygon points="635,840 638,847 645,847 639,852 641,859 635,855 629,859 631,852 625,847 632,847" class="client-star" />
+  <polygon points="660,730 663,737 670,737 664,742 666,749 660,745 654,749 656,742 650,737 657,737" class="client-star" />
+  <polygon points="630,460 633,467 640,467 634,472 636,479 630,475 624,479 626,472 620,467 627,467" class="client-star" />
+  <polygon points="760,380 763,387 770,387 764,392 766,399 760,395 754,399 756,392 750,387 757,387" class="client-star" />
 </svg>`;
 
 /**

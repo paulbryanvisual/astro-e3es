@@ -83,6 +83,27 @@ const regionNames: Record<string, string> = {
 };
 const friendlyRegion = regionName || regionNames[regionMeta] || regionMeta;
 
+// Parse client services tags
+let servicesTags: string[] = [];
+embeddedTerms.forEach((taxonomyTerms: any[]) => {
+  if (Array.isArray(taxonomyTerms)) {
+    taxonomyTerms.forEach((term: any) => {
+      if (term.taxonomy === 'client-services') {
+        servicesTags.push(term.name);
+      }
+    });
+  }
+});
+
+if (servicesTags.length === 0 && client.meta?._e3_client_services) {
+  const metaServices = client.meta._e3_client_services;
+  if (Array.isArray(metaServices)) {
+    servicesTags = metaServices;
+  } else if (typeof metaServices === 'string') {
+    servicesTags = metaServices.split(',').map((s: string) => s.trim());
+  }
+}
+
 // Client logo (DB meta value or static map fallback)
 const logoUrlFromMeta = client.meta?._e3_client_logo || '';
 const clientLogo = logoUrlFromMeta || logoMap[slug] || null;
@@ -140,12 +161,167 @@ const breadcrumbItems = [
   <!-- Breadcrumb Bar -->
   <Breadcrumb items={breadcrumbItems} />
 
+  <!-- Client Header Bar -->
+  <header class="client-header">
+    <div class="client-header__container">
+      <div class="client-header__brand">
+        {clientLogo && (
+          <div class="client-header__logo-wrapper">
+            {typeof clientLogo === 'string' ? (
+              <img src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-header__logo" />
+            ) : (
+              <Image src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-header__logo" />
+            )}
+          </div>
+        )}
+        <div class="client-header__title-section">
+          <h1 class="client-header__title">{decodeHtmlEntities(client.title.rendered)}</h1>
+          <div class="client-header__meta">
+            <span class="client-header__meta-item">
+              <span class="client-header__meta-label">Industry:</span> {industry}
+            </span>
+            <span class="client-header__meta-item">
+              <span class="client-header__meta-label">Region:</span> {friendlyRegion}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {servicesTags.length > 0 && (
+        <div class="client-header__tags-section">
+          <span class="client-header__tags-label">Services Provided</span>
+          <div class="client-header__tags">
+            {servicesTags.map(tag => (
+              <span class="client-header__tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </header>
+
   <!-- Main Content -->
   <main style="background: var(--color-bg-white); padding: 0;">
     <Fragment set:html={optimizedContent} />
   </main>
 
   <style>
+    .client-header {
+      background-color: var(--color-bg-light, #f4f6f8);
+      border-bottom: 1px solid var(--color-border, #e1e4e6);
+      padding: 2.5rem 1.5rem;
+    }
+
+    .client-header__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .client-header__container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .client-header__brand {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .client-header__logo-wrapper {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .client-header__logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .client-header__title-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .client-header__title {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--color-primary-dark, #1b3824);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .client-header__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--color-text-muted, #555555);
+    }
+
+    .client-header__meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .client-header__meta-label {
+      font-weight: 600;
+      color: var(--color-primary-dark, #1b3824);
+    }
+
+    .client-header__tags-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .client-header__tags-section {
+        align-items: flex-end;
+      }
+    }
+
+    .client-header__tags-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-primary-dark, #1b3824);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .client-header__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .client-header__tag {
+      background-color: var(--color-primary-green, #7da044);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
     /* Styling to support desktop layout inside this component */
     @media (min-width: 768px) {
       .project-columns {
