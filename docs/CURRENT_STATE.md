@@ -1,5 +1,17 @@
 # Current State
 
+- **GitHub Actions Cloudflare Workers Deployment Failures** (July 9, 2026):
+  - **Issue**: The GitHub Actions deployment workflow run "Deploy Astro Site to Cloudflare Workers" was failing consistently.
+  - **Cause**: The `.wrangler` state/cache directory was tracked by Git (missing from `.gitignore`) and had been committed. Inside `.wrangler/deploy/config.json`, the deploy config pointed to `dist/server/wrangler.json`, which does not exist because the Astro project is a purely static site (`output: 'static'`).
+  - **Resolution**:
+    1. Untracked the `.wrangler` directory from Git: `git rm -r --cached .wrangler`.
+    2. Modified `.gitignore` to ignore `.wrangler/`.
+    3. Committed the changes locally in `astro-e3es` on branch `fix/cloudflare-deploy-fail-1783614707` and merged to `main` following Phase 4.
+    4. Updated `progress.MD` and synchronized both the website and Astro repositories.
+    5. Verified the deployment on GitHub Actions; the workflow completed successfully (Run `29033873996`).
+  - **Verification**: Verified that the GitHub Actions run succeeded and that `.wrangler` files are no longer tracked.
+  - **Git Branch**: `fix/cloudflare-deploy-fail-1783614707` (in Astro workspace) and `fix/cloudflare-deploy-fail-1783614529` (in WordPress workspace).
+
 - The Texas SVG map component has been updated to include a staggered scroll reveal animation on load/scroll, bringing it in line with the expected delay behavior from the original K-12 site.
 - An `IntersectionObserver` was added globally in `src/layouts/Layout.astro` to detect when elements with `.texas-svg-map` enter the viewport and apply an `.is-visible` class.
 - The staggered animations are handled entirely via CSS keyframes in `src/styles/mobile.scss` utilizing `nth-child` delay increments to animate `.texas-region` elements smoothly.

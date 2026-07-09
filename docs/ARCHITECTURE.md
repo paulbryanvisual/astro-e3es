@@ -50,4 +50,7 @@
 - **Unified SVG Map Rendering**: In `wordpress.ts`, `processWordPressHtml()` replaces static map image placeholders with `TEXAS_MAP_SVG`. The SVG contains inline stylesheet overrides to force all region paths (`.cls-1` through `.cls-8`) to use the brand green color. To align the star markers exactly with the reference map image (`Texas-Map---green-with-dark-stars.jpg`, dimensions `517x491`), we detected the center coordinates of all 64 stars in the JPEG space and mapped them to the `941.76 x 907.17` SVG viewBox space using linear transformation scaling factors ($sx = 941.76 / 517$ and $sy = 907.17 / 491$). This places exactly 64 star polygons at the precise locations of the original map.
 - **Client Detail Spacing**: Added a 4rem bottom margin to the `.client-hero` component in `src/pages/clients/[slug].astro` to ensure a consistent, premium vertical whitespace separation above paragraphs and content blocks that follow right after the page hero banner.
 
+## Wrangler Configuration & Deployment State
+- **Wrangler State Directory (`.wrangler/`)**: The `.wrangler` state/cache directory is generated during local preview/deployment testing and must remain ignored by version control to prevent state corruption. This directory contains session/deployment caches and config overrides (e.g. `.wrangler/deploy/config.json`) which could override target worker paths (such as directing Wrangler to search for SSR paths like `dist/server/wrangler.json` instead of deploying the static `dist/` directory assets).
+
 
