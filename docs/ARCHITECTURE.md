@@ -21,4 +21,7 @@
 - **REST API Pagination**: Since there are 105 clients total, the standard `/clients?per_page=100` queries truncate the list. We updated `getClients()` in `src/lib/wordpress.ts` to paginated page fetches, merging page 1 and page 2 to retrieve all 105 posts before filtering in Astro.
 - **Astro Listing Filtering & Sorting**: The `/clients` page (`src/pages/clients.astro`) dynamically filters the retrieved clients array by `!!client.meta?._e3_client_show_in_index` before mapping, ensuring that the results grid, Texas SVG map dots, and region sidebar filters only display the selected clients. It then sorts the mapped clients array alphabetically using the standard JS `sort` method and `localeCompare` on the client names.
 
-
+## Our Team Directory Block
+- **Grid Layout**: On mobile, `.team-directory__grid` renders as a single-column flex list. On tablet, it transitions to a 2-column grid. On desktop, it scales to a 12-column grid with a maximum container width of `1440px`.
+- **Asymmetric Desktop Grid**: To prevent repetitive layout patterns, card sizes span different column widths based on their `:nth-child` index (e.g. Leadership cards at the start span `6` columns, other rows alternate spans like `3`, `5`, `7`, and `8` columns, and overflow/new cards default to `4` columns).
+- **Interactive States**: Hovering on team cards triggers a `scale(1.03)` zoom and transition of photos from grayscale to full color. Focused active keyboard navigation states trigger a prominent `--color-primary-green` focus ring outline. Sharp corners (`border-radius: 0;`) and soft depth box-shadows (`0 8px 24px rgba(0, 0, 0, 0.08)`) are enforced on cards and photos.

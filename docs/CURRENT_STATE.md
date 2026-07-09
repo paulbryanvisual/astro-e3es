@@ -18,6 +18,11 @@
 - **Client Featured Photos Parity**: Fixed and synchronized all client card featured images locally. Resolved the 2 remaining mismatches (`eagle-pass-isd` and `edgewood-isd`) by converting/fixing filenames and importing them using WP-CLI media import, achieving 100% featured image parity with the live production database dump.
 - **Client Listing Visibility Custom Field**: Registered a new post meta field `_e3_client_show_in_index` in WordPress. Created a `ToggleControl` in Gutenberg to allow editors to toggle visibility on the clients search page. Seeded the field to only show the 25 target clients present on the live site. Updated Astro to fetch and merge all paginated clients (all 105) and dynamically filter the cards, map, and region filters based on this custom field.
 - **Alphabetical Sorting**: Updated `src/pages/clients.astro` to sort the client cards array alphabetically by client name (`localeCompare`), ensuring they list alphabetically on the frontend.
-
-
-
+- **Our Team Styling & Layout Fix**: Fixed the team directory page layout regression and applied E3 premium, modern design tokens:
+  - Formatted the mobile view as a clean, single-column flex list, transitioning to a 2-column grid on tablet viewport size (`$breakpoint-sm`).
+  - Implemented desktop overrides under a max width container limit of `1440px` with vertical spacing margins/padding of `80px 2rem`.
+  - Defined a 12-column asymmetric grid layout on desktop matching the team member count indices.
+  - Applied hover transitions: photos transition from grayscale to full color and scale up by `1.03`, and cards translate upwards with standard soft-depth shadow.
+  - Set sharp corners (`border-radius: 0;`) on cards and images.
+  - Added highly visible focus indicators utilizing a primary green outline focus ring.
+  - Compiled the assets successfully with no compilation warnings or errors.

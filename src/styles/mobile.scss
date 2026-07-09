@@ -1,7 +1,5 @@
-/* 
- * E3 Website Mockup Styles
- * Methodology: BEM
- */
+@use "variables" as *;
+@use "mixins" as *;
 
 :root {
     --color-primary-green: #7DA044;
@@ -4714,4 +4712,91 @@ main, .editor-styles-wrapper {
     object-fit: cover;
     margin-bottom: 1rem;
   }
+
+  /* --- Team Directory Section --- */
+  .team-directory {
+    padding: 60px 1.5rem;
+    background-color: var(--color-bg-white);
+    width: 100%;
+
+    &__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &__card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-bg-white);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 0 !important;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+
+      &:focus-within,
+      &:focus {
+        outline: 3px solid var(--color-primary-green) !important;
+        outline-offset: 4px !important;
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    &__photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      filter: grayscale(100%);
+      border-radius: 0 !important;
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      .team-directory__card:hover & {
+        filter: grayscale(0);
+        transform: scale(1.03);
+      }
+    }
+
+    &__info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background-color: var(--color-bg-white);
+    }
+
+    &__name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      line-height: 1.6;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &__role {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--color-text-light);
+      line-height: 1.6;
+      margin: 0;
+      text-transform: capitalize;
+    }
+  }
+
+  @include responsive-up($breakpoint-sm) {
+    .team-directory {
+      &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+  }
 }
+
