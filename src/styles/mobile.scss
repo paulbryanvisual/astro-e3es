@@ -1338,11 +1338,11 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     position: relative;
 
     .db-feature__image-wrapper {
-        transform: scale(1.2) !important; // 1.2 scale creates roughly 10% overflow top & 10% bottom
+        transform: scale(1.6) !important; // 1.6 scale creates substantial vertical overflow
         clip-path: none !important;        // Prevent clipping by skewed arrow clip-path
         overflow: visible !important;      // Allow image to overflow container
         z-index: 10;
-        height: 400px;
+        height: 550px;
 
         .db-feature__image {
             transform: none !important;    // Remove default counter-skew & zoom
@@ -1356,7 +1356,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 @media (max-width: 768px) {
     .db-feature--map-spill {
         .db-feature__image-wrapper {
-            height: 300px;
+            transform: scale(1.2) !important;
+            height: 350px;
         }
     }
 }
