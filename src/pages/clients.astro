@@ -5,7 +5,10 @@ import { Image } from 'astro:assets';
 
 const wpClients = await getClients();
 
-const mappedClients = wpClients.map((client: any) => {
+// Filter to show only clients marked to show in the index page
+const filteredClients = wpClients.filter((client: any) => !!client.meta?._e3_client_show_in_index);
+
+const mappedClients = filteredClients.map((client: any) => {
     let imageUrl = '';
     if (client._embedded && client._embedded['wp:featuredmedia'] && client._embedded['wp:featuredmedia'][0]) {
         imageUrl = client._embedded['wp:featuredmedia'][0].source_url;
