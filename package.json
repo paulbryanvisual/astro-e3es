@@ -15,6 +15,7 @@
   "dependencies": {
     "@fontsource/raleway": "^5.2.8",
     "astro": "^6.4.3",
+    "puppeteer-core": "^25.3.0",
     "wrangler": "^4.97.0"
   },
   "overrides": {
