@@ -50,9 +50,14 @@ async function processClient(client, forceAll = false) {
     
     // Check if post currently uses taj-mahal-placeholder
     const postContent = runWpCli(`post get ${postId} --field=post_content`);
-    const thumbnailId = runWpCli(`post meta get ${postId} _thumbnail_id`);
+    let thumbnailId = '';
+    try {
+        thumbnailId = runWpCli(`post meta get ${postId} _thumbnail_id`);
+    } catch (e) {
+        // Doesn't exist, which is fine
+    }
     
-    const usesPlaceholder = postContent.includes('taj-mahal-placeholder') || thumbnailId === 'placeholder_id'; // wait, placeholder_id?
+    const usesPlaceholder = postContent.includes('taj-mahal-placeholder') || thumbnailId === 'placeholder_id';
     
     // Find matching Flickr folders
     const keywords = getKeywords(slug);
