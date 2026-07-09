@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const { client, allClients } = Astro.props;
 
-const rawOptimizedContent = processWordPressHtml(client.content.rendered);
+const rawOptimizedContent = processWordPressHtml(client.content.rendered, slug);
 const optimizedContent = rawOptimizedContent.replace(/<section class="[^"]*wp-block-e3es-intro-banner[^"]*"[\s\S]*?<\/section>/gi, '');
 
 // Extract background image from content if missing from media
