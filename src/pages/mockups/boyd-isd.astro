@@ -337,9 +337,9 @@ const breadcrumbItems = [
         </dialog>
       </section>
 
-      <!-- Flickr Project Documentation Section -->
+      <!-- Project Documentation Section -->
       <section style="margin-top: 4rem; border-top: 2px solid #eee; padding-top: 4rem;">
-        <h2 style="font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 2rem;">Flickr Project Documentation</h2>
+        <h2 style="font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 2rem;">Project Documentation</h2>
         <p style="font-size: 1.15rem; line-height: 1.8; color: var(--color-text-main); margin-bottom: 3rem;">
           These archive photos document the progress of renovations at Boyd ISD, capturing the before conditions, the construction phase, and final completed systems.
         </p>
@@ -347,7 +347,7 @@ const breadcrumbItems = [
         <!-- Boyd ISD Before Album -->
         {beforeImages.length > 0 && (
           <div class="project-gallery" style="margin-bottom: 4rem;">
-            <h3 class="project-gallery__title">Boyd ISD - Before Upgrades (Flickr Archive)</h3>
+            <h3 class="project-gallery__title">Boyd ISD - Before Upgrades (Archive)</h3>
             <div class="project-gallery__grid">
               {beforeImages.map((img, idx) => (
                 <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-before-${idx}').showModal()`}>
@@ -370,7 +370,7 @@ const breadcrumbItems = [
         <!-- Boyd ISD After Album -->
         {afterImages.length > 0 && (
           <div class="project-gallery" style="margin-bottom: 4rem;">
-            <h3 class="project-gallery__title">Boyd ISD - Completed Projects (Flickr Archive)</h3>
+            <h3 class="project-gallery__title">Boyd ISD - Completed Projects (Archive)</h3>
             <div class="project-gallery__grid">
               {afterImages.map((img, idx) => (
                 <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-after-${idx}').showModal()`}>
@@ -393,7 +393,7 @@ const breadcrumbItems = [
         <!-- Boyd ISD Construction Album -->
         {constructionImages.length > 0 && (
           <div class="project-gallery" style="margin-bottom: 4rem;">
-            <h3 class="project-gallery__title">Boyd ISD - Construction Phase (Flickr Archive)</h3>
+            <h3 class="project-gallery__title">Boyd ISD - Construction Phase (Archive)</h3>
             <div class="project-gallery__grid">
               {constructionImages.map((img, idx) => (
                 <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-construction-${idx}').showModal()`}>
