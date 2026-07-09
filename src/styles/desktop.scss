@@ -493,4 +493,72 @@
       }
     }
   }
+
+  /* --- Team Directory Section --- */
+  main, .editor-styles-wrapper {
+    .team-directory {
+      padding: 80px 2rem;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+
+      &__grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 2.5rem;
+      }
+
+      &__card {
+        grid-column: span 4; // Default span: 3 cards per row
+
+        // Asymmetrical Grid Layout (Row by Row)
+        // Row 1 (Cards 1-2): span 6 each
+        &:nth-child(1),
+        &:nth-child(2) {
+          grid-column: span 6;
+        }
+
+        // Row 2 (Cards 3-5): span 4 each (standard)
+
+        // Row 3 (Cards 6-7): span 5 and span 7
+        &:nth-child(6) {
+          grid-column: span 5;
+        }
+        &:nth-child(7) {
+          grid-column: span 7;
+        }
+
+        // Row 4 (Cards 8-10): span 4 each (standard)
+
+        // Row 5 (Cards 11-12): span 8 and span 4
+        &:nth-child(11) {
+          grid-column: span 8;
+        }
+        &:nth-child(12) {
+          grid-column: span 4;
+        }
+
+        // Row 6 (Cards 13-15): span 4 each (standard)
+
+        // Row 7 (Cards 16-18): span 3, span 5, and span 4
+        &:nth-child(16) {
+          grid-column: span 3;
+        }
+        &:nth-child(17) {
+          grid-column: span 5;
+        }
+        &:nth-child(18) {
+          grid-column: span 4;
+        }
+
+        // Row 8 (Cards 19-20): span 6 each
+        &:nth-child(19),
+        &:nth-child(20) {
+          grid-column: span 6;
+        }
+
+        // Row 9 (Cards 21-23): span 4 each (standard)
+      }
+    }
+  }
 }
