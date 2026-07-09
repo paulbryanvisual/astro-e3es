@@ -1,0 +1,3775 @@
+[
+  {
+    "id": 6122,
+    "slug": "south-texas",
+    "title": "South Texas & Coast",
+    "status": "publish",
+    "hasProjectBlock": false,
+    "descriptionBeforeProject": false,
+    "descriptionSnippet": "",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/dl_Carrizo-Springs-8.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [],
+    "industries": [],
+    "services": [],
+    "meta": {
+      "region": "",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/client_logo.png"
+    }
+  },
+  {
+    "id": 3873,
+    "slug": "little-elm-isd",
+    "title": "Little Elm ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Little Elm ISDK-12 Schools | Central Texas\n\nLessons In Learning - Mike LambMike Lamb, Superintendent...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": true,
+    "videoUrls": [
+      "https://player.vimeo.com/video/946653874?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    ],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": false,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Little-Elm-Lobos1-large.png"
+    }
+  },
+  {
+    "id": 3874,
+    "slug": "keene-isd",
+    "title": "Keene ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Keene ISDK-12 Schools | North TexasKeene ISD, Sports LightingE3 partnered with Keene ISD to upgrade ...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": true,
+    "videoUrls": [
+      "https://player.vimeo.com/video/1176712805?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    ],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": false,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Keene.png"
+    }
+  },
+  {
+    "id": 3875,
+    "slug": "plano-isd",
+    "title": "Plano ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Plano ISDK-12 Schools | North TexasLessons in Learning - Dr. Theresa WilliamsDr. Theresa Williams, S...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": true,
+    "videoUrls": [
+      "https://player.vimeo.com/video/1007829512?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    ],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": false,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "K-12",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/11/Plano-Wildcats-large.png"
+    }
+  },
+  {
+    "id": 3872,
+    "slug": "city-of-stockdale",
+    "title": "City of Stockdale",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "City of StockdaleMunicipal | Central TexasStockdale Lagoon Restoration Case StudyStephen Mayfield, C...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": true,
+    "videoUrls": [
+      "https://player.vimeo.com/video/1171901749?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    ],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": false,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "municipal"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Stockdale-Brahmas.png"
+    }
+  },
+  {
+    "id": 3809,
+    "slug": "gwh",
+    "title": "Goodall-Witcher Healthcare",
+    "status": "publish",
+    "hasProjectBlock": false,
+    "descriptionBeforeProject": false,
+    "descriptionSnippet": "",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/gwh-hero-ghw-crane.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2022/06/ghw-crane.jpg",
+    "inDump": false,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "healthcare"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/1648830623733.jpg"
+    }
+  },
+  {
+    "id": 1733,
+    "slug": "rio-hondo-isd",
+    "title": "Rio Hondo ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Rio Hondo ISDK-12 Schools | Central Texas\n\n\nRio Hondo ISD partnered with E3 Entegral Solutions for c...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/rio-hondo-isd-hero-52177150763_c37edb55f5_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2022/06/52177150763_c37edb55f5_k.jpg",
+    "inDump": false,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "controls",
+      "hvac",
+      "led-retrofit",
+      "roofing"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "K-12",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Rio-Hondo-Bobcats-large.png"
+    }
+  },
+  {
+    "id": 1451,
+    "slug": "eagle-pass-isd",
+    "title": "Eagle Pass ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Eagle Pass ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "water-plumbing",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/12/Eagle-Pass-Eagles-large-2.png"
+    }
+  },
+  {
+    "id": 1453,
+    "slug": "edgewood-isd",
+    "title": "Edgewood ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Edgewood ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Edgewood-Bulldogs-large.png"
+    }
+  },
+  {
+    "id": 1454,
+    "slug": "ennis-isd",
+    "title": "Ennis ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Ennis ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/e3-best-of_rio-hondo-after-dsc05809_51975939640.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Ennis-Lions-large.png"
+    }
+  },
+  {
+    "id": 1456,
+    "slug": "gainesville-isd",
+    "title": "Gainesville ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Gainesville ISDK-12 Schools | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Gainesville-Leopards-large.png"
+    }
+  },
+  {
+    "id": 1457,
+    "slug": "galena-park-isd",
+    "title": "Galena Park ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Galena Park ISDK-12 Schools | South East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "southeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "southeast",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Galena-Park-Yellow-Jackets2.png"
+    }
+  },
+  {
+    "id": 1461,
+    "slug": "gruver-isd",
+    "title": "Gruver ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Gruver ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Gruver-Greyhounds1-large.png"
+    }
+  },
+  {
+    "id": 1462,
+    "slug": "hardin-county",
+    "title": "Hardin County",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Hardin CountyMunicipal | South East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "southeast"
+    ],
+    "industries": [
+      "municipal"
+    ],
+    "services": [],
+    "meta": {
+      "region": "southeast",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/6a3607f1353fcf46a0b49f423226fbc2.jpg"
+    }
+  },
+  {
+    "id": 1463,
+    "slug": "hardin-jefferson-isd",
+    "title": "Hardin-Jefferson ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Hardin-Jefferson ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Hardin-Jefferson-Hawks-large.png"
+    }
+  },
+  {
+    "id": 1464,
+    "slug": "hawkins-isd",
+    "title": "Hawkins ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Hawkins ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Hawkins-Hawks.png"
+    }
+  },
+  {
+    "id": 1465,
+    "slug": "highland-park-isd",
+    "title": "Highland Park ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Highland Park ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope",
+        "water-plumbing"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Amarillo-Highland-Park-Hornets-large-1.png"
+    }
+  },
+  {
+    "id": 1468,
+    "slug": "idea-public-schools",
+    "title": "IDEA Public Schools",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "IDEA Public SchoolsK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/Alamo-IDEA-Griffins-large.png"
+    }
+  },
+  {
+    "id": 1469,
+    "slug": "ingram-isd",
+    "title": "Ingram ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Ingram ISDK-12 Schools | Hill Country...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "hill-country"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "hill-country",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Ingram-Moore-Warriors.png"
+    }
+  },
+  {
+    "id": 1470,
+    "slug": "italy-isd",
+    "title": "Italy ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Italy ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Italy-Gladiators-large.png"
+    }
+  },
+  {
+    "id": 1471,
+    "slug": "jasper-isd",
+    "title": "Jasper ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Jasper ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Jasper-Bulldogs-large.png"
+    }
+  },
+  {
+    "id": 1472,
+    "slug": "katy-isd",
+    "title": "Katy ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Katy ISDK-12 Schools | South East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "southeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "southeast",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/12/Katy-Tigers-large.png"
+    }
+  },
+  {
+    "id": 1473,
+    "slug": "kennedale-isd",
+    "title": "Kennedale ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Kennedale ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/Kennedale-Wildcats-large.png"
+    }
+  },
+  {
+    "id": 1476,
+    "slug": "lamesa-isd",
+    "title": "Lamesa ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Lamesa ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Lamesa-Golden-Tornadoes.png"
+    }
+  },
+  {
+    "id": 1477,
+    "slug": "lancaster-isd",
+    "title": "Lancaster ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Lancaster ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/Lancaster-Tigers1-large.png"
+    }
+  },
+  {
+    "id": 1478,
+    "slug": "liberty-isd",
+    "title": "Liberty ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Liberty ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Liberty-Panthers-large.png"
+    }
+  },
+  {
+    "id": 1479,
+    "slug": "llano-isd",
+    "title": "Llano ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Llano ISDK-12 Schools | Hill Country...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "hill-country"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "hill-country",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Llano-Yellowjackets-large.png"
+    }
+  },
+  {
+    "id": 1480,
+    "slug": "lubbock-isd",
+    "title": "Lubbock ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Lubbock ISDK-12 Schools | Far West Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "panhandle"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "panhandle",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Lubbock-Westerners-large.png"
+    }
+  },
+  {
+    "id": 1481,
+    "slug": "lufkin-isd",
+    "title": "Lufkin ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Lufkin ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Lufkin-Panthers1-large-1.png"
+    }
+  },
+  {
+    "id": 1482,
+    "slug": "lyford-isd",
+    "title": "Lyford ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Lyford ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Lyford-Bulldogs.png"
+    }
+  },
+  {
+    "id": 1484,
+    "slug": "marble-falls-isd",
+    "title": "Marble Falls ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Marble Falls ISDK-12 Schools | Hill Country...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "hill-country"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "hill-country",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Marble-Falls-Mustangs-large.png"
+    }
+  },
+  {
+    "id": 1486,
+    "slug": "mesquite-isd",
+    "title": "Mesquite ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Mesquite ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/11/Mesquite-Skeeters-large-1.png"
+    }
+  },
+  {
+    "id": 1487,
+    "slug": "moulton-isd",
+    "title": "Moulton ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Moulton ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-envelope",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Moulton-Bobkatz-large.png"
+    }
+  },
+  {
+    "id": 1488,
+    "slug": "nacogdoches-isd",
+    "title": "Nacogdoches ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Nacogdoches ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Nacogdoches-Dragons-large.png"
+    }
+  },
+  {
+    "id": 1490,
+    "slug": "new-boston-isd",
+    "title": "New Boston ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "New Boston ISDK-12 Schools | North East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "northeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "northeast",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/New-Boston-Lions-large.png"
+    }
+  },
+  {
+    "id": 1491,
+    "slug": "nocona-isd",
+    "title": "Nocona ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Nocona ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Nocona-Indians.png"
+    }
+  },
+  {
+    "id": 1492,
+    "slug": "normangee-isd",
+    "title": "Normangee ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Normangee ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Normangee-Panthers-large.png"
+    }
+  },
+  {
+    "id": 1493,
+    "slug": "north-texas-medical-center",
+    "title": "North Texas Medical Center",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "North Texas Medical CenterHealthcare | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "healthcare"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/NTMC-Logo-Retina.webp"
+    }
+  },
+  {
+    "id": 1494,
+    "slug": "odem-edroy-isd",
+    "title": "Odem-Edroy ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Odem-Edroy ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Odem-Owls-large.png"
+    }
+  },
+  {
+    "id": 1495,
+    "slug": "pecos-isd",
+    "title": "Pecos ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Pecos ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Pecos-Eagles-large-1.png"
+    }
+  },
+  {
+    "id": 1496,
+    "slug": "pflugerville-isd",
+    "title": "Pflugerville ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Pflugerville ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Pflugerville-Panthers-large.png"
+    }
+  },
+  {
+    "id": 1497,
+    "slug": "pilot-point-isd",
+    "title": "Pilot Point ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Pilot Point ISDK-12 Schools | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Pilot-Point-Bearcats-large.png"
+    }
+  },
+  {
+    "id": 1498,
+    "slug": "poolville-isd",
+    "title": "Poolville ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Poolville ISDK-12 Schools | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Poolville-Monarchs.png"
+    }
+  },
+  {
+    "id": 1503,
+    "slug": "robstown-isd",
+    "title": "Robstown ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Robstown ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Robstown-Cotton-Pickers1-large.png"
+    }
+  },
+  {
+    "id": 1504,
+    "slug": "roscoe-collegiate-isd",
+    "title": "Roscoe Collegiate ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Roscoe Collegiate ISDK-12 Schools | Far West Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "panhandle"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "panhandle",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Roscoe_Collegiate.png"
+    }
+  },
+  {
+    "id": 1506,
+    "slug": "rusk-isd",
+    "title": "Rusk ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Rusk ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Rusk-Eagles-large.png"
+    }
+  },
+  {
+    "id": 1507,
+    "slug": "saint-jo-isd",
+    "title": "Saint Jo ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Saint Jo ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Saint_Jo.png"
+    }
+  },
+  {
+    "id": 1508,
+    "slug": "san-angelo-isd",
+    "title": "San Angelo ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "San Angelo ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/San-Angelo-Central-Bobcats2-large.png"
+    }
+  },
+  {
+    "id": 1509,
+    "slug": "san-benito-cisd",
+    "title": "San Benito CISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "San Benito CISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/12/San-Benito-Greyhounds-large.png"
+    }
+  },
+  {
+    "id": 1510,
+    "slug": "san-jacinto-community-college",
+    "title": "San Jacinto Community College",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "San Jacinto Community CollegeHigher Education | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "higher-education"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/02/Amarillo-San-Jacinto-Christian-Patriots1-large.png"
+    }
+  },
+  {
+    "id": 1511,
+    "slug": "sanger-isd",
+    "title": "Sanger ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Sanger ISDK-12 Schools | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/sanger-isd-main.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Sanger-Indians-large.png"
+    }
+  },
+  {
+    "id": 1512,
+    "slug": "santa-fe-isd",
+    "title": "Santa Fe ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Santa Fe ISDK-12 Schools | South East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "southeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "southeast",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Santa-Fe-Indians.png"
+    }
+  },
+  {
+    "id": 1513,
+    "slug": "silsbee-isd",
+    "title": "Silsbee ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Silsbee ISDK-12 Schools | South East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "southeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "southeast",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Silsbee-Tigers-large.png"
+    }
+  },
+  {
+    "id": 1514,
+    "slug": "skidmore-tynan-isd",
+    "title": "Skidmore-Tynan ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Skidmore-Tynan ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Skidmore-Tynan-Bobcats-large.png"
+    }
+  },
+  {
+    "id": 1515,
+    "slug": "somerset-isd",
+    "title": "Somerset ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Somerset ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Somerset-Bulldogs.png"
+    }
+  },
+  {
+    "id": 1516,
+    "slug": "texas-facilities-commission",
+    "title": "Texas Facilities Commission",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Texas Facilities CommissionCentral Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/638773868425000000.png"
+    }
+  },
+  {
+    "id": 1517,
+    "slug": "tom-bean-isd",
+    "title": "Tom Bean ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Tom Bean ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Tom-Bean-Tomcats-large.png"
+    }
+  },
+  {
+    "id": 1518,
+    "slug": "trenton-isd",
+    "title": "Trenton ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Trenton ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "building-envelope",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Trenton-Tigers-large.png"
+    }
+  },
+  {
+    "id": 1519,
+    "slug": "trinity-isd",
+    "title": "Trinity ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Trinity ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Trinity-Tigers1-large.png"
+    }
+  },
+  {
+    "id": 1520,
+    "slug": "valley-view-isd",
+    "title": "Valley View ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Valley View ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Valley-View-Eagles1-large.png"
+    }
+  },
+  {
+    "id": 1521,
+    "slug": "vernon-isd",
+    "title": "Vernon ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Vernon ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Vernon-Lions1-large.png"
+    }
+  },
+  {
+    "id": 1522,
+    "slug": "waxahachie-isd",
+    "title": "Waxahachie ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Waxahachie ISDK-12 Schools | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/11/Waxahachie-Indians-large.png"
+    }
+  },
+  {
+    "id": 1523,
+    "slug": "weslaco-isd",
+    "title": "Weslaco ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Weslaco ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/12/Weslaco-Panthers-large.png"
+    }
+  },
+  {
+    "id": 1524,
+    "slug": "west-hardin-ccisd",
+    "title": "West Hardin CCISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "West Hardin CCISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/west-hardin-ccisd-20160908_124113-scaled-2.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/West_Hardin_CCISD.png"
+    }
+  },
+  {
+    "id": 1525,
+    "slug": "woodville-isd",
+    "title": "Woodville ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Woodville ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-envelope",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Woodville-Eagles1-large.png"
+    }
+  },
+  {
+    "id": 1452,
+    "slug": "edcouch-elsa-isd",
+    "title": "Edcouch-Elsa ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Edcouch-Elsa ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/edcouch-elsa-isd-hero-53135384858_a0a673207d_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2024/11/53135384858_a0a673207d_k.jpg",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Edcouch-Elsa-Yellow-Jackets.png"
+    }
+  },
+  {
+    "id": 1455,
+    "slug": "ferris-isd",
+    "title": "Ferris ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Ferris ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/ferris-isd-hero-Ferris-ISD-upgrades-7.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2026/05/Ferris-ISD-upgrades-7.jpg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Ferris-Yellow-Jackets.png"
+    }
+  },
+  {
+    "id": 1458,
+    "slug": "glen-rose-medical-center",
+    "title": "Glen Rose Medical Center",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Glen Rose Medical CenterHealthcare | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/glen-rose-medical-center-hero-Chiller-Lift-2048x1534-1.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2025/07/Chiller-Lift-2048x1534.jpg",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "healthcare"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Glen-Rose-Tigers-large.png"
+    }
+  },
+  {
+    "id": 1459,
+    "slug": "goodall-witcher-hospital",
+    "title": "Goodall Witcher Hospital",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Goodall Witcher HospitalHealthcare | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "healthcare"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/1648830623733.jpg"
+    }
+  },
+  {
+    "id": 1460,
+    "slug": "greenville-isd",
+    "title": "Greenville ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Greenville ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/greenville-isd-hero-51585631196_8cbb6f338f_h.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/51585631196_8cbb6f338f_h.jpg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Greenville-Lions.png"
+    }
+  },
+  {
+    "id": 1466,
+    "slug": "hondo-isd",
+    "title": "Hondo ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Hondo ISDK-12 Schools | Hill Country...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/hondo-isd-hero-51752039294_ee6ef55409_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/51752039294_ee6ef55409_k.jpg",
+    "inDump": true,
+    "regions": [
+      "hill-country"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "hill-country",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Hondo-Owls-large.png"
+    }
+  },
+  {
+    "id": 1467,
+    "slug": "houston-community-college",
+    "title": "Houston Community College",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Houston Community CollegeHigher Education | South East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "southeast"
+    ],
+    "industries": [
+      "higher-education"
+    ],
+    "services": [],
+    "meta": {
+      "region": "southeast",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/channels4_profile.jpg"
+    }
+  },
+  {
+    "id": 1474,
+    "slug": "kountze-isd",
+    "title": "Kountze ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Kountze ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/kountze-isd-hero-KOUNTZE-2048x1371-1.jpeg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/KOUNTZE-2048x1371.jpeg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "building-envelope",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Kountz-Lions-large.png"
+    }
+  },
+  {
+    "id": 1475,
+    "slug": "lake-worth-isd",
+    "title": "Lake Worth ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Lake Worth ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/lake-worth-isd-hero-51671039826_6de97f135e_c.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/51671039826_6de97f135e_c.jpg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Lake-Worth-Bullfrogs-large.png"
+    }
+  },
+  {
+    "id": 1483,
+    "slug": "manor-isd",
+    "title": "Manor ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Manor ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/manor-isd-Manor-Picture.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Manor-Mustangs-large.png"
+    }
+  },
+  {
+    "id": 1485,
+    "slug": "mercedes-isd",
+    "title": "Mercedes ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Mercedes ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/mercedes-isd-hero-DSC_0544-2048x1365-1.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/DSC_0544-2048x1365.jpg",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Mercedes-Tigers-large.png"
+    }
+  },
+  {
+    "id": 1489,
+    "slug": "needville-isd",
+    "title": "Needville ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Needville ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/needville-isd-hero-Needville-ISD-photo.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/Needville-ISD-photo.jpg",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Needville-Blue-Jays-large.png"
+    }
+  },
+  {
+    "id": 1499,
+    "slug": "port-neches-groves-isd",
+    "title": "Port Neches-Groves ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Port Neches-Groves ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/port-neches-groves-isd-hero-54123593044_ea41ca9e72_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2024/11/54123593044_ea41ca9e72_k.jpg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Port-Neches-Groves-Indians-large.png"
+    }
+  },
+  {
+    "id": 1500,
+    "slug": "prosper-isd",
+    "title": "Prosper ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Prosper ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/prosper-isd-hero-Prosper-ISD-after-0217-Edit-2048x1534-1.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2024/11/Prosper-ISD-after-0217-Edit-2048x1534.jpg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/Prosper-Prestonwood-Christian-North-Lions-large.png"
+    }
+  },
+  {
+    "id": 1501,
+    "slug": "raymondville-isd",
+    "title": "Raymondville ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Raymondville ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/raymondville-isd-hero-51993438324_d6f31e899e_c.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2022/05/51993438324_d6f31e899e_c.jpg",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "building-envelope",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Raymondville-Bearkats-large.png"
+    }
+  },
+  {
+    "id": 1502,
+    "slug": "ricardo-isd",
+    "title": "Ricardo ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Ricardo ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/ricardo-isd-hero-51466889015_a0932e20f8_c.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2022/01/51466889015_a0932e20f8_c.jpg",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/images.jpg"
+    }
+  },
+  {
+    "id": 1505,
+    "slug": "royal-isd",
+    "title": "Royal ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Royal ISDK-12 Schools | North East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/royal-isd-hero-52033790356_fa708283fb_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2024/11/52033790356_fa708283fb_k.jpg",
+    "inDump": true,
+    "regions": [
+      "northeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "northeast",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Royal-Falcons.png"
+    }
+  },
+  {
+    "id": 1432,
+    "slug": "anderson-shiro-cisd",
+    "title": "Anderson-Shiro CISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Anderson-Shiro CISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Anderson_Shiro_CISD.png"
+    }
+  },
+  {
+    "id": 1433,
+    "slug": "baird-isd",
+    "title": "Baird ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Baird ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Baird_ISD.png"
+    }
+  },
+  {
+    "id": 1434,
+    "slug": "ballinger-isd",
+    "title": "Ballinger ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Ballinger ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Ballinger-Bearcats-large.png"
+    }
+  },
+  {
+    "id": 1435,
+    "slug": "banquete-isd",
+    "title": "Banquete ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Banquete ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Banquete-Bulldogs.png"
+    }
+  },
+  {
+    "id": 1436,
+    "slug": "bellevue-isd",
+    "title": "Bellevue ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Bellevue ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Bellevue-Eagles-large.png"
+    }
+  },
+  {
+    "id": 1437,
+    "slug": "big-sandy-isd",
+    "title": "Big Sandy ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Big Sandy ISDK-12 Schools | North East Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "northeast"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "northeast",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Big-Sandy-Wildcats.png"
+    }
+  },
+  {
+    "id": 1438,
+    "slug": "bowie-isd",
+    "title": "Bowie ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Bowie ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Bowie-Jackrabbits-large.png"
+    }
+  },
+  {
+    "id": 1439,
+    "slug": "brenham-isd",
+    "title": "Brenham ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Brenham ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "lighting"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Brenham-Cubs-large.png"
+    }
+  },
+  {
+    "id": 1440,
+    "slug": "brownsville-isd",
+    "title": "Brownsville ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Brownsville ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/02/Brownsville-First-Baptist-Crusaders-large.png"
+    }
+  },
+  {
+    "id": 1441,
+    "slug": "caddo-mills-isd",
+    "title": "Caddo Mills ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Caddo Mills ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Caddo-Mills-Foxes-large.png"
+    }
+  },
+  {
+    "id": 1442,
+    "slug": "castleberry-isd",
+    "title": "Castleberry ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Castleberry ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/River-Oaks-Castleberry-Lions0-large.png"
+    }
+  },
+  {
+    "id": 1443,
+    "slug": "cedar-hill-isd",
+    "title": "Cedar Hill ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Cedar Hill ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/11/Cedar-Hill-Longhorns1-large.png"
+    }
+  },
+  {
+    "id": 1444,
+    "slug": "chico-isd",
+    "title": "Chico ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Chico ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "building-envelope"
+      ],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Chico_ISD.png"
+    }
+  },
+  {
+    "id": 1445,
+    "slug": "cleveland-isd",
+    "title": "Cleveland ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Cleveland ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Cleveland-Indians-large.png"
+    }
+  },
+  {
+    "id": 1446,
+    "slug": "columbia-brazoria-isd",
+    "title": "Columbia-Brazoria ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Columbia-Brazoria ISDK-12 Schools | South Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "south"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "south",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "building-envelope",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/West-Columbia-Columbia-Roughnecks.png"
+    }
+  },
+  {
+    "id": 1448,
+    "slug": "corsicana-isd",
+    "title": "Corsicana ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Corsicana ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Corsicana-Tigers2-large.png"
+    }
+  },
+  {
+    "id": 1449,
+    "slug": "desoto-isd",
+    "title": "DeSoto ISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "DeSoto ISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "",
+      "services": [
+        "hvac",
+        "lighting",
+        "energy-infrastructure"
+      ],
+      "project_url": "",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/11/DeSoto-Eagles-large.png"
+    }
+  },
+  {
+    "id": 1447,
+    "slug": "cooke-county",
+    "title": "Cooke County",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Cooke CountyMunicipal | North Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/taj-mahal-placeholder.png",
+    "featuredIsPlaceholder": true,
+    "contentHasPlaceholder": true,
+    "hasPlaceholder": true,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "municipal"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "",
+      "services": [],
+      "project_url": "",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/CookeCountySeal2016.png"
+    }
+  },
+  {
+    "id": 488,
+    "slug": "granbury-isd",
+    "title": "Granbury ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Granbury ISDK-12 Schools | North Texas\n\nEfficiency in Action: The Granbury ISD TransformationThrough...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/granbury-isd-hero-51750485372_da44e7b964_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": true,
+    "videoUrls": [
+      "https://player.vimeo.com/video/227283498?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    ],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2021/12/51750485372_da44e7b964_k.jpg",
+    "inDump": true,
+    "regions": [
+      "north"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "north",
+      "industry": "K-12",
+      "services": [],
+      "project_url": "/clients/granbury-isd",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Granbury_ISD.png"
+    }
+  },
+  {
+    "id": 486,
+    "slug": "bishop-cisd",
+    "title": "Bishop CISD",
+    "status": "draft",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Bishop CISDK-12 Schools | Central Texas...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/general-marketing_brochure-2_51586540330.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "central",
+      "industry": "K-12",
+      "services": [
+        "hvac",
+        "lighting"
+      ],
+      "project_url": "/clients/bishop-cisd",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Bishop-Badgers-large.png"
+    }
+  },
+  {
+    "id": 12,
+    "slug": "boyd-isd",
+    "title": "Boyd ISD",
+    "status": "publish",
+    "hasProjectBlock": true,
+    "descriptionBeforeProject": true,
+    "descriptionSnippet": "Boyd ISD newK-12 Schools | Central Texas\n\n\n\nBoyd ISD Case Study VideoThis video highlights the energ...",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/boyd-isd-hero-55182270675_296ab7a759_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": true,
+    "videoUrls": [
+      "https://player.vimeo.com/video/1179578579?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    ],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2026/04/55182270675_296ab7a759_k.jpg",
+    "inDump": false,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "controls",
+      "hvac"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "K-12",
+      "services": [
+        "hvac",
+        "building-controls"
+      ],
+      "project_url": "/clients/boyd-isd",
+      "logo": "http://e3es2026.local/wp-content/uploads/2026/06/Boyd.png"
+    }
+  },
+  {
+    "id": 13,
+    "slug": "bryan-isd",
+    "title": "Bryan ISD",
+    "status": "publish",
+    "hasProjectBlock": false,
+    "descriptionBeforeProject": false,
+    "descriptionSnippet": "",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/bryan-isd-hero-51496446012_7397fcb563_k.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": true,
+    "mappedImgUrl": "https://www.e3es.com/wp-content/uploads/2017/01/51496446012_7397fcb563_k.jpg",
+    "inDump": false,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "energy-infrastructure",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "K-12",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls",
+        "energy-infrastructure"
+      ],
+      "project_url": "/clients/bryan-isd",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2018/12/Bryan-Vikings1-large.png"
+    }
+  },
+  {
+    "id": 14,
+    "slug": "caldwell-isd",
+    "title": "Caldwell ISD",
+    "status": "publish",
+    "hasProjectBlock": false,
+    "descriptionBeforeProject": false,
+    "descriptionSnippet": "",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/dl_caldwell-dark-1-1.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-envelope",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "K-12",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-envelope"
+      ],
+      "project_url": "/clients/caldwell-isd",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/Caldwell-Hornets-large.png"
+    }
+  },
+  {
+    "id": 15,
+    "slug": "carrizo-springs-cisd",
+    "title": "Carrizo Springs CISD",
+    "status": "publish",
+    "hasProjectBlock": false,
+    "descriptionBeforeProject": false,
+    "descriptionSnippet": "",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/dl_Carrizo-Springs-8-1.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "hill-country"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [],
+    "meta": {
+      "region": "hill-country",
+      "industry": "K-12",
+      "services": [],
+      "project_url": "/clients/carrizo-springs-cisd",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Carrizo-Springs-Wildcats-large.png"
+    }
+  },
+  {
+    "id": 16,
+    "slug": "donna-isd",
+    "title": "Donna ISD",
+    "status": "publish",
+    "hasProjectBlock": false,
+    "descriptionBeforeProject": false,
+    "descriptionSnippet": "",
+    "featured_image_url": "http://e3es2026.local/wp-content/uploads/2026/06/Donna-1.jpg",
+    "featuredIsPlaceholder": false,
+    "contentHasPlaceholder": false,
+    "hasPlaceholder": false,
+    "hasVideo": false,
+    "videoUrls": [],
+    "inImgMapping": false,
+    "mappedImgUrl": "",
+    "inDump": true,
+    "regions": [
+      "central"
+    ],
+    "industries": [
+      "k12-schools"
+    ],
+    "services": [
+      "building-controls",
+      "hvac",
+      "lighting"
+    ],
+    "meta": {
+      "region": "central",
+      "industry": "K-12",
+      "services": [
+        "hvac",
+        "lighting",
+        "building-controls"
+      ],
+      "project_url": "/clients/donna-isd",
+      "logo": "https://www.txhslogoproject.com/wp-content/uploads/2019/03/Donna-Redskins.png"
+    }
+  }
+]

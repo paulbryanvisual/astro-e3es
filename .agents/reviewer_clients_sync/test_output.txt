@@ -1,0 +1,439 @@
+[1m[36m====================================================[0m
+[1m[36m Starting E3 Clients Parity E2E Test Suite           [0m
+[1m[36m Target URL: http://localhost:4008                            [0m
+[1m[36m====================================================[0m
+
+[36m[INFO][0m Verifying /clients listing page...
+[36m[INFO][0m Found 100 client cards on listing page.
+[32m[PASS][0m Client listing count is exactly 100.
+[32m[PASS][0m List correctly excludes South Texas & Coast.
+[31m[FAIL][0m Exclusion failed: Duplicate Goodall-Witcher Healthcare (gwh) is present in the list.
+[36m[INFO][0m Queueing 99 client subpages for E2E audits...
+[31m[FAIL][0m plano-isd -> failed 2 audit checks.
+[32m[PASS][0m goodall-witcher-healthcare-duplicate -> passed all audit checks.
+[31m[FAIL][0m rio-hondo-isd -> failed 2 audit checks.
+[31m[FAIL][0m woodville-isd -> failed 1 audit checks.
+[31m[FAIL][0m west-hardin-ccisd -> failed 1 audit checks.
+[31m[FAIL][0m weslaco-isd -> failed 1 audit checks.
+[31m[FAIL][0m waxahachie-isd -> failed 1 audit checks.
+[31m[FAIL][0m vernon-isd -> failed 1 audit checks.
+[31m[FAIL][0m valley-view-isd -> failed 1 audit checks.
+[31m[FAIL][0m trinity-isd -> failed 1 audit checks.
+[31m[FAIL][0m trenton-isd -> failed 1 audit checks.
+[31m[FAIL][0m tom-bean-isd -> failed 1 audit checks.
+[31m[FAIL][0m texas-facilities-commission -> failed 2 audit checks.
+[31m[FAIL][0m somerset-isd -> failed 1 audit checks.
+[31m[FAIL][0m skidmore-tynan-isd -> failed 1 audit checks.
+[31m[FAIL][0m silsbee-isd -> failed 1 audit checks.
+[31m[FAIL][0m santa-fe-isd -> failed 1 audit checks.
+[31m[FAIL][0m sanger-isd -> failed 1 audit checks.
+[31m[FAIL][0m san-jacinto-community-college -> failed 1 audit checks.
+[31m[FAIL][0m san-benito-cisd -> failed 1 audit checks.
+[31m[FAIL][0m san-angelo-isd -> failed 1 audit checks.
+[31m[FAIL][0m saint-jo-isd -> failed 1 audit checks.
+[31m[FAIL][0m rusk-isd -> failed 1 audit checks.
+[31m[FAIL][0m royal-isd -> failed 1 audit checks.
+[31m[FAIL][0m roscoe-collegiate-isd -> failed 1 audit checks.
+[31m[FAIL][0m robstown-isd -> failed 1 audit checks.
+[31m[FAIL][0m ricardo-isd -> failed 1 audit checks.
+[31m[FAIL][0m raymondville-isd -> failed 1 audit checks.
+[31m[FAIL][0m prosper-isd -> failed 1 audit checks.
+[31m[FAIL][0m port-neches-groves-isd -> failed 1 audit checks.
+[31m[FAIL][0m poolville-isd -> failed 1 audit checks.
+[31m[FAIL][0m pilot-point-isd -> failed 1 audit checks.
+[31m[FAIL][0m pflugerville-isd -> failed 1 audit checks.
+[31m[FAIL][0m pecos-isd -> failed 1 audit checks.
+[31m[FAIL][0m odem-edroy-isd -> failed 1 audit checks.
+[31m[FAIL][0m north-texas-medical-center -> failed 1 audit checks.
+[31m[FAIL][0m normangee-isd -> failed 1 audit checks.
+[31m[FAIL][0m nocona-isd -> failed 1 audit checks.
+[31m[FAIL][0m new-boston-isd -> failed 1 audit checks.
+[31m[FAIL][0m needville-isd -> failed 1 audit checks.
+[31m[FAIL][0m nacogdoches-isd -> failed 1 audit checks.
+[31m[FAIL][0m moulton-isd -> failed 1 audit checks.
+[31m[FAIL][0m mesquite-isd -> failed 1 audit checks.
+[31m[FAIL][0m mercedes-isd -> failed 1 audit checks.
+[31m[FAIL][0m marble-falls-isd -> failed 1 audit checks.
+[31m[FAIL][0m manor-isd -> failed 1 audit checks.
+[31m[FAIL][0m lyford-isd -> failed 1 audit checks.
+[31m[FAIL][0m lufkin-isd -> failed 1 audit checks.
+[31m[FAIL][0m lubbock-isd -> failed 1 audit checks.
+[31m[FAIL][0m llano-isd -> failed 1 audit checks.
+[31m[FAIL][0m liberty-isd -> failed 1 audit checks.
+[31m[FAIL][0m lancaster-isd -> failed 1 audit checks.
+[31m[FAIL][0m lamesa-isd -> failed 1 audit checks.
+[31m[FAIL][0m lake-worth-isd -> failed 1 audit checks.
+[31m[FAIL][0m kountze-isd -> failed 1 audit checks.
+[31m[FAIL][0m kennedale-isd -> failed 1 audit checks.
+[31m[FAIL][0m katy-isd -> failed 1 audit checks.
+[31m[FAIL][0m jasper-isd -> failed 1 audit checks.
+[31m[FAIL][0m italy-isd -> failed 1 audit checks.
+[31m[FAIL][0m ingram-isd -> failed 1 audit checks.
+[31m[FAIL][0m idea-public-schools -> failed 2 audit checks.
+[31m[FAIL][0m houston-community-college -> failed 1 audit checks.
+[31m[FAIL][0m hondo-isd -> failed 1 audit checks.
+[31m[FAIL][0m highland-park-isd -> failed 1 audit checks.
+[31m[FAIL][0m hawkins-isd -> failed 1 audit checks.
+[31m[FAIL][0m hardin-jefferson-isd -> failed 1 audit checks.
+[31m[FAIL][0m hardin-county -> failed 1 audit checks.
+[31m[FAIL][0m gruver-isd -> failed 1 audit checks.
+[31m[FAIL][0m goodall-witcher-hospital -> failed 1 audit checks.
+[31m[FAIL][0m glen-rose-medical-center -> failed 1 audit checks.
+[31m[FAIL][0m galena-park-isd -> failed 1 audit checks.
+[31m[FAIL][0m gainesville-isd -> failed 1 audit checks.
+[31m[FAIL][0m ferris-isd -> failed 1 audit checks.
+[31m[FAIL][0m ennis-isd -> failed 1 audit checks.
+[31m[FAIL][0m edgewood-isd -> failed 1 audit checks.
+[31m[FAIL][0m edcouch-elsa-isd -> failed 1 audit checks.
+[31m[FAIL][0m eagle-pass-isd -> failed 1 audit checks.
+[31m[FAIL][0m desoto-isd -> failed 1 audit checks.
+[31m[FAIL][0m corsicana-isd -> failed 1 audit checks.
+[31m[FAIL][0m cooke-county -> failed 1 audit checks.
+[31m[FAIL][0m columbia-brazoria-isd -> failed 1 audit checks.
+[31m[FAIL][0m cleveland-isd -> failed 1 audit checks.
+[31m[FAIL][0m chico-isd -> failed 1 audit checks.
+[31m[FAIL][0m cedar-hill-isd -> failed 1 audit checks.
+[31m[FAIL][0m castleberry-isd -> failed 1 audit checks.
+[31m[FAIL][0m caddo-mills-isd -> failed 1 audit checks.
+[31m[FAIL][0m brownsville-isd -> failed 1 audit checks.
+[31m[FAIL][0m brenham-isd -> failed 1 audit checks.
+[31m[FAIL][0m greenville-isd -> failed 1 audit checks.
+[31m[FAIL][0m bowie-isd -> failed 1 audit checks.
+[31m[FAIL][0m big-sandy-isd -> failed 1 audit checks.
+[31m[FAIL][0m bellevue-isd -> failed 1 audit checks.
+[31m[FAIL][0m banquete-isd -> failed 1 audit checks.
+[31m[FAIL][0m ballinger-isd -> failed 1 audit checks.
+[31m[FAIL][0m baird-isd -> failed 1 audit checks.
+[31m[FAIL][0m anderson-shiro-cisd -> failed 1 audit checks.
+[31m[FAIL][0m keene-isd -> failed 2 audit checks.
+[31m[FAIL][0m city-of-stockdale -> failed 2 audit checks.
+[31m[FAIL][0m little-elm-isd -> failed 2 audit checks.
+
+[1m[36m====================================================[0m
+[1m[36m E2E Test Suite Execution Complete                   [0m
+[1m[36m====================================================[0m
+Passed Suites: 0/1
+Total Failures Encountered: 106
+
+[1m[31mAssertion Failures List:[0m
+
+1. [Exclude Duplicate GWH] -> Page: Listing
+   [31mError:[0m Exclusion failed: Duplicate Goodall-Witcher Healthcare (gwh) is present in the list.
+
+2. [Subpage Audit] -> Page: http://localhost:4008/clients/plano-isd
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+3. [Subpage Audit] -> Page: http://localhost:4008/clients/plano-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+4. [Subpage Audit] -> Page: http://localhost:4008/clients/rio-hondo-isd
+   [31mError:[0m Project details (class="project-details") are not wrapped inside the custom project block structure (wp-block-e3es-project project-section)
+
+5. [Subpage Audit] -> Page: http://localhost:4008/clients/rio-hondo-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+6. [Subpage Audit] -> Page: http://localhost:4008/clients/woodville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+7. [Subpage Audit] -> Page: http://localhost:4008/clients/west-hardin-ccisd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+8. [Subpage Audit] -> Page: http://localhost:4008/clients/weslaco-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+9. [Subpage Audit] -> Page: http://localhost:4008/clients/waxahachie-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+10. [Subpage Audit] -> Page: http://localhost:4008/clients/vernon-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+11. [Subpage Audit] -> Page: http://localhost:4008/clients/valley-view-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+12. [Subpage Audit] -> Page: http://localhost:4008/clients/trinity-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+13. [Subpage Audit] -> Page: http://localhost:4008/clients/trenton-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+14. [Subpage Audit] -> Page: http://localhost:4008/clients/tom-bean-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+15. [Subpage Audit] -> Page: http://localhost:4008/clients/texas-facilities-commission
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+16. [Subpage Audit] -> Page: http://localhost:4008/clients/texas-facilities-commission
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+17. [Subpage Audit] -> Page: http://localhost:4008/clients/somerset-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+18. [Subpage Audit] -> Page: http://localhost:4008/clients/skidmore-tynan-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+19. [Subpage Audit] -> Page: http://localhost:4008/clients/silsbee-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+20. [Subpage Audit] -> Page: http://localhost:4008/clients/santa-fe-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+21. [Subpage Audit] -> Page: http://localhost:4008/clients/sanger-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+22. [Subpage Audit] -> Page: http://localhost:4008/clients/san-jacinto-community-college
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+23. [Subpage Audit] -> Page: http://localhost:4008/clients/san-benito-cisd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+24. [Subpage Audit] -> Page: http://localhost:4008/clients/san-angelo-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+25. [Subpage Audit] -> Page: http://localhost:4008/clients/saint-jo-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+26. [Subpage Audit] -> Page: http://localhost:4008/clients/rusk-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+27. [Subpage Audit] -> Page: http://localhost:4008/clients/royal-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+28. [Subpage Audit] -> Page: http://localhost:4008/clients/roscoe-collegiate-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+29. [Subpage Audit] -> Page: http://localhost:4008/clients/robstown-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+30. [Subpage Audit] -> Page: http://localhost:4008/clients/ricardo-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+31. [Subpage Audit] -> Page: http://localhost:4008/clients/raymondville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+32. [Subpage Audit] -> Page: http://localhost:4008/clients/prosper-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+33. [Subpage Audit] -> Page: http://localhost:4008/clients/port-neches-groves-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+34. [Subpage Audit] -> Page: http://localhost:4008/clients/poolville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+35. [Subpage Audit] -> Page: http://localhost:4008/clients/pilot-point-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+36. [Subpage Audit] -> Page: http://localhost:4008/clients/pflugerville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+37. [Subpage Audit] -> Page: http://localhost:4008/clients/pecos-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+38. [Subpage Audit] -> Page: http://localhost:4008/clients/odem-edroy-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+39. [Subpage Audit] -> Page: http://localhost:4008/clients/north-texas-medical-center
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+40. [Subpage Audit] -> Page: http://localhost:4008/clients/normangee-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+41. [Subpage Audit] -> Page: http://localhost:4008/clients/nocona-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+42. [Subpage Audit] -> Page: http://localhost:4008/clients/new-boston-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+43. [Subpage Audit] -> Page: http://localhost:4008/clients/needville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+44. [Subpage Audit] -> Page: http://localhost:4008/clients/nacogdoches-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+45. [Subpage Audit] -> Page: http://localhost:4008/clients/moulton-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+46. [Subpage Audit] -> Page: http://localhost:4008/clients/mesquite-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+47. [Subpage Audit] -> Page: http://localhost:4008/clients/mercedes-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+48. [Subpage Audit] -> Page: http://localhost:4008/clients/marble-falls-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+49. [Subpage Audit] -> Page: http://localhost:4008/clients/manor-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+50. [Subpage Audit] -> Page: http://localhost:4008/clients/lyford-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+51. [Subpage Audit] -> Page: http://localhost:4008/clients/lufkin-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+52. [Subpage Audit] -> Page: http://localhost:4008/clients/lubbock-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+53. [Subpage Audit] -> Page: http://localhost:4008/clients/llano-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+54. [Subpage Audit] -> Page: http://localhost:4008/clients/liberty-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+55. [Subpage Audit] -> Page: http://localhost:4008/clients/lancaster-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+56. [Subpage Audit] -> Page: http://localhost:4008/clients/lamesa-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+57. [Subpage Audit] -> Page: http://localhost:4008/clients/lake-worth-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+58. [Subpage Audit] -> Page: http://localhost:4008/clients/kountze-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+59. [Subpage Audit] -> Page: http://localhost:4008/clients/kennedale-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+60. [Subpage Audit] -> Page: http://localhost:4008/clients/katy-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+61. [Subpage Audit] -> Page: http://localhost:4008/clients/jasper-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+62. [Subpage Audit] -> Page: http://localhost:4008/clients/italy-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+63. [Subpage Audit] -> Page: http://localhost:4008/clients/ingram-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+64. [Subpage Audit] -> Page: http://localhost:4008/clients/idea-public-schools
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+65. [Subpage Audit] -> Page: http://localhost:4008/clients/idea-public-schools
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+66. [Subpage Audit] -> Page: http://localhost:4008/clients/houston-community-college
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+67. [Subpage Audit] -> Page: http://localhost:4008/clients/hondo-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+68. [Subpage Audit] -> Page: http://localhost:4008/clients/highland-park-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+69. [Subpage Audit] -> Page: http://localhost:4008/clients/hawkins-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+70. [Subpage Audit] -> Page: http://localhost:4008/clients/hardin-jefferson-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+71. [Subpage Audit] -> Page: http://localhost:4008/clients/hardin-county
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+72. [Subpage Audit] -> Page: http://localhost:4008/clients/gruver-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+73. [Subpage Audit] -> Page: http://localhost:4008/clients/goodall-witcher-hospital
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+74. [Subpage Audit] -> Page: http://localhost:4008/clients/glen-rose-medical-center
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+75. [Subpage Audit] -> Page: http://localhost:4008/clients/galena-park-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+76. [Subpage Audit] -> Page: http://localhost:4008/clients/gainesville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+77. [Subpage Audit] -> Page: http://localhost:4008/clients/ferris-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+78. [Subpage Audit] -> Page: http://localhost:4008/clients/ennis-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+79. [Subpage Audit] -> Page: http://localhost:4008/clients/edgewood-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+80. [Subpage Audit] -> Page: http://localhost:4008/clients/edcouch-elsa-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+81. [Subpage Audit] -> Page: http://localhost:4008/clients/eagle-pass-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+82. [Subpage Audit] -> Page: http://localhost:4008/clients/desoto-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+83. [Subpage Audit] -> Page: http://localhost:4008/clients/corsicana-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+84. [Subpage Audit] -> Page: http://localhost:4008/clients/cooke-county
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+85. [Subpage Audit] -> Page: http://localhost:4008/clients/columbia-brazoria-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+86. [Subpage Audit] -> Page: http://localhost:4008/clients/cleveland-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+87. [Subpage Audit] -> Page: http://localhost:4008/clients/chico-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+88. [Subpage Audit] -> Page: http://localhost:4008/clients/cedar-hill-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+89. [Subpage Audit] -> Page: http://localhost:4008/clients/castleberry-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+90. [Subpage Audit] -> Page: http://localhost:4008/clients/caddo-mills-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+91. [Subpage Audit] -> Page: http://localhost:4008/clients/brownsville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+92. [Subpage Audit] -> Page: http://localhost:4008/clients/brenham-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+93. [Subpage Audit] -> Page: http://localhost:4008/clients/greenville-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+94. [Subpage Audit] -> Page: http://localhost:4008/clients/bowie-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+95. [Subpage Audit] -> Page: http://localhost:4008/clients/big-sandy-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+96. [Subpage Audit] -> Page: http://localhost:4008/clients/bellevue-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+97. [Subpage Audit] -> Page: http://localhost:4008/clients/banquete-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+98. [Subpage Audit] -> Page: http://localhost:4008/clients/ballinger-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+99. [Subpage Audit] -> Page: http://localhost:4008/clients/baird-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+100. [Subpage Audit] -> Page: http://localhost:4008/clients/anderson-shiro-cisd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+101. [Subpage Audit] -> Page: http://localhost:4008/clients/keene-isd
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+102. [Subpage Audit] -> Page: http://localhost:4008/clients/keene-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+103. [Subpage Audit] -> Page: http://localhost:4008/clients/city-of-stockdale
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+104. [Subpage Audit] -> Page: http://localhost:4008/clients/city-of-stockdale
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+105. [Subpage Audit] -> Page: http://localhost:4008/clients/little-elm-isd
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+106. [Subpage Audit] -> Page: http://localhost:4008/clients/little-elm-isd
+   [31mError:[0m Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)
+
+[1m[31mTest run status: FAIL (Exiting with code 1)[0m
+

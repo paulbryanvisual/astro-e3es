@@ -1,0 +1,402 @@
+{
+  "woodville-isd": {
+    "title": "Woodville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Woodville ISD.png"
+  },
+  "west-hardin-ccisd": {
+    "title": "West Hardin CCISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - West Hardin Photo.jpg"
+  },
+  "weslaco-isd": {
+    "title": "Weslaco ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Weslaco ISD_img_247_0.jpeg"
+  },
+  "waxahachie-isd": {
+    "title": "Waxahachie ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Waxahachie ISD.jpg"
+  },
+  "vernon-isd": {
+    "title": "Vernon ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Vernon ISD.png"
+  },
+  "valley-view-isd": {
+    "title": "Valley View ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Valley View ISD.png"
+  },
+  "trinity-isd": {
+    "title": "Trinity ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Trinity ISD.png"
+  },
+  "trenton-isd": {
+    "title": "Trenton ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Trenton ISD.jpg"
+  },
+  "tom-bean-isd": {
+    "title": "Tom Bean ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Tom Bean ISD_img_144_0.jpeg"
+  },
+  "texas-facilities-commission": {
+    "title": "Texas Facilities Commission",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - TFC pic.PNG"
+  },
+  "somerset-isd": {
+    "title": "Somerset ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Somerset ISD.png"
+  },
+  "skidmore-tynan-isd": {
+    "title": "Skidmore-Tynan ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Skidmore-Tynan ISD.jpg"
+  },
+  "silsbee-isd": {
+    "title": "Silsbee ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Silsbee Photo.jpg"
+  },
+  "santa-fe-isd": {
+    "title": "Santa Fe ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Santa Fe.jpg"
+  },
+  "sanger-isd": {
+    "title": "Sanger ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Sanger ISD.jpg"
+  },
+  "san-jacinto-community-college": {
+    "title": "San Jacinto Community College",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - San Jacinto Community College.png"
+  },
+  "san-benito-cisd": {
+    "title": "San Benito CISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - San Benito CISD.png"
+  },
+  "san-angelo-isd": {
+    "title": "San Angelo ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - San Angelo ISD Phase I &#038; II.png"
+  },
+  "saint-jo-isd": {
+    "title": "Saint Jo ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Saint Jo ISD.png"
+  },
+  "rusk-isd": {
+    "title": "Rusk ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Rusk ISD.png"
+  },
+  "royal-isd": {
+    "title": "Royal ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Royal ISD 2022.png"
+  },
+  "roscoe-collegiate-isd": {
+    "title": "Roscoe Collegiate ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Roscoe Collegiate ISD Reference Sheet 041122.png"
+  },
+  "robstown-isd": {
+    "title": "Robstown ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Robstown ISD.jpg"
+  },
+  "ricardo-isd": {
+    "title": "Ricardo ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Ricardo ISD.png"
+  },
+  "raymondville-isd": {
+    "title": "Raymondville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Raymondville ISD.png"
+  },
+  "prosper-isd": {
+    "title": "Prosper ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Prosper ISD.png"
+  },
+  "port-neches-groves-isd": {
+    "title": "Port Neches-Groves ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - PN-G ISD_img_214_0.jpeg"
+  },
+  "poolville-isd": {
+    "title": "Poolville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Poolville.jpg"
+  },
+  "pilot-point-isd": {
+    "title": "Pilot Point ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Pilot Point ISD reference sheet SOQ Body TASB colors_img_17_1.png"
+  },
+  "pflugerville-isd": {
+    "title": "Pflugerville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Pflugerville Placemat2.png"
+  },
+  "pecos-isd": {
+    "title": "Pecos ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Pecos ISD 07142020.png"
+  },
+  "odem-edroy-isd": {
+    "title": "Odem-Edroy ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Odem-Edroy ISD 071422.png"
+  },
+  "north-texas-medical-center": {
+    "title": "North Texas Medical Center",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - North Texas Medical Center.png"
+  },
+  "normangee-isd": {
+    "title": "Normangee ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Normangee ISD.jpg"
+  },
+  "nocona-isd": {
+    "title": "Nocona ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Nocona ISD.png"
+  },
+  "new-boston-isd": {
+    "title": "New Boston ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - New Boston ISD.jpg"
+  },
+  "needville-isd": {
+    "title": "Needville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Needville ISD.jpg"
+  },
+  "nacogdoches-isd": {
+    "title": "Nacogdoches ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Nacogdoches ISD.png"
+  },
+  "moulton-isd": {
+    "title": "Moulton ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Moulton ISD 022222.png"
+  },
+  "mesquite-isd": {
+    "title": "Mesquite ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Mesquite ISD.png"
+  },
+  "mercedes-isd": {
+    "title": "Mercedes ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Mercedes ISD 07142020.png"
+  },
+  "marble-falls-isd": {
+    "title": "Marble Falls ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Marble Falls Pic.jpg"
+  },
+  "manor-isd": {
+    "title": "Manor ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Manor ISD for District_img_203_0.jpeg"
+  },
+  "lyford-isd": {
+    "title": "Lyford ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Lyford ISD_img_226_0.jpeg"
+  },
+  "lufkin-isd": {
+    "title": "Lufkin ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Lufkin ISD New.png"
+  },
+  "lubbock-isd": {
+    "title": "Lubbock ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Lubbock ISD 090721.png"
+  },
+  "llano-isd": {
+    "title": "Llano ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Llano ISD.png"
+  },
+  "liberty-isd": {
+    "title": "Liberty ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Liberty ISD.png"
+  },
+  "lancaster-isd": {
+    "title": "Lancaster ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Lancaster ISD Reference Sheet_img_162_0.jpeg"
+  },
+  "lamesa-isd": {
+    "title": "Lamesa ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Lamesa ISD Reference Sheet 041122.png"
+  },
+  "lake-worth-isd": {
+    "title": "Lake Worth ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Lake Worth ISD_img_83_0.jpeg"
+  },
+  "kountze-isd": {
+    "title": "Kountze ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Kountze ISD_img_165_0.jpeg"
+  },
+  "kennedale-isd": {
+    "title": "Kennedale ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Kennedale ISD Updated.png"
+  },
+  "katy-isd": {
+    "title": "Katy ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Katy ISD.png"
+  },
+  "jasper-isd": {
+    "title": "Jasper ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Jasper ISD.png"
+  },
+  "italy-isd": {
+    "title": "Italy ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Italy ISD.jpg"
+  },
+  "ingram-isd": {
+    "title": "Ingram ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Ingram ISD reference sheet SOQ Body TASB colors_img_34_2.jpeg"
+  },
+  "idea-public-schools": {
+    "title": "IDEA Public Schools",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - IDEA Reference Sheet.png"
+  },
+  "houston-community-college": {
+    "title": "Houston Community College",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - HCC Reference Sheet_img_156_4.jpeg"
+  },
+  "hondo-isd": {
+    "title": "Hondo ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Rio Hondo ISD 071422.png"
+  },
+  "highland-park-isd": {
+    "title": "Highland Park ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Highland Park ISD (1"
+  },
+  "hawkins-isd": {
+    "title": "Hawkins ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Hawkins ISD.jpg"
+  },
+  "hardin-jefferson-isd": {
+    "title": "Hardin-Jefferson ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Hardin-Jefferson ISD.png"
+  },
+  "hardin-county": {
+    "title": "Hardin County",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Hardin County.png"
+  },
+  "gruver-isd": {
+    "title": "Gruver ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Gruver ISD Pic.jpg"
+  },
+  "greenville-isd": {
+    "title": "Greenville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Greenville ISD_img_195_0.jpeg"
+  },
+  "goodall-witcher-hospital": {
+    "title": "Goodall Witcher Hospital",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Goodall Witcher Hospital - chiller.png"
+  },
+  "glen-rose-medical-center": {
+    "title": "Glen Rose Medical Center",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Glen Rose Medical Center.png"
+  },
+  "galena-park-isd": {
+    "title": "Galena Park ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Galena Park ISD.png"
+  },
+  "gainesville-isd": {
+    "title": "Gainesville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Gainesville ISD.jpg"
+  },
+  "ferris-isd": {
+    "title": "Ferris ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Ferris ISD 2025.png"
+  },
+  "ennis-isd": {
+    "title": "Ennis ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/e3-best-of_rio-hondo-after-dsc05809_51975939640.jpg"
+  },
+  "edgewood-isd": {
+    "title": "Edgewood ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - eisd.jfif"
+  },
+  "edcouch-elsa-isd": {
+    "title": "Edcouch-Elsa ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Edcouch.png"
+  },
+  "eagle-pass-isd": {
+    "title": "Eagle Pass ISD",
+    "bgImageUrl": null
+  },
+  "e3-general": {
+    "title": "E3_General",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Healthcare mix - GHW Crane Tex Tech - no team members.png"
+  },
+  "desoto-isd": {
+    "title": "DeSoto ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - DeSoto ISD_img_182_0.jpeg"
+  },
+  "corsicana-isd": {
+    "title": "Corsicana ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Corsicana ISD 2020.png"
+  },
+  "cooke-county": {
+    "title": "Cooke County",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Cooke County.jpg"
+  },
+  "columbia-brazoria-isd": {
+    "title": "Columbia-Brazoria ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Columbia-Brazoria - final.png"
+  },
+  "cleveland-isd": {
+    "title": "Cleveland ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Cleveland ISD photo.png"
+  },
+  "chico-isd": {
+    "title": "Chico ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Chico.JPG"
+  },
+  "cedar-hill-isd": {
+    "title": "Cedar Hill ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Cedar Hill 2020.png"
+  },
+  "castleberry-isd": {
+    "title": "Castleberry ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Castleberry 2022_img_189_0.jpeg"
+  },
+  "caddo-mills-isd": {
+    "title": "Caddo Mills ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Caddo Mills ISD.png"
+  },
+  "brownsville-isd": {
+    "title": "Brownsville ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Brownsville ISD 07142020.png"
+  },
+  "brenham-isd": {
+    "title": "Brenham ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Brenham ISD.png"
+  },
+  "bowie-isd": {
+    "title": "Bowie ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Bowie ISD Reference Sheet 041122.png"
+  },
+  "big-sandy-isd": {
+    "title": "Big Sandy ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Big Sandy ISD.jpg"
+  },
+  "bellevue-isd": {
+    "title": "Bellevue ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Bellevue ISD.png"
+  },
+  "banquete-isd": {
+    "title": "Banquete ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Banquete ISD_img_186_0.jpeg"
+  },
+  "ballinger-isd": {
+    "title": "Ballinger ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Ballinger ISD.png"
+  },
+  "baird-isd": {
+    "title": "Baird ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Baird ISD Reference Sheet 041122.png"
+  },
+  "anderson-shiro-cisd": {
+    "title": "Anderson-Shiro CISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Anderson-Shiro CISD.jpg"
+  },
+  "south-texas": {
+    "title": "South Texas &#038; Coast",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/funding-2-600x400.png"
+  },
+  "granbury-isd": {
+    "title": "Granbury ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Granbury ISD.jpg"
+  },
+  "bishop-cisd": {
+    "title": "Bishop CISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Bishop CISD_img_217_0.jpeg"
+  },
+  "donna-isd": {
+    "title": "Donna ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Donna ISD for TFC.jpg"
+  },
+  "carrizo-springs-cisd": {
+    "title": "Carrizo Springs CISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Carrizo Springs CISD.png"
+  },
+  "caldwell-isd": {
+    "title": "Caldwell ISD",
+    "bgImageUrl": "http://e3es2026.local/wp-content/uploads/2026/06/Jason Flowers - Caldwell ISD_img_161_0.jpeg"
+  }
+}

@@ -1,0 +1,695 @@
+[
+  {
+    "slug": "plano-isd",
+    "title": "Plano ISD",
+    "status": "Extra Local Image",
+    "orig": null,
+    "local": "plano.png"
+  },
+  {
+    "slug": "keene-isd",
+    "title": "Keene ISD",
+    "status": "Extra Local Image",
+    "orig": null,
+    "local": "keene.png"
+  },
+  {
+    "slug": "little-elm-isd",
+    "title": "Little Elm ISD",
+    "status": "Extra Local Image",
+    "orig": null,
+    "local": "little_elm.png"
+  },
+  {
+    "slug": "city-of-stockdale",
+    "title": "City of Stockdale",
+    "status": "Extra Local Image",
+    "orig": null,
+    "local": "stockdale.png"
+  },
+  {
+    "slug": "rio-hondo-isd",
+    "title": "Rio Hondo ISD",
+    "status": "Extra Local Image",
+    "orig": null,
+    "local": "rio-hondo-isd-hero-52177150763_c37edb55f5_k.jpg"
+  },
+  {
+    "slug": "woodville-isd",
+    "title": "Woodville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - woodville isd.png",
+    "local": "jason-flowers-woodville-isd-scaled.png"
+  },
+  {
+    "slug": "west-hardin-ccisd",
+    "title": "West Hardin CCISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - west hardin photo.jpg",
+    "local": "west-hardin-ccisd-20160908_124113-scaled-2.jpg"
+  },
+  {
+    "slug": "weslaco-isd",
+    "title": "Weslaco ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - weslaco isd_img_247_0.jpeg",
+    "local": "jason-flowers-weslaco-isd_img_247_0.jpeg"
+  },
+  {
+    "slug": "waxahachie-isd",
+    "title": "Waxahachie ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - waxahachie isd.jpg",
+    "local": "jason-flowers-waxahachie-isd-scaled.jpg"
+  },
+  {
+    "slug": "vernon-isd",
+    "title": "Vernon ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - vernon isd.png",
+    "local": "jason-flowers-vernon-isd-scaled.png"
+  },
+  {
+    "slug": "valley-view-isd",
+    "title": "Valley View ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - valley view isd.png",
+    "local": "jason-flowers-valley-view-isd-scaled.png"
+  },
+  {
+    "slug": "trinity-isd",
+    "title": "Trinity ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - trinity isd.png",
+    "local": "jason-flowers-trinity-isd-scaled.png"
+  },
+  {
+    "slug": "trenton-isd",
+    "title": "Trenton ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - trenton isd.jpg",
+    "local": "jason-flowers-trenton-isd-scaled.jpg"
+  },
+  {
+    "slug": "tom-bean-isd",
+    "title": "Tom Bean ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - tom bean isd_img_144_0.jpeg",
+    "local": "jason-flowers-tom-bean-isd_img_144_0.jpeg"
+  },
+  {
+    "slug": "texas-facilities-commission",
+    "title": "Texas Facilities Commission",
+    "status": "Mismatch",
+    "orig": "jason flowers - tfc pic.png",
+    "local": "jason-flowers-tfc-pic.png"
+  },
+  {
+    "slug": "somerset-isd",
+    "title": "Somerset ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - somerset isd.png",
+    "local": "jason-flowers-somerset-isd-scaled.png"
+  },
+  {
+    "slug": "skidmore-tynan-isd",
+    "title": "Skidmore-Tynan ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - skidmore-tynan isd.jpg",
+    "local": "jason-flowers-skidmore-tynan-isd-scaled.jpg"
+  },
+  {
+    "slug": "silsbee-isd",
+    "title": "Silsbee ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - silsbee photo.jpg",
+    "local": "jason-flowers-silsbee-photo.jpg"
+  },
+  {
+    "slug": "santa-fe-isd",
+    "title": "Santa Fe ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - santa fe.jpg",
+    "local": "jason-flowers-santa-fe-scaled.jpg"
+  },
+  {
+    "slug": "sanger-isd",
+    "title": "Sanger ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - sanger isd.jpg",
+    "local": "jason-flowers-sanger-isd-scaled.jpg"
+  },
+  {
+    "slug": "san-jacinto-community-college",
+    "title": "San Jacinto Community College",
+    "status": "Mismatch",
+    "orig": "jason flowers - san jacinto community college.png",
+    "local": "jason-flowers-san-jacinto-community-college-scaled.png"
+  },
+  {
+    "slug": "san-benito-cisd",
+    "title": "San Benito CISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - san benito cisd.png",
+    "local": "jason-flowers-san-benito-cisd.png"
+  },
+  {
+    "slug": "san-angelo-isd",
+    "title": "San Angelo ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - san angelo isd phase i &#038; ii.png",
+    "local": "jason-flowers-san-angelo-isd-062922-1187x1536-3.png"
+  },
+  {
+    "slug": "saint-jo-isd",
+    "title": "Saint Jo ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - saint jo isd.png",
+    "local": "jason-flowers-saint-jo-isd-scaled.png"
+  },
+  {
+    "slug": "rusk-isd",
+    "title": "Rusk ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - rusk isd.png",
+    "local": "jason-flowers-rusk-isd-scaled.png"
+  },
+  {
+    "slug": "royal-isd",
+    "title": "Royal ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - royal isd 2022.png",
+    "local": "royal-isd-hero-52033790356_fa708283fb_k.jpg"
+  },
+  {
+    "slug": "roscoe-collegiate-isd",
+    "title": "Roscoe Collegiate ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - roscoe collegiate isd reference sheet 041122.png",
+    "local": "jason-flowers-roscoe-collegiate-isd-reference-sheet-041122-scaled.png"
+  },
+  {
+    "slug": "robstown-isd",
+    "title": "Robstown ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - robstown isd.jpg",
+    "local": "jason-flowers-robstown-isd-scaled.jpg"
+  },
+  {
+    "slug": "ricardo-isd",
+    "title": "Ricardo ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - ricardo isd.png",
+    "local": "ricardo-isd-hero-51466889015_a0932e20f8_c.jpg"
+  },
+  {
+    "slug": "raymondville-isd",
+    "title": "Raymondville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - raymondville isd.png",
+    "local": "raymondville-isd-hero-51993438324_d6f31e899e_c.jpg"
+  },
+  {
+    "slug": "prosper-isd",
+    "title": "Prosper ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - prosper isd.png",
+    "local": "prosper-isd-hero-prosper-isd-after-0217-edit-2048x1534-1.jpg"
+  },
+  {
+    "slug": "port-neches-groves-isd",
+    "title": "Port Neches-Groves ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - pn-g isd_img_214_0.jpeg",
+    "local": "port-neches-groves-isd-hero-54123593044_ea41ca9e72_k.jpg"
+  },
+  {
+    "slug": "poolville-isd",
+    "title": "Poolville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - poolville.jpg",
+    "local": "jason-flowers-poolville.jpg"
+  },
+  {
+    "slug": "pilot-point-isd",
+    "title": "Pilot Point ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - pilot point isd reference sheet soq body tasb colors_img_17_1.png",
+    "local": "jason-flowers-pilot-point-isd-reference-sheet-soq-body-tasb-colors_img_17_1.png"
+  },
+  {
+    "slug": "pflugerville-isd",
+    "title": "Pflugerville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - pflugerville placemat2.png",
+    "local": "jason-flowers-pflugerville-placemat2-scaled.png"
+  },
+  {
+    "slug": "pecos-isd",
+    "title": "Pecos ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - pecos isd 07142020.png",
+    "local": "jason-flowers-pecos-isd-07142020-scaled.png"
+  },
+  {
+    "slug": "odem-edroy-isd",
+    "title": "Odem-Edroy ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - odem-edroy isd 071422.png",
+    "local": "jason-flowers-odem-edroy-isd-071422-scaled.png"
+  },
+  {
+    "slug": "north-texas-medical-center",
+    "title": "North Texas Medical Center",
+    "status": "Mismatch",
+    "orig": "jason flowers - north texas medical center.png",
+    "local": "jason-flowers-north-texas-medical-center-scaled.png"
+  },
+  {
+    "slug": "normangee-isd",
+    "title": "Normangee ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - normangee isd.jpg",
+    "local": "jason-flowers-normangee-isd-scaled.jpg"
+  },
+  {
+    "slug": "nocona-isd",
+    "title": "Nocona ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - nocona isd.png",
+    "local": "jason-flowers-nocona-isd-scaled.png"
+  },
+  {
+    "slug": "new-boston-isd",
+    "title": "New Boston ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - new boston isd.jpg",
+    "local": "jason-flowers-new-boston-isd-scaled.jpg"
+  },
+  {
+    "slug": "needville-isd",
+    "title": "Needville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - needville isd.jpg",
+    "local": "needville-isd-hero-needville-isd-photo.jpg"
+  },
+  {
+    "slug": "nacogdoches-isd",
+    "title": "Nacogdoches ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - nacogdoches isd.png",
+    "local": "jason-flowers-nacogdoches-isd-scaled.png"
+  },
+  {
+    "slug": "moulton-isd",
+    "title": "Moulton ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - moulton isd 022222.png",
+    "local": "jason-flowers-moulton-isd-022222-scaled.png"
+  },
+  {
+    "slug": "mesquite-isd",
+    "title": "Mesquite ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - mesquite isd.png",
+    "local": "jason-flowers-mesquite-isd-scaled.png"
+  },
+  {
+    "slug": "mercedes-isd",
+    "title": "Mercedes ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - mercedes isd 07142020.png",
+    "local": "mercedes-isd-hero-dsc_0544-2048x1365-1.jpg"
+  },
+  {
+    "slug": "marble-falls-isd",
+    "title": "Marble Falls ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - marble falls pic.jpg",
+    "local": "jason-flowers-marble-falls-pic.jpg"
+  },
+  {
+    "slug": "manor-isd",
+    "title": "Manor ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - manor isd for district_img_203_0.jpeg",
+    "local": "manor-isd-manor-picture.jpg"
+  },
+  {
+    "slug": "lyford-isd",
+    "title": "Lyford ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - lyford isd_img_226_0.jpeg",
+    "local": "jason-flowers-lyford-isd_img_226_0.jpeg"
+  },
+  {
+    "slug": "lufkin-isd",
+    "title": "Lufkin ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - lufkin isd new.png",
+    "local": "jason-flowers-lufkin-isd-new-scaled.png"
+  },
+  {
+    "slug": "lubbock-isd",
+    "title": "Lubbock ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - lubbock isd 090721.png",
+    "local": "jason-flowers-lubbock-isd-090721-scaled.png"
+  },
+  {
+    "slug": "llano-isd",
+    "title": "Llano ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - llano isd.png",
+    "local": "jason-flowers-llano-isd-scaled.png"
+  },
+  {
+    "slug": "liberty-isd",
+    "title": "Liberty ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - liberty isd.png",
+    "local": "jason-flowers-liberty-isd-scaled.png"
+  },
+  {
+    "slug": "lancaster-isd",
+    "title": "Lancaster ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - lancaster isd reference sheet_img_162_0.jpeg",
+    "local": "jason-flowers-lancaster-isd-reference-sheet_img_162_0-scaled.jpeg"
+  },
+  {
+    "slug": "lamesa-isd",
+    "title": "Lamesa ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - lamesa isd reference sheet 041122.png",
+    "local": "jason-flowers-lamesa-isd-reference-sheet-041122-scaled.png"
+  },
+  {
+    "slug": "lake-worth-isd",
+    "title": "Lake Worth ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - lake worth isd_img_83_0.jpeg",
+    "local": "lake-worth-isd-hero-51671039826_6de97f135e_c.jpg"
+  },
+  {
+    "slug": "kountze-isd",
+    "title": "Kountze ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - kountze isd_img_165_0.jpeg",
+    "local": "kountze-isd-hero-kountze-2048x1371-1.jpeg"
+  },
+  {
+    "slug": "kennedale-isd",
+    "title": "Kennedale ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - kennedale isd updated.png",
+    "local": "jason-flowers-kennedale-isd-updated.png"
+  },
+  {
+    "slug": "katy-isd",
+    "title": "Katy ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - katy isd.png",
+    "local": "jason-flowers-katy-isd-scaled.png"
+  },
+  {
+    "slug": "jasper-isd",
+    "title": "Jasper ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - jasper isd.png",
+    "local": "jason-flowers-jasper-isd-scaled.png"
+  },
+  {
+    "slug": "italy-isd",
+    "title": "Italy ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - italy isd.jpg",
+    "local": "jason-flowers-italy-isd-scaled.jpg"
+  },
+  {
+    "slug": "ingram-isd",
+    "title": "Ingram ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - ingram isd reference sheet soq body tasb colors_img_34_2.jpeg",
+    "local": "jason-flowers-ingram-isd-reference-sheet-soq-body-tasb-colors_img_34_2.jpeg"
+  },
+  {
+    "slug": "idea-public-schools",
+    "title": "IDEA Public Schools",
+    "status": "Mismatch",
+    "orig": "jason flowers - idea reference sheet.png",
+    "local": "jason-flowers-idea-reference-sheet-scaled.png"
+  },
+  {
+    "slug": "houston-community-college",
+    "title": "Houston Community College",
+    "status": "Mismatch",
+    "orig": "jason flowers - hcc reference sheet_img_156_4.jpeg",
+    "local": "jason-flowers-hcc-reference-sheet_img_156_4.jpeg"
+  },
+  {
+    "slug": "hondo-isd",
+    "title": "Hondo ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - rio hondo isd 071422.png",
+    "local": "hondo-isd-hero-51752039294_ee6ef55409_k.jpg"
+  },
+  {
+    "slug": "highland-park-isd",
+    "title": "Highland Park ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - highland park isd (1).png",
+    "local": "highland_park_isd_-_chw-hw-1024x683-3.png"
+  },
+  {
+    "slug": "hawkins-isd",
+    "title": "Hawkins ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - hawkins isd.jpg",
+    "local": "jason-flowers-hawkins-isd-scaled.jpg"
+  },
+  {
+    "slug": "hardin-jefferson-isd",
+    "title": "Hardin-Jefferson ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - hardin-jefferson isd.png",
+    "local": "jason-flowers-hardin-jefferson-isd-scaled.png"
+  },
+  {
+    "slug": "hardin-county",
+    "title": "Hardin County",
+    "status": "Mismatch",
+    "orig": "jason flowers - hardin county.png",
+    "local": "jason-flowers-hardin-county-scaled.png"
+  },
+  {
+    "slug": "gruver-isd",
+    "title": "Gruver ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - gruver isd pic.jpg",
+    "local": "jason-flowers-gruver-isd-pic.jpg"
+  },
+  {
+    "slug": "greenville-isd",
+    "title": "Greenville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - greenville isd_img_195_0.jpeg",
+    "local": "greenville-isd-hero-51585631196_8cbb6f338f_h.jpg"
+  },
+  {
+    "slug": "goodall-witcher-hospital",
+    "title": "Goodall Witcher Hospital",
+    "status": "Mismatch",
+    "orig": "jason flowers - goodall witcher hospital - chiller.png",
+    "local": "jason-flowers-goodall-witcher-hospital-chiller-scaled.png"
+  },
+  {
+    "slug": "glen-rose-medical-center",
+    "title": "Glen Rose Medical Center",
+    "status": "Mismatch",
+    "orig": "jason flowers - glen rose medical center.png",
+    "local": "glen-rose-medical-center-hero-chiller-lift-2048x1534-1.jpg"
+  },
+  {
+    "slug": "galena-park-isd",
+    "title": "Galena Park ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - galena park isd.png",
+    "local": "jason-flowers-galena-park-isd-scaled.png"
+  },
+  {
+    "slug": "gainesville-isd",
+    "title": "Gainesville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - gainesville isd.jpg",
+    "local": "jason-flowers-gainesville-isd-scaled.jpg"
+  },
+  {
+    "slug": "ferris-isd",
+    "title": "Ferris ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - ferris isd 2025.png",
+    "local": "ferris-isd-hero-ferris-isd-upgrades-7.jpg"
+  },
+  {
+    "slug": "edgewood-isd",
+    "title": "Edgewood ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - eisd.jfif",
+    "local": "jason-flowers-eisd-1.jpg"
+  },
+  {
+    "slug": "edcouch-elsa-isd",
+    "title": "Edcouch-Elsa ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - edcouch.png",
+    "local": "edcouch-elsa-isd-hero-53135384858_a0a673207d_k.jpg"
+  },
+  {
+    "slug": "eagle-pass-isd",
+    "title": "Eagle Pass ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - eagle pass isd (jason flowers",
+    "local": "jason-flowers-eagle-pass-isd-1-scaled.png"
+  },
+  {
+    "slug": "desoto-isd",
+    "title": "DeSoto ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - desoto isd_img_182_0.jpeg",
+    "local": "jason-flowers-desoto-isd_img_182_0-scaled.jpeg"
+  },
+  {
+    "slug": "corsicana-isd",
+    "title": "Corsicana ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - corsicana isd 2020.png",
+    "local": "jason-flowers-corsicana-isd-2020-scaled.png"
+  },
+  {
+    "slug": "cooke-county",
+    "title": "Cooke County",
+    "status": "Mismatch",
+    "orig": "jason flowers - cooke county.jpg",
+    "local": "jason-flowers-cooke-county-scaled.jpg"
+  },
+  {
+    "slug": "columbia-brazoria-isd",
+    "title": "Columbia-Brazoria ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - columbia-brazoria - final.png",
+    "local": "jason-flowers-columbia-brazoria-final-scaled.png"
+  },
+  {
+    "slug": "cleveland-isd",
+    "title": "Cleveland ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - cleveland isd photo.png",
+    "local": "jason-flowers-cleveland-isd-photo.png"
+  },
+  {
+    "slug": "chico-isd",
+    "title": "Chico ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - chico.jpg",
+    "local": "jason-flowers-chico-scaled.jpg"
+  },
+  {
+    "slug": "cedar-hill-isd",
+    "title": "Cedar Hill ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - cedar hill 2020.png",
+    "local": "jason-flowers-cedar-hill-2020-scaled.png"
+  },
+  {
+    "slug": "castleberry-isd",
+    "title": "Castleberry ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - castleberry 2022_img_189_0.jpeg",
+    "local": "jason-flowers-castleberry-2022_img_189_0.jpeg"
+  },
+  {
+    "slug": "caddo-mills-isd",
+    "title": "Caddo Mills ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - caddo mills isd.png",
+    "local": "jason-flowers-caddo-mills-isd-scaled.png"
+  },
+  {
+    "slug": "brownsville-isd",
+    "title": "Brownsville ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - brownsville isd 07142020.png",
+    "local": "jason-flowers-brownsville-isd-07142020-scaled.png"
+  },
+  {
+    "slug": "brenham-isd",
+    "title": "Brenham ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - brenham isd.png",
+    "local": "jason-flowers-brenham-isd-scaled.png"
+  },
+  {
+    "slug": "bowie-isd",
+    "title": "Bowie ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - bowie isd reference sheet 041122.png",
+    "local": "jason-flowers-bowie-isd-reference-sheet-041122-scaled.png"
+  },
+  {
+    "slug": "big-sandy-isd",
+    "title": "Big Sandy ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - big sandy isd.jpg",
+    "local": "jason-flowers-big-sandy-isd-scaled.jpg"
+  },
+  {
+    "slug": "bellevue-isd",
+    "title": "Bellevue ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - bellevue isd.png",
+    "local": "jason-flowers-bellevue-isd-scaled.png"
+  },
+  {
+    "slug": "banquete-isd",
+    "title": "Banquete ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - banquete isd_img_186_0.jpeg",
+    "local": "jason-flowers-banquete-isd_img_186_0.jpeg"
+  },
+  {
+    "slug": "ballinger-isd",
+    "title": "Ballinger ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - ballinger isd.png",
+    "local": "jason-flowers-ballinger-isd-scaled.png"
+  },
+  {
+    "slug": "baird-isd",
+    "title": "Baird ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - baird isd reference sheet 041122.png",
+    "local": "jason-flowers-baird-isd-reference-sheet-041122-scaled.png"
+  },
+  {
+    "slug": "anderson-shiro-cisd",
+    "title": "Anderson-Shiro CISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - anderson-shiro cisd.jpg",
+    "local": "jason-flowers-anderson-shiro-cisd-scaled.jpg"
+  },
+  {
+    "slug": "granbury-isd",
+    "title": "Granbury ISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - granbury isd.jpg",
+    "local": "granbury-isd-hero-51750485372_da44e7b964_k.jpg"
+  },
+  {
+    "slug": "bishop-cisd",
+    "title": "Bishop CISD",
+    "status": "Mismatch",
+    "orig": "jason flowers - bishop cisd_img_217_0.jpeg",
+    "local": "general-marketing_brochure-2_51586540330.jpg"
+  }
+]
