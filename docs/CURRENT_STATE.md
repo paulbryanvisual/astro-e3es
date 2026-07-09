@@ -47,7 +47,13 @@
   - Changed the desktop grid layout in `src/styles/desktop.scss` for `.team-directory__grid` to be a 4-column grid instead of a 3-column grid.
   - Removed physical translation/movement (`transform: translateY(-4px)`) on hover of team member cards in `src/styles/mobile.scss` so they do not falsely indicate clickability.
   - Restructured the hover rules in `src/styles/mobile.scss` by nesting the `.team-directory__photo` zoom and grayscale-to-color transition directly inside the `&__card:hover` block. This ensures correct compilation of the photo hover transition and retains the default `filter: grayscale(100%)` and transition attributes on `&__photo`.
-- **Client Parity & Publishing**: Transitioned all 80 draft client posts to "publish" status. Configured `_e3_client_show_in_index` to show exactly 100 clients (matching the live site, excluding `south-texas` and duplicate `gwh` posts).
+- **Our Story Page Video Block**:
+  - Embedded the original Port Neches-Groves ISD case study Vimeo video block (`e3es/video-embed`) on the Our Story page (post ID 23) in WordPress using a custom PHP script.
+  - Temporarily disabled KSES filters during database update via `kses_remove_filters()` to successfully retain the custom iframe code.
+- **Client Index Page Restriction**:
+  - Configured `_e3_client_show_in_index` custom fields in the WordPress database so that only the 25 user-specified clients are active on the `/clients` index page.
+  - Set all other 80 clients to hidden (`0`) using a batch script mapping names, including mapping "GOODALL-WITCHER HEALTHCARE" to the local database title "Goodall Witcher Hospital" for exact matches.
+- **Client Parity & Publishing**: Transitioned all 80 draft client posts to "publish" status. Configured `_e3_client_show_in_index` to show exactly the 25 selected clients on the frontend.
 - **Project Details Restored**: Restored missing project details blocks for `donna-isd`, `carrizo-springs-cisd`, and `caldwell-isd` by parsing details from `clients_dump.json`.
 - **Flickr Image Downscaling & Gallery Blocks**: Resized, compressed, and imported Flickr photos for all matched clients, ensuring all files are under 300KB. Associated featured images, mapped images to multiple project blocks, and appended a native WordPress gallery block to the bottom of the content.
 - **Verified E2E Test Suite**: Ran E2E test suite checks for all 100 clients successfully (0 failures, 100% pass status).
