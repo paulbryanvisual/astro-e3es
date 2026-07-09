@@ -5321,4 +5321,19 @@ p.wp-block-paragraph {
   max-width: 850px !important;
 }
 
+// Keep headings aligned with paragraphs on standard content layouts
+main > :is(h1, h2, h3, h4, h5, h6),
+.client-content-wrapper > :is(h1, h2, h3, h4, h5, h6),
+h1.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *),
+h2.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *),
+h3.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *),
+h4.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *),
+h5.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *),
+h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *),
+.wp-block[data-type="core/heading"]:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature, .cta-banner, .wp-block-e3es-intro-banner, .db-page-hero) *) {
+  max-width: 850px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 
