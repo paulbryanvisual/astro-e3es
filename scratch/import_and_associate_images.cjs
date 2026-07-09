@@ -60,7 +60,10 @@ async function processClient(client, forceAll = false) {
     const usesPlaceholder = postContent.includes('taj-mahal-placeholder') || thumbnailId === 'placeholder_id';
     
     // Find matching Flickr folders
-    const keywords = getKeywords(slug);
+    let keywords = getKeywords(slug);
+    if (slug === 'edcouch-elsa-isd') {
+        keywords = ['edcouch'];
+    }
     if (keywords.length === 0) {
         keywords.push(...slug.split('-').filter(w => !stopWords.has(w)));
     }
