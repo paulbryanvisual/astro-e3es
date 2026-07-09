@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<Layout>
+<Layout wpPostId={post.id}>
   <main class="page-content">
     <div class="site-header">
       <a href="/">← Back to Home</a>

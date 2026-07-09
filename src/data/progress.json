@@ -5,16 +5,45 @@
     "emoji": "🗺️",
     "description": "Aligned the SVG star coordinates with the JPEG silhouette using a mathematically verified bounding box mapping formula, and doubled their size (from radius 8 to 16) for enhanced visibility. Created a standalone, clean editable SVG file containing all region paths and twice-as-large stars layers for editing in Photoshop.",
     "links": [
-      { "text": "Reference Bitmap Map", "url": "file:///Users/bryanpaul/.gemini/antigravity/brain/b9c8b880-8835-4792-8e98-4e16468a4b3a/Texas-Map---green-with-dark-stars.jpg" },
-      { "text": "Editable SVG Map File", "url": "file:///Users/bryanpaul/Local%20Sites/astro-e3es/public/Texas-Map-Editable.svg" },
-      { "text": "Editable SVG Web Link", "url": "http://astro-e3es.localhost:4008/Texas-Map-Editable.svg" },
-      { "text": "Staging Review Link", "url": "http://localhost:4008/funding" }
+      {
+        "text": "Reference Bitmap Map",
+        "url": "file:///Users/bryanpaul/.gemini/antigravity/brain/b9c8b880-8835-4792-8e98-4e16468a4b3a/Texas-Map---green-with-dark-stars.jpg"
+      },
+      {
+        "text": "Editable SVG Map File",
+        "url": "file:///Users/bryanpaul/Local%20Sites/astro-e3es/public/Texas-Map-Editable.svg"
+      },
+      {
+        "text": "Editable SVG Web Link",
+        "url": "http://astro-e3es.localhost:4008/Texas-Map-Editable.svg"
+      },
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/funding"
+      }
     ],
-    "status": "review",
+    "status": "working",
     "comments": [
-      { "user": "User", "text": "Give me a link to the reference map to review" },
-      { "user": "User", "text": "maek the stars twice as big" },
-      { "user": "User", "text": "Give me an SVG file that I can edit in Photoshop so I get it just the way I want it" }
+      {
+        "user": "User",
+        "text": "Give me a link to the reference map to review"
+      },
+      {
+        "user": "User",
+        "text": "maek the stars twice as big"
+      },
+      {
+        "user": "User",
+        "text": "Give me an SVG file that I can edit in Photoshop so I get it just the way I want it"
+      },
+      {
+        "user": "User",
+        "text": "Reduce the space above and below the text We’ve Helped So Many We are the trusted, local powerhouse in Texas, having successfully partnered with over 400 clients to complete more than 375 projects. Our dominance in this space is undeniable: during a recent round of SECO funding, we captured roughly 90% of the available grant money for hospitals. We have successfully helped dozens of school districts and healthcare facilities secure the financial backing they need to transform their buildings.  So that the overall size of the section is smaller looking. Add margins above and below the section, so there is more white space between the section and the sections above and below it make the smaller so that it falls off the top and bottom the same amount as it is now with the new smaller section area."
+      },
+      {
+        "user": "User",
+        "text": "It looks like you increased the size of the green background area instead of decreasing it"
+      }
     ]
   },
   {
@@ -23,12 +52,21 @@
     "emoji": "↕️",
     "description": "Implemented global layout spacing rules in mobile.scss so that when a hero banner is followed directly by plain text, paragraph, or standard headings, a 4rem (64px) vertical spacing is applied. If the banner is followed directly by a full-width background block (e.g., video embed, project TOC, region showcase, cover or group section), the spacing is automatically collapsed to zero to prevent gaps.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/clients/cooke-county" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/clients/cooke-county"
+      }
     ],
     "status": "approved",
     "comments": [
-      { "user": "User", "text": "I do not see this reflected. We need to have some kind of if then situation where if there is just text or just heading it has a space but if the Banner is followed directly by a section with a background color, there is no space" },
-      { "user": "User", "text": "Approved" }
+      {
+        "user": "User",
+        "text": "I do not see this reflected. We need to have some kind of if then situation where if there is just text or just heading it has a space but if the Banner is followed directly by a section with a background color, there is no space"
+      },
+      {
+        "user": "User",
+        "text": "Approved"
+      }
     ]
   },
   {
@@ -37,11 +75,17 @@
     "emoji": "👁️",
     "description": "Implemented pure CSS rules targeting .project-section__eyebrow using body:not(:has(.project-section ~ .project-section)) to dynamically hide the \"Project 1\" label on client pages or mockups that only contain a single project, while keeping it visible on pages with multiple projects.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/clients/boyd-isd" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/clients/boyd-isd"
+      }
     ],
     "status": "approved",
     "comments": [
-      { "user": "User", "text": "Approved" }
+      {
+        "user": "User",
+        "text": "Approved"
+      }
     ]
   },
   {
@@ -50,11 +94,17 @@
     "emoji": "🏷️",
     "description": "Programmatic database tagging is complete, and the client detail pages now render a standardized, centered E3 brand hero banner matching the Cooke County style, complete with custom logo and background media parsed dynamically from the post content.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/clients/boyd-isd" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/clients/boyd-isd"
+      }
     ],
     "status": "approved",
     "comments": [
-      { "user": "User", "text": "Approved" }
+      {
+        "user": "User",
+        "text": "Approved"
+      }
     ]
   },
   {
@@ -63,7 +113,10 @@
     "emoji": "🎚️",
     "description": "Added style block options (2-Column Grid and 3-Column Grid) for Gutenberg List blocks natively in WordPress, and updated Boyd ISD's project details list block to display in a 2-column grid.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/clients/boyd-isd" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/clients/boyd-isd"
+      }
     ],
     "status": "approved",
     "comments": []
@@ -74,7 +127,10 @@
     "emoji": "🎛️",
     "description": "Collapsed margins between the intro banner and the following background blocks, and constrained layout widths.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/design-build" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/design-build"
+      }
     ],
     "status": "approved",
     "comments": []
@@ -85,7 +141,10 @@
     "emoji": "🧭",
     "description": "Added breadcrumbs and removed rounded corners from all cards and filter elements.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/clients" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/clients"
+      }
     ],
     "status": "approved",
     "comments": []
@@ -96,7 +155,10 @@
     "emoji": "🔗",
     "description": "Migrated the Story page testimonials to be dynamically linked to the CPT quotes and people posts rather than manually embedded. Created the Leadership Team quote and person CPT records, and fixed the block renderer query key mismatch.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/story" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/story"
+      }
     ],
     "status": "approved",
     "comments": []
@@ -107,7 +169,10 @@
     "emoji": "🔍",
     "description": "Restricted the directory listing to show only the 25 user-specified clients.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/clients" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/clients"
+      }
     ],
     "status": "approved",
     "comments": []
@@ -118,7 +183,10 @@
     "emoji": "🏷️",
     "description": "Restored the E3 green circle logo favicon.ico and removed the default Astro favicon.svg to solve the tab icon regression.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/story" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/story"
+      }
     ],
     "status": "approved",
     "comments": []
@@ -129,9 +197,58 @@
     "emoji": "👥",
     "description": "Modified the grid to a 4-column layout, removed card hover translation, fixed the grayscale-to-color transition, and ordered by post menu order.",
     "links": [
-      { "text": "Staging Review Link", "url": "http://localhost:4008/team" }
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/team"
+      }
     ],
     "status": "approved",
     "comments": []
+  },
+  {
+    "id": "map-section-spacing",
+    "name": "Map Section Spacing & Overlap",
+    "emoji": "📏",
+    "description": "Constrained the green Texas map background section's desktop padding to exactly 100px top and bottom. Set the map column to be absolutely positioned on desktop, preventing it from stretching the green background height, and letting it spill over into adjacent white sections.",
+    "links": [
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/funding"
+      }
+    ],
+    "status": "review",
+    "comments": [
+      {
+        "user": "User",
+        "text": "For this section I want less space above and below the text there should just be 100 pixels above and below the text on the left"
+      }
+    ]
+  },
+  {
+    "id": "breadcrumbs-banner-spacing",
+    "name": "Breadcrumbs to Banner Spacing",
+    "emoji": "↕️",
+    "description": "Removed the white padding gap at the top of services-page content and excluded services-page container from first-child margin overrides, allowing banners and full-width background blocks to flush cleanly against the breadcrumb bar.",
+    "links": [
+      {
+        "text": "Staging Review Link",
+        "url": "http://localhost:4008/funding"
+      },
+      {
+        "text": "Design-Build Page",
+        "url": "http://localhost:4008/design-build"
+      }
+    ],
+    "status": "working",
+    "comments": [
+      {
+        "user": "User",
+        "text": "Remove the extra space between the breadcrumbs and the banner http://localhost:4008/design-build"
+      },
+      {
+        "user": "User",
+        "text": "I still see the gap"
+      }
+    ]
   }
 ]
