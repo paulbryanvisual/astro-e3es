@@ -4773,8 +4773,12 @@ main, .editor-styles-wrapper {
       }
 
       &:hover {
-        transform: translateY(-4px);
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+        .team-directory__photo {
+          filter: grayscale(0);
+          transform: scale(1.03);
+        }
       }
     }
 
@@ -4785,11 +4789,6 @@ main, .editor-styles-wrapper {
       filter: grayscale(100%);
       border-radius: 0 !important;
       transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-      .team-directory__card:hover & {
-        filter: grayscale(0);
-        transform: scale(1.03);
-      }
     }
 
     &__info {
