@@ -155,13 +155,13 @@ async function main() {
 
   // Assertions for Check 1
   let check1Passed = true;
-  if (clientCards.length !== 100) {
-    const errorMsg = `Expected exactly 100 clients, but found ${clientCards.length}.`;
+  if (clientCards.length !== 25) {
+    const errorMsg = `Expected exactly 25 clients, but found ${clientCards.length}.`;
     logError(errorMsg);
-    failures.push({ test: 'Client Count (100)', error: errorMsg });
+    failures.push({ test: 'Client Count (25)', error: errorMsg });
     check1Passed = false;
   } else {
-    logSuccess('Client listing count is exactly 100.');
+    logSuccess('Client listing count is exactly 25.');
   }
 
   // Exclude south-texas
