@@ -32,12 +32,29 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const { client, allClients } = Astro.props;
 
-const optimizedContent = processWordPressHtml(client.content.rendered);
+const rawOptimizedContent = processWordPressHtml(client.content.rendered);
+const optimizedContent = rawOptimizedContent.replace(/<section class="[^"]*wp-block-e3es-intro-banner[^"]*"[\s\S]*?<\/section>/gi, '');
+
+// Extract background image from content if missing from media
+let extractedBgImage = '';
+const bgRegex = /"bgImageUrl":"([^"]+)"/i;
+const bgMatch = client.content.rendered.match(bgRegex);
+if (bgMatch && bgMatch[1]) {
+  extractedBgImage = bgMatch[1];
+} else {
+  const styleBgRegex = /background-image:[^;]*url\(([^)]+)\)/i;
+  const styleMatch = client.content.rendered.match(styleBgRegex);
+  if (styleMatch && styleMatch[1]) {
+    extractedBgImage = styleMatch[1].replace(/['"]/g, '');
+  }
+}
 
 // Featured image banner background
 let bgImage = "/images/png-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg";
 if (client._embedded && client._embedded['wp:featuredmedia'] && client._embedded['wp:featuredmedia'][0]) {
     bgImage = client._embedded['wp:featuredmedia'][0].source_url;
+} else if (extractedBgImage) {
+    bgImage = extractedBgImage;
 }
 
 // Client metadata & focal point
@@ -104,9 +121,23 @@ if (servicesTags.length === 0 && client.meta?._e3_client_services) {
   }
 }
 
+// Extract logo from content if missing from meta or static map
+let extractedLogo = '';
+const logoRegex = /"clientLogoUrl":"([^"]+)"/i;
+const logoMatch = client.content.rendered.match(logoRegex);
+if (logoMatch && logoMatch[1]) {
+  extractedLogo = logoMatch[1];
+} else {
+  const imgRegex = /<img[^>]*class="[^"]*db-page-hero__logo-img[^"]*"[^>]*src="([^"]+)"/i;
+  const imgMatch = client.content.rendered.match(imgRegex);
+  if (imgMatch && imgMatch[1]) {
+    extractedLogo = imgMatch[1];
+  }
+}
+
 // Client logo (DB meta value or static map fallback)
 const logoUrlFromMeta = client.meta?._e3_client_logo || '';
-const clientLogo = logoUrlFromMeta || logoMap[slug] || null;
+const clientLogo = logoUrlFromMeta || extractedLogo || logoMap[slug] || null;
 
 // Dynamic breadcrumbs
 const clientsDropdown = [
@@ -161,44 +192,33 @@ const breadcrumbItems = [
   <!-- Breadcrumb Bar -->
   <Breadcrumb items={breadcrumbItems} />
 
-  <!-- Client Header Bar -->
-  <header class="client-header">
-    <div class="client-header__container">
-      <div class="client-header__brand">
-        {clientLogo && (
-          <div class="client-header__logo-wrapper">
-            {typeof clientLogo === 'string' ? (
-              <img src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-header__logo" />
-            ) : (
-              <Image src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-header__logo" />
-            )}
-          </div>
-        )}
-        <div class="client-header__title-section">
-          <h1 class="client-header__title">{decodeHtmlEntities(client.title.rendered)}</h1>
-          <div class="client-header__meta">
-            <span class="client-header__meta-item">
-              <span class="client-header__meta-label">Industry:</span> {industry}
-            </span>
-            <span class="client-header__meta-item">
-              <span class="client-header__meta-label">Region:</span> {friendlyRegion}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {servicesTags.length > 0 && (
-        <div class="client-header__tags-section">
-          <span class="client-header__tags-label">Services Provided</span>
-          <div class="client-header__tags">
-            {servicesTags.map(tag => (
-              <span class="client-header__tag">{tag}</span>
-            ))}
-          </div>
+  <!-- Client Hero Banner -->
+  <section class="client-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.75), rgba(14, 53, 27, 0.75)), url(${bgImage}); ${focalPositionStyle}`}>
+    <div class="client-hero__container">
+      {clientLogo && (
+        <div class="client-hero__logo-wrapper">
+          {typeof clientLogo === 'string' ? (
+            <img src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-hero__logo" />
+          ) : (
+            <Image src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-hero__logo" />
+          )}
         </div>
       )}
+      <div class="client-hero__content">
+        <h1 class="client-hero__title">{decodeHtmlEntities(client.title.rendered).toUpperCase()}</h1>
+        <p class="client-hero__meta">
+          {industry} | {friendlyRegion}
+        </p>
+        {servicesTags.length > 0 && (
+          <div class="client-hero__tags">
+            {servicesTags.map(tag => (
+              <span class="client-hero__tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
-  </header>
+  </section>
 
   <!-- Main Content -->
   <main style="background: var(--color-bg-white); padding: 0;">
@@ -206,120 +226,93 @@ const breadcrumbItems = [
   </main>
 
   <style>
-    .client-header {
-      background-color: var(--color-bg-light, #f4f6f8);
-      border-bottom: 1px solid var(--color-border, #e1e4e6);
-      padding: 2.5rem 1.5rem;
+    .client-hero {
+      position: relative;
+      padding: 5rem 1.5rem;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 380px;
     }
 
-    .client-header__container {
+    .client-hero__container {
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .client-header__container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-
-    .client-header__brand {
-      display: flex;
       align-items: center;
       gap: 1.5rem;
+      z-index: 2;
     }
 
-    .client-header__logo-wrapper {
-      flex-shrink: 0;
-      width: 70px;
-      height: 70px;
+    .client-hero__logo-wrapper {
+      width: 100px;
+      height: 100px;
       background: #ffffff;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 0.75rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .client-header__logo {
+    .client-hero__logo {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
     }
 
-    .client-header__title-section {
+    .client-hero__content {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .client-header__title {
-      font-family: 'Raleway', sans-serif;
-      font-weight: 700;
-      font-size: 2rem;
-      color: var(--color-primary-dark, #1b3824);
-      margin: 0;
-      line-height: 1.2;
-    }
-
-    .client-header__meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      font-size: 0.9rem;
-      color: var(--color-text-muted, #555555);
-    }
-
-    .client-header__meta-item {
-      display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
-    }
-
-    .client-header__meta-label {
-      font-weight: 600;
-      color: var(--color-primary-dark, #1b3824);
-    }
-
-    .client-header__tags-section {
-      display: flex;
-      flex-direction: column;
       gap: 0.5rem;
     }
 
-    @media (min-width: 768px) {
-      .client-header__tags-section {
-        align-items: flex-end;
-      }
-    }
-
-    .client-header__tags-label {
-      font-size: 0.8rem;
+    .client-hero__title {
+      font-family: 'Raleway', sans-serif;
       font-weight: 700;
-      color: var(--color-primary-dark, #1b3824);
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
       text-transform: uppercase;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
       letter-spacing: 0.05em;
     }
 
-    .client-header__tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    .client-hero__meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
 
-    .client-header__tag {
+    .client-hero__tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .client-hero__tag {
       background-color: var(--color-primary-green, #7da044);
       color: #ffffff;
       font-size: 0.8rem;
       font-weight: 600;
-      padding: 0.3rem 0.6rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     /* Styling to support desktop layout inside this component */
