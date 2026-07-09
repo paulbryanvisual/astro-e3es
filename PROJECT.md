@@ -14,10 +14,10 @@
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
 | 1 | Exploration & Architecture Audit | Audit WP database client post types, Astro route rendering, Flickr downloads directory, and existing test suite `tests/clients-parity.test.js`. | None | DONE |
-| 2 | Media Upload & Migration Scripting | Write/run migration tool to extract live client content, upload matching Flickr photos to WP media library, and map Flickr images to additional projects. | M1 | PLANNED |
-| 3 | Gutenberg Layout Refactoring | Implement Gutenberg block structure alignment: relationship paragraph, nested project blocks, and bottom gallery block for all 100 client subpages. | M2 | PLANNED |
-| 4 | Test Suite Resolution & Integrity Verification | Run `node tests/clients-parity.test.js` to ensure 100% pass, fix placeholders, run Forensic Audit. | M3 | PLANNED |
-| 5 | Visual Verification & Report Generation | Use headless Chrome DevTools to visually inspect rendered Astro pages, capture screenshots, and generate layout verification report. | M4 | PLANNED |
+| 2 | Media Upload & Migration Scripting | Write/run migration tool to extract live client content, upload matching Flickr photos to WP media library, and map Flickr images to additional projects. | M1 | DONE |
+| 3 | Gutenberg Layout Refactoring | Implement Gutenberg block structure alignment: relationship paragraph, nested project blocks, and bottom gallery block for all 100 client subpages. | M2 | DONE |
+| 4 | Test Suite Resolution & Integrity Verification | Run `node tests/clients-parity.test.js` to ensure 100% pass, fix placeholders, run Forensic Audit. | M3 | DONE |
+| 5 | Visual Verification & Report Generation | Use headless Chrome DevTools to visually inspect rendered Astro pages, capture screenshots, and generate layout verification report. | M4 | DONE |
 
 ## Code Layout
 - Astro Client Pages: `src/pages/clients/` or similar routes
