@@ -605,4 +605,56 @@
       padding: 40px 50px;
     }
   }
+
+  /* --- TORCH Page Layout (Desktop) --- */
+  .torch-layout {
+    flex-direction: row !important;
+    gap: 4rem !important;
+    align-items: flex-start !important;
+    max-width: 1440px !important;
+    margin: 0 auto !important;
+    padding: 5rem 2rem !important;
+
+    .wp-block-column {
+      margin: 0 !important;
+    }
+
+    &__sidebar {
+      flex: 0 0 25% !important;
+      max-width: 25% !important;
+      position: sticky !important;
+      top: 120px !important;
+    }
+
+    &__main {
+      flex: 0 0 calc(75% - 4rem) !important;
+      max-width: calc(75% - 4rem) !important;
+    }
+  }
+
+  .torch-sidebar {
+    border-left: 4px solid var(--color-primary-green) !important;
+    border-top: none !important;
+    padding: 0 0 0 2.5rem !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  .torch-main {
+    &__title {
+      font-size: 2.25rem !important;
+    }
+
+    &__logo {
+      max-width: 220px !important;
+    }
+
+    &__intro {
+      font-size: 1.25rem !important;
+    }
+
+    &__section-title {
+      font-size: 1.5rem !important;
+    }
+  }
 }
