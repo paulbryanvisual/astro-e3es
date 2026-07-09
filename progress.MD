@@ -2,9 +2,11 @@
 
 ## Section 1 — Currently Working On
 
-* 🛠️ [Cloudflare Deployment Fix](https://github.com/paulbryanvisual/astro-e3es/actions) — Untrack .wrangler cache directory and update .gitignore to resolve build failures.
+* No active tasks in development.
 
 ## Section 2 — For Review
+
+* 🛠️ [Cloudflare Deployment Fix](https://github.com/paulbryanvisual/astro-e3es/actions) — Untrack .wrangler cache directory and update .gitignore to resolve build failures.
 
 * 🏫 [Boyd ISD](http://astro-e3es.localhost:8080/clients/boyd-isd/) — HVAC & LED updates with correct original description text and gallery.
 * 🏫 [Bryan ISD](http://astro-e3es.localhost:8080/clients/bryan-isd/) — Correct relationship paragraph position, details, and gallery.
