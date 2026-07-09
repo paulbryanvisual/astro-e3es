@@ -1351,6 +1351,51 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
             height: 100% !important;
         }
     }
+
+    // Desktop overrides to constrain green background height to content + exactly 100px padding
+    @media (min-width: 900px) {
+        padding-top: 100px !important;
+        padding-bottom: 100px !important;
+
+        .db-feature__container,
+        .wp-block-columns {
+            position: relative !important;
+            align-items: center !important;
+        }
+
+        // Gutenberg columns layout
+        .db-feature__image-col {
+            position: absolute !important;
+            right: 0 !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            width: 45% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            pointer-events: none;
+        }
+
+        .db-feature__image-col .db-feature__image-wrapper {
+            position: relative !important;
+            height: 250px !important; // Small layout height to avoid stretching container
+            transform: scale(2.2) !important; // Scale up to make map large and spill over
+            overflow: visible !important;
+            margin: 0 !important;
+        }
+
+        // Hand-coded index.astro layout
+        .db-feature__image-wrapper--spill {
+            position: absolute !important;
+            right: 0 !important;
+            top: 50% !important;
+            transform: translateY(-50%) scale(1.6) !important;
+            width: 45% !important;
+            height: 550px !important;
+            margin: 0 !important;
+            pointer-events: none;
+        }
+    }
 }
 
 @media (max-width: 768px) {
