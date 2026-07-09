@@ -8,6 +8,10 @@
 - **1200px Grid Bounds**: Consistent with user layout restraints, standard Design-Build columns layout constraints are set to a max-width of `1200px` and centered on the page.
 - **Editor Synchronization**: SCSS files (`src/styles/mobile.scss` and `src/styles/desktop.scss`) configure these limits for both the frontend rendering and Gutenberg editor styling overrides. This prevents layout differences between the block editor view and the frontend.
 
+## Visual Editor Styles & Editor Syncing
+- **Editor Styles Synchronization**: BEM stylesheets from `src/styles/mobile.scss` and `src/styles/desktop.scss` are compiled using `sync-styles.js` and written directly into `editor-styles.css` in the `e3es-headless-helper` WordPress plugin directory.
+- **Editor Color Formatting**: To prevent visual editor formatting regressions (such as elements rendering with invisible white-on-white text inside Gutenberg), we explicitly exclude nested block layouts (such as design-build cards and editor blocks) from global white text color overrides.
+
 ## Breadcrumb Data Resolution
 - **Taxonomy Precedence**: When determining a client's industry for breadcrumb trails, native WordPress `industry` taxonomy terms take precedence over legacy ACF meta fields (`_e3_client_industry`). If both are missing, it defaults to K-12.
 
