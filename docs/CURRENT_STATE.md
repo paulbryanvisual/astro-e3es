@@ -63,6 +63,7 @@
 - **Texas SVG Map Brand Colors & Stars**: Unified the regional map fills in `wordpress.ts` by setting all `.cls-1` through `.cls-8` styles in `TEXAS_MAP_SVG` to use the E3 primary brand green color (`#215734`). Replaced the client circle dot elements with 5-point star `<polygon>` shapes centered at the exact same coordinates.
 - **Design-Build Spacing Gap**: Modified `src/styles/mobile.scss` to set `margin-bottom: 0 !important` unconditionally on `> .wp-block-e3es-intro-banner` elements within `.services-page__content`. This collapses the margin-bottom spacing gap between the top page hero and any following full-width background blocks (like the gray core pillars group) on the dynamic dynamic pages.
 - **Desktop Project Hero Height Increase**: Updated the desktop height of `.project-section__hero` (under the `@media (min-width: 768px)` viewport breakpoint in `mobile.scss`) from `400px` to `500px` to increase visual prominence.
+- **Client Detail Hero Banner Standardization**: Standardized the top of all client pages to render a unified E3 brand hero banner centered-layout matching Cooke County courthouse styling. Added metadata extraction regex to parse client logos (`clientLogoUrl` or `.db-page-hero__logo-img`) and background images (`bgImageUrl` or `background-image`) dynamically from the WordPress post content, falling back to CPT metadata and static maps. Removed duplicate `e3es/intro-banner` section blocks from the WordPress parsed HTML to prevent duplicate banner rendering.
 
 
 
