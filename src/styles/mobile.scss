@@ -3493,6 +3493,12 @@ main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3
   padding-right: 2rem;
 }
 
+main > :first-child:not(.db-feature):not(.has-background):not(.wp-block-group):not(.wp-block-cover):not(.project-section):not(.wp-block-e3es-video-embed):not(.wp-block-e3es-project-toc):not(.wp-block-e3es-region-showcase):not(.wp-block-e3es-full-width-testimonial),
+.client-content-wrapper > :first-child:not(.db-feature):not(.has-background):not(.wp-block-group):not(.wp-block-cover):not(.project-section):not(.wp-block-e3es-video-embed):not(.wp-block-e3es-project-toc):not(.wp-block-e3es-region-showcase):not(.wp-block-e3es-full-width-testimonial) {
+  margin-top: 4rem !important;
+}
+
+
 main > .wp-block-e3es-intro-banner,
 main > .project-section,
 main > .wp-block-e3es-faq-section,
