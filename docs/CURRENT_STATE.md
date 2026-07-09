@@ -40,4 +40,8 @@
   - Fixed a bug where `wp_update_post` calls in `e3es-headless-helper.php` stripped backslashes from JSON comment attributes (e.g., converting `\u0026` to `u0026` literals), triggering Gutenberg "Attempt Block Recovery" validation errors.
   - Resolved this by wrapping `post_content` in `wp_slash()` for all `wp_update_post` calls.
   - Executed a batch migration (`sync_block_attrs.php`) using the Local PHP binary to automatically restore correct backslashed `\u0026` escaping in all 156 affected posts in the database.
+- **Clients Page Improvements**:
+  - Added breadcrumbs directly under the header / above the hero banner on the `/clients` page by importing and rendering the `<Breadcrumb>` component with a custom home dropdown path hierarchy.
+  - Removed rounded corners (set `border-radius: 0`) from all boxes, containers, inputs, selection filters, tags/pills, and result wrappers on the clients page to guarantee sharp box corners.
+
 
