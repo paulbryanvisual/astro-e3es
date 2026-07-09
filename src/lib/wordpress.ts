@@ -104,11 +104,23 @@ export async function getPageById(id: number) {
 }
 
 export async function getClients() {
-  const response = await wpFetch('/clients?_embed&per_page=100');
-  if (!response.ok) {
-    throw new Error('Failed to fetch clients');
+  const response1 = await wpFetch('/clients?_embed&per_page=100&page=1');
+  if (!response1.ok) {
+    throw new Error('Failed to fetch clients page 1');
   }
-  return response.json();
+  const page1 = await response1.json();
+
+  let page2: any[] = [];
+  try {
+    const response2 = await wpFetch('/clients?_embed&per_page=100&page=2');
+    if (response2.ok) {
+      page2 = await response2.json();
+    }
+  } catch (e) {
+    // Ignore if page 2 fails or is empty
+  }
+
+  return [...page1, ...page2];
 }
 
 const TEXAS_MAP_SVG = `<svg id="texas-map-svg" viewBox="0 0 941.76 907.17" class="db-feature__image texas-svg-map" xmlns="http://www.w3.org/2000/svg">
