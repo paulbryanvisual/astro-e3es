@@ -562,3 +562,47 @@
     }
   }
 }
+
+// ─── Contact Page Desktop Overrides ────────────────────────────────────────
+
+@include responsive-up($breakpoint-md) {
+  .contact-section {
+    padding: 80px 40px;
+
+    .contact-grid {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .contact-card {
+      flex: 1;
+    }
+  }
+
+  .contact-map-form-section {
+    padding: 80px 40px;
+
+    .contact-map-grid {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 60px; /* Strong spacing padding rule */
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .contact-map-col {
+      flex: 0 0 45%;
+      width: 45%;
+    }
+
+    .contact-form-col {
+      flex: 0 0 55%;
+      width: 55%;
+    }
+
+    .contact-form-wrapper {
+      padding: 40px 50px;
+    }
+  }
+}

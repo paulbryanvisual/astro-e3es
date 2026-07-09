@@ -4800,3 +4800,299 @@ main, .editor-styles-wrapper {
   }
 }
 
+// ─── Contact Page Styling ──────────────────────────────────────────────────
+
+.contact-section {
+  padding: 60px 20px;
+  background-color: var(--color-bg-white);
+  max-width: 1440px;
+  margin: 0 auto;
+
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-card {
+    padding: 0;
+    
+    &__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--color-primary-green);
+      padding-bottom: 8px;
+    }
+
+    &__text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-main);
+      margin-bottom: 20px;
+    }
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &__item {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 16px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-main);
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+
+      &--building::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237DA044' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='2' width='16' height='20' rx='0' ry='0'%3E%3C/rect%3E%3Cline x1='9' y1='22' x2='9' y2='16'%3E%3C/line%3E%3Cline x1='15' y1='22' x2='15' y2='16'%3E%3C/line%3E%3Cline x1='9' y1='16' x2='15' y2='16'%3E%3C/line%3E%3Cpath d='M8 6h.01M16 6h.01M8 10h.01M16 10h.01M12 6h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01'%3E%3C/path%3E%3C/svg%3E");
+      }
+
+      &--pin::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237DA044' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E");
+      }
+
+      &--envelope::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237DA044' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'%3E%3C/path%3E%3Cpolyline points='22,6 12,13 2,6'%3E%3C/polyline%3E%3C/svg%3E");
+      }
+
+      &--clock::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237DA044' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpolyline points='12 6 12 12 16 14'%3E%3C/polyline%3E%3C/svg%3E");
+      }
+    }
+  }
+
+  .contact-link {
+    color: var(--color-primary-green);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 4px 0;
+    display: inline-block;
+    min-height: 44px;
+    line-height: 36px;
+
+    &:hover {
+      color: var(--color-primary-dark);
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary-green);
+      outline-offset: 4px;
+    }
+  }
+
+  .contact-phone {
+    margin-top: 20px;
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--color-primary-dark);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      min-height: 44px;
+
+      &:hover {
+        color: var(--color-primary-green);
+      }
+
+      &:focus {
+        outline: 2px solid var(--color-primary-green);
+        outline-offset: 4px;
+      }
+    }
+
+    &__icon {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237DA044' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+}
+
+.contact-map-form-section {
+  padding: 60px 20px;
+  background-color: var(--color-bg-tan);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+  .contact-map-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-map-col {
+    width: 100%;
+  }
+
+  .contact-map-image {
+    margin: 0;
+    width: 100%;
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .contact-form-col {
+    width: 100%;
+  }
+
+  .contact-form-wrapper {
+    background-color: var(--color-bg-white);
+    padding: 30px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .contact-form-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &__required {
+      color: var(--color-tertiary);
+    }
+
+    &__input,
+    &__textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      color: var(--color-text-main);
+      background-color: var(--color-bg-light);
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0 !important;
+      min-height: 44px;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+
+      &::placeholder {
+        color: var(--color-text-light);
+        opacity: 0.8;
+      }
+
+      &:hover {
+        border-color: rgba(0, 0, 0, 0.25);
+      }
+
+      &:focus {
+        background-color: var(--color-bg-white);
+        border-color: var(--color-primary-green);
+        outline: 2px solid var(--color-primary-green);
+        outline-offset: 2px;
+      }
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    &__submit {
+      align-self: flex-start;
+      min-height: 44px;
+      min-width: 150px;
+      background-color: var(--color-tertiary);
+      color: var(--color-bg-white);
+      border: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-primary-dark);
+      }
+
+      &:focus {
+        outline: 2px solid var(--color-primary-green);
+        outline-offset: 4px;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+
+    &__error {
+      font-size: 0.875rem;
+      color: var(--color-tertiary);
+      font-weight: 500;
+      min-height: 18px;
+    }
+
+    &__status {
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 10px;
+
+      &.success {
+        color: var(--color-primary-green);
+      }
+
+      &.error {
+        color: var(--color-tertiary);
+      }
+    }
+  }
+}
+
