@@ -181,6 +181,26 @@ export function processWordPressHtml(html: string): string {
   processedHtml = processedHtml.replace(/&amp;amp;/g, '&amp;')
                                .replace(/&amp;#038;/g, '&#038;');
 
+  // Re-inject Vimeo iframe inside db-video-wrapper from block attributes if missing
+  const videoBlockRegex = /<!-- wp:e3es\/video-embed (\{.*?\}) -->[\s\S]*?<div class="db-video-wrapper">([\s\S]*?)<\/div>/gi;
+  processedHtml = processedHtml.replace(videoBlockRegex, (match, attrsJson, innerContent) => {
+    try {
+      if (!innerContent.includes('<iframe')) {
+        const attrs = JSON.parse(attrsJson);
+        const url = attrs.videoUrl;
+        const title = attrs.title || 'Video Embed';
+        const cleanUrl = url.replace(/&amp;/g, '&');
+        return match.replace(
+          `<div class="db-video-wrapper">${innerContent}</div>`,
+          `<div class="db-video-wrapper"><iframe src="${cleanUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title}"></iframe></div>`
+        );
+      }
+    } catch (e) {
+      // Ignore JSON parse errors
+    }
+    return match;
+  });
+
   let isFirstImage = true;
 
   return processedHtml.replace(/<img([^>]+)>/gi, (match, attrs) => {
