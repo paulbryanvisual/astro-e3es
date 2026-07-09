@@ -1,7 +1,5 @@
-/* 
- * E3 Website Mockup Styles
- * Methodology: BEM
- */
+@use "variables" as *;
+@use "mixins" as *;
 
 :root {
     --color-primary-green: #7DA044;
