@@ -63,6 +63,9 @@ const mappedClients = filteredClients.map((client: any) => {
         image: imageUrl
     };
 });
+
+// Sort alphabetically by name
+mappedClients.sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <Layout>
