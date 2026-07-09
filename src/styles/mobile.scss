@@ -4718,22 +4718,25 @@ main, .editor-styles-wrapper {
       grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    li {
-      margin-bottom: 0 !important;
-      position: relative !important;
-      padding-left: 1.5rem !important;
-      font-family: 'Raleway', sans-serif !important;
-      font-size: 1rem !important;
-      line-height: 1.5 !important;
-      color: var(--color-text-main) !important;
+    // Only apply text bullet formatting if this is not a card list
+    &:is(.is-style-normal-bullets, :is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
+      li {
+        margin-bottom: 0 !important;
+        position: relative !important;
+        padding-left: 1.5rem !important;
+        font-family: 'Raleway', sans-serif !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        color: var(--color-text-main) !important;
 
-      &::before {
-        content: "•" !important;
-        color: var(--color-primary-green) !important;
-        font-size: 1.5rem !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: -0.15rem !important;
+        &::before {
+          content: "•" !important;
+          color: var(--color-primary-green) !important;
+          font-size: 1.5rem !important;
+          position: absolute !important;
+          left: 0 !important;
+          top: -0.15rem !important;
+        }
       }
     }
   }
@@ -4752,22 +4755,25 @@ main, .editor-styles-wrapper {
       grid-template-columns: repeat(3, 1fr) !important;
     }
 
-    li {
-      margin-bottom: 0 !important;
-      position: relative !important;
-      padding-left: 1.5rem !important;
-      font-family: 'Raleway', sans-serif !important;
-      font-size: 1rem !important;
-      line-height: 1.5 !important;
-      color: var(--color-text-main) !important;
+    // Only apply text bullet formatting if this is not a card list
+    &:is(.is-style-normal-bullets, :is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
+      li {
+        margin-bottom: 0 !important;
+        position: relative !important;
+        padding-left: 1.5rem !important;
+        font-family: 'Raleway', sans-serif !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        color: var(--color-text-main) !important;
 
-      &::before {
-        content: "•" !important;
-        color: var(--color-primary-green) !important;
-        font-size: 1.5rem !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: -0.15rem !important;
+        &::before {
+          content: "•" !important;
+          color: var(--color-primary-green) !important;
+          font-size: 1.5rem !important;
+          position: absolute !important;
+          left: 0 !important;
+          top: -0.15rem !important;
+        }
       }
     }
   }
