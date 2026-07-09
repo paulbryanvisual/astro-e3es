@@ -15,3 +15,9 @@
 - **Custom Sidebar & Testimonials**: To support asymmetrical sidebar layouts with avatars and testimonials, we created a `.bill-sidebar` column container class that adds a left green border and padding on desktop, and stacks gracefully on mobile. Avatars inside testimonials are styled using `.full-width-testimony__avatar-wrap` and `.full-width-testimony__avatar` BEM styles rather than inline styling.
 - **Cooperative Logos Grid**: Added the `.coop-logos` flex grid system to display purchasing cooperatives logos (BuyBoard/TIPS) cleanly inside section columns without inline styles.
 - **Columns Inside db-feature Overrides**: Core Gutenberg columns placed inside a `.db-feature` block are automatically styled on desktop to match the standard skewed feature layout alignment (`align-items: flex-start`, `gap: 6rem`), avoiding the need to code custom container wrappers in Gutenberg.
+
+## Client Listing Visibility & Pagination
+- **Custom Visibility Toggle**: We register the `_e3_client_show_in_index` meta key (boolean) on the `clients` custom post type with `show_in_rest => true` to expose it in standard REST API calls. A Gutenberg `ToggleControl` in the editor sidebar UI enables post editors to toggle it in WordPress.
+- **REST API Pagination**: Since there are 105 clients total, the standard `/clients?per_page=100` queries truncate the list. We updated `getClients()` in `src/lib/wordpress.ts` to paginated page fetches, merging page 1 and page 2 to retrieve all 105 posts before filtering in Astro.
+- **Astro Listing Filtering**: The `/clients` page (`src/pages/clients.astro`) dynamically filters the retrieved clients array by `!!client.meta?._e3_client_show_in_index` before mapping, ensuring that the results grid, Texas SVG map dots, and region sidebar filters only display the selected clients.
+
