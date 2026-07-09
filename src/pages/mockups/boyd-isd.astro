@@ -93,7 +93,7 @@ const breadcrumbItems = [
 
       <!-- Case Study Video Section -->
       <section class="db-video-section">
-        <h3 class="db-video-section__title">Boyd ISD Case Study Video</h3>
+        <h2 class="db-video-section__title">Boyd ISD Case Study Video</h2>
         <div class="db-video-wrapper">
           <iframe src="https://player.vimeo.com/video/1179578579?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Boyd ISD Case Study Video"></iframe>
         </div>
@@ -115,7 +115,7 @@ const breadcrumbItems = [
           </div>
           <div class="project-section__info">
             <span class="project-section__eyebrow">Project 1</span>
-            <h3 class="project-section__title">Districtwide HVAC & Controls Upgrades</h3>
+            <h2 class="project-section__title">Districtwide HVAC & Controls Upgrades</h2>
           </div>
         </div>
         
@@ -145,7 +145,7 @@ const breadcrumbItems = [
             <p style="margin-bottom: 1rem;">
               The first phase of work involved a complete mechanical life-cycle replacement program across five district campuses: Boyd Elementary, Boyd Intermediate, Boyd Middle School, Boyd High School, and various auxiliary facilities. E3 evaluated equipment condition and life-cycle status to design a project that minimized disruption to instruction.
             </p>
-            <h4 style="color: var(--color-primary-dark); margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Key Deliverables Included:</h4>
+            <h3 style="color: var(--color-primary-dark); margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Key Deliverables Included:</h3>
             <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
               <li>Full HVAC life-cycle replacements districtwide (including package rooftop RTUs).</li>
               <li>Districtwide Energy Management System (EMS) integration and programming.</li>
@@ -162,7 +162,7 @@ const breadcrumbItems = [
 
         <!-- Project Video Showcase -->
         <div style="margin-bottom: 3rem;">
-          <h4 style="color: var(--color-primary-dark); margin-bottom: 1.25rem; font-weight: 700; font-size: 1.2rem;">Project Video: HVAC Upgrades in Action</h4>
+          <h3 style="color: var(--color-primary-dark); margin-bottom: 1.25rem; font-weight: 700; font-size: 1.2rem;">Project Video: HVAC Upgrades in Action</h3>
           <div class="db-video-wrapper">
             <iframe src="https://player.vimeo.com/video/1065940484?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Boyd ISD HVAC Upgrades Video"></iframe>
           </div>
@@ -186,7 +186,7 @@ const breadcrumbItems = [
 
         <!-- Project Gallery -->
         <div class="project-gallery">
-          <h4 class="project-gallery__title">Project Gallery</h4>
+          <h3 class="project-gallery__title">Project Gallery</h3>
           <div class="project-gallery__grid">
             <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-hvac-1').showModal()">
               <Image src={hvacImg1} alt="HVAC Equipment Replacement" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
@@ -241,7 +241,7 @@ const breadcrumbItems = [
           </div>
           <div class="project-section__info">
             <span class="project-section__eyebrow">Project 2</span>
-            <h3 class="project-section__title">LED Sports Lighting & Auxiliary Upgrades</h3>
+            <h2 class="project-section__title">LED Sports Lighting & Auxiliary Upgrades</h2>
           </div>
         </div>
         
@@ -290,7 +290,7 @@ const breadcrumbItems = [
 
         <!-- Project Gallery -->
         <div class="project-gallery">
-          <h4 class="project-gallery__title">Project Gallery</h4>
+          <h3 class="project-gallery__title">Project Gallery</h3>
           <div class="project-gallery__grid">
             <div class="project-gallery__thumbnail" onclick="document.getElementById('dialog-led-1').showModal()">
               <Image src={ledImg1} alt="Stadium LED Lighting" class="project-gallery__img" widths={[300, 600]} sizes="25vw" formats={["webp"]} />
@@ -347,7 +347,7 @@ const breadcrumbItems = [
         <!-- Boyd ISD Before Album -->
         {beforeImages.length > 0 && (
           <div class="project-gallery" style="margin-bottom: 4rem;">
-            <h4 class="project-gallery__title">Boyd ISD - Before Upgrades (Flickr Archive)</h4>
+            <h3 class="project-gallery__title">Boyd ISD - Before Upgrades (Flickr Archive)</h3>
             <div class="project-gallery__grid">
               {beforeImages.map((img, idx) => (
                 <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-before-${idx}').showModal()`}>
@@ -370,7 +370,7 @@ const breadcrumbItems = [
         <!-- Boyd ISD After Album -->
         {afterImages.length > 0 && (
           <div class="project-gallery" style="margin-bottom: 4rem;">
-            <h4 class="project-gallery__title">Boyd ISD - Completed Projects (Flickr Archive)</h4>
+            <h3 class="project-gallery__title">Boyd ISD - Completed Projects (Flickr Archive)</h3>
             <div class="project-gallery__grid">
               {afterImages.map((img, idx) => (
                 <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-after-${idx}').showModal()`}>
@@ -393,7 +393,7 @@ const breadcrumbItems = [
         <!-- Boyd ISD Construction Album -->
         {constructionImages.length > 0 && (
           <div class="project-gallery" style="margin-bottom: 4rem;">
-            <h4 class="project-gallery__title">Boyd ISD - Construction Phase (Flickr Archive)</h4>
+            <h3 class="project-gallery__title">Boyd ISD - Construction Phase (Flickr Archive)</h3>
             <div class="project-gallery__grid">
               {constructionImages.map((img, idx) => (
                 <div class="project-gallery__thumbnail" onclick={`document.getElementById('dialog-flickr-construction-${idx}').showModal()`}>
