@@ -40,4 +40,10 @@
 - **Static Breadcrumb Items**: The `/clients` page is a static template, so breadcrumbs are defined using a static `breadcrumbItems` list containing the Home page hierarchy and a pointer to the current Clients directory.
 - **Sharp Corner Constraint**: In accordance with E3 styling guidelines, all inline `border-radius` styles on the clients finder elements (the search sidebar, search filter selectors, search input fields, client card containers, labels, and no results message container) are explicitly set to `0` to enforce sharp corners.
 
+## Client Parity, Restructuring, and Flickr Image Import
+- **Post Status Transition**: Transitioned all 80 draft client posts to "publish" status.
+- **Index Parity and Meta Toggle**: Set `_e3_client_show_in_index` to `1` for the 100 migrated clients (to match the live site list, excluding `south-texas` and duplicate `gwh` posts) and `0` for others.
+- **Project Structure Restoration**: Restored missing `wp:e3es/project-details` blocks inside `wp:e3es/project` wrappers for `donna-isd`, `carrizo-springs-cisd`, and `caldwell-isd` by parsing values from the live database JSON dump.
+- **Flickr Media Import Automation**: Created `scratch/import_and_associate_images.cjs` to downscale and compress high-res Flickr images from `flickr_downloads/` to under 300KB using `sharp`, import them via WP-CLI, set the first image as the post's featured image, map subsequent images to multiple project blocks, and dynamically build a native WordPress Gallery block at the bottom of the client pages.
+
 
