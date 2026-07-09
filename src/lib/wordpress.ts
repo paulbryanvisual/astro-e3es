@@ -150,7 +150,7 @@ function getTexasMapSvg() {
 /**
  * Server-side HTML utility to optimize images in Gutenberg block content.
  */
-export function processWordPressHtml(html: string): string {
+export function processWordPressHtml(html: string, slug?: string): string {
   if (!html) return '';
 
   // Replace blurry map image with inline SVG of Texas
@@ -181,7 +181,7 @@ export function processWordPressHtml(html: string): string {
   processedHtml = processedHtml.replace(/&amp;amp;/g, '&amp;')
                                .replace(/&amp;#038;/g, '&#038;');
 
-  // Re-inject Vimeo iframe inside db-video-wrapper from block attributes if missing
+  // Re-inject Vimeo iframe inside db-video-wrapper from block attributes if comments are present
   const videoBlockRegex = /<!-- wp:e3es\/video-embed (\{.*?\}) -->[\s\S]*?<div class="db-video-wrapper">([\s\S]*?)<\/div>/gi;
   processedHtml = processedHtml.replace(videoBlockRegex, (match, attrsJson, innerContent) => {
     try {
@@ -200,6 +200,31 @@ export function processWordPressHtml(html: string): string {
     }
     return match;
   });
+
+  // Fallback: If comments are stripped (default public REST API behaviour), use the slug to inject expected Vimeo iframes
+  if (slug) {
+    const expectedVideos: Record<string, { id: string; title: string }> = {
+      'granbury-isd': { id: '227283498', title: 'Granbury ISD Case Study Video' },
+      'little-elm-isd': { id: '946653874', title: 'Lessons In Learning - Mike Lamb' },
+      'keene-isd': { id: '1176712805', title: 'Keene ISD, Sports Lighting' },
+      'plano-isd': { id: '1007829512', title: 'Lessons in Learning - Dr. Theresa Williams' },
+      'city-of-stockdale': { id: '1171901749', title: 'Lessons in Learning - Stephen Mayfield' },
+      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' }
+    };
+
+    if (expectedVideos[slug]) {
+      const { id, title } = expectedVideos[slug];
+      const wrapperRegex = /<div class="db-video-wrapper">([\s\S]*?)<\/div>/i;
+      const match = processedHtml.match(wrapperRegex);
+      if (match && !match[1].includes('<iframe')) {
+        const cleanUrl = `https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`;
+        processedHtml = processedHtml.replace(
+          match[0],
+          `<div class="db-video-wrapper"><iframe src="${cleanUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title}"></iframe></div>`
+        );
+      }
+    }
+  }
 
   let isFirstImage = true;
 
