@@ -104,33 +104,39 @@ async function processClient(client, forceAll = false) {
             });
             
             const importedAttachments = [];
-            // We only import up to 8 images to avoid bloat and keep things fast
-            const imagesToImport = imageFiles.slice(0, 8);
+            let successCount = 0;
+            let fileIndex = 0;
             
-            for (let i = 0; i < imagesToImport.length; i++) {
-                const sourcePath = imagesToImport[i];
-                const destName = `${slug}_flickr_${i}.jpg`;
+            while (successCount < 8 && fileIndex < imageFiles.length) {
+                const sourcePath = imageFiles[fileIndex];
+                fileIndex++;
+                const destName = `${slug}_flickr_${successCount}.jpg`;
                 const destPath = path.join(TEMP_DIR, destName);
                 
                 console.log(` - Compressing ${path.basename(sourcePath)} -> under 300KB...`);
-                // Use sharp to resize and compress
-                await sharp(sourcePath)
-                    .resize(1600, null, { withoutEnlargement: true })
-                    .jpeg({ quality: 82, progressive: true })
-                    .toFile(destPath);
-                
-                // Import to WP
-                console.log(` - Importing to WP...`);
-                const importRes = runWpCli(`media import "${destPath}" --title="${title} Case Study ${i + 1}" --post_id=${postId} --porcelain`);
-                const attachmentId = parseInt(importRes.trim(), 10);
-                if (attachmentId) {
-                    const guid = runWpCli(`post get ${attachmentId} --field=guid`);
-                    importedAttachments.push({ id: attachmentId, url: guid.trim() });
-                    console.log(`   Imported attachment ID: ${attachmentId}, URL: ${guid.trim()}`);
+                try {
+                    await sharp(sourcePath)
+                        .resize(1600, null, { withoutEnlargement: true })
+                        .jpeg({ quality: 82, progressive: true })
+                        .toFile(destPath);
+                    
+                    console.log(` - Importing to WP...`);
+                    const importRes = runWpCli(`media import "${destPath}" --title="${title} Case Study ${successCount + 1}" --post_id=${postId} --porcelain`);
+                    const attachmentId = parseInt(importRes.trim(), 10);
+                    if (attachmentId) {
+                        const guid = runWpCli(`post get ${attachmentId} --field=guid`);
+                        importedAttachments.push({ id: attachmentId, url: guid.trim() });
+                        console.log(`   Imported attachment ID: ${attachmentId}, URL: ${guid.trim()}`);
+                        successCount++;
+                    }
+                    
+                    fs.unlinkSync(destPath);
+                } catch (err) {
+                    console.error(`   Failed to compress/import ${path.basename(sourcePath)}:`, err.message);
+                    if (fs.existsSync(destPath)) {
+                        fs.unlinkSync(destPath);
+                    }
                 }
-                
-                // Delete temp file
-                fs.unlinkSync(destPath);
             }
             
             if (importedAttachments.length > 0) {
