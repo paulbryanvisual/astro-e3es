@@ -3016,7 +3016,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
   /* Outer headings and paragraphs inside Design+Build Cover block */
   h2,
-  .wp-block-heading:not(.wp-block-column *) {
+  .wp-block-heading:not(.wp-block-column *):not(.design-build__card *):not([data-type="e3es/design-build-card"] *) {
     color: var(--color-bg-white);
     font-size: 2rem;
     font-weight: 900;
@@ -3025,7 +3025,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     text-transform: uppercase;
   }
 
-  p:not(.wp-block-column *):not(.design-build__card-text) {
+  p:not(.wp-block-column *):not(.design-build__card-text):not(.design-build__card *):not([data-type="e3es/design-build-card"] *) {
     color: var(--color-bg-white);
     font-size: 1.1rem;
     line-height: 1.8;
