@@ -37,3 +37,8 @@
 - **FAQ Section Keywords Isolation**:
   - The custom Gutenberg block `e3es/faq-section` isolates the dynamic rendering of keyword tags to keep standard list views clean. Keywords rendering is deactivated in both JavaScript (`editor-blocks.js`) and PHP (`e3es-headless-helper.php`).
 
+## Clients Page Architecture
+- **Static Breadcrumb Items**: The `/clients` page is a static template, so breadcrumbs are defined using a static `breadcrumbItems` list containing the Home page hierarchy and a pointer to the current Clients directory.
+- **Sharp Corner Constraint**: In accordance with E3 styling guidelines, all inline `border-radius` styles on the clients finder elements (the search sidebar, search filter selectors, search input fields, client card containers, labels, and no results message container) are explicitly set to `0` to enforce sharp corners.
+
+
