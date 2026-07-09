@@ -25,3 +25,10 @@
 - **Grid Layout**: On mobile, `.team-directory__grid` renders as a single-column flex list. On tablet, it transitions to a 2-column grid. On desktop, it scales to a 12-column grid with a maximum container width of `1440px`.
 - **Asymmetric Desktop Grid**: To prevent repetitive layout patterns, card sizes span different column widths based on their `:nth-child` index (e.g. Leadership cards at the start span `6` columns, other rows alternate spans like `3`, `5`, `7`, and `8` columns, and overflow/new cards default to `4` columns).
 - **Interactive States**: Hovering on team cards triggers a `scale(1.03)` zoom and transition of photos from grayscale to full color. Focused active keyboard navigation states trigger a prominent `--color-primary-green` focus ring outline. Sharp corners (`border-radius: 0;`) and soft depth box-shadows (`0 8px 24px rgba(0, 0, 0, 0.08)`) are enforced on cards and photos.
+
+## TORCH Page Re-creation
+- **Gutenberg Block Construction**: Created a custom seeder script `seed-torch.php` that programmatically builds the TORCH page. Standard Gutenberg `wp:columns` and `wp:column` block types define a 25/75 split-screen layout. Custom HTML blocks (`wp:html`) wrap the specific sidebar and main content areas to enforce BEM class naming conventions. To prevent WordPress from adding random paragraph or line break elements (`wpautop`) inside these custom blocks, the HTML contents are stripped of newlines and extra spaces.
+- **BEM Styling Overrides**:
+  - `torch-layout` aligns the columns structure. On mobile, it flex-stacks the sections; on desktop, it spans a responsive, sticky sidebar alongside a flexible main content column.
+  - `torch-sidebar` renders the marketing links with SVG file/globe icons and contact details using brand-compliant backgrounds, font weights, and border accents.
+  - `torch-main` arranges headings, embedded Vimeo video study frames, logos, and services bullet points. Interactive anchors feature 44px touch targets and distinct focus rings.

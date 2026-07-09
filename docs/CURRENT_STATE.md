@@ -26,3 +26,8 @@
   - Set sharp corners (`border-radius: 0;`) on cards and images.
   - Added highly visible focus indicators utilizing a primary green outline focus ring.
   - Compiled the assets successfully with no compilation warnings or errors.
+- **TORCH Page Re-creation**: Successfully re-created the live TORCH page at `http://localhost:4008/torch`.
+  - Imported the official logo (`E3_TORCH_2024.png` - ID 6882) and the hero background photo (`Operation-room.jpg` - ID 6884) to local WordPress media.
+  - Created the root page slug `torch` (ID 6883) and seeded its content using the new `seed-torch.php` helper seeder, structuring the Gutenberg layout with 25/75 split-screen columns, minified HTML blocks, and BEM class names.
+  - Implemented responsive BEM stylesheet definitions in `src/styles/mobile.scss` and `src/styles/desktop.scss` specifying a sticky sidebar layout, custom brand colors, custom font scaling, and accessible 44px link touch targets.
+  - Successfully verified building with `npm run build` and captured layout screenshot.
