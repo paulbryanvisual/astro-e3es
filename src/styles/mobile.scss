@@ -4715,9 +4715,12 @@ main, .editor-styles-wrapper {
 
   /* --- Team Directory Section --- */
   .team-directory {
+    grid-column: full;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 60px 1.5rem;
     background-color: var(--color-bg-white);
-    width: 100%;
 
     &__grid {
       display: flex;
@@ -4803,9 +4806,11 @@ main, .editor-styles-wrapper {
 // ─── Contact Page Styling ──────────────────────────────────────────────────
 
 .contact-section {
+  grid-column: full;
+  width: 100%;
   padding: 60px 20px;
   background-color: var(--color-bg-white);
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
 
   .contact-grid {
@@ -4940,6 +4945,8 @@ main, .editor-styles-wrapper {
 }
 
 .contact-map-form-section {
+  grid-column: full;
+  width: 100%;
   padding: 60px 20px;
   background-color: var(--color-bg-tan);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
