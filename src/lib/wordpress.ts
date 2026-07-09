@@ -224,6 +224,20 @@ export function processWordPressHtml(html: string, slug?: string): string {
         );
       }
     }
+
+    const partnershipParagraphs: Record<string, string> = {
+      'bishop-cisd': 'E3 Entegral Solutions partnered with Bishop CISD to implement comprehensive facility improvements including mechanical upgrades and LED lighting retrofits across the district.',
+      'city-of-stockdale': 'E3 Entegral Solutions partnered with the City of Stockdale to implement a lagoon restoration and wastewater treatment program, restoring municipal capacity and efficiency.',
+      'keene-isd': 'E3 Entegral Solutions partnered with Keene ISD to upgrade their athletic field lighting with a full RGB LED system, delivering dynamic lighting effects alongside improved visibility and safety.'
+    };
+
+    if (partnershipParagraphs[slug]) {
+      const pText = partnershipParagraphs[slug];
+      const signature = 'E3 Entegral Solutions partnered with';
+      if (!processedHtml.includes(signature)) {
+        processedHtml = `<!-- wp:paragraph -->\n<p>${pText}</p>\n<!-- /wp:paragraph -->\n\n` + processedHtml;
+      }
+    }
   }
 
   let isFirstImage = true;
