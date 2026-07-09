@@ -1,0 +1,128 @@
+[1m[36m====================================================[0m
+[1m[36m Starting E3 Clients Parity E2E Test Suite           [0m
+[1m[36m Target URL: http://localhost:4008                            [0m
+[1m[36m====================================================[0m
+
+[36m[INFO][0m Verifying /clients listing page...
+[36m[INFO][0m Found 100 client cards on listing page.
+[32m[PASS][0m Client listing count is exactly 100.
+[32m[PASS][0m List correctly excludes South Texas & Coast.
+[32m[PASS][0m List correctly excludes duplicate GWH card.
+[36m[INFO][0m Queueing 100 client subpages for E2E audits...
+[32m[PASS][0m keene-isd -> passed all audit checks.
+[32m[PASS][0m woodville-isd -> passed all audit checks.
+[32m[PASS][0m plano-isd -> passed all audit checks.
+[32m[PASS][0m west-hardin-ccisd -> passed all audit checks.
+[32m[PASS][0m weslaco-isd -> passed all audit checks.
+[32m[PASS][0m waxahachie-isd -> passed all audit checks.
+[32m[PASS][0m vernon-isd -> passed all audit checks.
+[32m[PASS][0m valley-view-isd -> passed all audit checks.
+[32m[PASS][0m trinity-isd -> passed all audit checks.
+[32m[PASS][0m trenton-isd -> passed all audit checks.
+[32m[PASS][0m tom-bean-isd -> passed all audit checks.
+[32m[PASS][0m texas-facilities-commission -> passed all audit checks.
+[32m[PASS][0m somerset-isd -> passed all audit checks.
+[32m[PASS][0m skidmore-tynan-isd -> passed all audit checks.
+[32m[PASS][0m silsbee-isd -> passed all audit checks.
+[32m[PASS][0m santa-fe-isd -> passed all audit checks.
+[32m[PASS][0m sanger-isd -> passed all audit checks.
+[32m[PASS][0m san-jacinto-community-college -> passed all audit checks.
+[32m[PASS][0m san-benito-cisd -> passed all audit checks.
+[32m[PASS][0m san-angelo-isd -> passed all audit checks.
+[32m[PASS][0m saint-jo-isd -> passed all audit checks.
+[32m[PASS][0m rusk-isd -> passed all audit checks.
+[32m[PASS][0m royal-isd -> passed all audit checks.
+[32m[PASS][0m roscoe-collegiate-isd -> passed all audit checks.
+[32m[PASS][0m robstown-isd -> passed all audit checks.
+[32m[PASS][0m ricardo-isd -> passed all audit checks.
+[32m[PASS][0m raymondville-isd -> passed all audit checks.
+[32m[PASS][0m prosper-isd -> passed all audit checks.
+[32m[PASS][0m port-neches-groves-isd -> passed all audit checks.
+[32m[PASS][0m poolville-isd -> passed all audit checks.
+[32m[PASS][0m pilot-point-isd -> passed all audit checks.
+[32m[PASS][0m pflugerville-isd -> passed all audit checks.
+[32m[PASS][0m pecos-isd -> passed all audit checks.
+[32m[PASS][0m odem-edroy-isd -> passed all audit checks.
+[32m[PASS][0m north-texas-medical-center -> passed all audit checks.
+[32m[PASS][0m normangee-isd -> passed all audit checks.
+[32m[PASS][0m nocona-isd -> passed all audit checks.
+[32m[PASS][0m new-boston-isd -> passed all audit checks.
+[32m[PASS][0m needville-isd -> passed all audit checks.
+[32m[PASS][0m nacogdoches-isd -> passed all audit checks.
+[32m[PASS][0m moulton-isd -> passed all audit checks.
+[32m[PASS][0m mesquite-isd -> passed all audit checks.
+[32m[PASS][0m mercedes-isd -> passed all audit checks.
+[32m[PASS][0m marble-falls-isd -> passed all audit checks.
+[32m[PASS][0m manor-isd -> passed all audit checks.
+[32m[PASS][0m lyford-isd -> passed all audit checks.
+[32m[PASS][0m lufkin-isd -> passed all audit checks.
+[32m[PASS][0m lubbock-isd -> passed all audit checks.
+[32m[PASS][0m llano-isd -> passed all audit checks.
+[32m[PASS][0m liberty-isd -> passed all audit checks.
+[32m[PASS][0m lancaster-isd -> passed all audit checks.
+[32m[PASS][0m lamesa-isd -> passed all audit checks.
+[32m[PASS][0m lake-worth-isd -> passed all audit checks.
+[32m[PASS][0m kountze-isd -> passed all audit checks.
+[32m[PASS][0m kennedale-isd -> passed all audit checks.
+[32m[PASS][0m katy-isd -> passed all audit checks.
+[32m[PASS][0m jasper-isd -> passed all audit checks.
+[32m[PASS][0m italy-isd -> passed all audit checks.
+[32m[PASS][0m ingram-isd -> passed all audit checks.
+[31m[FAIL][0m idea-public-schools -> failed 1 audit checks.
+[32m[PASS][0m houston-community-college -> passed all audit checks.
+[32m[PASS][0m hondo-isd -> passed all audit checks.
+[32m[PASS][0m highland-park-isd -> passed all audit checks.
+[32m[PASS][0m hawkins-isd -> passed all audit checks.
+[32m[PASS][0m hardin-jefferson-isd -> passed all audit checks.
+[32m[PASS][0m hardin-county -> passed all audit checks.
+[32m[PASS][0m gruver-isd -> passed all audit checks.
+[32m[PASS][0m greenville-isd -> passed all audit checks.
+[32m[PASS][0m goodall-witcher-hospital -> passed all audit checks.
+[32m[PASS][0m glen-rose-medical-center -> passed all audit checks.
+[32m[PASS][0m galena-park-isd -> passed all audit checks.
+[32m[PASS][0m gainesville-isd -> passed all audit checks.
+[32m[PASS][0m ferris-isd -> passed all audit checks.
+[32m[PASS][0m ennis-isd -> passed all audit checks.
+[32m[PASS][0m edgewood-isd -> passed all audit checks.
+[32m[PASS][0m edcouch-elsa-isd -> passed all audit checks.
+[32m[PASS][0m eagle-pass-isd -> passed all audit checks.
+[32m[PASS][0m desoto-isd -> passed all audit checks.
+[32m[PASS][0m corsicana-isd -> passed all audit checks.
+[32m[PASS][0m cooke-county -> passed all audit checks.
+[32m[PASS][0m columbia-brazoria-isd -> passed all audit checks.
+[32m[PASS][0m cleveland-isd -> passed all audit checks.
+[32m[PASS][0m chico-isd -> passed all audit checks.
+[32m[PASS][0m cedar-hill-isd -> passed all audit checks.
+[32m[PASS][0m castleberry-isd -> passed all audit checks.
+[32m[PASS][0m caddo-mills-isd -> passed all audit checks.
+[32m[PASS][0m brownsville-isd -> passed all audit checks.
+[32m[PASS][0m brenham-isd -> passed all audit checks.
+[32m[PASS][0m bowie-isd -> passed all audit checks.
+[32m[PASS][0m big-sandy-isd -> passed all audit checks.
+[32m[PASS][0m bellevue-isd -> passed all audit checks.
+[32m[PASS][0m banquete-isd -> passed all audit checks.
+[32m[PASS][0m ballinger-isd -> passed all audit checks.
+[32m[PASS][0m baird-isd -> passed all audit checks.
+[32m[PASS][0m anderson-shiro-cisd -> passed all audit checks.
+[32m[PASS][0m granbury-isd -> passed all audit checks.
+[32m[PASS][0m bishop-cisd -> passed all audit checks.
+[32m[PASS][0m little-elm-isd -> passed all audit checks.
+[32m[PASS][0m city-of-stockdale -> passed all audit checks.
+[31m[FAIL][0m rio-hondo-isd -> failed 1 audit checks.
+
+[1m[36m====================================================[0m
+[1m[36m E2E Test Suite Execution Complete                   [0m
+[1m[36m====================================================[0m
+Passed Suites: 1/1
+Total Failures Encountered: 2
+
+[1m[31mAssertion Failures List:[0m
+
+1. [Subpage Audit] -> Page: http://localhost:4008/clients/idea-public-schools
+   [31mError:[0m Uses unmigrated "taj-mahal-placeholder" featured image in tags or CSS styles
+
+2. [Subpage Audit] -> Page: http://localhost:4008/clients/rio-hondo-isd
+   [31mError:[0m Project details (class="project-details") are not wrapped inside the custom project block structure (wp-block-e3es-project project-section)
+
+[1m[31mTest run status: FAIL (Exiting with code 1)[0m
+

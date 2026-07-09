@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E3 Entegral Solutions | K-12 Schools</title>
+    <link rel="stylesheet" href="style.css?v=1778096918">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+
+        .map-section {
+            padding: 6rem 2rem;
+            background-color: var(--color-bg-white);
+        }
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+        .map-left {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        canvas#texas-map {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+            transition: transform 0.3s ease;
+        }
+        .map-right {
+            flex: 1;
+            background: var(--color-bg-light);
+            padding: 3rem;
+            border-radius: 0;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 4px solid var(--color-primary-green);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+        .map-content-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 0;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        .map-content-title {
+            font-size: 2rem;
+            color: var(--color-primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .map-content-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-text-main);
+            margin-bottom: 2rem;
+        }
+        .btn-hidden {
+            display: none;
+        }
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        .slider-track-container {
+            overflow: hidden;
+            width: 100%;
+            padding: 1rem 10px;
+            margin: -1rem -10px;
+        }
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.4s ease-in-out;
+        }
+        .slider-card {
+            min-width: calc(33.333% - 1.333rem);
+            background: var(--color-bg-light);
+            border-radius: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--color-primary-green);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .slider-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .slider-card-content {
+            padding: 1.5rem 2rem 2rem 2rem;
+            flex: 1;
+        }
+        .slider-nav {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+        .slider-btn {
+            pointer-events: auto;
+            background: var(--color-primary-green);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+        .slider-btn:hover {
+            background: var(--color-primary-dark);
+        }
+        .slider-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="index.html" class="mockup-clickable">
+                    <img src="images/new-logo-300x115-300x115-300x115-300x115-300x115-300x115.png" alt="E3 Entegral Solutions Logo" class="header__logo-img">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <div class="header__dropdown">
+                    <a href="#" class="header__nav-link" style="display: flex; align-items: center; gap: 4px; font-weight: 700; color: var(--color-primary-green);">Solutions for... <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                    <div class="header__dropdown-menu">
+                        <a href="k12.html" style="color: var(--color-primary-green);" class="header__dropdown-item mockup-clickable">K-12 Schools</a>
+                        <a href="#" class="header__dropdown-item">Municipalities (Cities)</a>
+                        <a href="#" class="header__dropdown-item">Healthcare</a>
+                        <a href="#" class="header__dropdown-item">Higher Education</a>
+                    </div>
+                </div>
+                <div class="header__dropdown">
+                    <a href="#" class="header__nav-link" style="display: flex; align-items: center; gap: 4px;">Our Approach <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                    <div class="header__dropdown-menu">
+                        <a href="design-build.html" class="header__dropdown-item mockup-clickable">Design+Build</a>
+                        <a href="funding.html" class="header__dropdown-item mockup-clickable">Partners in Funding</a>
+                    </div>
+                </div>
+                <a href="clients.html" class="header__nav-link mockup-clickable">Clients</a>
+                <a href="services.html" class="header__nav-link mockup-clickable">Services</a>
+                <div class="header__dropdown">
+                    <a href="#" class="header__nav-link" style="display: flex; align-items: center; gap: 4px;">About Us <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                    <div class="header__dropdown-menu">
+                        <a href="#" class="header__dropdown-item">Our Story</a>
+                        <a href="#" class="header__dropdown-item">Our Team</a>
+                        <a href="#" class="header__dropdown-item">Contact</a>
+                    </div>
+                </div>
+                <div class="header__contact-wrapper">
+                    <a href="#" class="header__btn btn btn--primary" id="getStartedBtn">Get Started</a>
+                    <div class="header__contact-dropdown" id="contactDropdown">
+                        <h3 class="contact-dropdown__title">Let's Connect</h3>
+                        <p class="contact-dropdown__subtitle">Reach out to our experts to discuss your facility needs and explore funding options.</p>
+                        
+                        <div class="contact-dropdown__grid">
+                            <div class="contact-dropdown__col">
+                                <h4>Direct Contact</h4>
+                                <ul>
+                                    <li><a href="tel:+18005550199"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary-green)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> (800) 555-0199</a></li>
+                                    <li><a href="mailto:info@e3es.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary-green)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> info@e3es.com</a></li>
+                                    <li><a href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary-green)"><rect x="3" y="4" width="18" height="18" rx="0" ry="0"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Schedule a Consultation</a></li>
+                                </ul>
+                            </div>
+                            <div class="contact-dropdown__col">
+                                <h4>Regional Experts</h4>
+                                <ul>
+                                    <li><a href="south-texas.html" class="mockup-clickable"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary-green)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> South Texas (Bill)</a></li>
+                                    <li><a href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary-green)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> North Texas</a></li>
+                                    <li><a href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary-green)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Central Texas</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="contact-dropdown__footer">
+                            <h4>Texas Office Locations</h4>
+                            <p>Dallas | Houston | Austin | San Antonio</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Intro Banner -->
+    <section class="db-page-hero" style="background: linear-gradient(to right, rgba(17, 36, 19, 0.2) 0%, rgba(17, 36, 19, 0.85) 25%, rgba(17, 36, 19, 0.85) 75%, rgba(17, 36, 19, 0.2) 100%), url('images/dl_Carrizo-Springs-8-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg') center/cover no-repeat;">
+        <div class="db-page-hero__container">
+            <h1 class="db-page-hero__title">South Texas &amp; Coast</h1>
+            <div class="db-page-hero__intro">
+                <p>Delivering resilient, hurricane-ready infrastructure and efficient cooling systems to schools across South Texas. We build facilities that reflect the deep cultural pride and spirit of coastal communities.</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- South Texas Region Showcase -->
+    <section class="design-build" style="background: var(--color-bg-white);">
+        <div class="design-build__container" style="max-width: 1200px; margin: 0 auto;">
+            
+            <div class="slider-wrapper">
+                <div class="slider-nav">
+                    <button class="slider-btn" id="sliderPrev" style="margin-left: -60px;">&#10094;</button>
+                    <button class="slider-btn" id="sliderNext" style="margin-right: -60px;">&#10095;</button>
+                </div>
+                <div class="slider-track-container">
+                    <div class="slider-track" id="sliderTrack">
+                        <!-- Slide 1 -->
+                        <div class="slider-card">
+                            <img src="images/dl_Carrizo-Springs-8-400x300-400x300-400x300-400x300-400x300-400x300.jpg" alt="Carrizo Springs" class="slider-card-img">
+                            <div class="slider-card-content">
+                                <h3 style="color: var(--color-primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Carrizo Springs CISD</h3>
+                                <p style="font-weight: 700; color: var(--color-primary-green); margin-bottom: 1rem; font-size: 0.9rem;">$14.9M Facility Renewal</p>
+                                <p style="color: var(--color-text-main); line-height: 1.5; font-size: 0.95rem;">A systems-based improvement program including 100 rooftop HVAC units, LED lighting, and building envelope upgrades to enhance indoor air quality and comfort.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="slider-card">
+                            <img src="images/Edcouch-400x300-400x300-400x300-400x300-400x300-400x300.jpg" alt="Edcouch-Elsa ISD" class="slider-card-img">
+                            <div class="slider-card-content">
+                                <h3 style="color: var(--color-primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Edcouch-Elsa ISD</h3>
+                                <p style="font-weight: 700; color: var(--color-primary-green); margin-bottom: 1rem; font-size: 0.9rem;">$15.5M HVAC & Controls Retrofit</p>
+                                <p style="color: var(--color-text-main); line-height: 1.5; font-size: 0.95rem;">A comprehensive project involving redesigning the High School chilled water system, installing new Alerton Automation Systems, and LED retrofits.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="slider-card">
+                            <img src="images/Ricardo-400x300-400x300-400x300-400x300-400x300-400x300.jpg" alt="Ricardo ISD" class="slider-card-img">
+                            <div class="slider-card-content">
+                                <h3 style="color: var(--color-primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Ricardo ISD</h3>
+                                <p style="font-weight: 700; color: var(--color-primary-green); margin-bottom: 1rem; font-size: 0.9rem;">SECO Grant Funded Savings</p>
+                                <p style="color: var(--color-text-main); line-height: 1.5; font-size: 0.95rem;">Utilized ARRA SECO Grants and District funds for a $969K project featuring district-wide controls, 44 new HVAC units, and lighting upgrades.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="slider-card">
+                            <img src="images/MERCEDES-400x300-400x300-400x300-400x300-400x300-400x300.jpg" alt="Mercedes ISD" class="slider-card-img">
+                            <div class="slider-card-content">
+                                <h3 style="color: var(--color-primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Mercedes ISD</h3>
+                                <p style="font-weight: 700; color: var(--color-primary-green); margin-bottom: 1rem; font-size: 0.9rem;">$9.5M QZAB Project</p>
+                                <p style="color: var(--color-text-main); line-height: 1.5; font-size: 0.95rem;">An energy-efficiency program retrofitting 10,500 lighting fixtures and major HVAC replacements, avoiding $700K+ in annual utility costs.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="slider-card">
+                            <img src="images/Donna-400x300-400x300-400x300-400x300-400x300-400x300.jpg" alt="Donna ISD" class="slider-card-img">
+                            <div class="slider-card-content">
+                                <h3 style="color: var(--color-primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;">Donna ISD</h3>
+                                <p style="font-weight: 700; color: var(--color-primary-green); margin-bottom: 1rem; font-size: 0.9rem;">$7.9M Conservation Program</p>
+                                <p style="color: var(--color-text-main); line-height: 1.5; font-size: 0.95rem;">A comprehensive LED retrofit across 20 campuses and mechanical retrofits at 9 campuses, successfully completed with zero change orders.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- South Texas Design Build & Testimonials -->
+    <section class="db-feature db-feature--grey" style="padding: 6rem 2rem;">
+        <div class="db-feature__container" style="align-items: flex-start;">
+            <div class="db-feature__content" style="flex: 2;">
+                <h2>The <span style="color: var(--color-primary-dark);">Design<span style="color: var(--color-primary-green); font-weight: 900;">+</span>Build</span> Advantage in South Texas</h2>
+                <p>For South Texas schools, traditional construction often means delays, change orders, and finger-pointing - especially when dealing with the unique climate and rapid growth of the region. E3's integrated Design<span style="color: var(--color-primary-green); font-weight: 900;">+</span>Build approach completely flips this script.</p>
+                <p>By keeping engineering, auditing, and project management under one roof, we guarantee your agreed-upon scope of work at the exact stated price. We fast-track project timelines, ensuring critical upgrades like HVAC overhauls and weather-resilient roofing are completed before the start of the new school year. The result? Modern, comfortable learning environments delivered on time and on budget.</p>
+                <a href="design-build.html" style="margin-top: 1rem;" class="btn btn--primary mockup-clickable">Learn More About Design+Build</a>
+                
+                
+            </div>
+            
+            <!-- Bill Contact Sidebar -->
+            <div class="bill-sidebar" style="flex: 1; display: flex; flex-direction: column; border-left: 4px solid var(--color-primary-green); padding-left: 2rem;">
+                <div style="background: var(--color-bg-white); border-radius: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; overflow: hidden; border: 3px solid var(--color-primary-green); flex-shrink: 0; margin-bottom: 1.5rem;">
+                        <img src="images/dl_B-Savarino-370x280-400x400-400x400-400x400-400x400-400x400-400x400.jpg" alt="Bill Savarino" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div>
+                        <h3 style="color: var(--color-primary-dark); font-size: 1.5rem; margin-bottom: 0.2rem; font-weight: 800;">Meet Bill</h3>
+                        <h4 style="color: var(--color-primary-green); font-size: 0.9rem; margin-bottom: 1rem; font-weight: 800; text-transform: uppercase;">Business Development, South Texas</h4>
+                        <blockquote style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-main); margin-bottom: 1rem; font-style: italic;">
+                            "Bill is most proud of his beautiful family. 'All this time we didn't realize we were making memories, we just knew we were having fun!'"
+                        </blockquote>
+                        <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                            Have questions about how Design<span style="color: var(--color-primary-green); font-weight: 900;">+</span>Build or creative funding can transform your district? Reach out directly to Bill.
+                        </p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+                            <a href="mailto:contact@e3es.com" class="btn btn--primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Email Bill</a>
+                            <a href="tel:+1" class="btn btn--outline" style="padding: 0.5rem 1rem; font-size: 0.9rem; border-color: var(--color-primary-dark); color: var(--color-primary-dark);">Schedule a Call</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div style="max-width: 1200px; margin: 4rem auto 0; width: 100%;">
+            <blockquote class="full-width-testimony bg-white">
+                <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid var(--color-primary-green); flex-shrink: 0;">
+                    <img src="images/superintendent-400x400-400x400-400x400-400x400-400x400-400x400.png" alt="Superintendent" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); transform-origin: top center;">
+                </div>
+                <div style="flex: 1; font-style: italic; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.6;">
+                    "E3 upgraded our aging facilities into modern learning environments without disrupting the school year. Their process was smooth from start to finish."
+                </div>
+                <div class="full-width-testimony-author">
+                    <div style="margin-bottom: 0.2rem;">- Superintendent, South Texas ISD</div>
+                    <a href="#" style="color: var(--color-primary-dark); font-weight: 700; font-size: 0.9rem; text-decoration: underline; font-style: normal;">Read Case Study</a>
+                </div>
+            </blockquote>
+        </div>
+</section>
+
+
+    <!-- Funding Solutions Section -->
+    <section class="db-feature db-feature--grey" style="overflow: visible; padding: 6rem 2rem;">
+        <div class="db-feature__container db-feature__container--reverse">
+            <div class="db-feature__content">
+                <div class="db-feature__icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h2>Securing Funding for South Texas Schools</h2>
+                <p>We know that school budgets are tighter than ever. That's why we don't just engineer solutions - we find the money to pay for them. We make it completely <strong>Easy</strong> for our <strong>Local</strong> Texas partners to upgrade facilities by leveraging purchasing cooperatives like BuyBoard and TIPS. Because the co-op has already completed the competitive bidding process, you can <strong>skip the RFP</strong>, bypass traditional procurement hurdles and start transforming your campus sooner. As your <strong>Trusted</strong> advisor, our experts also specialize in navigating complex Texas state grants, including <strong>SECO</strong> and the <strong>LoanSTAR</strong> program.</p>
+                <a href="funding-stories.html" style="margin-top: 2rem;" class="btn btn--primary btn--large mockup-clickable">Explore Funding Stories</a>
+                
+                <div style="display: flex; gap: 1.5rem; margin-top: 2.5rem; align-items: center; flex-wrap: wrap;">
+                    <div style="padding: 1rem; border: 2px solid #ddd; background: white; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 70px;">
+                        <img src="images/dl_images-800x600-800x600-800x600-800x600-800x600-800x600.png" alt="Purchasing Cooperatives" style="height: 40px; width: auto;">
+                    </div>
+                    <div style="padding: 1rem; border: 2px solid #ddd; background: white; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 70px;">
+                        <img src="images/dl_TIPS-TC-Logo-300x132-1-800x600-800x600-800x600-800x600-800x600-800x600.png" alt="TIPS Purchasing Cooperative" style="height: 45px; width: auto;">
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; width: 100%; max-width: 600px;">
+                <div class="db-feature__image-wrapper" style="width: 100%; max-width: 500px;">
+                    <img src="images/funding-2-600x400-600x400-600x400-600x400-600x400-600x400.png" alt="Funding Success" class="db-feature__image" style="width: 100%; border-radius: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+                
+                
+            </div>
+        </div>
+    
+        <div style="max-width: 1200px; margin: 4rem auto 0; width: 100%;">
+            <blockquote class="full-width-testimony bg-white">
+                <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid var(--color-primary-green); flex-shrink: 0;">
+                    <img src="images/facilities_director-400x400-400x400-400x400-400x400-400x400-400x400.png" alt="Facilities Director" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); transform-origin: top center;">
+                </div>
+                <div style="flex: 1; font-style: italic; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.6;">
+                    "When the hurricane hit, our E3-upgraded roofs and backup systems kept our community safe. They truly understand coastal resilience."
+                </div>
+                <div class="full-width-testimony-author">
+                    <div style="margin-bottom: 0.2rem;">- Facilities Director, Coastal Bend Schools</div>
+                    <a href="#" style="color: var(--color-primary-dark); font-weight: 700; font-size: 0.9rem; text-decoration: underline; font-style: normal;">Read Case Study</a>
+                </div>
+            </blockquote>
+        </div>
+</section>
+
+    <!-- Services Section -->
+    <section class="services" style="padding: 6rem 2rem; background: var(--color-bg-white);">
+        <div class="services__container">
+            <h2 class="section-title" style="text-align: center;">Our K-12 Solutions in South Texas</h2>
+            <div class="services__grid">
+                <!-- 1. HVAC -->
+                <div class="services__card">
+                    <img src="images/hvac-500x220-500x220-500x220-500x220-500x220-500x220.jpg" alt="HVAC System Upgrades and Replacements" class="services__card-image">
+                    <div class="services__card-content">
+                        <h3 class="services__card-title">HVAC System Upgrades and Replacements</h3>
+                        <p class="services__card-text">E3 designs, replaces, and upgrades outdated heating, ventilation, and air conditioning systems to create comfortable indoor environments and improve operational efficiency.</p>
+                    </div>
+                </div>
+                <!-- 2. LED Lighting -->
+                <div class="services__card">
+                    <img src="images/led-500x220-500x220-500x220-500x220-500x220-500x220.jpg" alt="LED Lighting Upgrades and Sports Lighting" class="services__card-image">
+                    <div class="services__card-content">
+                        <h3 class="services__card-title">LED Lighting Upgrades and Sports Lighting</h3>
+                        <p class="services__card-text">E3 provides true turnkey lighting solutions - including auditing, design, procurement, and installation - for building interiors, exteriors, and specialized sports complexes. They utilize specialized retrofit labor and frequently deploy a "ghost" strategy, working nights and weekends to complete upgrades in occupied spaces without disrupting students, staff, or patients.</p>
+                    </div>
+                </div>
+                <!-- 3. IAQ -->
+                <div class="services__card">
+                    <img src="images/air-500x220-500x220-500x220-500x220-500x220-500x220.jpg" alt="Indoor Air Quality Analysis and Improvements" class="services__card-image">
+                    <div class="services__card-content">
+                        <h3 class="services__card-title">Indoor Air Quality Analysis and Improvements</h3>
+                        <p class="services__card-text">E3 assesses and upgrades facility environments to ensure safe, healthy, and high-quality indoor air for building occupants.</p>
+                    </div>
+                </div>
+                <!-- 4. BAS -->
+                <div class="services__card">
+                    <img src="images/automation-500x220-500x220-500x220-500x220-500x220-500x220.jpg" alt="Building Automation Systems (BAS)" class="services__card-image">
+                    <div class="services__card-content">
+                        <h3 class="services__card-title">Building Automation Systems (BAS)</h3>
+                        <p class="services__card-text">E3 optimizes and commissions intelligent building control systems, allowing facilities to efficiently monitor and manage their energy usage.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3.5rem;">
+                <a href="#" class="btn btn--primary">View All Solutions</a>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+
+    <!-- Floating Chat Icon -->
+    <div class="floating-chat-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/>
+        </svg>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        const contactDropdown = document.getElementById('contactDropdown');
+        
+        if (getStartedBtn && contactDropdown) {
+            getStartedBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactDropdown.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!getStartedBtn.contains(e.target) && !contactDropdown.contains(e.target)) {
+                    contactDropdown.classList.remove('active');
+                }
+            });
+        }
+
+        // Slider logic
+        const track = document.getElementById('sliderTrack');
+        const prevBtn = document.getElementById('sliderPrev');
+        const nextBtn = document.getElementById('sliderNext');
+        
+        if (track && prevBtn && nextBtn) {
+            let currentIndex = 0;
+            const totalSlides = 5;
+            const slidesVisible = 3;
+
+            function updateSlider() {
+                const card = track.children[0];
+                if (!card) return;
+                const slideWidth = card.offsetWidth + 32; // card width + 2rem gap
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= totalSlides - slidesVisible;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < totalSlides - slidesVisible) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+
+            window.addEventListener('resize', updateSlider);
+            // Small delay to ensure CSS styles are computed
+            setTimeout(updateSlider, 100);
+        }
+    });
+</script>
+</body>
+</html>
+

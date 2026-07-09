@@ -4479,11 +4479,11 @@ main > .wp-block-e3es-full-width-testimonial {
     color: var(--color-text-main);
     display: grid;
     grid-template-columns: 
-      [full-start] minmax(2rem, 1fr) 
+      [full-start] 1fr 
       [breakout-start] minmax(0, 100px) 
       [content-start] minmax(0, 850px) [content-end] 
       minmax(0, 100px) [breakout-end] 
-      minmax(2rem, 1fr) [full-end];
+      1fr [full-end];
     padding: 2.5rem 0 4rem 0;
 
     // Remove margin-top on the first child to avoid large gaps below the hero banner
@@ -4496,6 +4496,8 @@ main > .wp-block-e3es-full-width-testimonial {
       grid-column: content;
       width: 100%;
       box-sizing: border-box;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
 
     // Breakout elements span from full-start to full-end
@@ -4509,20 +4511,45 @@ main > .wp-block-e3es-full-width-testimonial {
     > .wp-block-e3es-core-pillars,
     > .db-pillars,
     > .alignfull,
-    > .map-section {
+    > .map-section,
+    > .design-build__pillars,
+    > .has-background {
       grid-column: full;
       width: 100%;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 
     // Wide align elements span from breakout-start to breakout-end
-    > .alignwide {
+    > .alignwide:not(.design-build__pillars):not(.has-background) {
       grid-column: breakout;
       width: 100%;
     }
 
+    // Constrain and center inner content of full-width background sections
+    > .design-build__pillars,
+    > .has-background {
+      box-sizing: border-box;
+      > *:not(.alignfull) {
+        max-width: 1200px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        box-sizing: border-box;
+      }
+    }
+
+    // Reduce margin-bottom of db-page-hero inside intro-banner when followed by full-width bg block
+    > .wp-block-e3es-intro-banner:has(+ :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .design-build__pillars, .has-background)) {
+      .db-page-hero {
+        margin-bottom: 0 !important;
+      }
+    }
+
     // Prevent white gaps between adjacent full-width background blocks
-    > :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .has-background) {
-      & + :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .has-background) {
+    > :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .design-build__pillars, .has-background) {
+      & + :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .design-build__pillars, .has-background) {
         margin-top: 0 !important;
       }
     }
