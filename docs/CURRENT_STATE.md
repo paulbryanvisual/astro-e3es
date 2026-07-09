@@ -80,6 +80,8 @@
 - **Texas SVG Map Star Alignment**: Scaled and aligned the 64 star coordinates in `wordpress.ts` using a mathematically precise bounding box mapping formula based on the true green Texas shape silhouette coordinates. Verified via custom overlay composite rendering that all stars align perfectly with their bitmap counterpart locations. Increased star size to exactly twice the original size (radius 16) for clear visibility on the final page.
 - **Conditional Project Eyebrow Hiding**: Implemented an elegant, pure CSS selector in `mobile.scss` utilizing `:has` pseudo-class (specifically `body:not(:has(.project-section ~ .project-section)) .project-section__eyebrow { display: none !important; }`) that automatically hides the "Project 1" eyebrow label on pages with only a single project section, keeping the eyebrow visible when multiple projects are present.
 - **Client Detail Spacing & Global Rule Migration**: Migrated the first-child spacing CSS rules to the global `mobile.scss` file. Because Astro scopes component styles by default, scoped CSS ignores dynamically injected content from `set:html`. Placing the rule in global CSS successfully targets dynamic content. The rule ensures that standard text or headings directly following a banner get a 4rem (64px) margin-top, while full-width sections with background colors are automatically collapsed.
+- **Editable Standalone SVG Map**: Generated a clean, standalone, self-contained SVG map file `public/Texas-Map-Editable.svg` containing all 8 vector region paths and the 64 scaled twice-as-large stars. This file can be directly imported and edited inside vector design software like Adobe Photoshop or Illustrator.
+
 
 
 
