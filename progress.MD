@@ -2,7 +2,7 @@
 
 ## Section 1 — Currently Working On
 
-* No active tasks in development. All client pages have been seeded and verified.
+* 🛠️ [Cloudflare Deployment Fix](https://github.com/paulbryanvisual/astro-e3es/actions) — Untrack .wrangler cache directory and update .gitignore to resolve build failures.
 
 ## Section 2 — For Review
 
