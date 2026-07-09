@@ -3199,6 +3199,11 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     letter-spacing: 0.05em;
     color: var(--color-primary-green);
     margin-bottom: 0.35rem;
+
+    // Hide eyebrow if there is only a single project section on the page
+    body:not(:has(.project-section ~ .project-section)) & {
+      display: none !important;
+    }
   }
   
   &__title {
