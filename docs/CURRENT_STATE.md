@@ -43,5 +43,10 @@
 - **Clients Page Improvements**:
   - Added breadcrumbs directly under the header / above the hero banner on the `/clients` page by importing and rendering the `<Breadcrumb>` component with a custom home dropdown path hierarchy.
   - Removed rounded corners (set `border-radius: 0`) from all boxes, containers, inputs, selection filters, tags/pills, and result wrappers on the clients page to guarantee sharp box corners.
+- **Team Page Grid & Hover Layout Update**:
+  - Changed the desktop grid layout in `src/styles/desktop.scss` for `.team-directory__grid` to be a 4-column grid instead of a 3-column grid.
+  - Removed physical translation/movement (`transform: translateY(-4px)`) on hover of team member cards in `src/styles/mobile.scss` so they do not falsely indicate clickability.
+  - Restructured the hover rules in `src/styles/mobile.scss` by nesting the `.team-directory__photo` zoom and grayscale-to-color transition directly inside the `&__card:hover` block. This ensures correct compilation of the photo hover transition and retains the default `filter: grayscale(100%)` and transition attributes on `&__photo`.
+
 
 
