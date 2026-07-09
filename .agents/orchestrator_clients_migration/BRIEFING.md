@@ -62,7 +62,7 @@ Migrate client page content from live e3es.com to local WordPress, correct layou
 
 ## Active Timers
 - Heartbeat cron: task-13
-- Safety timer: none
+- Safety timer: task-59
 
 ## Artifact Index
 - /Users/bryanpaul/Local Sites/astro-e3es/.agents/orchestrator_clients_migration/BRIEFING.md — Coordination index
