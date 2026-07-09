@@ -31,3 +31,13 @@
   - Created the root page slug `torch` (ID 6883) and seeded its content using the new `seed-torch.php` helper seeder, structuring the Gutenberg layout with 25/75 split-screen columns, minified HTML blocks, and BEM class names.
   - Implemented responsive BEM stylesheet definitions in `src/styles/mobile.scss` and `src/styles/desktop.scss` specifying a sticky sidebar layout, custom brand colors, custom font scaling, and accessible 44px link touch targets.
   - Successfully verified building with `npm run build` and captured layout screenshot.
+- **TORCH Sidebar Removal & Hero Spacing**:
+  - Removed the sidebar from `/torch`, centering the main content in a 1200px container.
+  - Added a default `margin-bottom: 4rem` to `.db-page-hero` in `mobile.scss` to ensure proper spacing when text follows the hero banner.
+- **FAQ Keywords Removal**:
+  - Removed `faq-section__keywords` tag container rendering from both the WordPress PHP block rendering (`e3_render_faq_section` in `e3es-headless-helper.php`) and the Gutenberg JavaScript block edit/save functions (`editor-blocks.js`) to keep FAQ sections clean.
+- **WP Update Post Backslash Stripping Bug Fix**:
+  - Fixed a bug where `wp_update_post` calls in `e3es-headless-helper.php` stripped backslashes from JSON comment attributes (e.g., converting `\u0026` to `u0026` literals), triggering Gutenberg "Attempt Block Recovery" validation errors.
+  - Resolved this by wrapping `post_content` in `wp_slash()` for all `wp_update_post` calls.
+  - Executed a batch migration (`sync_block_attrs.php`) using the Local PHP binary to automatically restore correct backslashed `\u0026` escaping in all 156 affected posts in the database.
+

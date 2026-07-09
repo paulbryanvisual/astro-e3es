@@ -32,3 +32,8 @@
   - `torch-layout` aligns the columns structure. On mobile, it flex-stacks the sections; on desktop, it spans a responsive, sticky sidebar alongside a flexible main content column.
   - `torch-sidebar` renders the marketing links with SVG file/globe icons and contact details using brand-compliant backgrounds, font weights, and border accents.
   - `torch-main` arranges headings, embedded Vimeo video study frames, logos, and services bullet points. Interactive anchors feature 44px touch targets and distinct focus rings.
+- **WordPress Slashing & Block Integrity**:
+  - **Slashing Protocol**: All custom PHP code that updates `post_content` via `wp_update_post()` must wrap the content string in `wp_slash()` to ensure backslashes in serialized JSON block comments (like `\u0026`) are preserved. Otherwise, WordPress's internal `wp_unslash()` will strip the backslash and convert it to literal `u0026`, causing Gutenberg "Attempt Block Recovery" validation failures.
+- **FAQ Section Keywords Isolation**:
+  - The custom Gutenberg block `e3es/faq-section` isolates the dynamic rendering of keyword tags to keep standard list views clean. Keywords rendering is deactivated in both JavaScript (`editor-blocks.js`) and PHP (`e3es-headless-helper.php`).
+
