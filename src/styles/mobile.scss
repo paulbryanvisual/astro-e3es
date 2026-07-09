@@ -4541,7 +4541,7 @@ main > .wp-block-e3es-full-width-testimonial {
       [content-start] minmax(0, 850px) [content-end] 
       minmax(0, 100px) [breakout-end] 
       1fr [full-end];
-    padding: 2.5rem 0 4rem 0;
+    padding: 0 0 4rem 0;
 
     // Remove margin-top on the first child to avoid large gaps below the hero banner
     > *:first-child {
