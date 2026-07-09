@@ -65,7 +65,7 @@ export async function getStaticPaths() {
 }
 
 const { page, allItems } = Astro.props;
-const optimizedContent = processWordPressHtml(page.content.rendered);
+const optimizedContent = processWordPressHtml(page.content.rendered, page.slug);
 const breadcrumbs = buildBreadcrumbs(page, allItems);
 
 ---
