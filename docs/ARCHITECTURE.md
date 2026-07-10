@@ -1,5 +1,9 @@
 # Architecture Notes
 
+## Services List Formatting & Gutenberg List Blocks
+- **Header formatting in list items**: Across all `services` posts, features and benefit lists use a standardized `<li><strong>Heading</strong><br />Description</li>` format. Any legacy bold notations (`**`), trailing colons (`:`), or double stars (`:**`) are stripped, replacing them with a semantic `<br />` soft return to separate the bold title block from the normal description.
+- **Ordered list blocks**: For the "Key Benefits of E3's Interior LED Solutions" section in `interior-lighting-3`, separate paragraph blocks are converted into a single native Gutenberg ordered list block (`<!-- wp:list {"ordered":true} -->` and `<ol class="wp-block-list">`). Sub-lists of modes (like Direct Instruction Mode, AV/Presentation Mode, etc.) are nested directly inside the parent list item (`<li>`) semantically to preserve layout hierarchy and screen-reader accessibility.
+
 ## Industry Page Single-Column Layouts
 - **BEM Unified Class Structure**: Dynamic industry pages (Municipalities, Healthcare, Higher Education) utilize a unified BEM CSS layout class system `.industry-layout`.
 - **Single-Column Alignment**: Sidebars (`.industry-layout__sidebar`) have been completely removed from the HTML templates in the WordPress database and hidden in SCSS. The main column (`.industry-layout__main`) is styled to take full width and centered at `850px` width on both mobile and desktop viewports to optimize reading readability.

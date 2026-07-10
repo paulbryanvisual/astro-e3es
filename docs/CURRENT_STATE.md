@@ -1,5 +1,10 @@
 # Current State
 
+- **Services List Item and Ordered List Formatting** (July 10, 2026):
+  - **Goal**: Formatted all features/benefits list items across all published services posts to use bold headers, soft returns (`<br />`), and normal description text, and converted separate paragraphs under "Key Benefits of E3's Interior LED Solutions" in `interior-lighting-3` into a native Gutenberg ordered list.
+  - **Implementation**: Created and executed `convert_services_lists.php` to parse list items `<li>...</li>` and apply regex transforms matching bold wrappers (`<strong>`), colons, and stars (`:**`), replacing them with standard `<strong>` headings, `<br />` soft returns, and clean descriptions. Replaced the Key Benefits section in post ID 6222 with a structured ordered list block.
+  - **Verification**: Verified using database check queries, Astro builds, and local development builds.
+
 - **Boyd ISD Post Content Recovery** (July 9, 2026):
   - **Goal**: Recovered the corrupted `u0026amp;` code entities inside JSON comments and HTML body tags for Boyd ISD (ID 12).
   - **Implementation**: Created and executed `clean_boyd_db.php` to perform precise string replacements. Corrected JSON attributes in block comments to use valid escaped `\u0026` notation and restored standard HTML entities (`&amp;`) inside headings, links, and Vimeo iframe URLs.
