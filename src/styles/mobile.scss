@@ -5721,5 +5721,158 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
   }
 }
 
+/* Contact Page Interactive SVG Map Styles */
+.contact-map {
+  &__container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  &__svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
+    display: block;
+  }
+
+  &__region {
+    cursor: pointer;
+    outline: none;
+
+    path, polygon, rect {
+      transition: fill 0.3s ease, stroke 0.3s ease;
+      fill: #2b5434; /* default green */
+      stroke: #ffffff;
+      stroke-width: 1.5px;
+    }
+
+    &:hover, &:focus {
+      path, polygon, rect {
+        fill: #7da044; /* accent green */
+        stroke: #ffffff;
+        stroke-width: 2.5px;
+      }
+    }
+
+    &--active {
+      path, polygon, rect {
+        fill: #7da044 !important;
+        stroke: #ffffff !important;
+        stroke-width: 2.5px !important;
+      }
+    }
+
+    /* Accessibility focus ring */
+    &:focus-visible {
+      outline: 3px solid #7da044;
+      outline-offset: 2px;
+    }
+  }
+
+  &__pin {
+    cursor: pointer;
+    outline: none;
+
+    &__core {
+      fill: #ffffff;
+      stroke: #11411d;
+      stroke-width: 2px;
+      transition: transform 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+    }
+
+    &__pulse {
+      fill: rgba(255, 255, 255, 0.4);
+      stroke: #ffffff;
+      stroke-width: 1px;
+      animation: contact-pin-pulse 2s infinite ease-out;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    &:hover, &:focus {
+      .contact-map__pin__core {
+        transform: scale(1.3);
+        fill: #7da044;
+        stroke: #ffffff;
+      }
+    }
+
+    /* Accessibility focus ring */
+    &:focus-visible {
+      outline: 3px solid #7da044;
+      outline-offset: 2px;
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    z-index: 100;
+    background-color: #11411d;
+    color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    max-width: 280px;
+    width: max-content;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transform: translate(-50%, -100%) translateY(-10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -100%) translateY(-15px);
+    }
+
+    &__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &__address, &__phone, &__directions {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      margin: 0 0 6px 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    &__phone {
+      font-weight: 700;
+      color: #7da044;
+    }
+
+    &__directions {
+      margin-bottom: 0;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+  }
+}
+
+@keyframes contact-pin-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+
 
 
