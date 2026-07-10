@@ -5425,9 +5425,7 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
   padding: 3rem 1.5rem;
 
   &__container {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    display: block;
   }
 
   &__sidebar {
@@ -5551,7 +5549,8 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
 
   &__main {
     width: 100%;
-    order: 1; // Content above sidebar on mobile
+    max-width: 850px;
+    margin: 0 auto;
 
     &-title {
       font-size: 1.85rem;

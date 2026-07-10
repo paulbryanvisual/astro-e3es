@@ -582,24 +582,17 @@
     padding: 5rem 2rem;
 
     &__container {
-      flex-direction: row;
-      gap: 4rem;
-      align-items: flex-start;
+      display: block;
     }
 
     &__sidebar {
-      flex: 0 0 25%;
-      width: 25%;
-      order: 1; // Sidebar on the left on desktop
-      position: sticky;
-      top: 120px;
-      align-self: flex-start;
+      display: none !important;
     }
 
     &__main {
-      flex: 0 0 72%; // Strict: desktop grid alignment with 1440px canvas limit
-      width: 72%;
-      order: 2; // Content on the right on desktop
+      width: 100%;
+      max-width: 850px !important; // Strict: desktop centering at 850px for readability
+      margin: 0 auto !important;
 
       &-title {
         font-size: 2.25rem;
