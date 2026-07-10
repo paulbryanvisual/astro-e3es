@@ -2,12 +2,13 @@
 
 ## Section 1 — Currently Working On
 
-* No active tasks in development.
+* 🖼️ [Team Headshot QR Codes PDF](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/scripts/python/generate_headshot_qrcodes.py) — Designing and generating a print-ready vector PDF document containing unique QR codes for team headshot access.
 
 ## Section 2 — For Review
 
+* 📊 [Comparative Architecture Report](file:///Users/bryanpaul/.gemini/antigravity/brain/0de7570d-1a35-4948-a302-1e9a55bce7c8/comparative_architecture_report.md) — Detailed comparative analysis report analyzing the trade-offs of deploying a pure Astro page setup versus the current hybrid headless WordPress architecture, highlighting compile times, edit control, and developer velocity.
+* 🧹 [Clean Migrated Text Formatting](file:///Users/bryanpaul/.gemini/antigravity/brain/6c9e0e9b-e463-4f0c-a876-09a505fce899/regex_evaluation_report.md) — Script to strip automatic inline bold formatting (<strong>/<b>) from migrated text blocks and replace with soft returns (<br />) for consistent layout rendering.
 * 🛠️ [Cloudflare Deployment Fix](https://github.com/paulbryanvisual/astro-e3es/actions) — Untrack .wrangler cache directory and update .gitignore to resolve build failures.
-
 * 🏫 [Boyd ISD](http://astro-e3es.localhost:8080/clients/boyd-isd/) — HVAC & LED updates with correct original description text and gallery.
 * 🏫 [Bryan ISD](http://astro-e3es.localhost:8080/clients/bryan-isd/) — Correct relationship paragraph position, details, and gallery.
 * 🏫 [Caldwell ISD](http://astro-e3es.localhost:8080/clients/caldwell-isd/) — Restored layout wrapper structure, details, and gallery.
