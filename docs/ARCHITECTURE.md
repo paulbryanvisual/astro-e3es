@@ -71,4 +71,6 @@
 
 ## Client Case Study Content Layout (Dynamic Detail Pages)
 - **Overview Text Constraint**: Standard paragraphs, lists, and headings inside the `main.client-detail` container (which wraps the WP rendered dynamic content), as well as general text blocks inside `.project-section__content`, are constrained to `max-width: 850px !important` and centered with `margin-left: auto !important; margin-right: auto !important` to ensure clean typography readability for the case study descriptions, while full-width modules (like `.project-details` table, columns, etc.) remain wide/aligned.
+- **Gallery & Gallery Headline Overrides**: Galleries (`.wp-block-gallery`, `.project-gallery`) and any headings immediately followed by a gallery (selected via `:has(+ :is(.wp-block-gallery, .project-gallery))`) bypass the standard `850px` constraint and are allowed a wider `1200px` max-width limit, ensuring thumbnails span appropriately while maintaining page alignment.
+
 

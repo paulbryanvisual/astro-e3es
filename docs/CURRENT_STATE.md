@@ -126,6 +126,8 @@
 - **Interactive Map Direct Navigation**: Refactored the click event listener on the `.region-link` buttons under the map to navigate directly to their respective regional pages on the first click, avoiding the selection lock.
 - **Clients Intro Buttons Removal**: Removed the "View Project History" and "View Printable List" buttons from `/clients` page intro header.
 - **Case Study Overview Width Constraint**: Constrained general case study overview content (paragraphs, headings, lists) on dynamic client detail pages, as well as descriptions inside `.project-section__content`, to exactly `850px` wide and centered them using SASS rules.
+- **Gallery & Gallery Headline Width Limits**: Expanded dynamic case study galleries (`.wp-block-gallery`, `.project-gallery`) and any headings directly preceding them to a wider `1200px` maximum width limit (retaining auto-centering) to optimize grid thumbnail presentation.
+
 
 
 
