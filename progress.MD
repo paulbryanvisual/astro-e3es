@@ -2,14 +2,17 @@
 
 ## Section 1 — Currently Working On
 
-* No active tasks in development.
+* (None - all approved tasks completed!)
 
 ## Section 2 — For Review
 
 * 🗺️ [Contact Page Interactive Map](http://astro-e3es.localhost:8080/contact/) — Replaced the static map image with an interactive SVG Texas map showing office locations, region hover highlighting, pulsing pins, and detailed tooltips (addresses, phones, and directions).
+* 📊 [Comparative Architecture Report](file:///Users/bryanpaul/Local%20Sites/astro-e3es/docs/comparative_architecture_report.md) — Detailed comparative analysis report analyzing the trade-offs of deploying a pure Astro page setup versus the current hybrid headless WordPress architecture.
+* 🧹 [Clean Migrated Text Formatting](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/docs/CURRENT_STATE.md) — Cleaned up automatic inline bold formatting (<strong>/<b>) from migrated text list blocks and replaced them with soft returns (<br />).
+* 🔗 [Services Card Links Fix](http://astro-e3es.localhost:8080/services/) — Refactored service cards layout to wrap the entire card in a single link to meet accessibility standards (WCAG 2.5.3 / 2.4.4), with custom green outlines on keyboard focus.
+* 🖼️ [Josh & Jeff Team Photos Update](http://astro-e3es.localhost:8080/about-us/our-team/) — Synchronized and set current featured images for President Josh Combs and VP Jeff Freeman in the employees database.
 * 🛠️ [Cloudflare Deployment Fix](https://github.com/paulbryanvisual/astro-e3es/actions) — Untrack .wrangler cache directory and update .gitignore to resolve build failures.
-
-* 🏫 [Boyd ISD](http://astro-e3es.localhost:8080/clients/boyd-isd/) — HVAC & LED updates with correct original description text and gallery.
+* 🏫 [Boyd ISD](http://astro-e3es.localhost:8080/clients/boyd-isd/) — HVAC & LED updates with correct original description text, gallery, and fully-recovered native Gutenberg block schemas (resolved validation mismatch).
 * 🏫 [Bryan ISD](http://astro-e3es.localhost:8080/clients/bryan-isd/) — Correct relationship paragraph position, details, and gallery.
 * 🏫 [Caldwell ISD](http://astro-e3es.localhost:8080/clients/caldwell-isd/) — Restored layout wrapper structure, details, and gallery.
 * 🏫 [Carrizo Springs CISD](http://astro-e3es.localhost:8080/clients/carrizo-springs-cisd/) — Correct project blocks layout and local Flickr photos.

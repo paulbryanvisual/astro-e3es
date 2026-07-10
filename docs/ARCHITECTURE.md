@@ -3,7 +3,8 @@
 ## Industry Page Single-Column Layouts
 - **BEM Unified Class Structure**: Dynamic industry pages (Municipalities, Healthcare, Higher Education) utilize a unified BEM CSS layout class system `.industry-layout`.
 - **Single-Column Alignment**: Sidebars (`.industry-layout__sidebar`) have been completely removed from the HTML templates in the WordPress database and hidden in SCSS. The main column (`.industry-layout__main`) is styled to take full width and centered at `850px` width on both mobile and desktop viewports to optimize reading readability.
-- **Accessibility & Design Rules**: In accordance with the accessibility guidelines, all links and email anchors preserve a minimum 44px touch target height and custom green focus outline indicators. All borders and images maintain sharp corners (`border-radius: 0;`).
+- **Accessibility & Design Rules**: In accordance with the accessibility guidelines, all links and email anchors preserve a minimum 44px touch target height and custom green focus outline indicators. All borders and images maintain sharp corners (`border-radius: 0;`). Service page cards follow WCAG 2.5.3 / 2.4.4 compliance by wrapping the entire card in a single `<a>` tag and using child `<span>` elements for arrow text (e.g. `Learn More →`) to prevent nested links and double-readings in screen readers.
+
 
 ## Map Component Animations
 - **CSS Staggering**: Texas map SVG elements animate their regions (.texas-region) sequentially. The CSS resides globally in `src/styles/mobile.scss` to allow map blocks to trigger correctly regardless of whether they are rendered dynamically by WordPress or statically in Astro.
@@ -89,9 +90,12 @@
 - **Administrative Bypass**: To bypass KSES block attribute serialization filtering during script executions:
   1. Bootstrap the script by setting the current user to an administrator: `wp_set_current_user(1)`.
   2. Unconditionally remove the sanitization filters: `kses_remove_filters()`.
+  3. Ensure the database string content is properly slashed: `wp_slash($content)` before calling `wp_update_post()`.
+- **Schema Alignment**: Under this bypass, block attribute JSON comments use standard `\u0026` parameter separators, and their corresponding HTML tag properties (like image `alt` and link headers) match standard entity escaping (`&amp;`) exactly, maintaining 100% schema integrity without editor validation mismatches.
+
 - **Unified SVG Map Rendering**: In `wordpress.ts`, `processWordPressHtml()` replaces static map image placeholders with `TEXAS_MAP_SVG`. The SVG contains inline stylesheet overrides to force all region paths to use brand colors.
 - **Interactive Contact Map & Tooltips**:
   - The contact page interactive map is embedded via a WordPress Custom HTML block to ensure backend-to-frontend layout consistency.
   - Interactive elements (`[data-region]`, `[data-office]`) use BEM selectors (`.contact-map__region`, `.contact-map__pin`) styled in `mobile.scss`.
   - Client-side coordinates (`x, y` inside the SVG viewbox space) are scaled dynamically using `map.getBoundingClientRect()` and the SVG `viewBox` coordinates (`941.76 x 907.17`) to display tooltips precisely over the offices on hover, touch, or focus.
-  - Accessibity focus outlines (`:focus-visible`) and aria labels/hidden controls are implemented to ensure WCAG 2.1 compliance for screen readers and keyboard users.
+  - Accessibility focus outlines (`:focus-visible`) and aria labels/hidden controls are implemented to ensure WCAG 2.1 compliance for screen readers and keyboard users.

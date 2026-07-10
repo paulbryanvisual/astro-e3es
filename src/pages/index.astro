@@ -203,15 +203,13 @@ const heroOptions = [
             <h2 class="section-title" style="text-align: center;">Our Turnkey Services</h2>
             <div class="services__grid">
                 {serviceCards.map((card) => (
-                    <div class="services__card">
-                        <a href={card.link} style="text-decoration: none; color: inherit;">
-                            <img src={card.image} alt={card.alt} class="services__card-image" loading="lazy" decoding="async">
-                            <div class="services__card-content">
-                                <h3 class="services__card-title">{card.title}</h3>
-                                <p class="services__card-text">{card.text}</p>
-                            </div>
-                        </a>
-                    </div>
+                    <a href={card.link} class="services__card">
+                        <img src={card.image} alt={card.alt} class="services__card-image" loading="lazy" decoding="async">
+                        <div class="services__card-content">
+                            <h3 class="services__card-title">{card.title}</h3>
+                            <p class="services__card-text">{card.text}</p>
+                        </div>
+                    </a>
                 ))}
             </div>
         </div>
