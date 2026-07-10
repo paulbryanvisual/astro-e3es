@@ -5815,7 +5815,7 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     max-width: 280px;
     width: max-content;
-    pointer-events: none;
+    pointer-events: auto;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
@@ -5844,11 +5844,31 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
       line-height: 1.4;
       margin: 0 0 6px 0;
       color: rgba(255, 255, 255, 0.9);
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover, &:focus-visible {
+          color: #7da044;
+          text-decoration: underline;
+        }
+      }
     }
 
     &__phone {
       font-weight: 700;
       color: #7da044;
+
+      a {
+        color: #7da044;
+        text-decoration: none;
+
+        &:hover, &:focus-visible {
+          text-decoration: underline;
+        }
+      }
     }
 
     &__directions {
@@ -5858,6 +5878,15 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
       border-top: 1px dashed rgba(255, 255, 255, 0.15);
       padding-top: 6px;
       margin-top: 6px;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover, &:focus-visible {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
