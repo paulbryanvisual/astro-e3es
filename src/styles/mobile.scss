@@ -2230,6 +2230,10 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         margin-right: 0 !important;
     }
 
+    & .cta-banner {
+        margin: 3rem -32px !important;
+    }
+
     & .is-root-container .cta-banner h1,
     & .is-root-container .cta-banner h2,
     & .is-root-container .cta-banner h3,
