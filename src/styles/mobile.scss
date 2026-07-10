@@ -4428,7 +4428,8 @@ main > .services-page__container,
       // Style list blocks (ul/ol with .wp-block-list class) as slanted E3 cards
       .wp-block-list {
         list-style: none !important;
-        padding: 0 !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
         margin: 2.5rem auto !important;
         display: grid !important;
         gap: 1.5rem !important;
@@ -4438,7 +4439,7 @@ main > .services-page__container,
           position: relative !important;
           z-index: 1 !important;
           padding: 1.25rem 2rem !important;
-          margin-left: 10px !important; // account for skew offset
+          margin-left: 4px !important; // account for skew angle so left-most tip aligns with text
           color: var(--color-text-main) !important;
           font-size: 1.05rem !important;
           line-height: 1.6 !important;
@@ -4719,7 +4720,8 @@ main, .editor-styles-wrapper {
   ul.wp-block-list:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *),
   ol.wp-block-list:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
     list-style: none;
-    padding: 0;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
     margin: 2.5rem auto;
     display: grid;
     gap: 1.5rem;
@@ -4729,7 +4731,7 @@ main, .editor-styles-wrapper {
       position: relative;
       z-index: 1;
       padding: 1.25rem 2rem;
-      margin-left: 10px; // account for skew offset
+      margin-left: 4px; // account for skew angle so left-most tip aligns with text
       color: var(--color-text-main);
       font-size: 1.05rem;
       line-height: 1.6;
