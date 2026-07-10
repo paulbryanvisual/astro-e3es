@@ -81,8 +81,10 @@
 - **Media Cleanup**: The `cleanup_unused_media.php` database-driven script cross-references WordPress media attachment basenames and IDs against published post content and metadata. Unreferenced media files and generated intermediate thumbnail files are moved to `wp-content/uploads-unused-backup/` to temporarily reduce directory size for deployment.
 - **Media Restoration**: The `restore_unused_media.php` utility reads `wp-content/unused-media-cleanup-log.json` to restore files from the backup directory to `wp-content/uploads/` when needed.
 
-## Client Listing Filters
+## Client Listing & Filtering
+- **Dynamic Client Finder Block (`e3es/client-finder`)**: A self-contained, dynamic block that outputs the filters sidebar, interactive SVG Texas map, search interface, and client results grid. Interactivity is managed client-side via a bundled `<script>` tag injected inline within the block's render callback.
 - **Featured Clients Filter**: The `/clients` page is configured to dynamically list only client case studies marked with `_e3_client_show_in_index` in their WordPress meta field (exactly 25 entries), preserving layout matching with the live site `e3es.com/clients`.
+
 
 
 

@@ -133,6 +133,8 @@
 - **Media Library Restoration**: Created `restore_unused_media.php` script to read the cleanup logs and restore all backed up media files to their original directories on demand.
 - **Headless Environment Detection Bug Fix**: Refactored `e3es_is_local_env()` inside `e3es-headless-helper.php` to return `false` on `flywheelstaging.com` and `e3es.com` hosts. This prevents staging from misclassifying the environment as local when database settings are migrated, ensuring "View Page" redirects use the Cloudflare Workers URL instead of localhost.
 - **Clients Listing Filtering Reversion**: Reverted the `/clients` listing filter back to use the native `_e3_client_show_in_index` options flag. This correctly restricts the listing page to exactly 25 featured clients (matching the live site `e3es.com/clients` layout) and updated the E2E parity test suite expected count from 100 to 25.
+- **Dynamic Client Finder Gutenberg Block**: Converted the hardcoded clients filtering sidebar, interactive Texas SVG map, text search, and card grid results into a reusable Gutenberg block (`e3es/client-finder`). Refactored `src/pages/clients.astro` to dynamically load blocks content from the WordPress REST API, transferring layout and filtering controls completely to the visual editor backend.
+
 
 
 
