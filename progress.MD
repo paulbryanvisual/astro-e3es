@@ -6,6 +6,7 @@
 
 ## Section 2 — For Review
 
+* 🧹 [Services List Item and Ordered List Formatting](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/docs/CURRENT_STATE.md) — Format all services list items to use bold headers, soft returns, and clean descriptions, and convert interior-lighting-3 paragraphs into a native nested Gutenberg ordered list.
 * 🗺️ [Contact Page Interactive Map](http://astro-e3es.localhost:8080/contact/) — Replaced the static map image with an interactive SVG Texas map showing office locations, region hover highlighting, pulsing pins, and detailed tooltips (addresses, phones, and directions). *Updated to allow hover stickiness, selection, and clickable links.*
 * 🧹 [Clean Migrated Text Formatting](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/docs/CURRENT_STATE.md) — Cleaned up automatic inline bold formatting (<strong>/<b>) from migrated text list blocks and replaced them with soft returns (<br />).
 * 🔗 [Services Card Links Fix](http://astro-e3es.localhost:8080/services/) — Refactored service cards layout to wrap the entire card in a single link to meet accessibility standards (WCAG 2.5.3 / 2.4.4), with custom green outlines on keyboard focus.
