@@ -127,6 +127,9 @@
 - **Clients Intro Buttons Removal**: Removed the "View Project History" and "View Printable List" buttons from `/clients` page intro header.
 - **Case Study Overview Width Constraint**: Constrained general case study overview content (paragraphs, headings, lists) on dynamic client detail pages, as well as descriptions inside `.project-section__content`, to exactly `850px` wide and centered them using SASS rules.
 - **Gallery & Gallery Headline Width Limits**: Expanded dynamic case study galleries (`.wp-block-gallery`, `.project-gallery`) and any headings directly preceding them to a wider `1200px` maximum width limit (retaining auto-centering) to optimize grid thumbnail presentation.
+- **CTA Banner Button Spacing**: Added `margin-top: 1.5rem !important` to `.cta-banner__btn` in SASS to provide more breathing room below the text block in dynamic service CTA sections.
+- **Global Footer Integration**: Rendered the static/dynamic fallback `Footer` component globally inside `Layout.astro` on all template pages, resolving a build dependency error in `Footer.astro` by cleaning up the unused `getMenu` call.
+
 
 
 
