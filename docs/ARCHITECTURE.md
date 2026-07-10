@@ -93,3 +93,9 @@
   3. Ensure the database string content is properly slashed: `wp_slash($content)` before calling `wp_update_post()`.
 - **Schema Alignment**: Under this bypass, block attribute JSON comments use standard `\u0026` parameter separators, and their corresponding HTML tag properties (like image `alt` and link headers) match standard entity escaping (`&amp;`) exactly, maintaining 100% schema integrity without editor validation mismatches.
 
+- **Unified SVG Map Rendering**: In `wordpress.ts`, `processWordPressHtml()` replaces static map image placeholders with `TEXAS_MAP_SVG`. The SVG contains inline stylesheet overrides to force all region paths to use brand colors.
+- **Interactive Contact Map & Tooltips**:
+  - The contact page interactive map is embedded via a WordPress Custom HTML block to ensure backend-to-frontend layout consistency.
+  - Interactive elements (`[data-region]`, `[data-office]`) use BEM selectors (`.contact-map__region`, `.contact-map__pin`) styled in `mobile.scss`.
+  - Client-side coordinates (`x, y` inside the SVG viewbox space) are scaled dynamically using `map.getBoundingClientRect()` and the SVG `viewBox` coordinates (`941.76 x 907.17`) to display tooltips precisely over the offices on hover, touch, or focus.
+  - Accessibility focus outlines (`:focus-visible`) and aria labels/hidden controls are implemented to ensure WCAG 2.1 compliance for screen readers and keyboard users.
