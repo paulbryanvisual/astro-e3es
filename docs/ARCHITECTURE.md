@@ -77,5 +77,10 @@
 - **Global Footer**: The `Footer.astro` layout component is integrated directly within `Layout.astro` to render on all dynamic and static page templates. To avoid dynamic REST API menu retrieval failure inside decoupled production environments, the component is refactored to cleanly fall back to static anchor menu configurations.
 - **Sticky Footer Flexbox**: Configured `min-height: 100%; display: flex; flex-direction: column;` inside the global layout style block to guarantee the footer is pushed to the bottom of the viewport on short content pages.
 
+## Media Library Optimization Utilities
+- **Media Cleanup**: The `cleanup_unused_media.php` database-driven script cross-references WordPress media attachment basenames and IDs against published post content and metadata. Unreferenced media files and generated intermediate thumbnail files are moved to `wp-content/uploads-unused-backup/` to temporarily reduce directory size for deployment.
+- **Media Restoration**: The `restore_unused_media.php` utility reads `wp-content/unused-media-cleanup-log.json` to restore files from the backup directory to `wp-content/uploads/` when needed.
+
+
 
 

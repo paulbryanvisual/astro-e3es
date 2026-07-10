@@ -129,6 +129,9 @@
 - **Gallery & Gallery Headline Width Limits**: Expanded dynamic case study galleries (`.wp-block-gallery`, `.project-gallery`) and any headings directly preceding them to a wider `1200px` maximum width limit (retaining auto-centering) to optimize grid thumbnail presentation.
 - **CTA Banner Button Spacing**: Added `margin-top: 1.5rem !important` to `.cta-banner__btn` in SASS to provide more breathing room below the text block in dynamic service CTA sections.
 - **Global Footer Integration**: Rendered the static/dynamic fallback `Footer` component globally inside `Layout.astro` on all template pages, resolving a build dependency error in `Footer.astro` by cleaning up the unused `getMenu` call.
+- **Unused Media Library Optimization**: Created and ran `cleanup_unused_media.php` to temporarily move 5,125 unused media attachments and generated thumbnail sizes from `wp-content/uploads/` to `wp-content/uploads-unused-backup/`, reducing active directory size from 71 GB to 11 GB (saving 60 GB) for faster staging deployments.
+- **Media Library Restoration**: Created `restore_unused_media.php` script to read the cleanup logs and restore all backed up media files to their original directories on demand.
+
 
 
 
