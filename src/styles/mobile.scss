@@ -3272,6 +3272,12 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     padding-left: 2rem;
     padding-right: 2rem;
     box-sizing: border-box;
+
+    > *:not(.project-details):not(.project-columns):not(.db-columns):not(.db-feature) {
+      max-width: 850px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
   }
 }
 
