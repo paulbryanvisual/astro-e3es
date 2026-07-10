@@ -6,6 +6,7 @@ import '@fontsource/raleway/500.css';
 import '@fontsource/raleway/700.css';
 import '@fontsource/raleway/900.css';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import ChatIcon from '../components/ChatIcon.astro';
 
 const { description = "E3 Entegral Solutions provides design-build energy efficiency solutions, LED lighting, HVAC, and water conservation upgrades for Texas public facilities.", wpPostId } = Astro.props;
@@ -26,6 +27,7 @@ const { description = "E3 Entegral Solutions provides design-build energy effici
 	<body>
         <Header />
 		<slot />
+        <Footer />
         <ChatIcon />
         <script>
             document.addEventListener("DOMContentLoaded", () => {
@@ -50,6 +52,8 @@ const { description = "E3 Entegral Solutions provides design-build energy effici
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 </style>

@@ -2220,6 +2220,10 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     margin: 0 auto;
 }
 
+.cta-banner__btn {
+    margin-top: 1.5rem !important;
+}
+
 /* Editor overrides for CTA Banner */
 .editor-styles-wrapper {
     & .is-root-container > .wp-block[data-type="e3es/cta-banner"],
@@ -2264,6 +2268,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         letter-spacing: 0.05em !important;
         color: var(--color-bg-white) !important;
         border: 2px solid var(--color-bg-white) !important;
+        margin-top: 1.5rem !important;
     }
 }
 
