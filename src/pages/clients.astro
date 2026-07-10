@@ -7,10 +7,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 const wpClients = await getClients();
 
 // Filter to show only clients marked to show in the index page
-// Filter to show all client posts (slicing to exactly 100 to satisfy the E2E parity checks)
-const filteredClients = wpClients
-  .filter((client: any) => client.slug !== 'gwh' && client.slug !== 'south-texas')
-  .slice(0, 100);
+const filteredClients = wpClients.filter((client: any) => !!client.meta?._e3_client_show_in_index);
 
 const mappedClients = filteredClients.map((client: any) => {
     let imageUrl = '';
