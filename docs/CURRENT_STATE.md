@@ -131,6 +131,8 @@
 - **Global Footer Integration**: Rendered the static/dynamic fallback `Footer` component globally inside `Layout.astro` on all template pages, resolving a build dependency error in `Footer.astro` by cleaning up the unused `getMenu` call.
 - **Unused Media Library Optimization**: Created and ran `cleanup_unused_media.php` to temporarily move 5,125 unused media attachments and generated thumbnail sizes from `wp-content/uploads/` to `wp-content/uploads-unused-backup/`, reducing active directory size from 71 GB to 11 GB (saving 60 GB) for faster staging deployments.
 - **Media Library Restoration**: Created `restore_unused_media.php` script to read the cleanup logs and restore all backed up media files to their original directories on demand.
+- **Headless Environment Detection Bug Fix**: Refactored `e3es_is_local_env()` inside `e3es-headless-helper.php` to return `false` on `flywheelstaging.com` and `e3es.com` hosts. This prevents staging from misclassifying the environment as local when database settings are migrated, ensuring "View Page" redirects use the Cloudflare Workers URL instead of localhost.
+
 
 
 
