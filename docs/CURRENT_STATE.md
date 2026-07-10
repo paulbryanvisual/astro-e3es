@@ -7,7 +7,7 @@
 
 - **Services List Cards Left Alignment** (July 10, 2026):
   - **Goal**: Align the services list item cards flush with the left boundary of standard page text block elements, correcting the skew indentation alignment gap.
-  - **Implementation**: Overrode the default list paddings (`padding-left: 0 !important; margin-left: 0 !important;`) for `ul.wp-block-list` and `ol.wp-block-list` on the frontend and inside the Gutenberg editor stylesheet (`src/styles/mobile.scss`). Adjusted `li` card element left margin to `4px` to perfectly match the top visual tip of the `skewX(-6deg)` card layout.
+  - **Implementation**: Set `padding-left: 2rem !important;` and `margin-left: 0 !important;` for `ul.wp-block-list` and `ol.wp-block-list` on the frontend and inside the Gutenberg editor stylesheet (`src/styles/mobile.scss`) to match the standard grid child padding. Set `li` card element left margin to `5px` to perfectly offset the left-most tip of the `skewX(-6deg)` card layout.
   - **Verification**: Verified using local Astro builds and visual check on services content pages.
 
 - **Services List Item and Ordered List Formatting** (July 10, 2026):
