@@ -4463,9 +4463,6 @@ main > .services-page__container,
           strong {
             color: var(--color-primary-dark) !important;
             font-weight: 700 !important;
-            display: block !important;
-            margin-bottom: 0.25rem !important;
-            font-size: 1.1rem !important;
           }
 
           &:hover {
@@ -4758,9 +4755,6 @@ main, .editor-styles-wrapper {
       strong {
         color: var(--color-primary-dark);
         font-weight: 700;
-        display: block;
-        margin-bottom: 0.25rem;
-        font-size: 1.1rem;
       }
 
       &:hover {
