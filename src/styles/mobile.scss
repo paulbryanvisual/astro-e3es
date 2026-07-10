@@ -1754,17 +1754,27 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 .services__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background: #fff;
     border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #eee;
-}
 
-.services__card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--color-primary-green, #15572c);
+        outline-offset: 2px;
+    }
 }
 
 .services__card-image {
@@ -1790,6 +1800,14 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--color-text-main);
+}
+
+.services__card-link {
+    color: var(--color-primary-green);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
 }
 
 /* Floating Chat Icon */
