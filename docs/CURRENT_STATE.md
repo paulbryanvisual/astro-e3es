@@ -1,5 +1,10 @@
 # Current State
 
+- **Heading h2 Typography Size and Weight Adjustments** (July 10, 2026):
+  - **Goal**: Update global h2 heading sizes and weights across page contents to 2rem and font-weight 700.
+  - **Implementation**: Modified `h2.wp-block-heading:not(...)` in `src/styles/mobile.scss` (under `main, .editor-styles-wrapper`) to set `font-size: 2rem;` and `font-weight: 700;`.
+  - **Verification**: Verified using local Astro builds.
+
 - **Services List Cards Left Alignment** (July 10, 2026):
   - **Goal**: Align the services list item cards flush with the left boundary of standard page text block elements, correcting the skew indentation alignment gap.
   - **Implementation**: Overrode the default list paddings (`padding-left: 0 !important; margin-left: 0 !important;`) for `ul.wp-block-list` and `ol.wp-block-list` on the frontend and inside the Gutenberg editor stylesheet (`src/styles/mobile.scss`). Adjusted `li` card element left margin to `4px` to perfectly match the top visual tip of the `skewX(-6deg)` card layout.
