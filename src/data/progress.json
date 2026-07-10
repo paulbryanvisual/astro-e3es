@@ -216,11 +216,19 @@
         "url": "http://localhost:4008/funding"
       }
     ],
-    "status": "review",
+    "status": "working",
     "comments": [
       {
         "user": "User",
         "text": "For this section I want less space above and below the text there should just be 100 pixels above and below the text on the left"
+      },
+      {
+        "user": "User",
+        "text": ".db-feature--map-spill .db-feature__image-wrapper { height: 450px; }     margin: -300px 0;"
+      },
+      {
+        "user": "User",
+        "text": "on the section margin: 100px 0 !important;"
       }
     ]
   },
