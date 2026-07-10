@@ -139,3 +139,15 @@
   - **Goal**: Resolved the corrupted block validation errors/attempt recovery block on Boyd ISD (ID 12) page in the WordPress admin panel.
   - **Implementation**: Bypassed WordPress KSES filtering during updates by bootstrapping administrative privileges (`wp_set_current_user(1)`) and calling `kses_remove_filters()`. Restored clean, unescaped, and valid block attributes representation (standard `\u0026` query separators in comments and `&amp;` in HTML content) matching the Gutenberg blocks schema exactly for `e3es/video-embed`, `e3es/project-toc`, and `e3es/project` blocks.
   - **Verification**: Verified using WP-CLI database inspections, Python verification, and a successful Astro production build.
+
+- **E3 Service Page Card Links Accessibility Fix** (July 10, 2026):
+  - **Goal**: Ensured WCAG 2.5.3 / 2.4.4 accessibility compliance on E3 service pages by ensuring the entire card acts as a single link and removing nested link elements.
+  - **Implementation**:
+    1. Modified Astro templates (`src/pages/services.astro` and `src/pages/index.astro`) to remove nested `<a>` links and wrap the entire card in a single `<a>` tag with class `services__card`.
+    2. Modified the WordPress block helper PHP rendering callback (`e3_render_services_grid` in `e3es-headless-helper.php`) to output the same clean, wrapped single-link structure.
+    3. Refactored `.services__card` style rules in SASS/CSS (`src/styles/mobile.scss` and `editor-styles.css`) to define it as a block link (`display: block; text-decoration: none; color: inherit;`).
+    4. Added a `.services__card-link` helper style class in SASS and Gutenberg editor styles to cleanly represent the arrow indicator (`Learn More →`) as a `<span>` element.
+    5. Applied a high-contrast focus ring outline (`outline: 3px solid var(--color-primary-green); outline-offset: 2px;`) to `.services__card:focus-visible` during keyboard navigation.
+  - **Verification**: Verified using `npm run build` and running `node tests/clients-parity.test.js` (E2E tests pass completely).
+  - **Git Branches**: `task/e3-service-card-links-202607101016` (in both `astro-e3es` and `website` repositories).
+
