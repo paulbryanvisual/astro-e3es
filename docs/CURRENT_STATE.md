@@ -1,5 +1,17 @@
 # Current State
 
+- **Boyd ISD Post Content Recovery** (July 9, 2026):
+  - **Goal**: Recovered the corrupted `u0026amp;` code entities inside JSON comments and HTML body tags for Boyd ISD (ID 12).
+  - **Implementation**: Created and executed `clean_boyd_db.php` to perform precise string replacements. Corrected JSON attributes in block comments to use valid escaped `\u0026` notation and restored standard HTML entities (`&amp;`) inside headings, links, and Vimeo iframe URLs.
+  - **Verification**: Verified using WP-CLI database checks, python regex inspections, and successful E2E test runs.
+
+- **Industry Layout Sidebar Removal** (July 9, 2026):
+  - **Goal**: Removed the left column (sidebar) from the dynamic templates for Municipalities (`/municipalities`), Healthcare (`/healthcare`), and Higher Education (`/higher-education`).
+  - **Implementation**:
+    1. Modified `seed-industries.php` to remove the `<aside class="industry-layout__sidebar">...</aside>` sidebar column from the page HTML entirely.
+    2. Modified `mobile.scss` and `desktop.scss` to display the `.industry-layout__main` column centered at `850px` width for optimal typographic readability.
+  - **Verification**: Verified using dynamic curl parsing that no sidebar tags remain in the HTML payload and that pages build correctly.
+
 - **Industry Pages Content Migration & Styling** (July 9, 2026):
   - **Goal**: Migrated the content from `https://www.e3es.com/water/` to `/municipalities`, `https://www.e3es.com/torch/` to `/healthcare`, and `https://www.e3es.com/highered/` to `/higher-education`.
   - **Implementation**:
@@ -9,6 +21,7 @@
     4. Ensured accessible focus rings, zero rounded corners, 44px link touch targets, and proper typography spacing rules are followed.
     5. Created and executed `seed-industries.php` on the WordPress backend to update page contents for Municipalities (ID 1651), Healthcare (ID 1652), and Higher Education (ID 1226).
   - **Verification**: Verified using `npm run build` and curl headers checks.
+
 
 - **HVAC System Upgrades Buttons Removal** (July 9, 2026):
   - **Goal**: Removed all call-to-action button blocks from the HVAC System Upgrades and Replacements page (`/services/hvac-system-upgrades-2/`).

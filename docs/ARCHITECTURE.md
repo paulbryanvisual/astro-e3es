@@ -1,9 +1,9 @@
 # Architecture Notes
 
-## Industry Page Sidebar Layouts
-- **BEM Unified Class Structure**: To avoid writing inline HTML styles or hardcoding page templates, all dynamic industry pages (Municipalities, Healthcare, Higher Education) utilize a unified BEM CSS layout class system `.industry-layout`.
-- **Responsive Layout Flow**: On mobile, the sidebar content is positioned at the bottom of the page (`order: 2`) beneath the main article content (`order: 1`). On desktop (using `@include responsive-up($breakpoint-md)`), the container utilizes a flex row layout displaying the `.industry-layout__sidebar` sticky on the left (25% width) and the `.industry-layout__main` column on the right (72% width) to constrain standard desktop layouts to a hard 1440px canvas limit.
-- **Accessibility & Design Rules**: All links and email buttons implement a minimum 44px touch target height. Focus states force a highly visible 3px primary green outline focus ring. In accordance with color contrast requirements, text is rendered in dark sage (`var(--color-primary-dark)`) or primary green (`var(--color-primary-green)`) on light background containers, with strict sharp corners (`border-radius: 0;`) enforced on team member avatar photos and sidebar cards.
+## Industry Page Single-Column Layouts
+- **BEM Unified Class Structure**: Dynamic industry pages (Municipalities, Healthcare, Higher Education) utilize a unified BEM CSS layout class system `.industry-layout`.
+- **Single-Column Alignment**: Sidebars (`.industry-layout__sidebar`) have been completely removed from the HTML templates in the WordPress database and hidden in SCSS. The main column (`.industry-layout__main`) is styled to take full width and centered at `850px` width on both mobile and desktop viewports to optimize reading readability.
+- **Accessibility & Design Rules**: In accordance with the accessibility guidelines, all links and email anchors preserve a minimum 44px touch target height and custom green focus outline indicators. All borders and images maintain sharp corners (`border-radius: 0;`).
 
 ## Map Component Animations
 - **CSS Staggering**: Texas map SVG elements animate their regions (.texas-region) sequentially. The CSS resides globally in `src/styles/mobile.scss` to allow map blocks to trigger correctly regardless of whether they are rendered dynamically by WordPress or statically in Astro.
