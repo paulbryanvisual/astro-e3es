@@ -1,5 +1,20 @@
 # Current State
 
+- **Industry Pages Content Migration & Styling** (July 9, 2026):
+  - **Goal**: Migrated the content from `https://www.e3es.com/water/` to `/municipalities`, `https://www.e3es.com/torch/` to `/healthcare`, and `https://www.e3es.com/highered/` to `/higher-education`.
+  - **Implementation**:
+    1. Downloaded all team photos, background banners, cooperative logos, and marketing flyer PDFs locally.
+    2. Uploaded these media assets and PDFs to the WordPress media library and linked them dynamically in the seeded page content.
+    3. Created a unified, mobile-first BEM SCSS layout class system (`.industry-layout`) in `src/styles/mobile.scss` and `src/styles/desktop.scss` supporting a sticky, responsive 25% sidebar on the left and a 72% content column on the right on desktop, transitionable to a single-column layout on mobile viewports.
+    4. Ensured accessible focus rings, zero rounded corners, 44px link touch targets, and proper typography spacing rules are followed.
+    5. Created and executed `seed-industries.php` on the WordPress backend to update page contents for Municipalities (ID 1651), Healthcare (ID 1652), and Higher Education (ID 1226).
+  - **Verification**: Verified using `npm run build` and curl headers checks.
+
+- **HVAC System Upgrades Buttons Removal** (July 9, 2026):
+  - **Goal**: Removed all call-to-action button blocks from the HVAC System Upgrades and Replacements page (`/services/hvac-system-upgrades-2/`).
+  - **Implementation**: Created and executed `remove_hvac_buttons.php` to clean up Gutenberg button comments and markup inside the post content of ID 1641 in the WordPress database.
+  - **Verification**: Verified via curl that no button elements remain in the HTML body of `/services/hvac-system-upgrades-2/`.
+
 - **GitHub Actions Cloudflare Workers Deployment Failures** (July 9, 2026):
   - **Issue**: The GitHub Actions deployment workflow run "Deploy Astro Site to Cloudflare Workers" was failing consistently.
   - **Cause**: The `.wrangler` state/cache directory was tracked by Git (missing from `.gitignore`) and had been committed. Inside `.wrangler/deploy/config.json`, the deploy config pointed to `dist/server/wrangler.json`, which does not exist because the Astro project is a purely static site (`output: 'static'`).
