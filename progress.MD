@@ -6,6 +6,7 @@
 
 ## Section 2 — For Review
 
+* 🗺️ [Contact Page Interactive Map](http://astro-e3es.localhost:8080/contact/) — Replaced the static map image with an interactive SVG Texas map showing office locations, region hover highlighting, pulsing pins, and detailed tooltips (addresses, phones, and directions).
 * 🛠️ [Cloudflare Deployment Fix](https://github.com/paulbryanvisual/astro-e3es/actions) — Untrack .wrangler cache directory and update .gitignore to resolve build failures.
 
 * 🏫 [Boyd ISD](http://astro-e3es.localhost:8080/clients/boyd-isd/) — HVAC & LED updates with correct original description text and gallery.
