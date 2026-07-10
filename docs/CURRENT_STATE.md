@@ -144,3 +144,12 @@
 
 
 
+- **Contact Page Interactive SVG Map & Tooltips** (July 10, 2026):
+  - **Goal**: Replace the static map image on the contact page with an interactive, WCAG-compliant SVG map of Texas with regional hover highlighting and pulsing office location pin markers.
+  - **Implementation**:
+    1. Replaced the `wp:image` block with a `wp:html` (Custom HTML) block inside the `/contact/` page content (post ID 178) via `update_contact_page.php`.
+    2. Embedded the full Texas SVG map with 8 region paths and overlayed three styled pulsing vector pin markers (`contact-map__pin`) representing Highland Village (HQ), Houston, and Boerne offices.
+    3. Bundled a custom client-side Javascript handler in the HTML block to calculate coordinates relative to the map boundaries and display a styled, absolute-positioned brand-green tooltip with contact details (office title, address, phone number, and directions) when hovered, touched, or keyboard-focused.
+    4. Authored clean BEM SCSS styles in `src/styles/mobile.scss` defining transition states, pulsing animations, and high-contrast visible focus rings (`:focus-visible`) for map interactive elements.
+  - **Verification**: Verified successfully using `npm run build` and compiling styles via `node sync-styles.js`.
+  - **Git Branches**: `task/contact-map-interactivity-20260710` (in both `astro-e3es` and `website` repositories).
