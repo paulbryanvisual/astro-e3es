@@ -68,3 +68,7 @@
 ## Interactive Map Overview & Navigation (K-12 Page)
 - **Map Default State**: We configure a nice default overview text and the `Texas-Funding-Solutions-600x400-2.jpg` photo inside `e3es/texas-interactive-map` block defaults and renderer function `e3_render_texas_map()` so that the right-hand panel displays high-fidelity content when no region is selected.
 - **Direct Navigation buttons**: The green region buttons under the map (`.region-link`) bypass the selection-lock logic on click and navigate directly to the respective relative regional pages, while the map path elements themselves preserve the selection click-lock behavior.
+
+## Client Case Study Content Layout (Dynamic Detail Pages)
+- **Overview Text Constraint**: Standard paragraphs, lists, and headings inside the `main.client-detail` container (which wraps the WP rendered dynamic content) are constrained to `max-width: 850px !important` and centered with `margin-left: auto !important; margin-right: auto !important` to ensure clean typography readability for the case study overview section, while full-width featured/faq/cta blocks are excluded and maintain their alignment.
+
