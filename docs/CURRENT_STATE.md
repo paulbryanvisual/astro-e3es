@@ -109,5 +109,9 @@
   - **Relationship Paragraph Prepending**:
     - Prepended missing partnership description paragraphs dynamically inside `processWordPressHtml` for `bishop-cisd`, `city-of-stockdale`, and `keene-isd` so that they sit above the project blocks and satisfy relationship description position audits.
   - **Verification**: Ran `node tests/clients-parity.test.js` which now exits with code 0 (PASS, 0 failures across all 100 client subpages).
+- **Interactive Map Default Overview & Photos**: Configured default unselected region overview content and photo (`Texas-Funding-Solutions-600x400-2.jpg`) inside the `e3es/texas-interactive-map` block attributes and dynamic PHP rendering callback (`e3_render_texas_map`) to provide a complete layout when no region is selected on `/k12`.
+- **Interactive Map Direct Navigation**: Refactored the click event listener on the `.region-link` buttons under the map to navigate directly to their respective regional pages on the first click, avoiding the selection lock.
+- **Clients Intro Buttons Removal**: Removed the "View Project History" and "View Printable List" buttons from `/clients` page intro header.
+
 
 
