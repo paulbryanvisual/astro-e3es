@@ -6,8 +6,7 @@
 
 ## Section 2 — For Review
 
-* 🗺️ [Contact Page Interactive Map](http://astro-e3es.localhost:8080/contact/) — Replaced the static map image with an interactive SVG Texas map showing office locations, region hover highlighting, pulsing pins, and detailed tooltips (addresses, phones, and directions).
-* 📊 [Comparative Architecture Report](file:///Users/bryanpaul/Local%20Sites/astro-e3es/docs/comparative_architecture_report.md) — Detailed comparative analysis report analyzing the trade-offs of deploying a pure Astro page setup versus the current hybrid headless WordPress architecture.
+* 🗺️ [Contact Page Interactive Map](http://astro-e3es.localhost:8080/contact/) — Replaced the static map image with an interactive SVG Texas map showing office locations, region hover highlighting, pulsing pins, and detailed tooltips (addresses, phones, and directions). *Updated to allow hover stickiness, selection, and clickable links.*
 * 🧹 [Clean Migrated Text Formatting](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/docs/CURRENT_STATE.md) — Cleaned up automatic inline bold formatting (<strong>/<b>) from migrated text list blocks and replaced them with soft returns (<br />).
 * 🔗 [Services Card Links Fix](http://astro-e3es.localhost:8080/services/) — Refactored service cards layout to wrap the entire card in a single link to meet accessibility standards (WCAG 2.5.3 / 2.4.4), with custom green outlines on keyboard focus.
 * 🖼️ [Josh & Jeff Team Photos Update](http://astro-e3es.localhost:8080/about-us/our-team/) — Synchronized and set current featured images for President Josh Combs and VP Jeff Freeman in the employees database.
@@ -42,3 +41,4 @@
 
 * 🚀 [Seeded All Client Pages] — Automatically re-ran the seeder on all target pages to update and verify layout logic.
 * 📸 [Visual Browser Verification] — Headless screenshots taken for all 26 pages at 1440px desktop width and verified successfully.
+* 📊 [Comparative Architecture Report](file:///Users/bryanpaul/Local%20Sites/astro-e3es/docs/comparative_architecture_report.md) — Detailed comparative analysis report analyzing the trade-offs of deploying a pure Astro page setup versus the current hybrid headless WordPress architecture.
