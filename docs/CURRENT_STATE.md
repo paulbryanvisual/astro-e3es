@@ -135,12 +135,7 @@
 - **Clients Listing Filtering Reversion**: Reverted the `/clients` listing filter back to use the native `_e3_client_show_in_index` options flag. This correctly restricts the listing page to exactly 25 featured clients (matching the live site `e3es.com/clients` layout) and updated the E2E parity test suite expected count from 100 to 25.
 - **Dynamic Client Finder Gutenberg Block**: Converted the hardcoded clients filtering sidebar, interactive Texas SVG map, text search, and card grid results into a reusable Gutenberg block (`e3es/client-finder`). Refactored `src/pages/clients.astro` to dynamically load blocks content from the WordPress REST API, transferring layout and filtering controls completely to the visual editor backend.
 
-
-
-
-
-
-
-
-
-
+- **Boyd ISD Block Recovery & KSES Bypass** (July 10, 2026):
+  - **Goal**: Resolved the corrupted block validation errors/attempt recovery block on Boyd ISD (ID 12) page in the WordPress admin panel.
+  - **Implementation**: Bypassed WordPress KSES filtering during updates by bootstrapping administrative privileges (`wp_set_current_user(1)`) and calling `kses_remove_filters()`. Restored clean, unescaped, and valid block attributes representation (standard `\u0026` query separators in comments and `&amp;` in HTML content) matching the Gutenberg blocks schema exactly for `e3es/video-embed`, `e3es/project-toc`, and `e3es/project` blocks.
+  - **Verification**: Verified using WP-CLI database inspections, Python verification, and a successful Astro production build.

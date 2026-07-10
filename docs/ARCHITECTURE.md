@@ -84,9 +84,11 @@
 ## Client Listing & Filtering
 - **Dynamic Client Finder Block (`e3es/client-finder`)**: A self-contained, dynamic block that outputs the filters sidebar, interactive SVG Texas map, search interface, and client results grid. Interactivity is managed client-side via a bundled `<script>` tag injected inline within the block's render callback.
 - **Featured Clients Filter**: The `/clients` page is configured to dynamically list only client case studies marked with `_e3_client_show_in_index` in their WordPress meta field (exactly 25 entries), preserving layout matching with the live site `e3es.com/clients`.
-
-
-
-
-
+## Gutenberg Block Validation & Administrative Bypass
+- **KSES Filtering and Block Validation**: When updating WordPress `post_content` programmatically (via WP-CLI or custom PHP scripts) with custom Gutenberg block markup, WordPress by default sanitizes block comments and attributes via the KSES security filter. In a headless environment, this can result in standard query parameter entity separators (like `\u0026`) in block comments being incorrectly escaped into entity strings (`\u0026amp;`), causing the Gutenberg editor block validator to fail and trigger the "Attempt Block Recovery" button.
+- **Administrative Bypass**: To bypass KSES block attribute serialization filtering during script executions:
+  1. Bootstrap the script by setting the current user to an administrator: `wp_set_current_user(1)`.
+  2. Unconditionally remove the sanitization filters: `kses_remove_filters()`.
+  3. Ensure the database string content is properly slashed: `wp_slash($content)` before calling `wp_update_post()`.
+- **Schema Alignment**: Under this bypass, block attribute JSON comments use standard `\u0026` parameter separators, and their corresponding HTML tag properties (like image `alt` and link headers) match standard entity escaping (`&amp;`) exactly, maintaining 100% schema integrity without editor validation mismatches.
 
