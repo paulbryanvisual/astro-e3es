@@ -1,5 +1,10 @@
 # Current State
 
+- **Services List Cards Left Alignment** (July 10, 2026):
+  - **Goal**: Align the services list item cards flush with the left boundary of standard page text block elements, correcting the skew indentation alignment gap.
+  - **Implementation**: Overrode the default list paddings (`padding-left: 0 !important; margin-left: 0 !important;`) for `ul.wp-block-list` and `ol.wp-block-list` on the frontend and inside the Gutenberg editor stylesheet (`src/styles/mobile.scss`). Adjusted `li` card element left margin to `4px` to perfectly match the top visual tip of the `skewX(-6deg)` card layout.
+  - **Verification**: Verified using local Astro builds and visual check on services content pages.
+
 - **Services List Item and Ordered List Formatting** (July 10, 2026):
   - **Goal**: Formatted all features/benefits list items across all published services posts to use bold headers, soft returns (`<br />`), and normal description text, and converted separate paragraphs under "Key Benefits of E3's Interior LED Solutions" in `interior-lighting-3` into a native Gutenberg ordered list.
   - **Implementation**: Created and executed `convert_services_lists.php` to parse list items `<li>...</li>` and apply regex transforms matching bold wrappers (`<strong>`), colons, and stars (`:**`), replacing them with standard `<strong>` headings, `<br />` soft returns, and clean descriptions. Replaced the Key Benefits section in post ID 6222 with a structured ordered list block.
