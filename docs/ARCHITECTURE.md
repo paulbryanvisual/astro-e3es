@@ -70,5 +70,5 @@
 - **Direct Navigation buttons**: The green region buttons under the map (`.region-link`) bypass the selection-lock logic on click and navigate directly to the respective relative regional pages, while the map path elements themselves preserve the selection click-lock behavior.
 
 ## Client Case Study Content Layout (Dynamic Detail Pages)
-- **Overview Text Constraint**: Standard paragraphs, lists, and headings inside the `main.client-detail` container (which wraps the WP rendered dynamic content) are constrained to `max-width: 850px !important` and centered with `margin-left: auto !important; margin-right: auto !important` to ensure clean typography readability for the case study overview section, while full-width featured/faq/cta blocks are excluded and maintain their alignment.
+- **Overview Text Constraint**: Standard paragraphs, lists, and headings inside the `main.client-detail` container (which wraps the WP rendered dynamic content), as well as general text blocks inside `.project-section__content`, are constrained to `max-width: 850px !important` and centered with `margin-left: auto !important; margin-right: auto !important` to ensure clean typography readability for the case study descriptions, while full-width modules (like `.project-details` table, columns, etc.) remain wide/aligned.
 
