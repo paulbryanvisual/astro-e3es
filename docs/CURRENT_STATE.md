@@ -1,5 +1,10 @@
 # Current State
 
+- **E3 FAQ Section Gutenberg Block Recovery** (July 11, 2026):
+  - **Goal**: Resolved the "Attempt Block Recovery" validation error inside parent and child services pages' FAQ sections.
+  - **Implementation**: Fixed `e3es_make_faq_section` in both `seed-services-parent.php` and `seed-all-services.php` to include the required `<h2 class="faq-section__title">Frequently Asked Questions</h2>` element, aligning generated seeder HTML with the custom Gutenberg block `save` method schema in `editor-blocks.js`. Re-ran the parent and sub-services seeders to update the WordPress database.
+  - **Verification**: Verified using database check queries, Astro builds, and local development builds.
+
 - **Absolute Content Link Rewriting** (July 11, 2026):
   - **Goal**: Prevent internal anchor links inside fetched WordPress REST API content from navigating away to the remote staging site.
   - **Implementation**: In `src/lib/wordpress.ts`'s `processWordPressHtml` function, added regex parsing to dynamically rewrite any anchor `href` matching the remote `WP_BASE_URL` (or the Cloudflare staging domain) to relative paths (e.g. `/services/...`).
