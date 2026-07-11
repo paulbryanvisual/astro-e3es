@@ -174,8 +174,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .header__logo-img {
     height: 115px;
-    width: 300px;
-    aspect-ratio: 300 / 115;
+    width: 115px;
+    aspect-ratio: 1 / 1;
     margin-bottom: -30px;
     position: relative;
     z-index: 200;
@@ -687,8 +687,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 .db-page-hero__logo-img {
     max-height: 80px;
-    width: 209px;
-    aspect-ratio: 300 / 115;
+    width: 80px;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
 }
 
@@ -2379,8 +2379,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     
     .header__logo-img {
         height: 80px;
-        width: 209px;
-        aspect-ratio: 300 / 115;
+        width: 80px;
+        aspect-ratio: 1 / 1;
         margin-bottom: -15px;
     }
     
