@@ -170,6 +170,11 @@ export function processWordPressHtml(html: string, slug?: string): string {
     .replace(/(srcset=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
     .replace(/(href=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`);
 
+  // Rewrite absolute WordPress site links & staging links in content to relative paths
+  const absoluteUrlRegex = new RegExp(`href=["']${WP_BASE_URL.replace(/\//g, '\\/')}(\\/[^"']*)?["']`, 'gi');
+  processedHtml = processedHtml.replace(absoluteUrlRegex, (match, path) => `href="${path || '/'}"`);
+  processedHtml = processedHtml.replace(/href=["']https:\/\/astro-e3es\.paulbryanvisual\.workers\.dev(\/[^"']*)?["']/gi, (match, path) => `href="${path || '/'}"`);
+
   // Remove trailing arrows from db-feature overlay buttons to avoid doubling with CSS arrows
   processedHtml = processedHtml.replace(
     /(<a\s+[^>]*class=["'][^"']*db-feature__overlay-button[^"']*["'][^>]*>)(.*?)(?:\s*→|\s*&rarr;|\s*&#8594;)?(<\/a>)/gi,
