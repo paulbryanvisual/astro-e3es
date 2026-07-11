@@ -15,6 +15,7 @@
 - **Header & Hero Logo Sizing**: To prevent horizontal layout shifts on page load and avoid stretching/deforming, `.header__logo-img` and `.db-page-hero__logo-img` use explicit square aspect ratio (**`aspect-ratio: 1 / 1;`**) and fixed dimensions (**`width: 115px; height: 115px;`** on desktop, and **`width: 80px; height: 80px;`** on mobile). This matches the actual `114x114px` dimension geometry of the `new-logo-300x115.png` image asset and ensures navigation menu items have ample horizontal container width.
 - **Interactive SVG Map Sizing**: The inline `.texas-svg-map` uses `aspect-ratio: 941.76 / 907.17;` and `width: 100%; height: auto;` to preserve layout constraints before the SVG node is fully parsed and rendered by the browser.
 - **Explicit Image Dimensions**: All raw image tags on static pages (such as cooperative logos and featured graphics on `index.astro`) must include native `width` and `height` attributes to provide the browser with sizing boundaries before the asset downloads.
+- **Font-Face Load Order & Preloading (FOUT Prevention)**: To prevent font-swap layout shifts (FOUT), `@fontsource/raleway` styles are imported *before* `global.scss` in `Layout.astro` frontmatter, guaranteeing that `@font-face` definitions appear at the very beginning of the compiled CSS stylesheet. Additionally, critical Raleway `.woff2` font files are resolved via Vite's `?url` suffix and preloaded using `<link rel="preload" as="font" type="font/woff2" crossorigin>` in the HTML head.
 
 
 ## Map Component Animations

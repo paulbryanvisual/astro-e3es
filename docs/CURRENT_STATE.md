@@ -1,5 +1,12 @@
 # Current State
 
+- **Font-Face Load Order & Preloading (FOUT Fix)** (July 11, 2026):
+  - **Goal**: Prevent font swap layout shifts (FOUT) caused by delayed Raleway font asset resolution on page loads.
+  - **Implementation**:
+    1. Reordered Vite imports in `src/layouts/Layout.astro` frontmatter so `@fontsource/raleway` styles compile and output before `../styles/global.scss`. This places the `@font-face` definitions at the very beginning of the CSS stylesheet.
+    2. Resolved static asset URLs for Raleway `.woff2` font files using Vite's `?url` suffix and injected `<link rel="preload" as="font" type="font/woff2" crossorigin>` elements in the HTML head.
+  - **Verification**: Verified using local Astro builds.
+
 - **E3 Logo Sizing and Aspect Ratio Alignment** (July 11, 2026):
   - **Goal**: Correct the stretched/squished appearance of the green E3 logo in the header and heroes, and resolve navigation link wrapping.
   - **Implementation**: Changed width and aspect-ratio parameters for `.header__logo-img` and `.db-page-hero__logo-img` from `width: 300px; aspect-ratio: 300/115;` to `width: 115px; aspect-ratio: 1/1;` (desktop) and `width: 80px; aspect-ratio: 1/1;` (mobile). This matches the actual square 114x114px dimensions of the file `new-logo-300x115.png`, restoring the correct green oval shape and freeing 185px of horizontal space in the header to prevent navigation link wrapping.
