@@ -1,8 +1,13 @@
 # Current State
 
+- **E3 Logo Sizing and Aspect Ratio Alignment** (July 11, 2026):
+  - **Goal**: Correct the stretched/squished appearance of the green E3 logo in the header and heroes, and resolve navigation link wrapping.
+  - **Implementation**: Changed width and aspect-ratio parameters for `.header__logo-img` and `.db-page-hero__logo-img` from `width: 300px; aspect-ratio: 300/115;` to `width: 115px; aspect-ratio: 1/1;` (desktop) and `width: 80px; aspect-ratio: 1/1;` (mobile). This matches the actual square 114x114px dimensions of the file `new-logo-300x115.png`, restoring the correct green oval shape and freeing 185px of horizontal space in the header to prevent navigation link wrapping.
+  - **Verification**: Verified using local Astro builds and visual checks.
+
 - **Page Load Layout Shift (CLS) Fixes** (July 11, 2026):
   - **Goal**: Eliminate visual layout shifts during page loading (CLS) for the header, hero sections, and inline SVGs.
-  - **Implementation**: Added explicit `aspect-ratio: 300 / 115;` and fixed widths (`width: 300px;` on desktop and `width: 209px;` on mobile) to `.header__logo-img` and `.db-page-hero__logo-img` in `src/styles/mobile.scss`. Configured aspect ratio and dimensions (`aspect-ratio: 941.76 / 907.17;`) for the inline `.texas-svg-map` to reserve layout bounds before SVG paths load. Added explicit `width` and `height` attributes to raw `<img>` tags on the homepage (`src/pages/index.astro`).
+  - **Implementation**: Added explicit `aspect-ratio: 1/1;` and fixed widths (`width: 115px;` on desktop and `width: 80px;` on mobile) to `.header__logo-img` and `.db-page-hero__logo-img` in `src/styles/mobile.scss`. Configured aspect ratio and dimensions (`aspect-ratio: 941.76 / 907.17;`) for the inline `.texas-svg-map` to reserve layout bounds before SVG paths load. Added explicit `width` and `height` attributes to raw `<img>` tags on the homepage (`src/pages/index.astro`).
   - **Verification**: Verified using local Astro builds.
 
 - **Heading h2 Typography Size and Weight Adjustments** (July 10, 2026):
