@@ -174,7 +174,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .header__logo-img {
     height: 115px;
-    width: auto;
+    width: 300px;
+    aspect-ratio: 300 / 115;
     margin-bottom: -30px;
     position: relative;
     z-index: 200;
@@ -686,7 +687,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 .db-page-hero__logo-img {
     max-height: 80px;
-    width: auto;
+    width: 209px;
+    aspect-ratio: 300 / 115;
     object-fit: contain;
 }
 
@@ -2377,6 +2379,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     
     .header__logo-img {
         height: 80px;
+        width: 209px;
+        aspect-ratio: 300 / 115;
         margin-bottom: -15px;
     }
     
@@ -4886,6 +4890,12 @@ main, .editor-styles-wrapper {
   }
 
   /* --- Texas Map Section --- */
+  .texas-svg-map {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 941.76 / 907.17;
+    display: block;
+  }
   .map-section {
     padding: 3rem 1rem;
     background-color: var(--color-bg-white, #ffffff);
