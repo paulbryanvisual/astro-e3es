@@ -11,6 +11,11 @@
 - **Single-Column Alignment**: Sidebars (`.industry-layout__sidebar`) have been completely removed from the HTML templates in the WordPress database and hidden in SCSS. The main column (`.industry-layout__main`) is styled to take full width and centered at `850px` width on both mobile and desktop viewports to optimize reading readability.
 - **Accessibility & Design Rules**: In accordance with the accessibility guidelines, all links and email anchors preserve a minimum 44px touch target height and custom green focus outline indicators. All borders and images maintain sharp corners (`border-radius: 0;`). Service page cards follow WCAG 2.5.3 / 2.4.4 compliance by wrapping the entire card in a single `<a>` tag and using child `<span>` elements for arrow text (e.g. `Learn More →`) to prevent nested links and double-readings in screen readers.
 
+## Page Layout Performance & Cumulative Layout Shift (CLS)
+- **Header & Hero Logo Sizing**: To prevent horizontal layout shifts on page load, `.header__logo-img` and `.db-page-hero__logo-img` use explicit `aspect-ratio: 300 / 115;` and fixed widths (`width: 300px` on desktop and `width: 209px` on mobile) in the stylesheet.
+- **Interactive SVG Map Sizing**: The inline `.texas-svg-map` uses `aspect-ratio: 941.76 / 907.17;` and `width: 100%; height: auto;` to preserve layout constraints before the SVG node is fully parsed and rendered by the browser.
+- **Explicit Image Dimensions**: All raw image tags on static pages (such as cooperative logos and featured graphics on `index.astro`) must include native `width` and `height` attributes to provide the browser with sizing boundaries before the asset downloads.
+
 
 ## Map Component Animations
 - **CSS Staggering**: Texas map SVG elements animate their regions (.texas-region) sequentially. The CSS resides globally in `src/styles/mobile.scss` to allow map blocks to trigger correctly regardless of whether they are rendered dynamically by WordPress or statically in Astro.
