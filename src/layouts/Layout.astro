@@ -1,13 +1,19 @@
 ---
-import '../styles/global.scss';
 import '@fontsource/raleway/300.css';
 import '@fontsource/raleway/400.css';
 import '@fontsource/raleway/500.css';
 import '@fontsource/raleway/700.css';
 import '@fontsource/raleway/900.css';
+import '../styles/global.scss';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChatIcon from '../components/ChatIcon.astro';
+
+import raleway300 from '@fontsource/raleway/files/raleway-latin-300-normal.woff2?url';
+import raleway400 from '@fontsource/raleway/files/raleway-latin-400-normal.woff2?url';
+import raleway500 from '@fontsource/raleway/files/raleway-latin-500-normal.woff2?url';
+import raleway700 from '@fontsource/raleway/files/raleway-latin-700-normal.woff2?url';
+import raleway900 from '@fontsource/raleway/files/raleway-latin-900-normal.woff2?url';
 
 const { description = "E3 Entegral Solutions provides design-build energy efficiency solutions, LED lighting, HVAC, and water conservation upgrades for Texas public facilities.", wpPostId } = Astro.props;
 ---
@@ -19,6 +25,14 @@ const { description = "E3 Entegral Solutions provides design-build energy effici
         <meta name="description" content={description} />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+        
+        <!-- Preload critical fonts to eliminate unstyled text layout shift (FOUT) -->
+        <link rel="preload" href={raleway300} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={raleway400} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={raleway500} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={raleway700} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={raleway900} as="font" type="font/woff2" crossorigin />
+
 		<link rel="preconnect" href="https://descriptive-goldfish.flywheelstaging.com" crossorigin />
         {wpPostId && <meta name="wp-post-id" content={wpPostId} />}
 		<title>E3 Entegral Solutions</title>
