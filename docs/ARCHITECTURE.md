@@ -16,6 +16,7 @@
 - **Interactive SVG Map Sizing**: The inline `.texas-svg-map` uses `aspect-ratio: 941.76 / 907.17;` and `width: 100%; height: auto;` to preserve layout constraints before the SVG node is fully parsed and rendered by the browser.
 - **Explicit Image Dimensions**: All raw image tags on static pages (such as cooperative logos and featured graphics on `index.astro`) must include native `width` and `height` attributes to provide the browser with sizing boundaries before the asset downloads.
 - **Font-Face Load Order & Preloading (FOUT Prevention)**: To prevent font-swap layout shifts (FOUT), `@fontsource/raleway` styles are imported *before* `global.scss` in `Layout.astro` frontmatter, guaranteeing that `@font-face` definitions appear at the very beginning of the compiled CSS stylesheet. Additionally, critical Raleway `.woff2` font files are resolved via Vite's `?url` suffix and preloaded using `<link rel="preload" as="font" type="font/woff2" crossorigin>` in the HTML head.
+- **Absolute Content Link Rewriting**: To preserve local navigation during development, `src/lib/wordpress.ts` dynamically parses all anchor elements in fetched HTML. Any `href` matching `WP_BASE_URL` (local or staging) or the Cloudflare staging domain is rewritten to a relative root path (e.g., `href="/services/..."`), keeping internal links aligned with the active environment.
 
 
 ## Map Component Animations
