@@ -1,5 +1,10 @@
 # Current State
 
+- **Page Load Layout Shift (CLS) Fixes** (July 11, 2026):
+  - **Goal**: Eliminate visual layout shifts during page loading (CLS) for the header, hero sections, and inline SVGs.
+  - **Implementation**: Added explicit `aspect-ratio: 300 / 115;` and fixed widths (`width: 300px;` on desktop and `width: 209px;` on mobile) to `.header__logo-img` and `.db-page-hero__logo-img` in `src/styles/mobile.scss`. Configured aspect ratio and dimensions (`aspect-ratio: 941.76 / 907.17;`) for the inline `.texas-svg-map` to reserve layout bounds before SVG paths load. Added explicit `width` and `height` attributes to raw `<img>` tags on the homepage (`src/pages/index.astro`).
+  - **Verification**: Verified using local Astro builds.
+
 - **Heading h2 Typography Size and Weight Adjustments** (July 10, 2026):
   - **Goal**: Update global h2 heading sizes and weights across page contents to 2rem and font-weight 700.
   - **Implementation**: Modified `h2.wp-block-heading:not(...)` in `src/styles/mobile.scss` (under `main, .editor-styles-wrapper`) to set `font-size: 2rem;` and `font-weight: 700;`.
