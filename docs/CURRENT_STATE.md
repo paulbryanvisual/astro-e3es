@@ -1,5 +1,10 @@
 # Current State
 
+- **Absolute Content Link Rewriting** (July 11, 2026):
+  - **Goal**: Prevent internal anchor links inside fetched WordPress REST API content from navigating away to the remote staging site.
+  - **Implementation**: In `src/lib/wordpress.ts`'s `processWordPressHtml` function, added regex parsing to dynamically rewrite any anchor `href` matching the remote `WP_BASE_URL` (or the Cloudflare staging domain) to relative paths (e.g. `/services/...`).
+  - **Verification**: Verified using local Astro builds.
+
 - **Font-Face Load Order & Preloading (FOUT Fix)** (July 11, 2026):
   - **Goal**: Prevent font swap layout shifts (FOUT) caused by delayed Raleway font asset resolution on page loads.
   - **Implementation**:
