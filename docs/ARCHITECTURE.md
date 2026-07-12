@@ -69,6 +69,8 @@
 ## Clients Page Architecture
 - **Static Breadcrumb Items**: The `/clients` page is a static template, so breadcrumbs are defined using a static `breadcrumbItems` list containing the Home page hierarchy and a pointer to the current Clients directory.
 - **Sharp Corner Constraint**: In accordance with E3 styling guidelines, all inline `border-radius` styles on the clients finder elements (the search sidebar, search filter selectors, search input fields, client card containers, labels, and no results message container) are explicitly set to `0` to enforce sharp corners.
+- **Full-Bleed Header Banner & Touching Breadcrumbs**: The header intro banner (`.wp-block-e3es-intro-banner`) is forced to be full-bleed (`width: 100% !important; max-width: none !important;`) and touches the breadcrumbs bar directly by resetting the top margin (`margin-top: 0 !important`) on both `.clients-page` and `.clients-page__content`.
+- **1450px Canvas Override**: The client finder grid width `.clients-finder-container` is configured to bypass standard 1200px/1440px limits and expand to a minimum width of `1450px` on desktop viewports (`@media (min-width: 1200px)`).
 
 ## Client Parity, Restructuring, and Flickr Image Import
 - **Post Status Transition**: Transitioned all 80 draft client posts to "publish" status.
