@@ -1,5 +1,11 @@
 # Architecture Notes
 
+## Multi-Agent Transcription Audit System
+- **Parallel Subagent Execution**: For raw transcription auditing, the system splits verification into two distinct, parallel agent channels:
+  - **Transcription Auditor**: Focuses on phonetic, acoustic, and orthographical matches (e.g., spelling and pronunciation patterns).
+  - **Context Analyst**: Focuses on semantic flow, grammatical correctness, municipal/academic jargon validation, and context integration.
+- **Unified Review & Synthesis**: The parent orchestrator merges findings from both agents, resolves conflicting interpretations, and validates the output using targeted local python regex inspection scripts.
+
 ## Services List Formatting & Gutenberg List Blocks
 - **Header formatting in list items**: Across all `services` posts, features and benefit lists use a standardized `<li><strong>Heading</strong><br />Description</li>` format. Any legacy bold notations (`**`), trailing colons (`:`), or double stars (`:**`) are stripped, replacing them with a semantic `<br />` soft return to separate the bold title block from the normal description.
 - **Ordered list blocks**: For the "Key Benefits of E3's Interior LED Solutions" section in `interior-lighting-3`, separate paragraph blocks are converted into a single native Gutenberg ordered list block (`<!-- wp:list {"ordered":true} -->` and `<ol class="wp-block-list">`). Sub-lists of modes (like Direct Instruction Mode, AV/Presentation Mode, etc.) are nested directly inside the parent list item (`<li>`) semantically to preserve layout hierarchy and screen-reader accessibility.
