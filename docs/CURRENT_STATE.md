@@ -1,5 +1,14 @@
 # Current State
 
+- **Database-Wide Gutenberg Block Recovery & Project Photo Extraction** (July 12, 2026):
+  - **Goal**: Resolve persistent Gutenberg "Attempt Block Recovery" warnings database-wide, stop using client logos as banner background/hero images, and ensure actual project photos are used.
+  - **Implementation**:
+    1. **Project Photo Extraction**: Wrote `crop_all_layout_photos.py` to parse standard vertical reference sheets (`Jason Flowers - ... .jpg`) for 36 clients. Checked the image aspect ratio; if already landscape, kept as-is, otherwise cropped the top 1/3 horizontal section of the gym/school photos.
+    2. **Database Replacements**: Sideloaded the cropped JPEGs into the WordPress media library and replaced all references to PNG logos (`extracted-docx-image1.png`) used as banner backgrounds in `e3es/intro-banner` and `e3es/project` blocks database-wide.
+    3. **Root Cause Analysis (Slashing)**: Identified that updating block content directly without `wp_slash()` caused WordPress to strip escaping backslashes from JSON block comments (converting `\u0026` to `u0026` and `\u0027` to `u0027`).
+    4. **Block Recovery & Slashing Fix**: Built `restore_and_sanitize_all_blocks.php`, a self-healing block restoration script that automatically reconstructed missing block attributes from HTML markup, decoded double-escaped entities, and re-saved all 101 client posts securely using `wp_slash()`.
+  - **Verification**: Ran the E2E client parity test suite with a 100% PASS rate. Checked post content directly in the database and verified that all block comments contain the correct `\u0026` escaping.
+
 - **Clients Page Hero Banner & Container Styling Improvements** (July 12, 2026):
   - **Goal**: Touch the hero banner directly to the breadcrumbs bar, make it full-bleed/full-width, include the intro paragraph text natively, and expand the container width to 1450px on desktop screens.
   - **Implementation**:
