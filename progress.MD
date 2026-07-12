@@ -6,6 +6,9 @@
 
 ## Section 2 — For Review
 
+* 📝 [key_clean_quotes_batch2_draft.json](file:///Users/bryanpaul/Local%20Sites/astro-e3es/scratch/key_clean_quotes_batch2_draft.json) — Cleaned Batch 2 of key testimonial quotes (Draft).
+* 🗃️ [key_clean_quotes_batch2.json](file:///Users/bryanpaul/Local%20Sites/astro-e3es/scratch/key_clean_quotes_batch2.json) — Cleaned Batch 2 of key testimonial quotes.
+* ✍️ [key_clean_quotes_batch1.json](file:///Users/bryanpaul/Local%20Sites/astro-e3es/scratch/key_clean_quotes_batch1.json) — Cleaned Batch 1 of key testimonial quotes.
 * 🖼️ [Green Texture Scroll Direction Alignment](http://localhost:4008/clients/boyd-isd/) — Reversed the scrolling diagonal parallax mask animation on the green texture project block header from right-to-left to left-to-right (modifying mobile.scss initial transform and [slug].astro scroll progress interpolation).
 * 🧪 [E2E Clients Parity Test Paragraph Check Adjustment](http://localhost:4008/) — Adjusted E2E test script to accept relationship description paragraphs inside project block containers in Gutenberg, and updated the client seeder configuration to seed Granbury ISD's partnership paragraph inside its first project block.
 * 📐 [Services List Cards Alignment Fix](http://astro-e3es.localhost:8080/services/water-wastewater/water-conservation-4/) — Aligned the slanted E3 card list items flush with the left boundary of standard page text block elements, correcting the skew indentation alignment gap.
