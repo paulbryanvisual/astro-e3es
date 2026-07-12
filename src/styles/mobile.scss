@@ -3197,7 +3197,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     border-right: 10px solid #FFFFFF;
     z-index: 5;
     will-change: transform;
-    transform: skewX(-5deg) translateX(50%); /* initial state, replaced by JS */
+    transform: skewX(-5deg) translateX(-50%); /* initial state, replaced by JS */
 
     &::before {
       content: '';

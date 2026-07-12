@@ -471,9 +471,9 @@ const breadcrumbItems = [
                 inner.appendChild(img);
               }
               if (wrapper) {
-                // Animation from RIGHT to LEFT
+                // Animation from LEFT to RIGHT
                 // Use a smaller range (40% instead of 50%) so the skewed edges never go offscreen!
-                var move = (0.5 - progress) * 80; // goes from 40 to -40
+                var move = (progress - 0.5) * 80; // goes from -40 to 40
                 wrapper.style.transform = 'skewX(-5deg) translateX(' + move + '%)';
               }
             } else {

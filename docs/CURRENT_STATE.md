@@ -1,5 +1,13 @@
 # Current State
 
+- **Green Texture Project Header Scroll Animation Direction Update** (July 12, 2026):
+  - **Goal**: Change the direction of the scrolling diagonal parallax mask animation on the `green-texture-behind` project block header graphic to move from Left to Right.
+  - **Implementation**:
+    1. **Style Update**: Modified `mobile.scss` for `.is-style-green-texture-behind` to set the initial CSS `transform: skewX(-5deg) translateX(-50%)` (realigning it for a left-to-right entrance).
+    2. **Animation Script**: Updated the scroll listener logic inside `src/pages/clients/[slug].astro` to calculate the translation shift as `var move = (progress - 0.5) * 80`, translating the element from `-40%` to `40%` on scroll.
+    3. **Style Sync**: Ran `node sync-styles.js` to compile the SCSS and sync the updated `editor-styles.css` directly to the WordPress visual editor directory.
+  - **Verification**: Verified via local Astro server E2E parity tests, compiling and completing successfully with a 100% PASS rate.
+
 - **E2E Test Client Parity Test Adjustment & Project Description In-Block Seeding** (July 12, 2026):
   - **Goal**: Allow relationship description paragraphs to reside inside project block containers in Gutenberg and seed Granbury ISD's partnership paragraph inside its first project block.
   - **Implementation**:
