@@ -113,7 +113,16 @@
   1. Bootstrap the script by setting the current user to an administrator: `wp_set_current_user(1)`.
   2. Unconditionally remove the sanitization filters: `kses_remove_filters()`.
   3. Ensure the database string content is properly slashed: `wp_slash($content)` before calling `wp_update_post()`.
-- **Schema Alignment**: Under this bypass, block attribute JSON comments use standard `\u0026` parameter separators, and their corresponding HTML tag properties (like image `alt` and link headers) match standard entity escaping (`&amp;`) exactly, maintaining 100% schema integrity without editor validation mismatches.
+- **Block Schema Alignment Rules**:
+  * **e3es/project**: Outer container must use the class `wp-block-e3es-project project-section`. The `object-position` in the image `style` attribute must use rounded integer percentages (e.g. `55%` instead of float calculations like `55.00000000000001%`) to match standard parsed attributes.
+  * **e3es/intro-banner**: The `style` attribute of the wrapping `section` must include a valid `background-image` property (containing the correct overlay color gradient and image URL) along with `background-size:cover`, `background-position`, and `background-repeat`. If the background image property is missing, validation fails.
+  * **e3es/faq-section**: The block container must only output the `h2.faq-section__title` followed by `InnerBlocks.Content`. Adding any custom keywords wrappers (like `<div class="faq-section__keywords">...</div>` left over from crawl outputs) causes block validation mismatches.
+- **Accessibility (a11y) Heading Outline Rules**:
+  * Page Title: Should be `H1`.
+  * Project Block Title: Should be `H2`.
+  * Subsection titles directly inside a project section (such as deliverables lists, inline project videos, or procurement & funding sections) must be H3.
+  * Deeply nested subheadings (like Boyd ISD's archive gallery categories under "Project Documentation") must be H4.
+  * Jumps (such as H2 directly to H4) are strictly disallowed to maintain linear, accessible reading outlines.
 
 - **Unified SVG Map Rendering**: In `wordpress.ts`, `processWordPressHtml()` replaces static map image placeholders with `TEXAS_MAP_SVG`. The SVG contains inline stylesheet overrides to force all region paths to use brand colors.
 - **Interactive Contact Map & Tooltips**:

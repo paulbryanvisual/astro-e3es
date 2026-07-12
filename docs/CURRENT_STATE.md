@@ -1,5 +1,13 @@
 # Current State
 
+- **Universal Gutenberg Block Validation Audit & Accessibility Heading Hierarchy Alignment** (July 12, 2026):
+  - **Goal**: Clear all remaining block validation warnings database-wide for `e3es/intro-banner`, `e3es/faq-section`, and custom project blocks. Audit and align heading hierarchy across all client posts to comply with WCAG accessibility standards (linear heading flow H1 -> H2 -> H3 -> H4 with no skips).
+  - **Implementation**:
+    1. **Block Validation Fixes**: Refactored `restore_and_sanitize_video_and_blocks.php` to completely reconstruct the HTML for `e3es/intro-banner` (aligning style background-image syntax with the JSON attributes) and `e3es/faq-section` (removing obsolete legacy keywords wrappers and outputting matching save markup).
+    2. **Accessibility Heading Corrections**: Refactored `$project_gallery` in `seed-client-blocks.php` to accept a dynamic heading level, defaulting to 3. Promoted key project subheadings (video embed title, deliverables title, and procurement/funding sections) inside project blocks from H4 to H3. Set Boyd ISD's top-level project documentation container to H3 and nested sub-galleries to H4, establishing a clean linear outline.
+    3. **Database Sync**: Triggered block seeding and sanitized all 101 posts database-wide.
+  - **Verification**: Executed a comprehensive Puppeteer-based headless audit script `audit_all_editor_pages.cjs` that authenticated as administrator and loaded all 105 client posts in the Gutenberg editor, verifying exactly **0 invalid/recovery blocks** database-wide.
+
 - **Database-Wide Gutenberg Block Recovery & Project Photo Extraction** (July 12, 2026):
   - **Goal**: Resolve persistent Gutenberg "Attempt Block Recovery" warnings database-wide, stop using client logos as banner background/hero images, and ensure actual project photos are used.
   - **Implementation**:
