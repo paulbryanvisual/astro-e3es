@@ -1,5 +1,13 @@
 # Current State
 
+- **Quotes Consolidation and Review Document Generation** (July 12, 2026):
+  - **Goal**: Consolidate Batch 1 (25 items), Batch 2 (26 items), and heuristically formatted non-key quotes (59 items) into a unified dataset, and generate a markdown file for user review before database import.
+  - **Implementation**:
+    1. **Heuristic Non-Key Formatting**: Created and ran `clean_non_key.py` to format internal slide presentation quotes into clean, structured paragraphs.
+    2. **Consolidation**: Created and ran `combine_and_generate_markdown.py` to combine all 110 video-speaker groups into `scratch/cleaned_merged_quotes.json`.
+    3. **Review Markdown Generation**: Generated a beautifully formatted review file `proposed_merged_quotes.md` in the artifacts directory featuring raw-to-cleaned side-by-side comparisons of all 110 quote paragraphs.
+  - **Verification**: Confirmed that all 1,100+ raw transcript quotes are cleanly compiled and ready for preview.
+
 - **Gutenberg Media Selector Image Details Modal Helper** (July 12, 2026):
   - **Goal**: Implement a direct, one-click mechanism in the Gutenberg editor to allow administrators to review and update image details (Alt Text, Title, Caption, Description) directly from custom blocks.
   - **Implementation**:
