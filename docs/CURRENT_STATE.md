@@ -1,5 +1,13 @@
 # Current State
 
+- **E2E Test Client Parity Test Adjustment & Project Description In-Block Seeding** (July 12, 2026):
+  - **Goal**: Allow relationship description paragraphs to reside inside project block containers in Gutenberg and seed Granbury ISD's partnership paragraph inside its first project block.
+  - **Implementation**:
+    1. **Test Adjustment**: Modified `/tests/clients-parity.test.js` to allow the first relationship description paragraph to sit either outside project blocks or inside the first project block (validating it falls within the start/end indexes of the first project block).
+    2. **Granbury ISD Seeding**: Updated `seed-client-blocks.php` to include Granbury's relationship description paragraph (*"Granbury ISD was faced with many challenges..."*) at the top of the description array for its first project block.
+    3. **Database Re-seed**: Triggered `?e3_seed_blocks=1` to restore Boyd ISD and Granbury ISD to their default seeded block states.
+  - **Verification**: Ran the Astro E2E clients parity test suite with a 100% PASS rate across all 25 active client subpages.
+
 - **Quotes Person/Employee Relationship Sync & Self-Healing Links** (July 12, 2026):
   - **Goal**: Resolve broken or missing person relationships (`_e3_quote_person_id`) for CPT `quotes` database-wide. Ensure that every quote correctly references a valid, active person profile in CPT `people` or `employees`.
   - **Implementation**:
