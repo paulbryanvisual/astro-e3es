@@ -186,6 +186,20 @@ export function processWordPressHtml(html: string, slug?: string): string {
   processedHtml = processedHtml.replace(/&amp;amp;/g, '&amp;')
                                .replace(/&amp;#038;/g, '&#038;');
 
+  // Clean up any wpautop paragraph injection inside script or style tags
+  processedHtml = processedHtml.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gi, (match, scriptContent) => {
+    const cleanScript = scriptContent
+      .replace(/<\/?p>/gi, '')
+      .replace(/<br\s*\/?>/gi, '\n');
+    return match.replace(scriptContent, cleanScript);
+  });
+  processedHtml = processedHtml.replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gi, (match, styleContent) => {
+    const cleanStyle = styleContent
+      .replace(/<\/?p>/gi, '')
+      .replace(/<br\s*\/?>/gi, '');
+    return match.replace(styleContent, cleanStyle);
+  });
+
   // Re-inject Vimeo iframe inside db-video-wrapper from block attributes if comments are present
   const videoBlockRegex = /<!-- wp:e3es\/video-embed (\{.*?\}) -->[\s\S]*?<div class="db-video-wrapper">([\s\S]*?)<\/div>/gi;
   processedHtml = processedHtml.replace(videoBlockRegex, (match, attrsJson, innerContent) => {
