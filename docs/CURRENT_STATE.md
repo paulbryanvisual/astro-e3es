@@ -1,5 +1,14 @@
 # Current State
 
+- **Gutenberg Media Selector Image Details Modal Helper** (July 12, 2026):
+  - **Goal**: Implement a direct, one-click mechanism in the Gutenberg editor to allow administrators to review and update image details (Alt Text, Title, Caption, Description) directly from custom blocks.
+  - **Implementation**:
+    1. **MediaSelect Component Enhancement**: Extended the React-based `MediaSelect` helper component in `editor-blocks.js`.
+    2. **Details Modal UI**: Integrated a Gutenberg `Modal` component containing form inputs (`TextControl` and `TextareaControl`) for Alt Text, Title, Caption, and Description, along with a thumbnail preview and original file link.
+    3. **REST API Integration**: Wired the modal to fetch matching media metadata dynamically using the `/wp/v2/media` endpoint (searching by the image file's clean basename) on open, and save metadata changes securely via a POST request on submit.
+    4. **Trigger Points**: Styled the image preview div with `cursor: pointer` to trigger the modal on click, and added a secondary `"Image Details"` button next to the `"Replace Image"` option.
+  - **Verification**: Verified via E2E test suite that all pages pass successfully.
+
 - **Clean Raw Testimonial Quotes Batch 2 Analysis & Audit Guide** (July 12, 2026):
   - **Goal**: Analyze raw transcription quotes from batch 2 (`scratch/key_raw_quotes_batch2.json`) to identify phonetic mishearings, acoustic errors, and technical/organizational names, and compile a comprehensive audit guide with semantic corrections.
   - **Implementation**:
