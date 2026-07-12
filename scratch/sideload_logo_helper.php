@@ -21,7 +21,7 @@ $filename = $argv[2];
 $temp_file_path = $argv[3];
 $external_url = $argv[4];
 
-if (!file_exists($temp_file_path)) {
+if ($temp_file_path !== 'check_only' && !file_exists($temp_file_path)) {
     die("ERROR: Temporary file does not exist at: $temp_file_path\n");
 }
 
@@ -42,6 +42,9 @@ if ($attachment_id) {
     $local_url = wp_get_attachment_url($attachment_id);
     echo "SUCCESS_EXISTS:$local_url\n";
 } else {
+    if ($temp_file_path === 'check_only') {
+        die("NOT_FOUND\n");
+    }
     $file_array = [
         'name' => $filename,
         'tmp_name' => $temp_file_path
@@ -57,6 +60,8 @@ if ($attachment_id) {
 }
 
 if ($local_url) {
+    $updated = false;
+    
     // Replace the external URL with the local URL in the post content
     $content = $post->post_content;
     if (strpos($content, $external_url) !== false) {
@@ -65,8 +70,19 @@ if ($local_url) {
             'ID' => $post_id,
             'post_content' => $content
         ]);
-        echo "DATABASE_UPDATED\n";
-    } else {
-        echo "NO_MATCH_IN_CONTENT\n";
+        $updated = true;
+        echo "DATABASE_CONTENT_UPDATED\n";
+    }
+    
+    // Also replace in client metadata if it matches
+    $logo_meta = get_post_meta($post_id, '_e3_client_logo', true);
+    if ($logo_meta === $external_url || ($logo_meta && strpos($logo_meta, $external_url) !== false)) {
+        update_post_meta($post_id, '_e3_client_logo', $local_url);
+        $updated = true;
+        echo "DATABASE_METADATA_UPDATED\n";
+    }
+    
+    if (!$updated) {
+        echo "NO_MATCH_FOUND\n";
     }
 }

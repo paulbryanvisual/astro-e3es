@@ -54,6 +54,19 @@ async function main() {
     const filename = `${client.slug}-logo${ext}`;
     const tempPath = path.join(__dirname, `temp_${client.slug}_logo${ext}`);
     
+    // Check if it already exists in media library and update metadata/content directly
+    try {
+      const checkCmd = `"${phpBinary}" "${path.join(__dirname, 'sideload_logo_helper.php')}" ${client.id} "${filename}" "check_only" "${client.url}"`;
+      const checkOutput = execSync(checkCmd).toString();
+      if (checkOutput.includes('SUCCESS_EXISTS')) {
+        console.log(`  Already exists in media library. Sideload skipped.`);
+        console.log(`  PHP Output: ${checkOutput.trim().replace(/\n/g, ' | ')}`);
+        continue; // Skip Puppeteer download!
+      }
+    } catch (err) {
+      // Proceed to download if it does not exist
+    }
+    
     try {
       // Download file inside browser context
       const base64 = await page.evaluate(async (imgUrl) => {
