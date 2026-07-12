@@ -200,6 +200,16 @@ export function processWordPressHtml(html: string, slug?: string): string {
     return match.replace(styleContent, cleanStyle);
   });
 
+  // Clean up any wpautop paragraph injection inside clients finder section
+  processedHtml = processedHtml.replace(/(<section[^>]*class="[^"]*clients-finder-section[^"]*"[^>]*>)([\s\S]*?)(<\/section>)/gi, (match, startTag, sectionContent, endTag) => {
+    const cleanContent = sectionContent
+      .replace(/<p>Try removing some filters\.<\/p>/gi, '<!--TEMP_FILTER_P-->')
+      .replace(/<\/?p>/gi, '')
+      .replace(/<br\s*\/?>/gi, '')
+      .replace('<!--TEMP_FILTER_P-->', '<p>Try removing some filters.</p>');
+    return startTag + cleanContent + endTag;
+  });
+
   // Re-inject Vimeo iframe inside db-video-wrapper from block attributes if comments are present
   const videoBlockRegex = /<!-- wp:e3es\/video-embed (\{.*?\}) -->[\s\S]*?<div class="db-video-wrapper">([\s\S]*?)<\/div>/gi;
   processedHtml = processedHtml.replace(videoBlockRegex, (match, attrsJson, innerContent) => {
