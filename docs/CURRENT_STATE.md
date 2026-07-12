@@ -1,5 +1,13 @@
 # Current State
 
+- **Client Listing Page Responsive Grid & Case Study Hero Spacing Fix** (July 12, 2026):
+  - **Goal**: Prevent the third column from clipping on the clients listing page, and eliminate the large bottom spacing below the hero header on client subpages.
+  - **Implementation**:
+    1. **Grid Cutoff Fix**: Replaced the restrictive `min-width: 1450px !important` on `.clients-finder-container` inside `mobile.scss` with a flexible `width: 100% !important` and `max-width: 1440px !important;` rule. This allows the layout to scale down smoothly and drop cards to 2 columns on narrower viewports instead of overflowing offscreen.
+    2. **Hero Margin Correction**: Set `margin-bottom: 0` on `.db-page-hero` inside `mobile.scss` to allow full-width client/service heroes to sit flush against subsequent page content blocks (e.g. video embed) without inserting a 4rem empty space gap.
+    3. **Visual Editor Sync**: Re-compiled styles and synced the output stylesheet to WordPress.
+  - **Verification**: Verified via local E2E test suite passing with a 100% success rate.
+
 - **Quotes Consolidation and Review Document Generation** (July 12, 2026):
   - **Goal**: Consolidate Batch 1 (25 items), Batch 2 (26 items), and heuristically formatted non-key quotes (59 items) into a unified dataset, and generate a markdown file for user review before database import.
   - **Implementation**:
