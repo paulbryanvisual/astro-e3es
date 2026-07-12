@@ -126,7 +126,9 @@
 
 ## Quotes Post Type & Speaker Relationships
 - **Quote and Speaker Linkage**: Custom post type `quotes` represents testimonials and case study video transcript segments. Each quote is dynamically linked to a speaker profile (which resides in CPT `people` or `employees`) via the custom post meta key `_e3_quote_person_id`.
-- **Database Self-Healing**: To maintain link consistency across database resets or partial wipes, imported quotes are automatically matched with active speaker profiles by parsing the speaker's name from the quote's post title (splitting on the first `" on "` occurrence) and checking the database for matching titles. If a speaker is missing, a CPT `people` post is dynamically created and matched with attributes/portraits from `speakers.csv` and local media uploads.
+- **Database Self-Healing & Deduplication**: To maintain link consistency across database resets or partial wipes, imported quotes are automatically matched with active speaker profiles by parsing the speaker's name from the quote's post title (splitting on the first `" on "` occurrence) and checking the database for matching titles. 
+  - **Employee Linkage & Deduplication**: Employee CPT profiles have single-name titles (e.g. `JOSH`, `REBEKAH`) but hold full-name slugs (e.g. `josh-combs-pe-cem`, `rebekah-hansen-cem`). The self-healing deduplication script (`detect_and_link_employees.php`) checks parsed speaker names against employee slugs using case-insensitive first name matching and fuzzy last name matching (Levenshtein distance $\le 2$). If a match is found, the quote is linked directly to the employee's CPT post, and the duplicate CPT `people` profile is deleted.
+  - **Fallback Profile Creation**: If a speaker has no matching employee or client profile, a CPT `people` post is dynamically created and matched with attributes/portraits from `speakers.csv` and local media uploads.
 
 - **Unified SVG Map Rendering**: In `wordpress.ts`, `processWordPressHtml()` replaces static map image placeholders with `TEXAS_MAP_SVG`. The SVG contains inline stylesheet overrides to force all region paths to use brand colors.
 - **Interactive Contact Map & Tooltips**:
