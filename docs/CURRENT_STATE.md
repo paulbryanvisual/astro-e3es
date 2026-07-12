@@ -1,5 +1,13 @@
 # Current State
 
+- **Clients Page Hero Banner & Container Styling Improvements** (July 12, 2026):
+  - **Goal**: Touch the hero banner directly to the breadcrumbs bar, make it full-bleed/full-width, include the intro paragraph text natively, and expand the container width to 1450px on desktop screens.
+  - **Implementation**:
+    1. **Database Update**: Natively updated post ID 169 (Clients page) in the WordPress database, adding the required subtitle paragraph text inside the `wp:e3es/intro-banner` block JSON comments and markup container.
+    2. **Full-Bleed Styling**: In `src/styles/mobile.scss`, targeted the `.clients-page` container wrapper and its nested `.wp-block-e3es-intro-banner`/`.db-page-hero` to reset top margins/padding (`margin-top: 0 !important`) and override width/margins to `100%`/`0` to allow the banner to touch the breadcrumbs bar and be 100% full-width.
+    3. **1450px Canvas Override**: Configured a desktop media query (`@media (min-width: 1200px)`) that expands `.clients-finder-container` to `min-width: 1450px !important`.
+  - **Verification**: Verified using local Astro builds and confirmed the banner renders correctly with the updated text and touches the breadcrumbs bar.
+
 - **wpautop HTML Paragraph Injection & Script Cleanup (Clients Page Layout Shift Fix)** (July 12, 2026):
   - **Goal**: Resolve broken HTML card grid rendering, invalid markup nesting, and layout shifts on `/clients` page caused by WordPress's `wpautop` auto-paragraph filter.
   - **Implementation**:
