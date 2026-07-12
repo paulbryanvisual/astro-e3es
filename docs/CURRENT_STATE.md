@@ -1,5 +1,10 @@
 # Current State
 
+- **wpautop Script/Style Tag Block Cleanup (Clients Page JS Fix)** (July 12, 2026):
+  - **Goal**: Resolve SyntaxError layout breaks and broken search/filtering on `http://localhost:4008/clients/`.
+  - **Implementation**: Added regex parsing in `processWordPressHtml` inside `src/lib/wordpress.ts` to automatically scan rendered HTML content for `<script>` and `<style>` blocks and strip out any paragraph (`<p>`/`</p>`) or line-break (`<br>`) tags injected by WordPress's `wpautop` filter.
+  - **Verification**: Verified using local Astro builds and confirmed script syntax is fully restored.
+
 - **E3 Industry Pages Gutenberg Block Recovery** (July 11, 2026):
   - **Goal**: Resolved "Attempt Block Recovery" validation error inside Municipalities, Healthcare, and Higher Education industry pages.
   - **Implementation**: Formatted `seed-industries.php`'s Gutenberg block output. Cleaned the nested group blocks (`core/group`) by removing whitespace/indentation characters within tag joins to prevent text node parser conflicts. Corrected `core/image` blocks to match the Gutenberg block save method by removing custom classes from `<img>` tags and correctly setting `"className"` attributes in JSON comment parameters. Re-seeded the three industry pages to update the WordPress database.
