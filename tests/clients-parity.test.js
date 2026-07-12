@@ -294,7 +294,7 @@ async function auditClientPage(client, failures) {
 
     // Check 5: Project details wrapper check
     const hasDetails = hasClass(mainContent, 'project-details');
-    const projectIdx = mainContent.indexOf('wp-block-e3es-project') !== -1 ? mainContent.indexOf('wp-block-e3es-project') : mainContent.indexOf('project-section');
+    const projectIdx = mainContent.search(/wp-block-e3es-project(?!-toc)/) !== -1 ? mainContent.search(/wp-block-e3es-project(?!-toc)/) : mainContent.indexOf('project-section');
 
     if (hasDetails) {
       // Find all custom e3 project blocks
@@ -314,7 +314,7 @@ async function auditClientPage(client, failures) {
       }
       
       // Find relationship description paragraph
-      const paragraphRegex = /<p[^>]*>([\s\S]*?(?:partnered|partnership|collaborated|cooperated)[\s\S]*?)<\/p>/gi;
+      const paragraphRegex = /<p[^>]*>((?:(?!<\/p>|<p).)*?(?:partnered|partnership|collaborated|cooperated)(?:(?!<\/p>|<p).)*?)<\/p>/gi;
       let paragraphMatch;
       let firstParagraphIdx = -1;
       while ((paragraphMatch = paragraphRegex.exec(mainContent)) !== null) {
@@ -331,7 +331,7 @@ async function auditClientPage(client, failures) {
         const nameWords = slug.split('-');
         const clientKeyword = nameWords[0];
         if (clientKeyword && clientKeyword.length > 2) {
-          const clientNameRegex = new RegExp(`<p[^>]*>([\\s\\S]*?${clientKeyword}[\\s\\S]*?)<\/p>`, 'i');
+          const clientNameRegex = new RegExp(`<p[^>]*>((?:(?!</p>|<p).)*?${clientKeyword}(?:(?!</p>|<p).)*?)</p>`, 'i');
           const clientNameMatch = mainContent.match(clientNameRegex);
           if (clientNameMatch) {
             firstParagraphIdx = clientNameMatch.index;
