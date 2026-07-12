@@ -6,6 +6,7 @@
 
 ## Section 2 — For Review
 
+* 🧪 [E2E Clients Parity Test Paragraph Check Adjustment](http://localhost:4008/) — Adjusted E2E test script to accept relationship description paragraphs inside project block containers in Gutenberg, and updated the client seeder configuration to seed Granbury ISD's partnership paragraph inside its first project block.
 * 📐 [Services List Cards Alignment Fix](http://astro-e3es.localhost:8080/services/water-wastewater/water-conservation-4/) — Aligned the slanted E3 card list items flush with the left boundary of standard page text block elements, correcting the skew indentation alignment gap.
 * 🧹 [Services List Item and Ordered List Formatting](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/docs/CURRENT_STATE.md) — Format all services list items to use bold headers, soft returns, and clean descriptions, and convert interior-lighting-3 paragraphs into a native nested Gutenberg ordered list.
 * 🗺️ [Contact Page Interactive Map](http://astro-e3es.localhost:8080/contact/) — Replaced the static map image with an interactive SVG Texas map showing office locations, region hover highlighting, pulsing pins, and detailed tooltips (addresses, phones, and directions). *Updated to allow hover stickiness, selection, and clickable links.*
