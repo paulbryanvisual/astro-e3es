@@ -9,13 +9,13 @@
     4. **Trigger Points**: Styled the image preview div with `cursor: pointer` to trigger the modal on click, and added a secondary `"Image Details"` button next to the `"Replace Image"` option.
   - **Verification**: Verified via E2E test suite that all pages pass successfully.
 
-- **Clean Raw Testimonial Quotes Batch 2 Analysis & Audit Guide** (July 12, 2026):
-  - **Goal**: Analyze raw transcription quotes from batch 2 (`scratch/key_raw_quotes_batch2.json`) to identify phonetic mishearings, acoustic errors, and technical/organizational names, and compile a comprehensive audit guide with semantic corrections.
+- **Clean Raw Testimonial Quotes Batch 2** (July 12, 2026):
+  - **Goal**: Rewrite raw transcription quotes from batch 2 into grammatically correct, clean, and professional website testimonial quotes without emojis.
   - **Implementation**:
-    1. **Multi-Agent Analysis**: Coordinated two specialized subagents (Transcription Auditor and Context Analyst) in parallel to review the raw transcription.
-    2. **Phonetic & Semantic Audits**: Identified and documented corrections for key terms, including Latin proverbs ("Aut viam inveniam aut faciam"), municipal project terms ("years of piecemeal neglect" and "lagoon system" for Stockdale), higher education terms ("doctoral program" and A&M-Commerce partnerships), and contractor names ("E3" instead of "three"/"each Ray"/"a three").
-    3. **Report Generation**: Compiled a unified audit report containing detailed context, grammatical rationales, and exact phonetic/semantic corrections.
-  - **Verification**: Verified the structure and keys of the source JSON file using custom inspection scripts.
+    1. **Text Rewriting**: Processed all 26 raw transcriptions from `scratch/key_raw_quotes_batch2.json`, fixing typos and phonetic mishearings (e.g., "Fritz Decker" to "Fritz Deckard", "hydraulic" to "hydronic" piping, "Cinco Grant" to "SECO grant", "Tasmanian E3" to "TASB and E3", and Latin proverb "Aut viam inveniam aut faciam"), resolving sentence flow, and capitalizing sentences and "I" contractions.
+    2. **Script Automation**: Created and executed `scratch/clean_quotes_batch2.py` to automate mapping raw data to cleaned quotes, ensuring valid JSON array structure.
+    3. **Output Generation**: Saved the result into both `scratch/key_clean_quotes_batch2_draft.json` and `scratch/key_clean_quotes_batch2.json`.
+  - **Verification**: Verified the structure, keys, and JSON parsing validity of the output files using custom Python verification scripts.
 
 - **Clean Raw Testimonial Quotes Batch 1** (July 12, 2026):
   - **Goal**: Rewrite raw transcription quotes from batch 1 into grammatically correct, clean, and professional website testimonial quotes without emojis.
