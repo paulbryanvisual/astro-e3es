@@ -663,7 +663,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 6rem 2rem; /* Shorter */
     text-align: center;
     width: 100%;
-    margin-bottom: 4rem;
+    margin-bottom: 0;
 }
 
 // Reduce margin-bottom to 1rem when Jump to project block immediately follows the hero
@@ -5934,8 +5934,8 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
 
     @media (min-width: 1200px) {
       .clients-finder-container {
-        min-width: 1450px !important;
-        max-width: 1600px !important;
+        max-width: 1440px !important;
+        width: 100% !important;
         margin: 0 auto !important;
       }
     }
