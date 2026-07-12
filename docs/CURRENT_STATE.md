@@ -1,5 +1,13 @@
 # Current State
 
+- **Quotes Person/Employee Relationship Sync & Self-Healing Links** (July 12, 2026):
+  - **Goal**: Resolve broken or missing person relationships (`_e3_quote_person_id`) for CPT `quotes` database-wide. Ensure that every quote correctly references a valid, active person profile in CPT `people` or `employees`.
+  - **Implementation**:
+    1. **Portrait Assets Synchronization**: Copied 18 high-resolution speaker portrait images from the Dropbox assets folder `/assets/vimeo_downloads/portraits/` directly to the local WordPress uploads folder `/vimeo_portraits/` to make them available for WordPress sideloading.
+    2. **Self-Healing Import Script**: Built `fix_quotes_persons.php` to parse speaker details from `speakers.csv` and quotes metadata from `quotes.csv`. It scans all 1,500 quotes in the database, extracts the speaker's name from the post title (splitting on the ` on "` boundary), and checks if a corresponding post in CPT `people` or `employees` exists.
+    3. **Profile Creation & Sideloading**: If a speaker's profile is missing, the script inserts a new `people` post, queries their title from `speakers.csv` (defaulting to `Representative`), sideloads their portrait image, and sets it as the featured thumbnail. It then updates the quote's `_e3_quote_person_id` meta field.
+  - **Verification**: Verified that all 1,500 quotes in the database now resolve to active profiles, resulting in exactly **0 missing/unlinked quotes** database-wide.
+
 - **Universal Gutenberg Block Validation Audit & Accessibility Heading Hierarchy Alignment** (July 12, 2026):
   - **Goal**: Clear all remaining block validation warnings database-wide for `e3es/intro-banner`, `e3es/faq-section`, and custom project blocks. Audit and align heading hierarchy across all client posts to comply with WCAG accessibility standards (linear heading flow H1 -> H2 -> H3 -> H4 with no skips).
   - **Implementation**:

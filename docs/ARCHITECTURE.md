@@ -124,6 +124,10 @@
   * Deeply nested subheadings (like Boyd ISD's archive gallery categories under "Project Documentation") must be H4.
   * Jumps (such as H2 directly to H4) are strictly disallowed to maintain linear, accessible reading outlines.
 
+## Quotes Post Type & Speaker Relationships
+- **Quote and Speaker Linkage**: Custom post type `quotes` represents testimonials and case study video transcript segments. Each quote is dynamically linked to a speaker profile (which resides in CPT `people` or `employees`) via the custom post meta key `_e3_quote_person_id`.
+- **Database Self-Healing**: To maintain link consistency across database resets or partial wipes, imported quotes are automatically matched with active speaker profiles by parsing the speaker's name from the quote's post title (splitting on the first `" on "` occurrence) and checking the database for matching titles. If a speaker is missing, a CPT `people` post is dynamically created and matched with attributes/portraits from `speakers.csv` and local media uploads.
+
 - **Unified SVG Map Rendering**: In `wordpress.ts`, `processWordPressHtml()` replaces static map image placeholders with `TEXAS_MAP_SVG`. The SVG contains inline stylesheet overrides to force all region paths to use brand colors.
 - **Interactive Contact Map & Tooltips**:
   - The contact page interactive map is embedded via a WordPress Custom HTML block to ensure backend-to-frontend layout consistency.
