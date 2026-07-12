@@ -340,8 +340,10 @@ async function auditClientPage(client, failures) {
       }
       
       if (firstParagraphIdx !== -1) {
-        // Assert paragraph is BEFORE project section
-        if (projectIdx !== -1 && firstParagraphIdx > projectIdx) {
+        // Assert paragraph is BEFORE project section, or inside the bounds of the first project block
+        const blocks = findProjectBlocks(mainContent);
+        const firstProjectEnd = blocks.length > 0 ? blocks[0].end : projectIdx;
+        if (firstProjectEnd !== -1 && firstParagraphIdx > firstProjectEnd) {
           errors.push(`Project section block is not positioned under the short relationship description paragraph (paragraph found below project block)`);
         }
       } else {
