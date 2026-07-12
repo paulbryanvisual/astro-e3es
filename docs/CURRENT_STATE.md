@@ -1,9 +1,12 @@
 # Current State
 
-- **wpautop Script/Style Tag Block Cleanup (Clients Page JS Fix)** (July 12, 2026):
-  - **Goal**: Resolve SyntaxError layout breaks and broken search/filtering on `http://localhost:4008/clients/`.
-  - **Implementation**: Added regex parsing in `processWordPressHtml` inside `src/lib/wordpress.ts` to automatically scan rendered HTML content for `<script>` and `<style>` blocks and strip out any paragraph (`<p>`/`</p>`) or line-break (`<br>`) tags injected by WordPress's `wpautop` filter.
-  - **Verification**: Verified using local Astro builds and confirmed script syntax is fully restored.
+- **wpautop HTML Paragraph Injection & Script Cleanup (Clients Page Layout Shift Fix)** (July 12, 2026):
+  - **Goal**: Resolve broken HTML card grid rendering, invalid markup nesting, and layout shifts on `/clients` page caused by WordPress's `wpautop` auto-paragraph filter.
+  - **Implementation**:
+    1. In `src/lib/wordpress.ts`'s `processWordPressHtml`, added a targeted HTML parser RegExp that scans for `<section class="clients-finder-section">` containers.
+    2. Strips out all stray `<p>`, `</p>`, and `<br />` tags inside this container (which wrap HTML comments, inline style declarations inside the SVG map, and layout elements of the cards), while preserving the single valid filter message paragraph (`<p>Try removing some filters.</p>`).
+    3. Refactored script/style block paragraph cleanup inside the same utility file.
+  - **Verification**: Verified that the entire clients listing page and all 25 client subpages pass the E2E parity checks with zero errors, producing perfectly nested, clean HTML cards with no layout shifts.
 
 - **E3 Industry Pages Gutenberg Block Recovery** (July 11, 2026):
   - **Goal**: Resolved "Attempt Block Recovery" validation error inside Municipalities, Healthcare, and Higher Education industry pages.
