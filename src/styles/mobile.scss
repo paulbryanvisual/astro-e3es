@@ -5908,6 +5908,40 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
   }
 }
 
+/* Clients Page Layout & Width Overrides */
+.clients-page {
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+
+  .clients-page__content {
+    width: 100% !important;
+    max-width: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+
+    .db-page-hero,
+    .wp-block-e3es-intro-banner {
+      width: 100% !important;
+      max-width: none !important;
+      margin-top: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    @media (min-width: 1200px) {
+      .clients-finder-container {
+        min-width: 1450px !important;
+        max-width: 1600px !important;
+        margin: 0 auto !important;
+      }
+    }
+  }
+}
+
 
 
 
