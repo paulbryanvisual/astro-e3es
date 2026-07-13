@@ -6,6 +6,7 @@
 
 ## Section 2 — For Review
 
+* ↔️ [Gutenberg Wide & Full Alignments Support] — Declared align-wide support inside e3es-headless-helper to activate wide/full block layout settings in the Gutenberg block editor.
 * 🟢 [Green Texture Block Style Arrow & Photo Spacing Tuning] — Restored the skewed image wrapper to full height to cover the background, reduced the size of the custom white arrow overlays to 20px high and 14px deep, and offset them by 6px from the photo edge.
 * 📺 [Custom E3 Video Embed Integration] — Converted all core Gutenberg video embeds to the custom E3 Video Embed block (`wp:e3es/video-embed`) database-wide. Generated unique, context-specific, and descriptive intro paragraphs for each client case study video instead of generic fallbacks.
 * 🟢 [Green Texture Block Style Application] — Applied the custom `.is-style-green-texture-behind` block style variation to all project blocks database-wide (including manually seeded pages). Updated project block headers to use custom height settings (220px on mobile, 400px on desktop) and center alignment overrides.
