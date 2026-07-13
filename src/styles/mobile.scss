@@ -3454,34 +3454,36 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 .wp-block-gallery {
-  &.columns-4 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+
+  &.columns-1 {
+    grid-template-columns: 1fr;
+  }
+  
+  .wp-block-image {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    .wp-block-image {
-      margin: 0;
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+    
+    img {
       width: 100%;
       height: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
-      &:hover {
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-      }
-      
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        cursor: pointer;
-      }
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
     }
   }
 }

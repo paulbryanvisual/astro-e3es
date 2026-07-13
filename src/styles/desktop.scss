@@ -415,9 +415,35 @@
     }
   }
 
-  .project-gallery__grid,
-  .wp-block-gallery.columns-4 {
+  .project-gallery__grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .wp-block-gallery {
+    &.columns-1 {
+      grid-template-columns: 1fr;
+    }
+    &.columns-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &.columns-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    &.columns-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    &.columns-5 {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    &.columns-6 {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    &.columns-7 {
+      grid-template-columns: repeat(7, 1fr);
+    }
+    &.columns-8 {
+      grid-template-columns: repeat(8, 1fr);
+    }
   }
 
   /* FAQ Section desktop overrides */
