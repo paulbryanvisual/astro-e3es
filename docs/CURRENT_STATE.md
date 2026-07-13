@@ -1,5 +1,13 @@
 # Current State
 
+- **E3 Video Embed Editor Style Sync & Robust Vimeo Parsing** (July 13, 2026):
+  - **Goal**: Make the `E3 Video Embed` block in the Gutenberg visual editor match the layout, width, fonts, and styling of Astro, and upgrade the link input to support any Vimeo URL format or raw ID.
+  - **Implementation**:
+    1. **Editor Layout Overrides**: Added styling rules inside `.editor-styles-wrapper` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3709-L3743) to force the `e3es/video-embed` block to a `max-width: 1200px` centered width with Raleway/Inter typography and rounded corners/depth shadows that mimic the live site.
+    2. **Robust Link Normalizer**: Upgraded the link parser in [editor-blocks.js](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/editor-blocks.js#L3094-L3108) with a comprehensive regex to match any Vimeo link format (standard, player, showcase, management, etc.) or raw video ID and automatically format it into the required Vimeo player embed structure.
+    3. **Pipeline Sync**: Compiled the updated styles using `sync-styles.js` to refresh the visual editor stylesheet on the WordPress site.
+  - **Verification**: Verified Astro build output builds with 100% success.
+
 - **Comprehensive Puppeteer Frontend Site Audit** (July 13, 2026):
   - **Goal**: Develop a rigorous E2E validation script that walks the Astro live client frontend to check for broken layouts, missing top banners, unrendered Gutenberg comment tags, and JavaScript runtime/console errors.
   - **Implementation**: Created [site-audit.test.cjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/tests/site-audit.test.cjs) using Puppeteer to load all 25 client pages eagerly, verify HTML structures, check image loading and HTTP fetch statuses from the Node context (avoiding CORS restrictions), and filter out harmless third-party log formatting warnings.

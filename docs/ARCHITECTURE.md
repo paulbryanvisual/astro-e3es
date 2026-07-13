@@ -43,6 +43,8 @@
 ## Visual Editor Styles & Editor Syncing
 - **Editor Styles Synchronization**: BEM stylesheets from `src/styles/mobile.scss` and `src/styles/desktop.scss` are compiled using `sync-styles.js` and written directly into `editor-styles.css` in the `e3es-headless-helper` WordPress plugin directory.
 - **Editor Color Formatting**: To prevent visual editor formatting regressions (such as elements rendering with invisible white-on-white text inside Gutenberg), we explicitly exclude nested block layouts (such as design-build cards and editor blocks) from global white text color overrides.
+- **E3 Video Embed Constraints**: To prevent layout width discrepancies in the backend editor (where Gutenberg restricts the block wrapper width to a narrow 650px default), we target the block wrapper `.wp-block[data-type="e3es/video-embed"]` inside `.editor-styles-wrapper` to override Gutenberg layout constraints and force it to a `max-width: 1200px` centered canvas, styling headers/descriptions with matching Raleway and Inter typography.
+- **Vimeo Link Normalization**: Standard Vimeo link URLs (from pages, manager folders, or raw video IDs) input into the block settings panel are captured by a regular expression matcher in `editor-blocks.js` and automatically normalized into player embed URLs (`https://player.vimeo.com/video/<id>?...`) in real time, preventing visual layout breaks and iframe sandbox errors.
 
 ## Breadcrumb Data Resolution
 - **Taxonomy Precedence**: When determining a client's industry for breadcrumb trails, native WordPress `industry` taxonomy terms take precedence over legacy ACF meta fields (`_e3_client_industry`). If both are missing, it defaults to K-12.
