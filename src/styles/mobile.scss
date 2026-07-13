@@ -3214,12 +3214,17 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 220px;
+
+    @media (min-width: 768px) {
+      height: 400px;
+    }
   }
 
   &.is-style-green-texture-behind &__hero-img-wrapper {
     position: absolute;
-    top: -20px;
-    bottom: -20px;
+    top: 20%;
+    bottom: 20%;
     left: 25%;
     width: 50%;
     border-left: 10px solid #FFFFFF;

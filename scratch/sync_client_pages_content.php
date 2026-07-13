@@ -230,19 +230,76 @@ foreach ($clients as $c) {
     
     if (!empty($vimeo_id)) {
         $vimeo_url = "https://vimeo.com/$vimeo_id";
+        
+        $v_title = esc_html($c->post_title) . " Case Study Video";
+        $v_intro = "Watch the video overview of E3's project work and facility improvements at " . esc_html($c->post_title) . ".";
+        
+        $video_copy = [
+            'bryan-isd' => [
+                'title' => 'Bryan ISD Case Study Video',
+                'intro' => "This video documents E3's partnership with Bryan ISD, highlighting over $6M in facility retrofits, HVAC enhancements, and LED lighting upgrades funded through the SECO LoanSTAR program."
+            ],
+            'caldwell-isd' => [
+                'title' => 'Caldwell ISD Case Study Video',
+                'intro' => "Watch a detailed showcase of Caldwell ISD's facility upgrades, featuring the complete replacement of high school HVAC and lighting systems implemented in partnership with TASB and E3."
+            ],
+            'carrizo-springs-cisd' => [
+                'title' => 'Carrizo Springs CISD Case Study Video',
+                'intro' => 'A visual walkthrough of the comprehensive mechanical, indoor air quality, and roofing restoration improvements executed across Carrizo Springs CISD campuses.'
+            ],
+            'edcouch-elsa-isd' => [
+                'title' => 'Edcouch-Elsa ISD Case Study Video',
+                'intro' => "Explore Edcouch-Elsa ISD's district-wide facility modernization program, highlighting HVAC lifecycle replacements and new energy management system controls."
+            ],
+            'ferris-isd' => [
+                'title' => 'Ferris ISD Case Study Video',
+                'intro' => 'Watch the video case study detailing the mechanical retrofits, energy conservation measures, and utility cost-saving upgrades implemented at Ferris ISD.'
+            ],
+            'glen-rose-medical-center' => [
+                'title' => 'Glen Rose Medical Center Case Study Video',
+                'intro' => 'This video case study features the critical infrastructure upgrades, HVAC plant replacements, and facility optimization works performed at Glen Rose Medical Center.'
+            ],
+            'goodall-witcher-hospital' => [
+                'title' => 'Goodall-Witcher Healthcare Case Study Video',
+                'intro' => "A visual case study documenting the hospital facility renovations, HVAC plant upgrades, and lighting modernizations that optimized Goodall-Witcher's clinical environment."
+            ],
+            'lake-worth-isd' => [
+                'title' => 'Lake Worth ISD Case Study Video',
+                'intro' => "This video tours Lake Worth ISD's campuses to review the mechanical replacements, indoor air quality improvements, and campus-wide LED lighting retrofits."
+            ],
+            'port-neches-groves-isd' => [
+                'title' => 'Port Neches-Groves ISD Case Study Video',
+                'intro' => 'An overview of the district-wide energy conservation program, mechanical systems upgrades, and building envelope sealing at Port Neches-Groves ISD.'
+            ],
+            'prosper-isd' => [
+                'title' => 'Prosper ISD Case Study Video',
+                'intro' => "Watch the highlights of Prosper ISD's high school athletic facilities LED sports lighting installation and auxiliary upgrades."
+            ],
+            'royal-isd' => [
+                'title' => 'Royal ISD Case Study Video',
+                'intro' => 'Explore the district-wide energy efficiency and HVAC upgrades that resolved widespread comfort complaints and modernized facility management at Royal ISD.'
+            ]
+        ];
+        
+        if (isset($video_copy[$slug])) {
+            $v_title = $video_copy[$slug]['title'];
+            $v_intro = $video_copy[$slug]['intro'];
+        }
+        
         $embed_attrs = json_encode([
-            'url' => $vimeo_url,
-            'type' => 'video',
-            'providerNameSlug' => 'vimeo',
-            'responsive' => true,
-            'className' => 'wp-embed-aspect-16-9 wp-has-aspect-ratio'
+            'title' => $v_title,
+            'videoUrl' => $vimeo_url,
+            'intro' => $v_intro
         ], JSON_UNESCAPED_SLASHES);
         
-        $content .= "<!-- wp:embed $embed_attrs -->\n";
-        $content .= "<figure class=\"wp-block-embed is-type-video is-provider-vimeo wp-block-embed-vimeo wp-embed-aspect-16-9 wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n";
-        $content .= "$vimeo_url\n";
-        $content .= "</div></figure>\n";
-        $content .= "<!-- /wp:embed -->\n\n";
+        $iframe_src = "https://player.vimeo.com/video/$vimeo_id?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479";
+        
+        $content .= "<!-- wp:e3es/video-embed $embed_attrs -->\n";
+        $content .= "<div class=\"wp-block-e3es-video-embed video-embed\">";
+        $content .= "<h3 class=\"video-embed__title\">" . esc_html($v_title) . "</h3>";
+        $content .= "<p class=\"video-embed__intro\">" . esc_html($v_intro) . "</p>";
+        $content .= "<div class=\"video-embed__wrapper\"><iframe src=\"" . esc_url($iframe_src) . "\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"" . esc_attr($v_title) . "\"></iframe></div></div>\n";
+        $content .= "<!-- /wp:e3es/video-embed -->\n\n";
     }
     
     // Add first paragraph above the project block
@@ -286,11 +343,12 @@ foreach ($clients as $c) {
         'title' => esc_html($c->post_title),
         'heroImageUrl' => esc_url($hero_url),
         'focalPointX' => 0.5,
-        'focalPointY' => 0.5
+        'focalPointY' => 0.5,
+        'className' => 'is-style-green-texture-behind'
     ], JSON_UNESCAPED_SLASHES);
     
     $content .= "<!-- wp:e3es/project $project_attrs -->\n";
-    $content .= "<div class=\"wp-block-e3es-project project-section\" id=\"project-1\" style=\"--hero-img:url(" . esc_url($hero_url) . ")\">";
+    $content .= "<div class=\"wp-block-e3es-project project-section is-style-green-texture-behind\" id=\"project-1\" style=\"--hero-img:url(" . esc_url($hero_url) . ")\">";
     $content .= "<div class=\"project-section__header\">";
     if ($hero_url) {
         $content .= "<div class=\"project-section__hero\"><img src=\"" . esc_url($hero_url) . "\" alt=\"" . esc_attr($c->post_title) . "\" class=\"project-section__hero-img\" style=\"object-position:50% 50%\"/><div class=\"project-section__mask project-section__mask--left\"></div><div class=\"project-section__mask project-section__mask--right\"></div></div>";
