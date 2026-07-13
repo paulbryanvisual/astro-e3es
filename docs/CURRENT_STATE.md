@@ -1,9 +1,12 @@
 # Current State
 
-- **E3 Project Block Focal Point Support** (July 13, 2026):
-  - **Goal**: Make the E3 Project block use Gutenberg's Focal Point setting coordinates to position the hero image higher or lower (cropping the top or bottom of the image dynamically).
-  - **Implementation**: Removed the override `object-position: center center !important;` from `.project-section__hero-img` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3235-L3245). This allows the inline styles (`style="object-position: X% Y%"`) output by the Gutenberg focal point picker to take effect on both the frontend and visual editor.
-  - **Verification**: Verified compiled styles and tested focal point layout output.
+- **E3 Project Block Focal Point & Gutenberg Editor Scroll Sync** (July 13, 2026):
+  - **Goal**: Make the E3 Project block look exactly as it will on the Astro site inside the WordPress visual editor, including styling variations (Default, White Mask, Green Texture Behind) and active scroll-driven mask animations.
+  - **Implementation**:
+    1. **Editor Scroll Tracking**: Created [editor-scripts.js](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/editor-scripts.js) which binds scroll event listeners to both the Gutenberg editor iframe (`iframe[name="editor-canvas"]`) and the scroll container skeleton. It dynamically constructs the mask elements (`project-section__mask--left/right`) and the image wraps (`project-section__hero-img-wrapper/inner`) in the editor DOM, applying the exact skew and translate offsets on scroll.
+    2. **Background Asset Routing**: Copied the background asset `E3-background-layered-1920x1080.jpg` to the helper plugin's local `images` directory.
+    3. **Editor Style Overrides**: Scoped visual editor overrides in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L6140-L6164) to route background URLs locally inside Gutenberg (`url('images/...')`) and set `width: 100% !important; margin: 0 auto !important;` to ensure layout limits are respected. Removed the `!important` flag on `object-position` in `.project-section__hero-img` to enable Gutenberg Focal Point support.
+  - **Verification**: Compiled stylesheets and verified editor assets load successfully.
 
 - **Gallery Column Options Support & Visual Editor Reflection** (July 13, 2026):
   - **Goal**: Support all column options (1 to 8) for Gutenberg Gallery blocks (`core/gallery`) on desktop and mobile, ensuring the selected count reflects inside the Gutenberg Visual Editor.
