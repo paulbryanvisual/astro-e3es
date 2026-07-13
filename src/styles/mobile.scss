@@ -3701,43 +3701,41 @@ main > .services-page__container,
 }
 
 /* Spacing adjustments in Gutenberg Visual Editor backend to match frontend */
-.editor-styles-wrapper {
-  .wp-block[data-type="e3es/intro-banner"] + :is(.wp-block[data-type="core/heading"], .wp-block[data-type="core/paragraph"]),
-  .wp-block[data-type="e3es/intro-banner"] + .wp-block :is(h1, h2, h3, h4, h5, h6, p, .wp-block-heading) {
-    margin-top: 4rem !important;
+.wp-block[data-type="e3es/intro-banner"] + :is(.wp-block[data-type="core/heading"], .wp-block[data-type="core/paragraph"]),
+.wp-block[data-type="e3es/intro-banner"] + .wp-block :is(h1, h2, h3, h4, h5, h6, p, .wp-block-heading) {
+  margin-top: 4rem !important;
+}
+
+.wp-block[data-type="e3es/video-embed"] {
+  max-width: 1200px !important;
+  width: 100% !important;
+  margin-top: 5rem !important;
+  margin-bottom: 5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box !important;
+
+  .db-video-section__title {
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 1.85rem !important;
+    color: var(--color-primary-dark) !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
   }
 
-  .wp-block[data-type="e3es/video-embed"] {
-    max-width: 1200px !important;
-    width: 100% !important;
-    margin-top: 5rem !important;
-    margin-bottom: 5rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 0 1.5rem !important;
-    box-sizing: border-box !important;
+  .db-video-section__intro {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    color: var(--color-text-main) !important;
+    margin-bottom: 2rem !important;
+  }
 
-    .db-video-section__title {
-      font-family: 'Raleway', sans-serif !important;
-      font-size: 1.85rem !important;
-      color: var(--color-primary-dark) !important;
-      font-weight: 700 !important;
-      margin-bottom: 1rem !important;
-    }
-
-    .db-video-section__intro {
-      font-family: 'Inter', sans-serif !important;
-      font-size: 1.15rem !important;
-      line-height: 1.6 !important;
-      color: var(--color-text-main) !important;
-      margin-bottom: 2rem !important;
-    }
-
-    .db-video-wrapper {
-      border-radius: 12px !important;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important;
-      border: 1px solid #eef2f5 !important;
-    }
+  .db-video-wrapper {
+    border-radius: 12px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid #eef2f5 !important;
   }
 }
 
