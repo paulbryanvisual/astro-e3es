@@ -3223,8 +3223,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
   &.is-style-green-texture-behind &__hero-img-wrapper {
     position: absolute;
-    top: 20%;
-    bottom: 20%;
+    top: -20px;
+    bottom: -20px;
     left: 25%;
     width: 50%;
     border-left: 10px solid #FFFFFF;
@@ -3237,13 +3237,13 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
       content: '';
       position: absolute;
       top: 50%;
-      left: -21px;
+      left: -20px;
       transform: translateY(-50%) skewX(5deg);
       width: 0;
       height: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-right: 21px solid #FFFFFF;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 14px solid #FFFFFF;
       z-index: 10;
       pointer-events: none;
     }
@@ -3252,13 +3252,13 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
       content: '';
       position: absolute;
       top: 50%;
-      right: -21px;
+      right: -20px;
       transform: translateY(-50%) skewX(5deg);
       width: 0;
       height: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 21px solid #FFFFFF;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 14px solid #FFFFFF;
       z-index: 10;
       pointer-events: none;
     }
