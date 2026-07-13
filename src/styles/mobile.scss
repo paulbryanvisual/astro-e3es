@@ -1605,6 +1605,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 .breadcrumb-bar {
     background-color: #F4F6F8;
     border-bottom: 1px solid #eaeaea;
+    position: relative;
+    z-index: 50;
 }
 .breadcrumb-bar__container {
     max-width: 1200px;
@@ -1660,10 +1662,15 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     padding: 0.5rem 0;
     border: 1px solid #f0f0f0;
 }
-.breadcrumb-bar__item:hover .breadcrumb-bar__dropdown {
+.breadcrumb-bar__item:hover .breadcrumb-bar__dropdown,
+.breadcrumb-bar__item.is-open .breadcrumb-bar__dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+.breadcrumb-bar__item:hover .breadcrumb-bar__caret,
+.breadcrumb-bar__item.is-open .breadcrumb-bar__caret {
+    transform: rotate(180deg);
 }
 .breadcrumb-bar__dropdown-link {
     display: block;

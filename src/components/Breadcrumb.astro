@@ -18,9 +18,19 @@ const { items } = Astro.props;
             <>
                 <div class="breadcrumb-bar__item">
                     {item.href ? (
-                        <a href={item.href} class="breadcrumb-bar__link" set:html={item.label} />
+                        <a href={item.href} class="breadcrumb-bar__link" style={item.dropdown && item.dropdown.length > 0 ? "display: flex; align-items: center; gap: 4px;" : ""}>
+                            <span set:html={item.label} />
+                            {item.dropdown && item.dropdown.length > 0 && (
+                                <svg class="breadcrumb-bar__caret" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 1.5px; transition: transform 0.2s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            )}
+                        </a>
                     ) : (
-                        <span class="breadcrumb-bar__link" style={idx === items.length - 1 ? "color: var(--color-primary-green);" : ""} set:html={item.label} />
+                        <span class="breadcrumb-bar__link" style={(idx === items.length - 1 ? "color: var(--color-primary-green); " : "") + (item.dropdown && item.dropdown.length > 0 ? "display: flex; align-items: center; gap: 4px;" : "")}>
+                            <span set:html={item.label} />
+                            {item.dropdown && item.dropdown.length > 0 && (
+                                <svg class="breadcrumb-bar__caret" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 1.5px; transition: transform 0.2s ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            )}
+                        </span>
                     )}
                     {item.dropdown && item.dropdown.length > 0 && (
                         <div class="breadcrumb-bar__dropdown">
@@ -41,3 +51,42 @@ const { items } = Astro.props;
         ))}
     </div>
 </nav>
+
+<script>
+  function initBreadcrumbs() {
+    const items = document.querySelectorAll('.breadcrumb-bar__item');
+    items.forEach(item => {
+      const dropdown = item.querySelector('.breadcrumb-bar__dropdown');
+      if (!dropdown) return;
+
+      const link = item.querySelector('.breadcrumb-bar__link');
+      if (link) {
+        // Toggle on click (primarily for touch screens, but also acts as click listener for desktop if needed)
+        link.addEventListener('click', (e) => {
+          // On mobile or if clicked directly, toggle active state
+          if (window.innerWidth < 1024 || e.pointerType === 'touch') {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = item.classList.contains('is-open');
+            // Close all first
+            items.forEach(other => other.classList.remove('is-open'));
+            
+            if (!isOpen) {
+              item.classList.add('is-open');
+            }
+          }
+        });
+      }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+      items.forEach(item => item.classList.remove('is-open'));
+    });
+  }
+
+  // Hook into both standard load and Astro view transitions
+  document.addEventListener('DOMContentLoaded', initBreadcrumbs);
+  document.addEventListener('astro:page-load', initBreadcrumbs);
+</script>
