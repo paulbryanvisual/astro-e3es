@@ -1,5 +1,10 @@
 # Current State
 
+- **Visual Editor Spacing Match for Intro Banners** (July 13, 2026):
+  - **Goal**: Align the visual spacing in the WordPress Gutenberg editor backend (within the WP dashboard) with the live Astro site when the intro-banner is followed directly by a heading or paragraph block.
+  - **Implementation**: Added backend block editor sibling rules inside [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3701-L3708) (which compiles into WordPress's `editor-styles.css`), targeting `.wp-block[data-type="e3es/intro-banner"] + :is(.wp-block[data-type="core/heading"], .wp-block[data-type="core/paragraph"])` to apply a matching `margin-top: 4rem !important` (`64px`) spacing between them inside `.editor-styles-wrapper`.
+  - **Verification**: Verified compiled styles.
+
 - **Sanitize Vimeo Links in E3 Video Embed Block** (July 13, 2026):
   - **Goal**: Fix vimeo videos failing to load in the E3 Video Embed block. This was caused by editor users inputting normal page links (e.g. `https://vimeo.com/<id>`) instead of player embed links, which are blocked inside iframes by Vimeo's `X-Frame-Options` headers.
   - **Implementation**:
