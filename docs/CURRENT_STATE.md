@@ -1,5 +1,10 @@
 # Current State
 
+- **Client Card Content Alignment Fix** (July 13, 2026):
+  - **Goal**: Align text and tags in the client cards to the top of the details area, preventing layout issues where cards without tags or with shorter titles got their text pushed to the bottom of the card container.
+  - **Implementation**: Changed inline card styling from `justify-content: space-between;` to `justify-content: flex-start;` inside [ClientsList.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/ClientsList.astro#L288-L290). This anchors the title and tag layers directly below the card image header and allows empty space to flow naturally to the bottom of the card when container row heights stretch.
+  - **Verification**: Built and verified changes compile successfully.
+
 - **Dynamic Regional Breadcrumbs on Client Case Study Pages** (July 13, 2026):
   - **Goal**: Add a dynamic regional breadcrumb level (e.g. "South Texas") on client case study pages between the Industry (e.g. "K-12 Schools") and the Client title, with a dropdown containing all clients matching both that region and industry.
   - **Implementation**:
