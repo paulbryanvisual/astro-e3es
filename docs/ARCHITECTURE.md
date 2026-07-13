@@ -142,3 +142,7 @@
   - Interactive elements (`[data-region]`, `[data-office]`) use BEM selectors (`.contact-map__region`, `.contact-map__pin`) styled in `mobile.scss`.
   - Client-side coordinates (`x, y` inside the SVG viewbox space) are scaled dynamically using `map.getBoundingClientRect()` and the SVG `viewBox` coordinates (`941.76 x 907.17`) to display tooltips precisely over the offices on hover, touch, or focus.
   - Accessibility focus outlines (`:focus-visible`) and aria labels/hidden controls are implemented to ensure WCAG 2.1 compliance for screen readers and keyboard users.
+
+## Visual Editor & Theme Style Synchronization
+- **Backend Spacing Match (Gutenberg Sibling Layout)**: Sibling block elements in the Gutenberg editor are wrapped in block containers (`.wp-block`). To synchronize the editor backend visual layout with the frontend's 64px (4rem) spacing when an intro-banner is followed directly by a heading or paragraph block, sibling rules targeting `.editor-styles-wrapper .wp-block[data-type="e3es/intro-banner"] + :is(.wp-block[data-type="core/heading"], .wp-block[data-type="core/paragraph"])` are loaded via `editor-styles.css` to offset layout disparities.
+- **Auto Vimeo Embed Formatting**: To resolve Vimeo loading blockages, the E3 Video Embed block onChange handler and backend dynamic HTML parser utilize a pattern match format to automatically translate standard page links (`https://vimeo.com/<id>`) into correct embed player URLs (`https://player.vimeo.com/video/<id>?...`) inside Gutenberg before database serialization.
