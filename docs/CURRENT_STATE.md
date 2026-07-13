@@ -1,5 +1,19 @@
 # Current State
 
+- **Comprehensive Puppeteer Frontend Site Audit** (July 13, 2026):
+  - **Goal**: Develop a rigorous E2E validation script that walks the Astro live client frontend to check for broken layouts, missing top banners, unrendered Gutenberg comment tags, and JavaScript runtime/console errors.
+  - **Implementation**: Created [site-audit.test.cjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/tests/site-audit.test.cjs) using Puppeteer to load all 25 client pages eagerly, verify HTML structures, check image loading and HTTP fetch statuses from the Node context (avoiding CORS restrictions), and filter out harmless third-party log formatting warnings.
+  - **Verification**: The audit runs successfully and output a complete Markdown report: [frontend_site_audit_report.md](file:///Users/bryanpaul/Local%20Sites/astro-e3es/docs/frontend_site_audit_report.md) showing a **100% PASS** rate (25/25 pages successfully verified).
+
+- **Database-wide Block Sanitization & Scaled Media Restoration** (July 13, 2026):
+  - **Goal**: Clean up all block validation warnings inside the Gutenberg visual editor database-wide, resolve the unmigrated/protected Carrizo Springs CISD page galleries, and fix broken image links containing `-scaled.jpg` file suffixes.
+  - **Implementation**:
+    1. **Block Sanitizer**: Created and ran a PHP block sanitizer script to update block parameters and tags globally.
+    2. **Urldecode & Filename Fallback**: Added url-decoding and filename-based lookup to the block parser to resolve media attachment IDs where image paths contained space codes (`%20`) or pointed to temporary directories.
+    3. **Carrizo Springs Flickr Uploads**: Sideloaded the 162 Flickr gallery images for Carrizo Springs to the media library to assign their IDs in the post content without modifying the user's manual relationship paragraphs.
+    4. **Scaled Images Sync**: Wrote a media folder scanner that found 14 attachments where the `-scaled.jpg` file was missing on disk, automatically copying the original files to restore the links.
+  - **Verification**: Verified using the block auditor: exactly 0 invalid blocks remain in the database out of all 105 client pages.
+
 - **Visual Editor Spacing Match for Intro Banners** (July 13, 2026):
   - **Goal**: Align the visual spacing in the WordPress Gutenberg editor backend (within the WP dashboard) with the live Astro site when the intro-banner is followed directly by a heading or paragraph block.
   - **Implementation**: Added backend block editor sibling rules inside [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3701-L3708) (which compiles into WordPress's `editor-styles.css`), targeting `.wp-block[data-type="e3es/intro-banner"] + :is(.wp-block[data-type="core/heading"], .wp-block[data-type="core/paragraph"])` to apply a matching `margin-top: 4rem !important` (`64px`) spacing between them inside `.editor-styles-wrapper`.
