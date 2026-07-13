@@ -1,5 +1,12 @@
 # Current State
 
+- **Case Study Video Embed Fullscreen Bug Fix** (July 13, 2026):
+  - **Goal**: Prevent video iframes on migrated client pages (like Bryan ISD) from breaking layout constraints and covering the entire browser screen.
+  - **Implementation**:
+    1. **Style Selection Correction**: Grouped `.video-embed` and `.video-embed__wrapper` class selectors (which are dynamically generated during historical database migrations) directly with `.db-video-section` and `.db-video-wrapper` in `mobile.scss`.
+    2. **Container Constraint Enforcement**: This correctly applies `position: relative`, standard padding bounds, a 12px border radius, and a 16:9 responsive aspect ratio (`padding-bottom: 56.25%`) to prevent absolute-positioned Vimeo iframes from escaping their wrapper containers and filling the page viewport.
+  - **Verification**: Verified using HTML content checks and CSS layout rendering.
+
 - **Gutenberg Full/Wide Width Alignments Activation** (July 13, 2026):
   - **Goal**: Enable standard wide (`alignwide`) and full-width (`alignfull`) block layout alignment settings in the Gutenberg editor to allow sections to stretch full-bleed or wide-width.
   - **Implementation**:
