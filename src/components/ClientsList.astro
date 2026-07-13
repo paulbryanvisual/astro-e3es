@@ -286,7 +286,7 @@ const mappedClients = clientsAll.map((client: any) => {
             card.dataset.region = client.esc_region;
             
             // Rich card styles
-            card.style.cssText = 'background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; padding: 0; display: flex; flex-direction: column; justify-content: space-between; min-height: 150px;';
+            card.style.cssText = 'background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; padding: 0; display: flex; flex-direction: column; justify-content: flex-start; min-height: 150px;';
             
             card.onmouseover = () => { card.style.transform = 'translateY(-5px)'; const img = card.querySelector('.client-card-img'); if(img) img.style.transform = 'scale(1.05)'; card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)'; };
             card.onmouseout = () => { card.style.transform = 'translateY(0)'; const img = card.querySelector('.client-card-img'); if(img) img.style.transform = 'scale(1)'; card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.05)'; };
