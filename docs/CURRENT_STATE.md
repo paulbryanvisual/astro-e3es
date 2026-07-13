@@ -1,5 +1,13 @@
 # Current State
 
+- **Dynamic Regional Breadcrumbs on Client Case Study Pages** (July 13, 2026):
+  - **Goal**: Add a dynamic regional breadcrumb level (e.g. "South Texas") on client case study pages between the Industry (e.g. "K-12 Schools") and the Client title, with a dropdown containing all clients matching both that region and industry.
+  - **Implementation**:
+    1. **Taxonomy Parsing helpers**: Added helper functions `getClientRegion(c)` and `getClientIndustry(c)` in [[slug].astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/clients/[slug].astro#L159-L192) to reliably parse region and industry names across native WordPress terms and meta fields for all loaded clients.
+    2. **Filter & Dropdown Mapping**: Filtered the complete clients list (`allClients`) to retrieve projects matching the active page's `friendlyRegion` and `industry`. Map these matched projects to populate the Region breadcrumb node's dropdown list dynamically.
+    3. **Breadcrumb Bar Extension**: Added a new object to the `breadcrumbItems` list representing the region (e.g. `label: friendlyRegion`), linking to the corresponding filtered client list page (`/clients?region=...`).
+  - **Verification**: Executed a production build checklist checks which compiled with zero errors.
+
 - **E3 Project Block Focal Point & Gutenberg Editor Scroll Sync** (July 13, 2026):
   - **Goal**: Make the E3 Project block look exactly as it will on the Astro site inside the WordPress visual editor, including styling variations (White Mask, Green Texture Behind) and active scroll-driven mask animations, setting White Mask as the default.
   - **Implementation**:
