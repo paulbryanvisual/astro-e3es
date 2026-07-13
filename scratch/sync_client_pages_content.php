@@ -9,6 +9,273 @@ if (file_exists($json_file)) {
 
 $flickr_base = '/Users/bryanpaul/Dropbox/PaulDropbox/E3/flickr_downloads/';
 
+function e3_get_high_res_hero_image_from_html($html, $slug) {
+    if (preg_match('/<img[^>]*class="[^"]*s-img-switch[^"]*"[^>]*src="([^"]+)"/i', $html, $m)) {
+        return $m[1];
+    }
+    
+    preg_match_all('/src="(https:\/\/www\.e3es\.com\/wp-content\/uploads\/[^\s"\'>]+)"/i', $html, $matches);
+    foreach ($matches[1] as $url) {
+        $lower_url = strtolower($url);
+        if (strpos($lower_url, 'logo') !== false ||
+            strpos($lower_url, 'icon') !== false ||
+            strpos($lower_url, 'footer') !== false ||
+            strpos($lower_url, 'map') !== false ||
+            preg_match('/-\d+x\d+\.(jpg|jpeg|png)$/i', $url)) {
+            continue;
+        }
+        return $url;
+    }
+    
+    foreach ($matches[1] as $url) {
+        $lower_url = strtolower($url);
+        if (strpos($lower_url, 'logo') !== false ||
+            strpos($lower_url, 'icon') !== false ||
+            strpos($lower_url, 'footer') !== false ||
+            strpos($lower_url, 'map') !== false) {
+            continue;
+        }
+        $clean_url = preg_replace('/-\d+x\d+(-\d+)?\.(jpg|jpeg|png)$/i', '.$2', $url);
+        return $clean_url;
+    }
+    
+    return '';
+}
+
+function e3_sideload_image($url, $post_id) {
+    if (empty($url)) return null;
+    
+    global $wpdb;
+    $filename = basename($url);
+    
+    // Sanitize filename to prevent spaces/special characters
+    $filename = sanitize_file_name($filename);
+    
+    $attachment_id = $wpdb->get_var($wpdb->prepare(
+        "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s",
+        '%' . $filename
+    ));
+    
+    if ($attachment_id) {
+        return wp_get_attachment_url($attachment_id);
+    }
+    
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    require_once ABSPATH . 'wp-admin/includes/media.php';
+    
+    $tmp_file = download_url($url);
+    if (is_wp_error($tmp_file)) {
+        return null;
+    }
+    
+    $file_array = [
+        'name'     => $filename,
+        'tmp_name' => $tmp_file,
+    ];
+    
+    $id = media_handle_sideload($file_array, $post_id, "High resolution image from live site");
+    if (is_wp_error($id)) {
+        @unlink($tmp_file);
+        return null;
+    }
+    
+    return wp_get_attachment_url($id);
+}
+
+function e3_parse_content_html_sequentially($html, $client_title) {
+    if (preg_match('/<div class="wpb_text_column wpb_content_element[^"]*"[^>]*>\s*<div class="wpb_wrapper">\s*([\s\S]*?)\s*<\/div>\s*<\/div>/i', $html, $m)) {
+        $content_html = trim($m[1]);
+    } else {
+        return ['rel_p' => '', 'project_content' => ''];
+    }
+    
+    if (empty($content_html)) {
+        return ['rel_p' => '', 'project_content' => ''];
+    }
+    
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $dom->loadHTML('<?xml encoding="utf-8" ?><div>' . $content_html . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    libxml_clear_errors();
+    
+    $root = $dom->documentElement;
+    $blocks = [];
+    $first_heading = true;
+    
+    foreach ($root->childNodes as $node) {
+        if ($node->nodeType !== XML_ELEMENT_NODE) {
+            continue;
+        }
+        
+        $tag = strtolower($node->nodeName);
+        
+        if ($tag === 'p') {
+            $inner_html = '';
+            foreach ($node->childNodes as $child) {
+                $inner_html .= $dom->saveHTML($child);
+            }
+            $inner_html = trim($inner_html);
+            
+            if (preg_match('/^<strong[^>]*>([\s\S]*?)<\/strong>$/i', $inner_html, $strong_match)) {
+                $heading_text = strip_tags($strong_match[1]);
+                $heading_text = html_entity_decode($heading_text, ENT_QUOTES, 'UTF-8');
+                $heading_text = preg_replace('/\s+/', ' ', trim($heading_text));
+                
+                if (!empty($heading_text)) {
+                    $blocks[] = [
+                        'type' => 'heading',
+                        'html' => "<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">" . esc_html($heading_text) . "</h3>\n<!-- /wp:heading -->\n\n"
+                    ];
+                }
+            } else {
+                $p_text = strip_tags($inner_html);
+                $p_text = html_entity_decode($p_text, ENT_QUOTES, 'UTF-8');
+                $p_text = preg_replace('/\s+/', ' ', trim($p_text));
+                
+                if (!empty($p_text)) {
+                    $blocks[] = [
+                        'type' => 'paragraph',
+                        'text' => $p_text,
+                        'html' => "<!-- wp:paragraph -->\n<p>" . esc_html($p_text) . "</p>\n<!-- /wp:paragraph -->\n\n"
+                    ];
+                }
+            }
+        } elseif ($tag === 'ul') {
+            $list_html = "<!-- wp:list -->\n<ul>\n";
+            $has_items = false;
+            foreach ($node->childNodes as $li) {
+                if ($li->nodeType === XML_ELEMENT_NODE && strtolower($li->nodeName) === 'li') {
+                    $li_text = strip_tags($dom->saveHTML($li));
+                    $li_text = html_entity_decode($li_text, ENT_QUOTES, 'UTF-8');
+                    $li_text = preg_replace('/\s+/', ' ', trim($li_text));
+                    if (!empty($li_text)) {
+                        $list_html .= "<!-- wp:list-item -->\n<li>" . esc_html($li_text) . "</li>\n<!-- /wp:list-item -->\n";
+                        $has_items = true;
+                    }
+                }
+            }
+            $list_html .= "</ul>\n<!-- /wp:list -->\n\n";
+            if ($has_items) {
+                $blocks[] = [
+                    'type' => 'list',
+                    'html' => $list_html
+                ];
+            }
+        } elseif (in_array($tag, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])) {
+            $heading_text = strip_tags($dom->saveHTML($node));
+            $heading_text = html_entity_decode($heading_text, ENT_QUOTES, 'UTF-8');
+            $heading_text = preg_replace('/\s+/', ' ', trim($heading_text));
+            
+            if ($tag === 'h2' && $first_heading) {
+                $first_heading = false;
+                continue;
+            }
+            
+            $level = (int)substr($tag, 1);
+            $blocks[] = [
+                'type' => 'heading',
+                'html' => "<!-- wp:heading {\"level\":$level} -->\n<$tag class=\"wp-block-heading\">" . esc_html($heading_text) . "</$tag>\n<!-- /wp:heading -->\n\n"
+            ];
+        }
+    }
+    
+    $rel_p = '';
+    $project_blocks = [];
+    $extracted_rel = false;
+    
+    foreach ($blocks as $b) {
+        if (!$extracted_rel && $b['type'] === 'paragraph') {
+            $rel_p = $b['text'];
+            $extracted_rel = true;
+        } else {
+            $project_blocks[] = $b['html'];
+        }
+    }
+    
+    return [
+        'rel_p' => $rel_p,
+        'project_content' => implode('', $project_blocks)
+    ];
+}
+
+function e3_split_gallery_images($gallery_images) {
+    $categories = [
+        'construction' => [
+            'title' => 'Installation & Construction Progress',
+            'desc' => 'A look at the mechanical modernization and installation process, showcasing the equipment upgrades and on-site construction work in progress across the facilities.',
+            'images' => []
+        ],
+        'completed' => [
+            'title' => 'Completed Improvements & Retrofits',
+            'desc' => 'The finalized upgrades, featuring high-efficiency systems and optimized building environments designed to deliver maximum energy performance and operational savings.',
+            'images' => []
+        ],
+        'general' => [
+            'title' => 'Additional Project Details',
+            'desc' => 'Visual details and close-up views showing the technical scope and facility components addressed during the project execution.',
+            'images' => []
+        ]
+    ];
+    
+    foreach ($gallery_images as $img) {
+        $path = strtolower($img['url']);
+        $alt = strtolower($img['alt']);
+        
+        $is_construction = (
+            strpos($path, 'before') !== false ||
+            strpos($path, 'construction') !== false ||
+            strpos($path, 'failed') !== false ||
+            strpos($path, 'lift') !== false ||
+            strpos($path, 'crane') !== false ||
+            strpos($path, 'work') !== false ||
+            strpos($alt, 'before') !== false ||
+            strpos($alt, 'construction') !== false ||
+            strpos($alt, 'lift') !== false ||
+            strpos($alt, 'crane') !== false ||
+            strpos($alt, 'work') !== false
+        );
+        
+        $is_completed = (
+            strpos($path, 'after') !== false ||
+            strpos($path, 'complete') !== false ||
+            strpos($path, 'new') !== false ||
+            strpos($path, 'retrofitted') !== false ||
+            strpos($alt, 'after') !== false ||
+            strpos($alt, 'complete') !== false ||
+            strpos($alt, 'new') !== false ||
+            strpos($alt, 'retrofitted') !== false
+        );
+        
+        if ($is_construction) {
+            $categories['construction']['images'][] = $img;
+        } elseif ($is_completed) {
+            $categories['completed']['images'][] = $img;
+        } else {
+            $categories['general']['images'][] = $img;
+        }
+    }
+    
+    $result = [];
+    foreach ($categories as $key => $cat) {
+        if (!empty($cat['images'])) {
+            $result[] = $cat;
+        }
+    }
+    
+    if (count($result) <= 1 || count($gallery_images) < 4) {
+        return [
+            [
+                'title' => 'Project Showcase Gallery',
+                'desc' => 'Visual documentation of the facility upgrades, mechanical systems modernization, and energy conservation improvements executed during the project.',
+                'images' => $gallery_images
+            ]
+        ];
+    }
+    
+    return $result;
+}
+
 function get_or_upload_attachment($file_path, $post_id) {
     if (!file_exists($file_path)) {
         return null;
@@ -67,14 +334,20 @@ kses_remove_filters();
 
 echo "Starting synchronization for " . count($clients) . " clients...\n";
 
+$protected_file = '/Users/bryanpaul/Local Sites/astro-e3es/scratch/protected_slugs.json';
+$protected_slugs = [];
+if (file_exists($protected_file)) {
+    $protected_slugs = json_decode(file_get_contents($protected_file), true);
+}
+
 foreach ($clients as $c) {
     $slug = $c->post_name;
-    if (in_array($slug, ['boyd-isd', 'bishop-cisd', 'granbury-isd', 'keene-isd', 'little-elm-isd', 'plano-isd', 'city-of-stockdale'])) {
-        echo "[SKIP] Manually seeded client: $slug\n";
+    
+    if (in_array($slug, $protected_slugs)) {
+        echo "[SKIP] Protected manually edited client: $slug\n";
         continue;
     }
 
-    // Only update if cache file exists
     $cache_file = "/Users/bryanpaul/Local Sites/astro-e3es/scratch/live_project_pages_cache/{$slug}.html";
     if (!file_exists($cache_file)) {
         echo "[SKIP] No live cache for: $slug\n";
@@ -125,54 +398,21 @@ foreach ($clients as $c) {
         $vimeo_id = $m[1];
     }
     
-    // 4. Extract description paragraphs
-    preg_match_all('/<p[^>]*>([\s\S]*?)<\/p>/i', $html, $matches);
-    $paragraphs = [];
-    foreach ($matches[1] as $p) {
-        $pText = trim(strip_tags($p));
-        $pText = html_entity_decode($pText, ENT_QUOTES, 'UTF-8');
-        $pText = preg_replace('/\s+/', ' ', $pText);
-        
-        if (strlen($pText) < 50) continue;
-        if (strpos($pText, 'Join Our Team') !== false ||
-            strpos($pText, 'prague-architects') !== false ||
-            strpos($pText, 'ALL RIGHTS RESERVED') !== false ||
-            strpos($pText, 'Tel:') !== false ||
-            strpos($pText, '+7 (885)') !== false ||
-            strpos($pText, 'Jungmannova') !== false ||
-            strpos($pText, 'Czech Republic') !== false ||
-            strpos($pText, 'PROJECT SCOPE') !== false ||
-            strpos($pText, 'CONTRACT AMOUNT') !== false ||
-            strpos($pText, 'ANNUAL SAVINGS') !== false ||
-            strpos($pText, 'Office Locations') !== false ||
-            $pText === 'K-12' ||
-            $pText === 'Municipal Water Quality' ||
-            $pText === 'Higher Education' ||
-            $pText === 'Healthcare') {
-            continue;
-        }
-        $paragraphs[] = $pText;
-    }
-    
-    // 5. Extract deliverables
-    preg_match_all('/<ul([^>]*?)>([\s\S]*?)<\/ul>/i', $html, $ulMatches);
-    $deliverables = [];
-    foreach ($ulMatches[0] as $ulFull) {
-        if (preg_match('/(class|id)=["\'][^"\']*(menu|nav|widget|social|pixfield|meta)[^"\']*/i', $ulFull)) {
-            continue;
-        }
-        preg_match_all('/<li[^>]*>([\s\S]*?)<\/li>/i', $ulFull, $liMatches);
-        foreach ($liMatches[1] as $li) {
-            $liText = trim(strip_tags($li));
-            $liText = html_entity_decode($liText, ENT_QUOTES, 'UTF-8');
-            $liText = preg_replace('/\s+/', ' ', $liText);
-            if (strlen($liText) > 5) {
-                $deliverables[] = $liText;
+    // 4. Resolve high-resolution hero image from the live site
+    $hero_url = '';
+    $live_hero = e3_get_high_res_hero_image_from_html($html, $slug);
+    if (!empty($live_hero)) {
+        $sideloaded = e3_sideload_image($live_hero, $c->ID);
+        if (!empty($sideloaded)) {
+            $hero_url = $sideloaded;
+            $hero_att_id = attachment_url_to_postid($hero_url);
+            if ($hero_att_id) {
+                set_post_thumbnail($c->ID, $hero_att_id);
             }
         }
     }
     
-    // 6. Get post attachments for hero and gallery
+    // Fallback: get post attachments for gallery and hero if high-res failed
     $attachments = get_posts([
         'post_type'      => 'attachment',
         'posts_per_page' => -1,
@@ -183,7 +423,6 @@ foreach ($clients as $c) {
     ]);
     
     $gallery_images = [];
-    $hero_url = '';
     $featured_id = get_post_thumbnail_id($c->ID);
     
     foreach ($attachments as $att) {
@@ -208,15 +447,13 @@ foreach ($clients as $c) {
             'alt' => $alt
         ];
         
-        if ($att->ID == $featured_id) {
+        if (empty($hero_url) && $att->ID == $featured_id) {
             $hero_url = $url;
         }
     }
     
-    // Set default hero image if none set
     if (empty($hero_url) && !empty($gallery_images)) {
         $hero_url = $gallery_images[0]['url'];
-        // Also set as featured image in DB
         foreach ($attachments as $att) {
             if (wp_get_attachment_url($att->ID) == $hero_url) {
                 set_post_thumbnail($c->ID, $att->ID);
@@ -225,7 +462,16 @@ foreach ($clients as $c) {
         }
     }
     
-    // 7. Compile post content using Gutenberg blocks
+    // 5. Parse content sequentially (all-bold paragraphs -> H3, lists broken up correctly)
+    $parsed_content = e3_parse_content_html_sequentially($html, $c->post_title);
+    $rel_p = $parsed_content['rel_p'];
+    $project_inner_content = $parsed_content['project_content'];
+    
+    if (empty($rel_p)) {
+        $rel_p = esc_html($c->post_title) . " partnered with E3 Entegral Solutions to implement a comprehensive series of energy efficiency improvements and facility upgrades.";
+    }
+    
+    // 6. Compile Gutenberg post content
     $content = '';
     
     if (!empty($vimeo_id)) {
@@ -260,24 +506,68 @@ foreach ($clients as $c) {
                 'intro' => 'This video case study features the critical infrastructure upgrades, HVAC plant replacements, and facility optimization works performed at Glen Rose Medical Center.'
             ],
             'goodall-witcher-hospital' => [
-                'title' => 'Goodall-Witcher Healthcare Case Study Video',
-                'intro' => "A visual case study documenting the hospital facility renovations, HVAC plant upgrades, and lighting modernizations that optimized Goodall-Witcher's clinical environment."
+                'title' => 'Goodall Witcher Hospital Case Study Video',
+                'intro' => "Watch the Goodall Witcher Hospital case study video to learn about the district's mechanical modernization, HVAC improvements, and LED lighting retrofits."
+            ],
+            'greenville-isd' => [
+                'title' => 'Greenville ISD Case Study Video',
+                'intro' => 'This video showcase details the district-wide energy conservation program, mechanical modernizations, and controls upgrades executed at Greenville ISD.'
+            ],
+            'hondo-isd' => [
+                'title' => 'Hondo ISD Case Study Video',
+                'intro' => "A video walkthrough of Hondo ISD's facility modernization, detailing mechanical replacements, LED upgrades, and automation systems implemented with E3."
+            ],
+            'houston-community-college' => [
+                'title' => 'Houston Community College Case Study Video',
+                'intro' => 'Watch E3’s project execution showcase at Houston Community College, outlining the high-efficiency chilled water system and building controls upgrades.'
+            ],
+            'kountze-isd' => [
+                'title' => 'Kountze ISD Case Study Video',
+                'intro' => 'This case study video highlights the energy infrastructure modernizations, LED lighting retrofits, and building controls upgrades implemented at Kountze ISD.'
             ],
             'lake-worth-isd' => [
                 'title' => 'Lake Worth ISD Case Study Video',
-                'intro' => "This video tours Lake Worth ISD's campuses to review the mechanical replacements, indoor air quality improvements, and campus-wide LED lighting retrofits."
+                'intro' => 'A visual presentation detailing Lake Worth ISD’s districtwide energy conservation project, featuring lighting, HVAC, and building automation upgrades.'
+            ],
+            'manor-isd' => [
+                'title' => 'Manor ISD Case Study Video',
+                'intro' => 'Watch a case study overview of the energy performance contracting project at Manor ISD, showcasing comprehensive mechanical and lighting upgrades.'
+            ],
+            'mercedes-isd' => [
+                'title' => 'Mercedes ISD Case Study Video',
+                'intro' => 'Explore the energy efficiency project at Mercedes ISD, highlighting district-wide lighting, controls modernization, and chiller plant replacements.'
+            ],
+            'needville-isd' => [
+                'title' => 'Needville ISD Case Study Video',
+                'intro' => 'This video details E3’s partnership with Needville ISD, illustrating the LED retrofits and mechanical modernization project completed across the district.'
             ],
             'port-neches-groves-isd' => [
                 'title' => 'Port Neches-Groves ISD Case Study Video',
-                'intro' => 'An overview of the district-wide energy conservation program, mechanical systems upgrades, and building envelope sealing at Port Neches-Groves ISD.'
+                'intro' => 'Watch the video overview of E3’s mechanical modernization, HVAC systems replacement, and LED lighting upgrades at Port Neches-Groves ISD.'
             ],
             'prosper-isd' => [
                 'title' => 'Prosper ISD Case Study Video',
-                'intro' => "Watch the highlights of Prosper ISD's high school athletic facilities LED sports lighting installation and auxiliary upgrades."
+                'intro' => 'A visual walkthrough of the district-wide energy conservation program and controls upgrades implemented in partnership with Prosper ISD.'
+            ],
+            'raymondville-isd' => [
+                'title' => 'Raymondville ISD Case Study Video',
+                'intro' => 'This video documents the comprehensive energy efficiency improvements, LED retrofits, and mechanical modernizations completed at Raymondville ISD.'
+            ],
+            'ricardo-isd' => [
+                'title' => 'Ricardo ISD Case Study Video',
+                'intro' => 'Watch the Ricardo ISD project video highlighting classrooms comfort improvements, LED upgrades, and HVAC modernizations.'
+            ],
+            'rio-hondo-isd' => [
+                'title' => 'Ricardo ISD Case Study Video',
+                'intro' => 'Watch the Ricardo ISD project video highlighting classrooms comfort improvements, LED upgrades, and HVAC modernizations.'
             ],
             'royal-isd' => [
                 'title' => 'Royal ISD Case Study Video',
-                'intro' => 'Explore the district-wide energy efficiency and HVAC upgrades that resolved widespread comfort complaints and modernized facility management at Royal ISD.'
+                'intro' => 'Watch this video to learn about the comprehensive facility improvements, LED lighting, and mechanical upgrades completed at Royal ISD.'
+            ],
+            'sanger-isd' => [
+                'title' => 'Sanger ISD Case Study Video',
+                'intro' => 'Explore the energy conservation program, LED lighting retrofits, and HVAC systems upgrades implemented across Sanger ISD campuses.'
             ]
         ];
         
@@ -286,51 +576,14 @@ foreach ($clients as $c) {
             $v_intro = $video_copy[$slug]['intro'];
         }
         
-        $embed_attrs = json_encode([
-            'title' => $v_title,
+        $video_attrs = json_encode([
             'videoUrl' => $vimeo_url,
-            'intro' => $v_intro,
-            'className' => 'video-embed'
+            'title' => $v_title,
+            'intro' => $v_intro
         ], JSON_UNESCAPED_SLASHES);
         
-        $content .= "<!-- wp:e3es/video-embed $embed_attrs -->\n";
-        $content .= "<section class=\"wp-block-e3es-video-embed db-video-section video-embed\">";
-        $content .= "<h3 class=\"db-video-section__title\">" . esc_html($v_title) . "</h3>";
-        $content .= "<p class=\"db-video-section__intro\">" . esc_html($v_intro) . "</p>";
-        $content .= "<div class=\"db-video-wrapper\"><iframe src=\"" . esc_url($vimeo_url) . "\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen title=\"" . esc_attr($v_title) . "\"></iframe></div></section>\n";
-        $content .= "<!-- /wp:e3es/video-embed -->\n\n";
-    }
-    
-    // Add first paragraph above the project block
-    $rel_p = '';
-    $has_relationship = false;
-    foreach ($paragraphs as $idx => $p) {
-        $lower = strtolower($p);
-        if (strpos($lower, 'partner') !== false || strpos($lower, 'collaborat') !== false || strpos($lower, 'cooperat') !== false) {
-            $rel_p = $p;
-            unset($paragraphs[$idx]);
-            $paragraphs = array_values($paragraphs);
-            $has_relationship = true;
-            break;
-        }
-    }
-    
-    // Fallback if no relationship paragraph was found
-    if (!$has_relationship) {
-        if (count($paragraphs) > 0) {
-            // Use the first paragraph as relationship paragraph if it contains the client name
-            $first_p = $paragraphs[0];
-            $name_words = explode(' ', strtolower($c->post_title));
-            $client_keyword = $name_words[0];
-            if (strpos(strtolower($first_p), $client_keyword) !== false) {
-                $rel_p = array_shift($paragraphs);
-            }
-        }
-    }
-    
-    if (empty($rel_p)) {
-        // Prepend a default professional relationship paragraph
-        $rel_p = esc_html($c->post_title) . " partnered with E3 Entegral Solutions to implement a comprehensive series of energy efficiency improvements and facility upgrades.";
+        $content .= "<!-- wp:e3es/video-embed $video_attrs -->\n";
+        $content .= "<div class=\"wp-block-e3es-video-embed db-video-section\"><h3 class=\"db-video-section__title\">" . esc_html($v_title) . "</h3><p class=\"db-video-section__intro\">" . esc_html($v_intro) . "</p><div class=\"db-video-wrapper\"></div></div>\n<!-- /wp:e3es/video-embed -->\n\n";
     }
     
     $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($rel_p) . "</p>\n<!-- /wp:paragraph -->\n\n";
@@ -375,43 +628,35 @@ foreach ($clients as $c) {
     if ($market) $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Market</span><span class=\"project-details__value\">" . esc_html($market) . "</span></div>";
     $content .= "</div>\n<!-- /wp:e3es/project-details -->\n\n";
     
-    // Remaining paragraphs
-    foreach ($paragraphs as $p) {
-        $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($p) . "</p>\n<!-- /wp:paragraph -->\n\n";
-    }
+    // Inline description content
+    $content .= $project_inner_content;
     
-    // Deliverables
-    if (count($deliverables) > 0) {
-        $content .= "<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">Key Project Deliverables</h3>\n<!-- /wp:heading -->\n\n";
-        $content .= "<!-- wp:list -->\n<ul>\n";
-        foreach ($deliverables as $d) {
-            $content .= "<!-- wp:list-item -->\n<li>" . esc_html($d) . "</li>\n<!-- /wp:list-item -->\n";
-        }
-        $content .= "</ul>\n<!-- /wp:list -->\n\n";
-    }
-    
-    // Gallery
+    // Split galleries based on image content (construction, completed, general)
     if (count($gallery_images) > 0) {
-        $content .= "<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">Project Gallery</h3>\n<!-- /wp:heading -->\n\n";
-        $content .= "<!-- wp:gallery {\"columns\":4,\"linkTo\":\"none\"} -->\n";
-        $content .= "<figure class=\"wp-block-gallery has-nested-images columns-4 is-cropped\">";
-        foreach ($gallery_images as $g) {
-            $content .= "<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"" . esc_url($g['url']) . "\" alt=\"" . esc_attr($g['alt']) . "\"/></figure>\n<!-- /wp:image -->\n";
+        $split_galleries = e3_split_gallery_images($gallery_images);
+        foreach ($split_galleries as $gallery) {
+            $content .= "<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">" . esc_html($gallery['title']) . "</h3>\n<!-- /wp:heading -->\n\n";
+            $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($gallery['desc']) . "</p>\n<!-- /wp:paragraph -->\n\n";
+            $content .= "<!-- wp:gallery {\"columns\":4,\"linkTo\":\"none\"} -->\n";
+            $content .= "<figure class=\"wp-block-gallery has-nested-images columns-4 is-cropped\">";
+            foreach ($gallery['images'] as $g) {
+                $content .= "<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"" . esc_url($g['url']) . "\" alt=\"" . esc_attr($g['alt']) . "\"/></figure>\n<!-- /wp:image -->\n";
+            }
+            $content .= "</figure>\n<!-- /wp:gallery -->\n\n";
         }
-        $content .= "</figure>\n<!-- /wp:gallery -->\n\n";
     }
     
     $content .= "</div></div>\n<!-- /wp:e3es/project -->\n";
     
     $result = wp_update_post([
         'ID' => $c->ID,
-        'post_content' => wp_slash($content)
+        'post_content' => $content
     ], true);
     
     if (is_wp_error($result)) {
         echo "[ERROR] Failed to update: $slug - " . $result->get_error_message() . "\n";
     } else {
-        echo "[OK] Restored content for: $slug\n";
+        echo "[OK] Restored content with sequential parser, high-res image, and split galleries for: $slug\n";
     }
 }
 
