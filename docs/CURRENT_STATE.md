@@ -11,9 +11,9 @@
 - **Gallery Column Options Support & Visual Editor Reflection** (July 13, 2026):
   - **Goal**: Support all column options (1 to 8) for Gutenberg Gallery blocks (`core/gallery`) on desktop and mobile, ensuring the selected count reflects inside the Gutenberg Visual Editor.
   - **Implementation**:
-    1. **Global Editor Scoping**: Defined all `.columns-1` through `.columns-8` layouts globally on `.wp-block-gallery` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3456-L3489). Since Gutenberg editor on desktop compiles these styles, it now renders the exact column layout selected in real time.
+    1. **Global Editor Scoping**: Defined all `.columns-1` through `.columns-8` layouts globally on `.wp-block-gallery` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3456-L3489). Used `display: grid !important;` to force the editor to render galleries as grids, overriding Gutenberg's default `.is-layout-flex` flexbox styling that was causing cards to stack in a single column.
     2. **Mobile Layout Overrides**: Added a `@media (max-width: 767px)` rule inside `mobile.scss` that collapses all layouts containing 2 or more columns to `repeat(2, 1fr) !important` (except for `.columns-1` which remains `1fr`), maintaining mobile layout responsiveness.
-  - **Verification**: Compiled stylesheets successfully and pushed.
+  - **Verification**: Compiled stylesheets successfully, automated login/rendering audit via Puppeteer with zero failures, and pushed.
 
 - **Circular Logo Wrapper Padding Removal** (July 13, 2026):
   - **Goal**: Allow client logo images inside circular page hero banners to fill the entire container by removing the default internal padding.
