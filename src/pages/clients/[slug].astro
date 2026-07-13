@@ -33,7 +33,8 @@ const { slug } = Astro.params;
 const { client, allClients } = Astro.props;
 
 const rawOptimizedContent = processWordPressHtml(client.content.rendered, slug);
-const optimizedContent = rawOptimizedContent.replace(/<section class="[^"]*wp-block-e3es-intro-banner[^"]*"[\s\S]*?<\/section>/gi, '');
+const hasBannerBlock = rawOptimizedContent.includes('wp-block-e3es-intro-banner');
+const optimizedContent = rawOptimizedContent;
 
 // Extract background image from content if missing from media
 let extractedBgImage = '';
@@ -193,32 +194,34 @@ const breadcrumbItems = [
   <Breadcrumb items={breadcrumbItems} />
 
   <!-- Client Hero Banner -->
-  <section class="client-hero db-page-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.75), rgba(14, 53, 27, 0.75)), url(${bgImage}); ${focalPositionStyle}`}>
-    <div class="client-hero__container">
-      {clientLogo && (
-        <div class="client-hero__logo-wrapper">
-          {typeof clientLogo === 'string' ? (
-            <img src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-hero__logo" />
-          ) : (
-            <Image src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-hero__logo" />
-          )}
-        </div>
-      )}
-      <div class="client-hero__content">
-        <h1 class="client-hero__title">{decodeHtmlEntities(client.title.rendered).toUpperCase()}</h1>
-        <p class="client-hero__meta">
-          {industry} | {friendlyRegion}
-        </p>
-        {servicesTags.length > 0 && (
-          <div class="client-hero__tags">
-            {servicesTags.map(tag => (
-              <span class="client-hero__tag">{tag}</span>
-            ))}
+  {!hasBannerBlock && (
+    <section class="client-hero db-page-hero" style={`background-image: linear-gradient(rgba(14, 53, 27, 0.75), rgba(14, 53, 27, 0.75)), url(${bgImage}); ${focalPositionStyle}`}>
+      <div class="client-hero__container">
+        {clientLogo && (
+          <div class="client-hero__logo-wrapper">
+            {typeof clientLogo === 'string' ? (
+              <img src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-hero__logo" />
+            ) : (
+              <Image src={clientLogo} alt={`${decodeHtmlEntities(client.title.rendered)} Logo`} class="client-hero__logo" />
+            )}
           </div>
         )}
+        <div class="client-hero__content">
+          <h1 class="client-hero__title">{decodeHtmlEntities(client.title.rendered).toUpperCase()}</h1>
+          <p class="client-hero__meta">
+            {industry} | {friendlyRegion}
+          </p>
+          {servicesTags.length > 0 && (
+            <div class="client-hero__tags">
+              {servicesTags.map(tag => (
+                <span class="client-hero__tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Main Content -->
   <main class="client-detail" style="background: var(--color-bg-white); padding: 0;">
