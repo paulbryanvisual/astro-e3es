@@ -1,5 +1,14 @@
 # Current State
 
+- **Green Texture Project Block Style Arrow & Photo Spacing Tuning** (July 12, 2026):
+  - **Goal**: Revert green texture image wrapper to full height to cover green background, and adjust the custom arrow overlays to be smaller and sit off the image edge by 6px.
+  - **Implementation**:
+    1. **Full Height Photo**: Restored `top: -20px; bottom: -20px;` on `.project-section__hero-img-wrapper` inside `mobile.scss` so the photo spans full height.
+    2. **Smaller Arrows**: Reduced arrow triangle depth to 14px and height to 20px (`border-top: 10px; border-bottom: 10px; border-right/left: 14px;`).
+    3. **Arrow Offsets**: Set `left: -20px` and `right: -20px` to offset the arrows by exactly 6px from the image boundaries, letting the background show through.
+    4. **Visual Editor Sync**: Sync-compiled the SCSS styles directly to Gutenberg editor-styles.
+  - **Verification**: Verified via Astro CSS generation and visual editor syncing.
+
 - **WordPress Client Content Restoration & Block Recovery Audit** (July 12, 2026):
   - **Goal**: Restore the original live client descriptions, project details, lists, and images from the live website cache to WordPress using native Gutenberg blocks following the Boyd ISD structure, and check for block recovery warnings.
   - **Implementation**:
