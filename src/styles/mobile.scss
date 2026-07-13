@@ -6134,6 +6134,30 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
   }
 }
 
+/* Visual Editor adjustments for E3 Project block */
+.editor-styles-wrapper {
+  .project-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+
+    &__hero {
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      position: relative;
+    }
+
+    &__mask {
+      background-image: url('images/E3-background-layered-1920x1080.jpg') !important;
+    }
+
+    &.is-style-green-texture-behind &__hero {
+      background-image: url('images/E3-background-layered-1920x1080.jpg') !important;
+    }
+  }
+}
+
 
 
 
