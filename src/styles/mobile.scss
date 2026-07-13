@@ -3239,7 +3239,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center !important;
+    object-position: center center;
     display: block;
     z-index: 1;
   }
@@ -3455,12 +3455,24 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 .wp-block-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin: 2rem 0;
 
-  &.columns-1 {
-    grid-template-columns: 1fr;
+  &.columns-1 { grid-template-columns: 1fr; }
+  &.columns-2 { grid-template-columns: repeat(2, 1fr); }
+  &.columns-3 { grid-template-columns: repeat(3, 1fr); }
+  &.columns-4 { grid-template-columns: repeat(4, 1fr); }
+  &.columns-5 { grid-template-columns: repeat(5, 1fr); }
+  &.columns-6 { grid-template-columns: repeat(6, 1fr); }
+  &.columns-7 { grid-template-columns: repeat(7, 1fr); }
+  &.columns-8 { grid-template-columns: repeat(8, 1fr); }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    &.columns-1 {
+      grid-template-columns: 1fr !important;
+    }
   }
   
   .wp-block-image {
