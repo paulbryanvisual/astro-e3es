@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '2048M');
 require '/Users/bryanpaul/Local Sites/e3es2026/app/public/wp-load.php';
 
 $json_file = '/Users/bryanpaul/Local Sites/astro-e3es/scratch/matched_flickr_folders.json';
@@ -55,6 +56,19 @@ function e3_sideload_image($url, $post_id) {
     ));
     
     if ($attachment_id) {
+        $meta_file = get_post_meta($attachment_id, '_wp_attached_file', true);
+        $uploads = wp_upload_dir();
+        $local_file = $uploads['basedir'] . '/' . $meta_file;
+        if (!file_exists($local_file)) {
+            $parent_dir = dirname($local_file);
+            if (!is_dir($parent_dir)) {
+                mkdir($parent_dir, 0755, true);
+            }
+            $image_data = file_get_contents($url);
+            if ($image_data) {
+                file_put_contents($local_file, $image_data);
+            }
+        }
         return wp_get_attachment_url($attachment_id);
     }
     
@@ -159,6 +173,60 @@ function e3_generate_video_embed_block($title, $video_url, $intro = '') {
     return $html;
 }
 
+function e3_parse_list_node_recursive($node, &$items, $dom) {
+    foreach ($node->childNodes as $child) {
+        if ($child->nodeType !== XML_ELEMENT_NODE) continue;
+        
+        $tag = strtolower($child->nodeName);
+        if ($tag === 'li') {
+            $has_nested = false;
+            foreach ($child->childNodes as $grandchild) {
+                if ($grandchild->nodeType === XML_ELEMENT_NODE && in_array(strtolower($grandchild->nodeName), ['ul', 'ol'])) {
+                    $has_nested = true;
+                    break;
+                }
+            }
+            
+            if ($has_nested) {
+                $clone = $child->cloneNode(true);
+                $to_remove = [];
+                foreach ($clone->childNodes as $gc) {
+                    if ($gc->nodeType === XML_ELEMENT_NODE && in_array(strtolower($gc->nodeName), ['ul', 'ol'])) {
+                        $to_remove[] = $gc;
+                    }
+                }
+                foreach ($to_remove as $tr) {
+                    $clone->removeChild($tr);
+                }
+                
+                $li_text = strip_tags($dom->saveHTML($clone));
+                $li_text = html_entity_decode($li_text, ENT_QUOTES, 'UTF-8');
+                $li_text = preg_replace('/\s+/', ' ', trim($li_text));
+                
+                if (!empty($li_text)) {
+                    $items[] = $li_text;
+                }
+                
+                foreach ($child->childNodes as $grandchild) {
+                    if ($grandchild->nodeType === XML_ELEMENT_NODE && in_array(strtolower($grandchild->nodeName), ['ul', 'ol'])) {
+                        e3_parse_list_node_recursive($grandchild, $items, $dom);
+                    }
+                }
+            } else {
+                $li_text = strip_tags($dom->saveHTML($child));
+                $li_text = html_entity_decode($li_text, ENT_QUOTES, 'UTF-8');
+                $li_text = preg_replace('/\s+/', ' ', trim($li_text));
+                
+                if (!empty($li_text)) {
+                    $items[] = $li_text;
+                }
+            }
+        } elseif (in_array($tag, ['ul', 'ol'])) {
+            e3_parse_list_node_recursive($child, $items, $dom);
+        }
+    }
+}
+
 function e3_parse_content_html_sequentially($html, $client_title) {
     if (preg_match('/<div class="wpb_text_column wpb_content_element[^"]*"[^>]*>\s*<div class="wpb_wrapper">\s*([\s\S]*?)\s*<\/div>\s*<\/div>/i', $html, $m)) {
         $content_html = trim($m[1]);
@@ -220,16 +288,11 @@ function e3_parse_content_html_sequentially($html, $client_title) {
         } elseif ($tag === 'ul') {
             $list_html = "<!-- wp:list -->\n<ul>\n";
             $has_items = false;
-            foreach ($node->childNodes as $li) {
-                if ($li->nodeType === XML_ELEMENT_NODE && strtolower($li->nodeName) === 'li') {
-                    $li_text = strip_tags($dom->saveHTML($li));
-                    $li_text = html_entity_decode($li_text, ENT_QUOTES, 'UTF-8');
-                    $li_text = preg_replace('/\s+/', ' ', trim($li_text));
-                    if (!empty($li_text)) {
-                        $list_html .= "<!-- wp:list-item -->\n<li>" . esc_html($li_text) . "</li>\n<!-- /wp:list-item -->\n";
-                        $has_items = true;
-                    }
-                }
+            $items = [];
+            e3_parse_list_node_recursive($node, $items, $dom);
+            foreach ($items as $li_text) {
+                $list_html .= "<!-- wp:list-item -->\n<li>" . esc_html($li_text) . "</li>\n<!-- /wp:list-item -->\n";
+                $has_items = true;
             }
             $list_html .= "</ul>\n<!-- /wp:list -->\n\n";
             if ($has_items) {
@@ -352,6 +415,43 @@ function e3_split_gallery_images($gallery_images) {
     return $result;
 }
 
+function e3_find_attachment_by_filename($filename) {
+    global $wpdb;
+    
+    $flickr_id = '';
+    if (preg_match('/_(\d{10,12})(?:-scaled)?\.(jpg|jpeg|png)$/i', $filename, $matches)) {
+        $flickr_id = $matches[1];
+    }
+    
+    if ($flickr_id) {
+        $id = $wpdb->get_var($wpdb->prepare(
+            "SELECT pm.post_id FROM $wpdb->postmeta pm
+             JOIN $wpdb->posts p ON pm.post_id = p.ID
+             WHERE pm.meta_key = '_wp_attached_file' AND pm.meta_value LIKE %s
+             LIMIT 1",
+            '%' . $flickr_id . '%'
+        ));
+        if ($id) return $id;
+    }
+    
+    $base_name = $filename;
+    $base_name = preg_replace('/\.[^.]+$/', '', $base_name);
+    $base_name = preg_replace('/-scaled$/i', '', $base_name);
+    $base_name = preg_replace('/-\d+x\d+$/i', '', $base_name);
+    $base_name = preg_replace('/-\d+$/', '', $base_name);
+    $base_name = strtolower(trim($base_name));
+    
+    $id = $wpdb->get_var($wpdb->prepare(
+        "SELECT pm.post_id FROM $wpdb->postmeta pm
+         JOIN $wpdb->posts p ON pm.post_id = p.ID
+         WHERE pm.meta_key = '_wp_attached_file' AND pm.meta_value LIKE %s
+         LIMIT 1",
+        '%' . $base_name . '%'
+    ));
+    
+    return $id;
+}
+
 function get_or_upload_attachment($file_path, $post_id) {
     if (!file_exists($file_path)) {
         return null;
@@ -360,12 +460,20 @@ function get_or_upload_attachment($file_path, $post_id) {
     global $wpdb;
     $filename = basename($file_path);
     
-    $attachment_id = $wpdb->get_var($wpdb->prepare(
-        "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s",
-        '%' . $filename
-    ));
+    $attachment_id = e3_find_attachment_by_filename($filename);
     
     if ($attachment_id) {
+        $meta_file = get_post_meta($attachment_id, '_wp_attached_file', true);
+        $uploads = wp_upload_dir();
+        $local_file = $uploads['basedir'] . '/' . $meta_file;
+        if (!file_exists($local_file)) {
+            $parent_dir = dirname($local_file);
+            if (!is_dir($parent_dir)) {
+                mkdir($parent_dir, 0755, true);
+            }
+            copy($file_path, $local_file);
+        }
+        
         $post = get_post($attachment_id);
         if ($post && $post->post_parent != $post_id) {
             wp_update_post([
@@ -538,8 +646,35 @@ foreach ($clients as $c) {
         }
     }
     
-    // Fallback: get post attachments for gallery and hero if high-res failed
-    $attachments = get_posts([
+    // Gather all gallery and hero attachments by resolving mapped Flickr files to their master attachments
+    $attachments = [];
+    $seen_ids = [];
+    
+    if (isset($matched_flickr[$slug]) && !empty($matched_flickr[$slug]['folders'])) {
+        foreach ($matched_flickr[$slug]['folders'] as $folder) {
+            $folder_path = $flickr_base . $folder;
+            if (is_dir($folder_path)) {
+                $files = scandir($folder_path);
+                foreach ($files as $file) {
+                    if (in_array($file, ['.', '..', '.DS_Store'])) continue;
+                    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                    if (in_array($ext, ['jpg', 'jpeg', 'png'])) {
+                        $att_id = e3_find_attachment_by_filename($file);
+                        if ($att_id && !in_array($att_id, $seen_ids)) {
+                            $seen_ids[] = $att_id;
+                            $post = get_post($att_id);
+                            if ($post) {
+                                $attachments[] = $post;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // Also include any other parented attachments
+    $parented_atts = get_posts([
         'post_type'      => 'attachment',
         'posts_per_page' => -1,
         'post_parent'    => $c->ID,
@@ -547,6 +682,12 @@ foreach ($clients as $c) {
         'orderby'        => 'title',
         'order'          => 'ASC'
     ]);
+    foreach ($parented_atts as $pa) {
+        if (!in_array($pa->ID, $seen_ids)) {
+            $seen_ids[] = $pa->ID;
+            $attachments[] = $pa;
+        }
+    }
     
     $gallery_images = [];
     $featured_id = get_post_thumbnail_id($c->ID);
