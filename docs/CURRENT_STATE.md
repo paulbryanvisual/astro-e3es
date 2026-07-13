@@ -1,5 +1,11 @@
 # Current State
 
+- **Gutenberg Full/Wide Width Alignments Activation** (July 13, 2026):
+  - **Goal**: Enable standard wide (`alignwide`) and full-width (`alignfull`) block layout alignment settings in the Gutenberg editor to allow sections to stretch full-bleed or wide-width.
+  - **Implementation**:
+    1. **Theme Support Declaration**: Declared `add_theme_support( 'align-wide' )` inside the `after_setup_theme` hook of the `e3es-headless-helper` plugin. This registers editor-side support for block alignments globally across core and custom block controls.
+  - **Verification**: Verified alignment controls are visible on group, cover, and section blocks in the editor.
+
 - **Green Texture Project Block Style Arrow & Photo Spacing Tuning** (July 12, 2026):
   - **Goal**: Revert green texture image wrapper to full height to cover green background, and adjust the custom arrow overlays to be smaller and sit off the image edge by 6px.
   - **Implementation**:
