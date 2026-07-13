@@ -1,5 +1,12 @@
 # Current State
 
+- **Clients Case Study Native Banner Block Integration** (July 13, 2026):
+  - **Goal**: Allow case study pages (under CPT `clients`) to support and render the `wp:e3es/intro-banner` block dynamically, aligning the visual block editor representation perfectly with the Astro live pages.
+  - **Implementation**:
+    1. **Astro Parser Update**: Updated `clients/[slug].astro` to detect if the client's page content contains the `wp-block-e3es-intro-banner` class. If present, Astro renders it natively as part of the post content body and skips rendering the hard-coded template fallback banner, preventing duplicates.
+    2. **Database Seeding**: Developed and executed `sync_client_banners.php` using WP-CLI to dynamically prepend the native `wp:e3es/intro-banner` block to all 105 client posts in the WordPress database, pre-configured with the post's featured image, logo meta, region, and industry classifications.
+  - **Verification**: Verified using computed layout rendering checks.
+
 - **Disable Duotone Options in WordPress Block Editor** (July 13, 2026):
   - **Goal**: Disable Gutenberg duotone color options and SVG filters globally in WordPress to clean up image block editing interfaces and frontend assets.
   - **Implementation**: Added a filter hook `wp_theme_json_data_theme` in `e3es-headless-helper.php` that dynamically sets `duotone` to `null` and both `customDuotone` and `defaultDuotone` to `false` in theme settings.
