@@ -1,5 +1,14 @@
 # Current State
 
+- **Sanitize Vimeo Links in E3 Video Embed Block** (July 13, 2026):
+  - **Goal**: Fix vimeo videos failing to load in the E3 Video Embed block. This was caused by editor users inputting normal page links (e.g. `https://vimeo.com/<id>`) instead of player embed links, which are blocked inside iframes by Vimeo's `X-Frame-Options` headers.
+  - **Implementation**:
+    1. **Frontend Sanitizer**: Added a regex replacer in [wordpress.ts](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/lib/wordpress.ts#L231-L248) that intercepts any iframe inside `.db-video-wrapper` or `.video-embed__wrapper`, extracts the numeric Vimeo ID from the source URL (supporting multiple vimeo link formats), and automatically rewrites it to the correct `player.vimeo.com/video/<id>` URL.
+    2. **Gutenberg Real-time Formatter**: Modified the `onChange` event in [editor-blocks.js](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/editor-blocks.js#L3094-L3108) to automatically parse pasted standard Vimeo links and format them into player URLs in real time.
+    3. **PHP Syncer Helper**: Updated `render_video_embed_html` in [sync_block_attrs.php](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/scripts/sync_block_attrs.php#L148-L162) to parse and sanitize vimeo links dynamically during database sync events.
+    4. **Database Migration**: Created and executed a database script using the Local PHP environment to scan and update all 107 existing video blocks in the WordPress database, migrating all raw vimeo links to proper player URLs.
+  - **Verification**: Verified using computed layout rendering checks.
+
 - **Logo Circle & Sizing Customization in Intro Banner Block** (July 13, 2026):
   - **Goal**: Give editor users control over whether or not to render a white background circle around the client logo inside the intro-banner hero and allow the logo to render in a larger, uncropped format when the circle is disabled.
   - **Implementation**:
