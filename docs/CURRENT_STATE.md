@@ -1,5 +1,10 @@
 # Current State
 
+- **Circular Logo Wrapper Padding Removal** (July 13, 2026):
+  - **Goal**: Allow client logo images inside circular page hero banners to fill the entire container by removing the default internal padding.
+  - **Implementation**: Removed `padding: 0.75rem` from the `.db-page-hero__logo-wrapper.db-page-hero__logo-wrapper--circle` layout rules inside [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L687-L701).
+  - **Verification**: Compiled styles and verified with Git history checks.
+
 - **E3 Video Embed Editor Style Sync & Robust Vimeo Parsing** (July 13, 2026):
   - **Goal**: Make the `E3 Video Embed` block in the Gutenberg visual editor match the layout, width, fonts, and styling of Astro, and upgrade the link input to support any Vimeo URL format or raw ID.
   - **Implementation**:
