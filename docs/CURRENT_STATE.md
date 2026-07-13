@@ -25,13 +25,13 @@
     4. **Trigger Points**: Styled the image preview div with `cursor: pointer` to trigger the modal on click, and added a secondary `"Image Details"` button next to the `"Replace Image"` option.
   - **Verification**: Verified via E2E test suite that all pages pass successfully.
 
-- **Clean Raw Testimonial Quotes Batch 2** (July 12, 2026):
-  - **Goal**: Rewrite raw transcription quotes from batch 2 into grammatically correct, clean, and professional website testimonial quotes without emojis.
+- **Clean Raw Testimonial Quotes Batch 2 Validation & QA** (July 12, 2026):
+  - **Goal**: Edit and validate Batch 2 draft clean quotes to ensure 100% compliance with 1-2 sentence counts, phonetic corrections, emoji-free content, and professional tone.
   - **Implementation**:
-    1. **Text Rewriting**: Processed all 26 raw transcriptions from `scratch/key_raw_quotes_batch2.json`, fixing typos and phonetic mishearings (e.g., "Fritz Decker" to "Fritz Deckard", "hydraulic" to "hydronic" piping, "Cinco Grant" to "SECO grant", "Tasmanian E3" to "TASB and E3", and Latin proverb "Aut viam inveniam aut faciam"), resolving sentence flow, and capitalizing sentences and "I" contractions.
-    2. **Script Automation**: Created and executed `scratch/clean_quotes_batch2.py` to automate mapping raw data to cleaned quotes, ensuring valid JSON array structure.
-    3. **Output Generation**: Saved the result into both `scratch/key_clean_quotes_batch2_draft.json` and `scratch/key_clean_quotes_batch2.json`.
-  - **Verification**: Verified the structure, keys, and JSON parsing validity of the output files using custom Python verification scripts.
+    1. **Specialist Copy Editing & QA Review**: Orchestrated copy editor and QA specialist subagents to systematically clean raw and draft texts, applying precise phonetic corrections ("Fritz Deckard", "E3", "SECO", "A&M-Commerce", "Aut viam inveniam aut faciam", and "Caldwell").
+    2. **Quote ID Correction**: Audited and restored correct original quote IDs (correcting typos like duplicate `3729` and missing `3568` introduced in drafts).
+    3. **Output Integration**: Saved the verified, valid JSON array to `scratch/key_clean_quotes_batch2.json`.
+  - **Verification**: Verified JSON parsing and array length (exactly 26 items) with Node.js, confirming 100% compliance with sentence count limits (1-2 sentences), zero emojis, and schema keys.
 
 - **Clean Raw Testimonial Quotes Batch 1** (July 12, 2026):
   - **Goal**: Rewrite raw transcription quotes from batch 1 into grammatically correct, clean, and professional website testimonial quotes without emojis.
