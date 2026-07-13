@@ -3182,11 +3182,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     bottom: -20px;
     z-index: 2;
     pointer-events: none;
-    background-image: url('../assets/images/E3-background-layered-1920x1080.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: none;
+    background-color: var(--color-bg-white, #FFFFFF);
     will-change: transform;
 
     &--left {
@@ -3242,12 +3239,6 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     object-position: center center;
     display: block;
     z-index: 1;
-  }
-
-  /* Style 2: White Mask */
-  &.is-style-white-mask &__mask {
-    background-image: none;
-    background-color: var(--color-bg-white, #FFFFFF);
   }
 
   /* Style 3: Green Texture Behind Photo */
@@ -6149,7 +6140,8 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
     }
 
     &__mask {
-      background-image: url('images/E3-background-layered-1920x1080.jpg') !important;
+      background-image: none !important;
+      background-color: var(--color-bg-white, #FFFFFF) !important;
     }
 
     &.is-style-green-texture-behind &__hero {
