@@ -289,16 +289,15 @@ foreach ($clients as $c) {
         $embed_attrs = json_encode([
             'title' => $v_title,
             'videoUrl' => $vimeo_url,
-            'intro' => $v_intro
+            'intro' => $v_intro,
+            'className' => 'video-embed'
         ], JSON_UNESCAPED_SLASHES);
         
-        $iframe_src = "https://player.vimeo.com/video/$vimeo_id?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479";
-        
         $content .= "<!-- wp:e3es/video-embed $embed_attrs -->\n";
-        $content .= "<div class=\"wp-block-e3es-video-embed video-embed\">";
-        $content .= "<h3 class=\"video-embed__title\">" . esc_html($v_title) . "</h3>";
-        $content .= "<p class=\"video-embed__intro\">" . esc_html($v_intro) . "</p>";
-        $content .= "<div class=\"video-embed__wrapper\"><iframe src=\"" . esc_url($iframe_src) . "\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"" . esc_attr($v_title) . "\"></iframe></div></div>\n";
+        $content .= "<section class=\"wp-block-e3es-video-embed db-video-section video-embed\">";
+        $content .= "<h3 class=\"db-video-section__title\">" . esc_html($v_title) . "</h3>";
+        $content .= "<p class=\"db-video-section__intro\">" . esc_html($v_intro) . "</p>";
+        $content .= "<div class=\"db-video-wrapper\"><iframe src=\"" . esc_url($vimeo_url) . "\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen title=\"" . esc_attr($v_title) . "\"></iframe></div></section>\n";
         $content .= "<!-- /wp:e3es/video-embed -->\n\n";
     }
     
