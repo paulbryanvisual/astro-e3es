@@ -69,7 +69,11 @@ echo "Starting synchronization for " . count($clients) . " clients...\n";
 
 foreach ($clients as $c) {
     $slug = $c->post_name;
-    
+    if (in_array($slug, ['boyd-isd', 'bishop-cisd', 'granbury-isd', 'keene-isd', 'little-elm-isd', 'plano-isd', 'city-of-stockdale'])) {
+        echo "[SKIP] Manually seeded client: $slug\n";
+        continue;
+    }
+
     // Only update if cache file exists
     $cache_file = "/Users/bryanpaul/Local Sites/astro-e3es/scratch/live_project_pages_cache/{$slug}.html";
     if (!file_exists($cache_file)) {
@@ -243,10 +247,37 @@ foreach ($clients as $c) {
     
     // Add first paragraph above the project block
     $rel_p = '';
-    if (count($paragraphs) > 0) {
-        $rel_p = array_shift($paragraphs);
-        $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($rel_p) . "</p>\n<!-- /wp:paragraph -->\n\n";
+    $has_relationship = false;
+    foreach ($paragraphs as $idx => $p) {
+        $lower = strtolower($p);
+        if (strpos($lower, 'partner') !== false || strpos($lower, 'collaborat') !== false || strpos($lower, 'cooperat') !== false) {
+            $rel_p = $p;
+            unset($paragraphs[$idx]);
+            $paragraphs = array_values($paragraphs);
+            $has_relationship = true;
+            break;
+        }
     }
+    
+    // Fallback if no relationship paragraph was found
+    if (!$has_relationship) {
+        if (count($paragraphs) > 0) {
+            // Use the first paragraph as relationship paragraph if it contains the client name
+            $first_p = $paragraphs[0];
+            $name_words = explode(' ', strtolower($c->post_title));
+            $client_keyword = $name_words[0];
+            if (strpos(strtolower($first_p), $client_keyword) !== false) {
+                $rel_p = array_shift($paragraphs);
+            }
+        }
+    }
+    
+    if (empty($rel_p)) {
+        // Prepend a default professional relationship paragraph
+        $rel_p = esc_html($c->post_title) . " partnered with E3 Entegral Solutions to implement a comprehensive series of energy efficiency improvements and facility upgrades.";
+    }
+    
+    $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($rel_p) . "</p>\n<!-- /wp:paragraph -->\n\n";
     
     // Build project block
     $project_attrs = json_encode([
