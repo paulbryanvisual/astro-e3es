@@ -235,9 +235,33 @@ export function processWordPressHtml(html: string, slug?: string): string {
   processedHtml = processedHtml.replace(iframeRegex, (match, prefix, url, suffix) => {
     const cleanUrl = url.replace(/&amp;/g, '&');
     if (!cleanUrl.includes('player.vimeo.com/video/')) {
-      const vimeoMatch = cleanUrl.match(/(?:vimeo\.com\/)(?:channels\/[^\/]+\/|groups\/[^\/]+\/videos\/|manage\/videos\/|showcase\/[^\/]+\/video\/|)?([0-9]+)/i);
+      const vimeoMatch = cleanUrl.match(/(?:vimeo\.com\/)(?:channels\/[^\/]+\/|groups\/[^\/]+\/videos\/|manage\/videos\/|showcase\/[^\/]+\/video\/|)?([0-9]{8,})/i);
       if (vimeoMatch && vimeoMatch[1]) {
-        const embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}?badge=0&autopause=0&player_id=0&app_id=58479`;
+        const videoId = vimeoMatch[1];
+        let hash = '';
+        
+        const matchPos = cleanUrl.indexOf(vimeoMatch[0]);
+        const remaining = cleanUrl.substring(matchPos + vimeoMatch[0].length);
+        const postMatch = remaining.match(/^\/([a-zA-Z0-9]+)/);
+        if (postMatch) {
+          const possibleHash = postMatch[1];
+          if (possibleHash.toLowerCase() !== 'dnt' && possibleHash.toLowerCase() !== 'badge') {
+            hash = possibleHash;
+          }
+        } else {
+          const hMatch = cleanUrl.match(/[?&]h=([a-zA-Z0-9]+)/);
+          if (hMatch) {
+            hash = hMatch[1];
+          }
+        }
+        
+        let embedUrl = `https://player.vimeo.com/video/${videoId}`;
+        const params = [];
+        if (hash) {
+          params.push(`h=${hash}`);
+        }
+        params.push('badge=0', 'autopause=0', 'player_id=0', 'app_id=58479');
+        embedUrl += '?' + params.join('&');
         return prefix + embedUrl + suffix;
       }
     } else {
