@@ -3454,7 +3454,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 .wp-block-gallery {
-  display: grid;
+  display: grid !important;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin: 2rem 0;
