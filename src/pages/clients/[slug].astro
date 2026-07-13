@@ -159,7 +159,47 @@ const regionsDropdown = [
   { label: "South Texas", href: "/clients?region=south" }
 ];
 
+const getClientRegion = (c: any) => {
+  let rName = '';
+  const terms = c._embedded?.['wp:term'] || [];
+  terms.forEach((taxonomyTerms: any[]) => {
+    if (Array.isArray(taxonomyTerms)) {
+      taxonomyTerms.forEach((term: any) => {
+        if (term.taxonomy === 'region') {
+          rName = term.name;
+        }
+      });
+    }
+  });
+  return rName || regionNames[c.meta?._e3_client_region || ''] || c.meta?._e3_client_region || 'other';
+};
+
+const getClientIndustry = (c: any) => {
+  let ind = '';
+  const terms = c._embedded?.['wp:term'] || [];
+  terms.forEach((taxonomyTerms: any[]) => {
+    if (Array.isArray(taxonomyTerms)) {
+      taxonomyTerms.forEach((term: any) => {
+        if (term.taxonomy === 'industry') {
+          ind = term.name;
+        }
+      });
+    }
+  });
+  return ind || c.meta?._e3_client_industry || 'K-12';
+};
+
+const regionClients = allClients.filter((c: any) => {
+  return getClientRegion(c) === friendlyRegion && getClientIndustry(c) === industry;
+});
+
+const regionClientsDropdown = regionClients.map((c: any) => ({
+  label: decodeHtmlEntities(c.title.rendered),
+  href: `/clients/${c.slug}`
+}));
+
 const industryLink = industry === 'K-12' ? '/k12' : (industry === 'Higher Education' ? '/higher-education' : '/clients');
+const industryLabel = industry === 'K-12' ? 'K-12 Schools' : (industry === 'Higher Education' ? 'Higher Education' : industry);
 
 const breadcrumbItems = [
   {
@@ -179,9 +219,14 @@ const breadcrumbItems = [
     dropdown: clientsDropdown
   },
   {
-    label: industry,
+    label: industryLabel,
     href: industryLink,
     dropdown: regionsDropdown
+  },
+  {
+    label: friendlyRegion,
+    href: `/clients?region=${regionName ? regionName.toLowerCase().replace(/\s+/g, '-') : regionMeta}`,
+    dropdown: regionClientsDropdown
   },
   {
     label: decodeHtmlEntities(client.title.rendered)

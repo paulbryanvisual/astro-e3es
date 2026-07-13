@@ -6145,7 +6145,7 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
     }
 
     &.is-style-green-texture-behind &__hero {
-      background-image: url('images/E3-background-layered-1920x1080.jpg') !important;
+      background-attachment: scroll !important;
     }
   }
 }
