@@ -6,6 +6,7 @@
 
 ## Section 2 — For Review
 
+* 🍞 [Breadcrumb Dropdown Hover & Touch Navigation Upgrades] — Added SVG dropdown caret visual indicators, caret rotation animations, and relative/z-index container scaling in mobile.scss. Implemented desktop hover-activation and touch-safe toggling on mobile/tablet viewports via vanilla JS in Breadcrumb.astro.
 * 📺 [Case Study Video Embed Fullscreen Bug Fix] — Styled .video-embed and .video-embed__wrapper classes in mobile.scss to correctly apply padding-bottom: 56.25% aspect-ratio constraints and relative positioning, preventing absolute-positioned iframes from taking over the entire screen viewport.
 * ↔️ [Gutenberg Wide & Full Alignments Support] — Declared align-wide support inside e3es-headless-helper to activate wide/full block layout settings in the Gutenberg block editor.
 * 🟢 [Green Texture Block Style Arrow & Photo Spacing Tuning] — Restored the skewed image wrapper to full height to cover the background, reduced the size of the custom white arrow overlays to 20px high and 14px deep, and offset them by 6px from the photo edge.
