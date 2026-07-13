@@ -10,7 +10,7 @@ if (file_exists($json_file)) {
 $flickr_base = '/Users/bryanpaul/Dropbox/PaulDropbox/E3/flickr_downloads/';
 
 function e3_get_high_res_hero_image_from_html($html, $slug) {
-    if (preg_match('/<img[^>]*class="[^"]*s-img-switch[^"]*"[^>]*src="([^"]+)"/i', $html, $m)) {
+    if (preg_match('/<img[^>]*class="[^"]*s-img-switch[^"]*"[^>]*src="(https:\/\/www\.e3es\.com\/wp-content\/uploads\/[^"]+)"/i', $html, $m)) {
         return $m[1];
     }
     
@@ -47,8 +47,6 @@ function e3_sideload_image($url, $post_id) {
     
     global $wpdb;
     $filename = basename($url);
-    
-    // Sanitize filename to prevent spaces/special characters
     $filename = sanitize_file_name($filename);
     
     $attachment_id = $wpdb->get_var($wpdb->prepare(
@@ -81,6 +79,66 @@ function e3_sideload_image($url, $post_id) {
     }
     
     return wp_get_attachment_url($id);
+}
+
+function e3_get_client_logo_url($post_id) {
+    global $wpdb;
+    $logo_id = $wpdb->get_var($wpdb->prepare(
+        "SELECT ID FROM $wpdb->posts WHERE post_type = 'attachment' AND post_parent = %d AND (post_title LIKE '%logo%' OR post_name LIKE '%logo%') LIMIT 1",
+        $post_id
+    ));
+    if ($logo_id) {
+        return wp_get_attachment_url($logo_id);
+    }
+    return '';
+}
+
+function e3_generate_intro_banner_block($title, $bg_image_url, $client_logo_url = '', $region = 'Central Texas', $industry = 'K-12 Schools') {
+    $attrs = [
+        'title' => $title,
+        'bgImageUrl' => $bg_image_url,
+        'bgOpacity' => 0.85,
+        'bgOverlayColor' => 'green',
+        'bgFadeType' => 'flat',
+        'textShadow' => 'subtle',
+        'textAlignment' => 'center',
+        'textCase' => 'uppercase',
+        'textSkew' => false,
+        'focalPointX' => 0.5,
+        'focalPointY' => 0.5,
+        'clientLogoUrl' => $client_logo_url,
+        'logoHasCircle' => true,
+        'region' => $region,
+        'industry' => $industry,
+        'subtitle' => ''
+    ];
+    
+    $attrs_json = json_encode($attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    
+    $style = "background-size:cover;background-repeat:no-repeat;background-position:50% 50%;";
+    if ($bg_image_url) {
+        $style .= "background-image:linear-gradient(rgba(14, 53, 27, 0.75), rgba(14, 53, 27, 0.75)), url(" . esc_url($bg_image_url) . ");";
+    }
+    
+    $logo_html = '';
+    if (!empty($client_logo_url)) {
+        $logo_html = '<div class="db-page-hero__logo-wrapper db-page-hero__logo-wrapper--circle"><img src="' . esc_url($client_logo_url) . '" alt="Client Logo" class="db-page-hero__logo-img"/></div>';
+    }
+    
+    $intro_html = '';
+    $intro_text_parts = [];
+    if ($industry) $intro_text_parts[] = esc_html($industry);
+    if ($region) $intro_text_parts[] = esc_html($region);
+    if (!empty($intro_text_parts)) {
+        $intro_text = implode(' | ', $intro_text_parts);
+        $intro_html = '<div class="db-page-hero__intro"><p>' . $intro_text . '</p></div>';
+    }
+    
+    $html = "<!-- wp:e3es/intro-banner " . $attrs_json . " -->\n" .
+            "<section class=\"wp-block-e3es-intro-banner db-page-hero\" style=\"" . $style . "\"><div class=\"db-page-hero__container\">" . $logo_html . "<div><h1 class=\"db-page-hero__title\" style=\"margin-bottom:0;text-align:center;text-transform:uppercase\">" . esc_html($title) . "</h1>" . $intro_html . "</div></div></section>\n" .
+            "<!-- /wp:e3es/intro-banner -->\n\n";
+            
+    return $html;
 }
 
 function e3_parse_content_html_sequentially($html, $client_title) {
@@ -343,19 +401,59 @@ if (file_exists($protected_file)) {
 foreach ($clients as $c) {
     $slug = $c->post_name;
     
-    if (in_array($slug, $protected_slugs)) {
-        echo "[SKIP] Protected manually edited client: $slug\n";
-        continue;
-    }
-
     $cache_file = "/Users/bryanpaul/Local Sites/astro-e3es/scratch/live_project_pages_cache/{$slug}.html";
     if (!file_exists($cache_file)) {
         echo "[SKIP] No live cache for: $slug\n";
         continue;
     }
-    
     $html = file_get_contents($cache_file);
-    
+
+    // Resolve industry taxonomy
+    $industry = 'K-12 Schools';
+    if (strpos($slug, 'hospital') !== false || strpos($slug, 'medical') !== false) {
+        $industry = 'Healthcare';
+    } elseif (strpos($slug, 'city') !== false || strpos($slug, 'county') !== false || strpos($slug, 'commission') !== false) {
+        $industry = 'Municipalities';
+    } elseif (strpos($slug, 'college') !== false || strpos($slug, 'university') !== false) {
+        $industry = 'Higher Education';
+    }
+
+    // Resolve region
+    $region = 'Central Texas';
+    if (preg_match('/<strong>MARKET<\/strong>\s*:\s*([^<]+)/i', $html, $m)) {
+        $market_val = strtolower(trim($m[1]));
+        if (strpos($market_val, 'south') !== false) {
+            $region = 'South Texas';
+        } elseif (strpos($market_val, 'north') !== false) {
+            $region = 'North Texas';
+        } elseif (strpos($market_val, 'west') !== false) {
+            $region = 'West Texas';
+        } elseif (strpos($market_val, 'east') !== false) {
+            $region = 'East Texas';
+        }
+    }
+
+    // Safe Banner Prepending for protected manual client pages
+    if (in_array($slug, $protected_slugs)) {
+        if (strpos($c->post_content, 'wp:e3es/intro-banner') === false) {
+            $hero_id = get_post_thumbnail_id($c->ID);
+            $hero_url = $hero_id ? wp_get_attachment_url($hero_id) : '';
+            $logo_url = e3_get_client_logo_url($c->ID);
+            
+            $banner_block = e3_generate_intro_banner_block($c->post_title, $hero_url, $logo_url, $region, $industry);
+            $new_content = $banner_block . $c->post_content;
+            
+            wp_update_post([
+                'ID' => $c->ID,
+                'post_content' => $new_content
+            ]);
+            echo "[OK] Prepended missing intro-banner block to protected client page: $slug\n";
+        } else {
+            echo "[SKIP] Protected manually edited client (already has intro-banner): $slug\n";
+        }
+        continue;
+    }
+
     // 1. Sideload Flickr images first if mapped
     if (isset($matched_flickr[$slug]) && !empty($matched_flickr[$slug]['folders'])) {
         foreach ($matched_flickr[$slug]['folders'] as $folder) {
@@ -462,6 +560,9 @@ foreach ($clients as $c) {
         }
     }
     
+    // Get client logo
+    $logo_url = e3_get_client_logo_url($c->ID);
+    
     // 5. Parse content sequentially (all-bold paragraphs -> H3, lists broken up correctly)
     $parsed_content = e3_parse_content_html_sequentially($html, $c->post_title);
     $rel_p = $parsed_content['rel_p'];
@@ -472,7 +573,8 @@ foreach ($clients as $c) {
     }
     
     // 6. Compile Gutenberg post content
-    $content = '';
+    // Intro Banner block goes first at the top
+    $content = e3_generate_intro_banner_block($c->post_title, $hero_url, $logo_url, $region, $industry);
     
     if (!empty($vimeo_id)) {
         $vimeo_url = "https://vimeo.com/$vimeo_id";
@@ -557,10 +659,6 @@ foreach ($clients as $c) {
                 'title' => 'Ricardo ISD Case Study Video',
                 'intro' => 'Watch the Ricardo ISD project video highlighting classrooms comfort improvements, LED upgrades, and HVAC modernizations.'
             ],
-            'rio-hondo-isd' => [
-                'title' => 'Ricardo ISD Case Study Video',
-                'intro' => 'Watch the Ricardo ISD project video highlighting classrooms comfort improvements, LED upgrades, and HVAC modernizations.'
-            ],
             'royal-isd' => [
                 'title' => 'Royal ISD Case Study Video',
                 'intro' => 'Watch this video to learn about the comprehensive facility improvements, LED lighting, and mechanical upgrades completed at Royal ISD.'
@@ -631,7 +729,7 @@ foreach ($clients as $c) {
     // Inline description content
     $content .= $project_inner_content;
     
-    // Split galleries based on image content (construction, completed, general)
+    // Split galleries
     if (count($gallery_images) > 0) {
         $split_galleries = e3_split_gallery_images($gallery_images);
         foreach ($split_galleries as $gallery) {
@@ -656,7 +754,7 @@ foreach ($clients as $c) {
     if (is_wp_error($result)) {
         echo "[ERROR] Failed to update: $slug - " . $result->get_error_message() . "\n";
     } else {
-        echo "[OK] Restored content with sequential parser, high-res image, and split galleries for: $slug\n";
+        echo "[OK] Restored content with intro-banner, sequential parser, high-res image, and split galleries for: $slug\n";
     }
 }
 
