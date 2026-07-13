@@ -1,5 +1,19 @@
 # Current State
 
+- **Clients Listing Hero Banner Layout Corrections** (July 13, 2026):
+  - **Goal**: Allow the green hero banner on the Clients listing page to stretch full bleed (100% width) to the left/right window edges and touch the breadcrumbs bar without gaps.
+  - **Implementation**:
+    1. **Constraint Exclusion**: Added `:not(.clients-page__content)` to the general `main > *` container selector and the first-child `margin-top` layout rules in `mobile.scss`. This prevents the clients listing page content wrapper from being sized to a boxed `1200px` width and inheriting `2rem` side paddings and `4rem` top margins.
+    2. **Container Padding Reset**: Forced `.clients-page` and `.clients-page__content` paddings and margins to `0 !important` inside `mobile.scss`. This allows the child `.db-page-hero` to expand to full-width and touch the breadcrumb bar directly.
+  - **Verification**: Verified using a Puppeteer script check rendering.
+
+- **Gutenberg Editor Design-Build Card Text Color Visibility Fixes** (July 13, 2026):
+  - **Goal**: Fix invisible placeholder and title/description text inside `E3 Design-Build Card` blocks in the Gutenberg post editor when nested in dark Cover blocks.
+  - **Implementation**:
+    1. **Color Overrides**: Added CSS rules inside the editor styles block of `mobile.scss` targeting `.design-build__card` elements (and Gutenberg contenteditable fields) using `!important` to force text colors to `--color-primary-dark` (for titles) and `--color-text-light` (for description copy).
+    2. **Native Columns Fallback**: Applied identical `!important` color rules to `.wp-block-column` text blocks inside `.design-build` selectors to guarantee native column text visibility.
+  - **Verification**: Synced styles directly to WordPress helpers.
+
 - **Breadcrumb Dropdown Hover & Touch Navigation Upgrades** (July 13, 2026):
   - **Goal**: Make the breadcrumb navigation dropdown trigger on mouse hover on desktop, while preserving click/touch toggle interactions on mobile and tablet screens.
   - **Implementation**:
