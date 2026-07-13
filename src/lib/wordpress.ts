@@ -230,6 +230,22 @@ export function processWordPressHtml(html: string, slug?: string): string {
     return match;
   });
 
+  // Sanitize all Vimeo iframe sources in the content (both block-comment parsed and raw database html)
+  const iframeRegex = /(<div class="(?:db-video-wrapper|video-embed__wrapper)"[^>]*>[\s\S]*?<iframe[^>]+src=")([^"]+)("[^>]*>[\s\S]*?<\/iframe>)/gi;
+  processedHtml = processedHtml.replace(iframeRegex, (match, prefix, url, suffix) => {
+    const cleanUrl = url.replace(/&amp;/g, '&');
+    if (!cleanUrl.includes('player.vimeo.com/video/')) {
+      const vimeoMatch = cleanUrl.match(/(?:vimeo\.com\/)(?:channels\/[^\/]+\/|groups\/[^\/]+\/videos\/|manage\/videos\/|showcase\/[^\/]+\/video\/|)?([0-9]+)/i);
+      if (vimeoMatch && vimeoMatch[1]) {
+        const embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}?badge=0&autopause=0&player_id=0&app_id=58479`;
+        return prefix + embedUrl + suffix;
+      }
+    } else {
+      return prefix + cleanUrl + suffix;
+    }
+    return match;
+  });
+
   // Fallback: If comments are stripped (default public REST API behaviour), use the slug to inject expected Vimeo iframes
   if (slug) {
     const expectedVideos: Record<string, { id: string; title: string }> = {
