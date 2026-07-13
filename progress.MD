@@ -6,6 +6,8 @@
 
 ## Section 2 — For Review
 
+* 🔄 [Boyd ISD Projects & Archive Gallery Restore] — Restored manually seeded multi-project structure for Boyd ISD and other manually crafted pages in `seed-client-blocks.php`. Created a symlink to resolve local Flickr downloads image references, eliminating 100% of broken images on client subpages.
+* 📺 [Video Embed Scaling & Responsiveness] — Styled standard Gutenberg `.wp-block-embed` blocks in `mobile.scss` to ensure case study videos (like Bryan ISD) automatically fill 100% of the given column/container width up to 1200px and maintain a clean 16:9 aspect ratio.
 * 🔄 [WordPress Client Content Restoration & Block Recovery Audit] — Synchronized all 105 clients content (description, deliverables, video embeds, scopes, amounts, savings, and market) from the live website cache to the WordPress database using native Gutenberg layouts matching the Boyd ISD block structure. Automatically sideloaded missing Flickr images, attached them to post IDs, and built dynamic galleries. sequentially page-by-page audited all 105 pages inside the Gutenberg editor, verifying exactly **0 invalid blocks** database-wide.
 * 🏆 [Universal Block Validation Audit] — Ran an automated Gutenberg editor Puppeteer audit across all 105 client pages. Resolved remaining recovery issues for `e3es/intro-banner` and `e3es/faq-section` blocks, verifying exactly **0 invalid blocks** database-wide.
 * 📐 [Accessibility Heading Outline Audit] — Audited and aligned all post headings to follow a strict linear accessibility flow (H1 -> H2 project -> H3 deliverables/videos -> H4 sub-galleries), correcting out-of-order H4 and H2 headings inside and outside project blocks.
