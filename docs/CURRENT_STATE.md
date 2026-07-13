@@ -1,5 +1,14 @@
 # Current State
 
+- **Breadcrumb Dropdown Hover & Touch Navigation Upgrades** (July 13, 2026):
+  - **Goal**: Make the breadcrumb navigation dropdown trigger on mouse hover on desktop, while preserving click/touch toggle interactions on mobile and tablet screens.
+  - **Implementation**:
+    1. **Visual Indicators**: Added inline SVG chevron icon indicator next to breadcrumb items with dropdown menus to visually signify interactive dropdown sections.
+    2. **Hover Caret Rotation**: Added CSS styles in `mobile.scss` that rotate the chevron icon on hover and active states.
+    3. **Touch-Safe Toggling**: Appended a small vanilla JS script block in `Breadcrumb.astro` to add `.is-open` class on touch/click events while keeping desktop mouse events powered by native hover.
+    4. **Stacking Context Fix**: Set `position: relative` and `z-index: 50` on the breadcrumb bar container to prevent its dropdown from sliding behind absolute/relative hero banners below it.
+  - **Verification**: Verified using layout rules and compiled styling checks.
+
 - **Case Study Video Embed Fullscreen Bug Fix** (July 13, 2026):
   - **Goal**: Prevent video iframes on migrated client pages (like Bryan ISD) from breaking layout constraints and covering the entire browser screen.
   - **Implementation**:
