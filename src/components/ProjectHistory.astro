@@ -379,7 +379,7 @@ const mappedClients = clientsData.map((client: any) => ({
                     // --- Render Grid/List View Card ---
                     const card = document.createElement('div');
                     card.className = 'client-card';
-                    card.style.cssText = 'background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; justify-content: space-between;';
+                    card.style.cssText = 'background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; justify-content: flex-start;';
                     
                     card.onmouseover = () => { card.style.transform = 'translateY(-5px)'; card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)'; };
                     card.onmouseout = () => { card.style.transform = 'translateY(0)'; card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.05)'; };

@@ -200,6 +200,9 @@ export function processWordPressHtml(html: string, slug?: string): string {
     return match.replace(styleContent, cleanStyle);
   });
 
+  // Force client-card layout to justify-content: flex-start (align text/tags to top)
+  processedHtml = processedHtml.replace(/(class="[^"]*client-card[^"]*"[^>]*style="[^"]*)justify-content:\s*space-between/gi, '$1justify-content: flex-start');
+
   // Clean up any wpautop paragraph injection inside clients finder section
   processedHtml = processedHtml.replace(/(<section[^>]*class="[^"]*clients-finder-section[^"]*"[^>]*>)([\s\S]*?)(<\/section>)/gi, (match, startTag, sectionContent, endTag) => {
     const cleanContent = sectionContent
