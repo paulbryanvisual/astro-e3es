@@ -6,6 +6,8 @@
 
 ## Section 2 — For Review
 
+* 🖼️ [Disable Duotone Options in WordPress] — Added hook filter to e3es-headless-helper.php to disable duotone color options and SVG filters globally in the Gutenberg block editor.
+* 🔳 [Lightbox Click-Outside Dismissal] — Updated clients/[slug].astro lightbox event listener so that clicking anywhere except on the photo itself and the prev/next navigation arrows will close the gallery lightbox.
 * 📐 [Clients Listing Hero Banner Layout Corrections] — Reset margins and paddings on clients-page wrappers and excluded them from default main content constraints in mobile.scss to allow the clients hero banner to sit flush against the breadcrumbs and extend full bleed to the window edges.
 * 🎨 [Gutenberg Editor Design-Build Card Color Fixes] — Applied important color styling overrides inside editor-styles block of mobile.scss to guarantee text and placeholder visibility for custom Design-Build cards and native columns inside Cover blocks.
 * 🍞 [Breadcrumb Dropdown Hover & Touch Navigation Upgrades] — Added SVG dropdown caret visual indicators, caret rotation animations, and relative/z-index container scaling in mobile.scss. Implemented desktop hover-activation and touch-safe toggling on mobile/tablet viewports via vanilla JS in Breadcrumb.astro.
