@@ -13,12 +13,13 @@
   - **Verification**: Compiled styles and verified with Git history checks.
 
 - **E3 Video Embed Editor Style Sync & Robust Vimeo Parsing** (July 13, 2026):
-  - **Goal**: Make the `E3 Video Embed` block in the Gutenberg visual editor match the layout, width, fonts, and styling of Astro, and upgrade the link input to support any Vimeo URL format or raw ID.
+  - **Goal**: Make the `E3 Video Embed` block in the Gutenberg visual editor match the layout, width, fonts, and styling of Astro, and upgrade the link input to support any Vimeo URL format, raw ID, and private link hashes.
   - **Implementation**:
     1. **Editor Layout Overrides**: Added styling rules inside `.editor-styles-wrapper` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3709-L3743) to force the `e3es/video-embed` block to a `max-width: 1200px` centered width with Raleway/Inter typography and rounded corners/depth shadows that mimic the live site.
-    2. **Robust Link Normalizer**: Upgraded the link parser in [editor-blocks.js](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/editor-blocks.js#L3094-L3108) with a comprehensive regex to match any Vimeo link format (standard, player, showcase, management, etc.) or raw video ID and automatically format it into the required Vimeo player embed structure.
-    3. **Pipeline Sync**: Compiled the updated styles using `sync-styles.js` to refresh the visual editor stylesheet on the WordPress site.
-  - **Verification**: Verified Astro build output builds with 100% success.
+    2. **Robust Link Normalizer**: Upgraded the link parser in [editor-blocks.js](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/editor-blocks.js#L3094-L3108) with a regex parser that extracts both the numeric video ID (8+ digits) and any optional private hash parameters (e.g. `/935503628/d12c83b8f2` or `?h=d12c83b8f2`) and normalizes it into a valid embed player URL.
+    3. **PHP Syncer Helper & Frontend Sanitizer**: Synchronized this hash extraction logic inside [sync_block_attrs.php](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/scripts/sync_block_attrs.php#L152-L178) (for DB syncs) and [wordpress.ts](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/lib/wordpress.ts#L237-L260) (for Astro rendering), ensuring private vimeo videos play successfully without privacy blocks.
+    4. **Pipeline Sync**: Compiled the updated styles using `sync-styles.js` to refresh the visual editor stylesheet on the WordPress site.
+  - **Verification**: Verified using regex match checks across all 11 URL patterns.
 
 - **Comprehensive Puppeteer Frontend Site Audit** (July 13, 2026):
   - **Goal**: Develop a rigorous E2E validation script that walks the Astro live client frontend to check for broken layouts, missing top banners, unrendered Gutenberg comment tags, and JavaScript runtime/console errors.
