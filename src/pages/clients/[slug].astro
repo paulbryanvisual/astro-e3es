@@ -405,7 +405,14 @@ const breadcrumbItems = [
         prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
         nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
         closeBtn.addEventListener('click', () => dialog.close());
-        dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+        dialog.addEventListener('click', (e) => {
+          const isPhoto = e.target.classList.contains('lightbox-dialog__img');
+          const isPrevBtn = e.target.closest('.lightbox-dialog__arrow--prev');
+          const isNextBtn = e.target.closest('.lightbox-dialog__arrow--next');
+          if (!isPhoto && !isPrevBtn && !isNextBtn) {
+            dialog.close();
+          }
+        });
         dialog.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowLeft') { e.preventDefault(); showImage(currentIndex - 1); }
           else if (e.key === 'ArrowRight') { e.preventDefault(); showImage(currentIndex + 1); }
