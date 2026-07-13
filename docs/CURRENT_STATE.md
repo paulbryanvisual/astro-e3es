@@ -1,5 +1,12 @@
 # Current State
 
+- **Gallery Column Options Support** (July 13, 2026):
+  - **Goal**: Support all column options (1 to 8) for Gutenberg Gallery blocks (`core/gallery`) on desktop and mobile, resolving the issue where anything other than 4 columns collapsed into a single column.
+  - **Implementation**:
+    1. **Mobile Rules**: Decoupled the styling definitions for `.wp-block-gallery` from the `.columns-4` selector in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3456-L3489), applying the layout styles globally to all gallery counts. Defaulted all mobile galleries to a responsive 2-column layout (with a single column override for `.columns-1`).
+    2. **Desktop Rules**: Registered explicit grid layout rules for all choices `.columns-1` through `.columns-8` in [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L418-L451).
+  - **Verification**: Compiled stylesheets successfully and pushed.
+
 - **Circular Logo Wrapper Padding Removal** (July 13, 2026):
   - **Goal**: Allow client logo images inside circular page hero banners to fill the entire container by removing the default internal padding.
   - **Implementation**: Removed `padding: 0.75rem` from the `.db-page-hero__logo-wrapper.db-page-hero__logo-wrapper--circle` layout rules inside [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L687-L701).
