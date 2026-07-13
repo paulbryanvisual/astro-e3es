@@ -6,6 +6,8 @@
 
 ## Section 2 — For Review
 
+* 📺 [Custom E3 Video Embed Integration] — Converted all core Gutenberg video embeds to the custom E3 Video Embed block (`wp:e3es/video-embed`) database-wide. Generated unique, context-specific, and descriptive intro paragraphs for each client case study video instead of generic fallbacks.
+* 🟢 [Green Texture Block Style Application] — Applied the custom `.is-style-green-texture-behind` block style variation to all project blocks database-wide (including manually seeded pages). Updated project block headers to use custom height settings (220px on mobile, 400px on desktop) and center alignment overrides.
 * 🔄 [Boyd ISD Projects & Archive Gallery Restore] — Restored manually seeded multi-project structure for Boyd ISD and other manually crafted pages in `seed-client-blocks.php`. Created a symlink to resolve local Flickr downloads image references, eliminating 100% of broken images on client subpages.
 * 📺 [Video Embed Scaling & Responsiveness] — Styled standard Gutenberg `.wp-block-embed` blocks in `mobile.scss` to ensure case study videos (like Bryan ISD) automatically fill 100% of the given column/container width up to 1200px and maintain a clean 16:9 aspect ratio.
 * 🔄 [WordPress Client Content Restoration & Block Recovery Audit] — Synchronized all 105 clients content (description, deliverables, video embeds, scopes, amounts, savings, and market) from the live website cache to the WordPress database using native Gutenberg layouts matching the Boyd ISD block structure. Automatically sideloaded missing Flickr images, attached them to post IDs, and built dynamic galleries. sequentially page-by-page audited all 105 pages inside the Gutenberg editor, verifying exactly **0 invalid blocks** database-wide.
