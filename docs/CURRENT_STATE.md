@@ -1,5 +1,13 @@
 # Current State
 
+- **Logo Circle & Sizing Customization in Intro Banner Block** (July 13, 2026):
+  - **Goal**: Give editor users control over whether or not to render a white background circle around the client logo inside the intro-banner hero and allow the logo to render in a larger, uncropped format when the circle is disabled.
+  - **Implementation**:
+    1. **Block Settings Toggle**: Added a `logoHasCircle` boolean attribute (default `true`) to the `e3es/intro-banner` schema and registered a `Show Circle around Logo` toggle in the Gutenberg block settings editor within [editor-blocks.js](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/editor-blocks.js#L2808-L2824).
+    2. **Class Modifier Output**: Configured JS editor renderers and the PHP dynamic block wrapper in [e3es-headless-helper.php](file:///Users/bryanpaul/Dropbox/PaulDropbox/E3/website/wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php#L5381-L5399) to append either `--circle` or `--no-circle` class modifiers to `.db-page-hero__logo-wrapper`.
+    3. **Responsive Sizing Styles**: Added styling in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L681-L715) to constrain circle logos to 100px and automatically scale no-circle logos to a larger `max-height: 140px` with natural aspect ratios.
+  - **Verification**: Verified using layout checking.
+
 - **Clients Case Study Native Banner Block Integration** (July 13, 2026):
   - **Goal**: Allow case study pages (under CPT `clients`) to support and render the `wp:e3es/intro-banner` block dynamically, aligning the visual block editor representation perfectly with the Astro live pages.
   - **Implementation**:
