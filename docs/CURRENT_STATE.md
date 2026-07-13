@@ -1,5 +1,15 @@
 # Current State
 
+- **Disable Duotone Options in WordPress Block Editor** (July 13, 2026):
+  - **Goal**: Disable Gutenberg duotone color options and SVG filters globally in WordPress to clean up image block editing interfaces and frontend assets.
+  - **Implementation**: Added a filter hook `wp_theme_json_data_theme` in `e3es-headless-helper.php` that dynamically sets `duotone` to `null` and both `customDuotone` and `defaultDuotone` to `false` in theme settings.
+  - **Verification**: Verified settings are active in WordPress.
+
+- **Lightbox Click-Outside Dismissal Implementation** (July 13, 2026):
+  - **Goal**: Allow users to close the project image gallery lightbox by clicking anywhere on the screen except directly on the photo image itself or the next/prev arrow navigation buttons.
+  - **Implementation**: Updated the event listener in `clients/[slug].astro` to inspect click targets; clicks that do not match the image class or close button, and do not fall within the next/prev controls, will trigger `dialog.close()`.
+  - **Verification**: Verified using event bubbling analysis.
+
 - **Clients Listing Hero Banner Layout Corrections** (July 13, 2026):
   - **Goal**: Allow the green hero banner on the Clients listing page to stretch full bleed (100% width) to the left/right window edges and touch the breadcrumbs bar without gaps.
   - **Implementation**:
