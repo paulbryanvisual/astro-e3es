@@ -683,6 +683,39 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     align-items: center;
     justify-content: center;
     max-width: 280px;
+
+    &.db-page-hero__logo-wrapper--circle {
+        width: 100px;
+        height: 100px;
+        background: #ffffff;
+        border-radius: 50% !important;
+        padding: 0.75rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        .db-page-hero__logo-img {
+            max-height: 100% !important;
+            width: 100% !important;
+            aspect-ratio: 1 / 1 !important;
+            object-fit: contain !important;
+        }
+    }
+
+    &.db-page-hero__logo-wrapper--no-circle {
+        max-width: 320px;
+        width: auto;
+        height: auto;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+
+        .db-page-hero__logo-img {
+            max-height: 140px !important;
+            width: auto !important;
+            aspect-ratio: auto !important;
+            object-fit: contain !important;
+        }
+    }
 }
 
 .db-page-hero__logo-img {
@@ -3637,8 +3670,8 @@ main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):no
   width: 100%;
 }
 
-main > :first-child:not(.db-feature):not(.has-background):not(.wp-block-group):not(.wp-block-cover):not(.project-section):not(.wp-block-e3es-video-embed):not(.wp-block-e3es-project-toc):not(.wp-block-e3es-region-showcase):not(.wp-block-e3es-full-width-testimonial):not(.services-page__container):not(.services-page):not(.clients-page__content),
-.client-content-wrapper > :first-child:not(.db-feature):not(.has-background):not(.wp-block-group):not(.wp-block-cover):not(.project-section):not(.wp-block-e3es-video-embed):not(.wp-block-e3es-project-toc):not(.wp-block-e3es-region-showcase):not(.wp-block-e3es-full-width-testimonial) {
+main > :first-child:not(.db-feature):not(.has-background):not(.wp-block-group):not(.wp-block-cover):not(.project-section):not(.wp-block-e3es-video-embed):not(.wp-block-e3es-project-toc):not(.wp-block-e3es-region-showcase):not(.wp-block-e3es-full-width-testimonial):not(.services-page__container):not(.services-page):not(.clients-page__content):not(.wp-block-e3es-intro-banner):not(.db-page-hero),
+.client-content-wrapper > :first-child:not(.db-feature):not(.has-background):not(.wp-block-group):not(.wp-block-cover):not(.project-section):not(.wp-block-e3es-video-embed):not(.wp-block-e3es-project-toc):not(.wp-block-e3es-region-showcase):not(.wp-block-e3es-full-width-testimonial):not(.wp-block-e3es-intro-banner):not(.db-page-hero) {
   margin-top: 4rem !important;
 }
 
@@ -3661,6 +3694,12 @@ main > .services-page__container,
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
+/* Spacing adjustments when banner is followed directly by heading or paragraph (64px / 4rem) */
+:is(main, .client-content-wrapper, .client-detail, .services-page__content) > .wp-block-e3es-intro-banner + :is(p, h1, h2, h3, h4, h5, h6, .wp-block-heading, .wp-block-paragraph) {
+  margin-top: 4rem !important;
+}
+
 
 /* ─── FAQ Section ─────────────────────────────────────────────────────── */
 .faq-section {
