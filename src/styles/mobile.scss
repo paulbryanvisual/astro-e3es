@@ -758,21 +758,24 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Vimeo Video Embed Component */
-.db-video-section {
+.db-video-section,
+.video-embed {
   max-width: 1200px;
   width: 100%;
   margin: 5rem auto;
   padding: 0 1.5rem;
   box-sizing: border-box;
 
-  &__title {
+  &__title,
+  .video-embed__title {
     font-size: 1.85rem;
     color: var(--color-primary-dark);
     margin-bottom: 1rem;
     font-weight: 700;
   }
 
-  &__intro {
+  &__intro,
+  .video-embed__intro {
     font-size: 1.15rem;
     line-height: 1.6;
     color: var(--color-text-main);
@@ -780,7 +783,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
   }
 }
 
-.db-video-wrapper {
+.db-video-wrapper,
+.video-embed__wrapper {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
