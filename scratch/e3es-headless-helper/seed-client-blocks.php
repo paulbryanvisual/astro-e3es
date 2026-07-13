@@ -152,6 +152,7 @@ BLOCK;
     // e3es/project
     $project_start = function( $sectionId, $eyebrow, $title, $heroImageUrl, $focalPointX = 0.5, $focalPointY = 0.5 ) {
         $attrArr = compact( 'sectionId', 'eyebrow', 'title', 'heroImageUrl', 'focalPointX', 'focalPointY' );
+        $attrArr['className'] = 'is-style-green-texture-behind';
         $attrs = json_encode( $attrArr, JSON_UNESCAPED_SLASHES );
         $e = esc_html( $eyebrow );
         $t = $title; // May contain &amp; entities
@@ -171,7 +172,7 @@ BLOCK;
         $style_attr = ' style="--hero-img:' . ($heroImageUrl ? 'url(' . esc_url($heroImageUrl) . ')' : 'none') . '"';
         return <<<BLOCK
 <!-- wp:e3es/project $attrs -->
-<div class="wp-block-e3es-project project-section"{$id_attr}{$style_attr}><div class="project-section__header">{$hero_html}<div class="project-section__info"><span class="project-section__eyebrow">{$e}</span><h2 class="project-section__title">{$t}</h2></div></div><div class="project-section__content">
+<div class="wp-block-e3es-project project-section is-style-green-texture-behind"{$id_attr}{$style_attr}><div class="project-section__header">{$hero_html}<div class="project-section__info"><span class="project-section__eyebrow">{$e}</span><h2 class="project-section__title">{$t}</h2></div></div><div class="project-section__content">
 BLOCK;
     };
 
