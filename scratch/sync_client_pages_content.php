@@ -115,9 +115,9 @@ function e3_generate_intro_banner_block($title, $bg_image_url, $client_logo_url 
     
     $attrs_json = json_encode($attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     
-    $style = "background-size:cover;background-repeat:no-repeat;background-position:50% 50%;";
+    $style = "";
     if ($bg_image_url) {
-        $style .= "background-image:linear-gradient(rgba(14, 53, 27, 0.75), rgba(14, 53, 27, 0.75)), url(" . esc_url($bg_image_url) . ");";
+        $style = "background-image:linear-gradient(rgba(33, 87, 52,0.85), rgba(33, 87, 52,0.85)), url(" . esc_url($bg_image_url) . ");background-size:cover;background-position:50% 50%;background-repeat:no-repeat";
     }
     
     $logo_html = '';
@@ -135,8 +135,26 @@ function e3_generate_intro_banner_block($title, $bg_image_url, $client_logo_url 
     }
     
     $html = "<!-- wp:e3es/intro-banner " . $attrs_json . " -->\n" .
-            "<section class=\"wp-block-e3es-intro-banner db-page-hero\" style=\"" . $style . "\"><div class=\"db-page-hero__container\">" . $logo_html . "<div><h1 class=\"db-page-hero__title\" style=\"margin-bottom:0;text-align:center;text-transform:uppercase\">" . esc_html($title) . "</h1>" . $intro_html . "</div></div></section>\n" .
+            "<section class=\"wp-block-e3es-intro-banner db-page-hero\" style=\"" . $style . "\"><div class=\"db-page-hero__container\">" . $logo_html . "<div><h1 class=\"db-page-hero__title\" style=\"margin-bottom:0;text-align:center;text-transform:uppercase;text-shadow:0 2px 4px rgba(0,0,0,0.3)\">" . $title . "</h1>" . $intro_html . "</div></div></section>\n" .
             "<!-- /wp:e3es/intro-banner -->\n\n";
+            
+    return $html;
+}
+
+function e3_generate_video_embed_block($title, $video_url, $intro = '') {
+    if (empty($intro)) {
+        $intro = 'This video highlights the energy efficiency improvements and facility upgrades implemented across the district. Watch the case study to see the impact of single-source accountability.';
+    }
+    $attrs = [
+        'title' => $title,
+        'videoUrl' => $video_url,
+        'intro' => $intro
+    ];
+    $attrs_json = json_encode($attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    
+    $html = "<!-- wp:e3es/video-embed " . $attrs_json . " -->\n" .
+            "<section class=\"wp-block-e3es-video-embed db-video-section\"><h3 class=\"db-video-section__title\">" . $title . "</h3><p class=\"db-video-section__intro\">" . $intro . "</p><div class=\"db-video-wrapper\"><iframe src=\"" . esc_url($video_url) . "\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen title=\"" . esc_attr($title) . "\"></iframe></div></section>\n" .
+            "<!-- /wp:e3es/video-embed -->\n\n";
             
     return $html;
 }
@@ -440,12 +458,22 @@ foreach ($clients as $c) {
             $hero_url = $hero_id ? wp_get_attachment_url($hero_id) : '';
             $logo_url = e3_get_client_logo_url($c->ID);
             
-            $banner_block = e3_generate_intro_banner_block($c->post_title, $hero_url, $logo_url, $region, $industry);
+            if (function_exists('e3es_make_intro_banner_markup')) {
+                $banner_block = e3es_make_intro_banner_markup([
+                    'title' => $c->post_title,
+                    'bgImageUrl' => $hero_url,
+                    'clientLogoUrl' => $logo_url,
+                    'region' => $region,
+                    'industry' => $industry
+                ]) . "\n\n";
+            } else {
+                $banner_block = e3_generate_intro_banner_block($c->post_title, $hero_url, $logo_url, $region, $industry);
+            }
             $new_content = $banner_block . $c->post_content;
             
             wp_update_post([
                 'ID' => $c->ID,
-                'post_content' => $new_content
+                'post_content' => wp_slash($new_content)
             ]);
             echo "[OK] Prepended missing intro-banner block to protected client page: $slug\n";
         } else {
@@ -573,14 +601,23 @@ foreach ($clients as $c) {
     }
     
     // 6. Compile Gutenberg post content
-    // Intro Banner block goes first at the top
-    $content = e3_generate_intro_banner_block($c->post_title, $hero_url, $logo_url, $region, $industry);
+    if (function_exists('e3es_make_intro_banner_markup')) {
+        $content = e3es_make_intro_banner_markup([
+            'title' => $c->post_title,
+            'bgImageUrl' => $hero_url,
+            'clientLogoUrl' => $logo_url,
+            'region' => $region,
+            'industry' => $industry
+        ]) . "\n\n";
+    } else {
+        $content = e3_generate_intro_banner_block($c->post_title, $hero_url, $logo_url, $region, $industry);
+    }
     
     if (!empty($vimeo_id)) {
         $vimeo_url = "https://vimeo.com/$vimeo_id";
         
-        $v_title = esc_html($c->post_title) . " Case Study Video";
-        $v_intro = "Watch the video overview of E3's project work and facility improvements at " . esc_html($c->post_title) . ".";
+        $v_title = $c->post_title . " Case Study Video";
+        $v_intro = "Watch the video overview of E3's project work and facility improvements at " . $c->post_title . ".";
         
         $video_copy = [
             'bryan-isd' => [
@@ -674,14 +711,7 @@ foreach ($clients as $c) {
             $v_intro = $video_copy[$slug]['intro'];
         }
         
-        $video_attrs = json_encode([
-            'videoUrl' => $vimeo_url,
-            'title' => $v_title,
-            'intro' => $v_intro
-        ], JSON_UNESCAPED_SLASHES);
-        
-        $content .= "<!-- wp:e3es/video-embed $video_attrs -->\n";
-        $content .= "<div class=\"wp-block-e3es-video-embed db-video-section\"><h3 class=\"db-video-section__title\">" . esc_html($v_title) . "</h3><p class=\"db-video-section__intro\">" . esc_html($v_intro) . "</p><div class=\"db-video-wrapper\"></div></div>\n<!-- /wp:e3es/video-embed -->\n\n";
+        $content .= e3_generate_video_embed_block($v_title, $vimeo_url, $v_intro);
     }
     
     $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($rel_p) . "</p>\n<!-- /wp:paragraph -->\n\n";
@@ -720,10 +750,10 @@ foreach ($clients as $c) {
     
     $content .= "<!-- wp:e3es/project-details $details_attrs -->\n";
     $content .= "<div class=\"wp-block-e3es-project-details project-details\">";
-    if ($scope) $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Project Scope</span><span class=\"project-details__value\">" . esc_html($scope) . "</span></div>";
-    if ($contract_amount) $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Contract Amount</span><span class=\"project-details__value\">" . esc_html($contract_amount) . "</span></div>";
-    if ($annual_savings) $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Annual Savings</span><span class=\"project-details__value\">" . esc_html($annual_savings) . "</span></div>";
-    if ($market) $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Market</span><span class=\"project-details__value\">" . esc_html($market) . "</span></div>";
+    $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Project Scope</span><span class=\"project-details__value\">" . esc_html($scope) . "</span></div>";
+    $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Contract Amount</span><span class=\"project-details__value\">" . esc_html($contract_amount) . "</span></div>";
+    $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Annual Savings</span><span class=\"project-details__value\">" . esc_html($annual_savings) . "</span></div>";
+    $content .= "<div class=\"project-details__item\"><span class=\"project-details__label\">Market</span><span class=\"project-details__value\">" . esc_html($market) . "</span></div>";
     $content .= "</div>\n<!-- /wp:e3es/project-details -->\n\n";
     
     // Inline description content
@@ -735,10 +765,24 @@ foreach ($clients as $c) {
         foreach ($split_galleries as $gallery) {
             $content .= "<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">" . esc_html($gallery['title']) . "</h3>\n<!-- /wp:heading -->\n\n";
             $content .= "<!-- wp:paragraph -->\n<p>" . esc_html($gallery['desc']) . "</p>\n<!-- /wp:paragraph -->\n\n";
-            $content .= "<!-- wp:gallery {\"columns\":4,\"linkTo\":\"none\"} -->\n";
-            $content .= "<figure class=\"wp-block-gallery has-nested-images columns-4 is-cropped\">";
+            $content .= "<!-- wp:gallery {\"linkTo\":\"none\",\"columns\":4} -->\n";
+            $content .= "<figure class=\"wp-block-gallery has-nested-images columns-4 is-cropped\">\n";
             foreach ($gallery['images'] as $g) {
-                $content .= "<!-- wp:image -->\n<figure class=\"wp-block-image\"><img src=\"" . esc_url($g['url']) . "\" alt=\"" . esc_attr($g['alt']) . "\"/></figure>\n<!-- /wp:image -->\n";
+                $att_id = attachment_url_to_postid($g['url']);
+                $img_attrs = [
+                    'url' => $g['url'],
+                    'alt' => $g['alt']
+                ];
+                if ($att_id) {
+                    $img_attrs['id'] = $att_id;
+                    $img_attrs['sizeSlug'] = 'large';
+                    $img_attrs['linkDestination'] = 'none';
+                }
+                $img_attrs_json = json_encode($img_attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                
+                $content .= "<!-- wp:image " . $img_attrs_json . " -->\n";
+                $content .= "<figure class=\"wp-block-image size-large\"><img src=\"" . esc_url($g['url']) . "\" alt=\"" . esc_attr($g['alt']) . "\"" . ($att_id ? " class=\"wp-image-$att_id\"" : "") . "/></figure>\n";
+                $content .= "<!-- /wp:image -->\n\n";
             }
             $content .= "</figure>\n<!-- /wp:gallery -->\n\n";
         }
@@ -748,7 +792,7 @@ foreach ($clients as $c) {
     
     $result = wp_update_post([
         'ID' => $c->ID,
-        'post_content' => $content
+        'post_content' => wp_slash($content)
     ], true);
     
     if (is_wp_error($result)) {
