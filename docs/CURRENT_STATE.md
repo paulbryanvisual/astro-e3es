@@ -1,10 +1,15 @@
 # Current State
 
-- **Gallery Column Options Support** (July 13, 2026):
-  - **Goal**: Support all column options (1 to 8) for Gutenberg Gallery blocks (`core/gallery`) on desktop and mobile, resolving the issue where anything other than 4 columns collapsed into a single column.
+- **E3 Project Block Focal Point Support** (July 13, 2026):
+  - **Goal**: Make the E3 Project block use Gutenberg's Focal Point setting coordinates to position the hero image higher or lower (cropping the top or bottom of the image dynamically).
+  - **Implementation**: Removed the override `object-position: center center !important;` from `.project-section__hero-img` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3235-L3245). This allows the inline styles (`style="object-position: X% Y%"`) output by the Gutenberg focal point picker to take effect on both the frontend and visual editor.
+  - **Verification**: Verified compiled styles and tested focal point layout output.
+
+- **Gallery Column Options Support & Visual Editor Reflection** (July 13, 2026):
+  - **Goal**: Support all column options (1 to 8) for Gutenberg Gallery blocks (`core/gallery`) on desktop and mobile, ensuring the selected count reflects inside the Gutenberg Visual Editor.
   - **Implementation**:
-    1. **Mobile Rules**: Decoupled the styling definitions for `.wp-block-gallery` from the `.columns-4` selector in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3456-L3489), applying the layout styles globally to all gallery counts. Defaulted all mobile galleries to a responsive 2-column layout (with a single column override for `.columns-1`).
-    2. **Desktop Rules**: Registered explicit grid layout rules for all choices `.columns-1` through `.columns-8` in [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L418-L451).
+    1. **Global Editor Scoping**: Defined all `.columns-1` through `.columns-8` layouts globally on `.wp-block-gallery` in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3456-L3489). Since Gutenberg editor on desktop compiles these styles, it now renders the exact column layout selected in real time.
+    2. **Mobile Layout Overrides**: Added a `@media (max-width: 767px)` rule inside `mobile.scss` that collapses all layouts containing 2 or more columns to `repeat(2, 1fr) !important` (except for `.columns-1` which remains `1fr`), maintaining mobile layout responsiveness.
   - **Verification**: Compiled stylesheets successfully and pushed.
 
 - **Circular Logo Wrapper Padding Removal** (July 13, 2026):
