@@ -358,9 +358,15 @@ export function processWordPressHtml(html: string, slug?: string): string {
  */
 export function decodeHtmlEntities(text: string): string {
   if (!text) return text;
-  return text
-    .replace(/&amp;/g, '&')
-    .replace(/&#038;/g, '&')
+  let decoded = text
+    .replace(/&amp;amp;/g, 'and')
+    .replace(/&amp;/g, 'and')
+    .replace(/&#038;/g, 'and')
+    .replace(/\\u0026amp;/gi, 'and')
+    .replace(/\\u0026/gi, 'and')
+    .replace(/u0026amp;/gi, 'and')
+    .replace(/u0026/gi, 'and')
+    .replace(/&/g, 'and')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
@@ -372,6 +378,10 @@ export function decodeHtmlEntities(text: string): string {
     .replace(/&#8220;/g, '“')
     .replace(/&#8221;/g, '”')
     .replace(/&nbsp;/g, ' ');
+
+  // Collapse multiple spaces around 'and' to keep formatting clean
+  decoded = decoded.replace(/\s+and\s+/gi, ' and ');
+  return decoded.trim();
 }
 
 /**
