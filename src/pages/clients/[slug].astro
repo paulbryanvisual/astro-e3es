@@ -190,7 +190,8 @@ const getClientIndustry = (c: any) => {
 };
 
 const regionClients = allClients.filter((c: any) => {
-  return getClientRegion(c) === friendlyRegion && getClientIndustry(c) === industry;
+  const isFeatured = c.meta?._e3_client_show_in_index === true || c.meta?._e3_client_show_in_index === '1' || c.meta?._e3_client_show_in_index === 1;
+  return isFeatured && getClientRegion(c) === friendlyRegion && getClientIndustry(c) === industry;
 });
 
 const regionClientsDropdown = regionClients.map((c: any) => ({
