@@ -4851,8 +4851,8 @@ main, .editor-styles-wrapper {
 
   // Material-inspired paragraphs
   p.wp-block-paragraph:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
-    font-size: 1.05rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.5;
     color: var(--color-text-main);
     margin-bottom: 1.75rem;
     text-wrap: pretty;
