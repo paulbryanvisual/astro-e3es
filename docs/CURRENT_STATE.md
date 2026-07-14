@@ -1,5 +1,18 @@
 # Current State
 
+- **Global Gutenberg Paragraph Style Overrides** (July 14, 2026):
+  - **Goal**: Apply standard body typographic properties (font-size `1rem`, line-height `1.5`) globally to Gutenberg paragraphs `p.wp-block-paragraph` outside nested modules (two-columns, covers, features) in both frontend and visual editor views.
+  - **Implementation**: Updated [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L4853-L4860) to set `font-size: 1rem;` and `line-height: 1.5;` for standard paragraphs, keeping spacing clean.
+  - **Verification**: Built and verified changes compile successfully.
+
+- **Team Directory 3-Column Layout & Bio Descriptions** (July 14, 2026):
+  - **Goal**: Change the desktop team directory layout from 4 columns to 3 columns, increase the role text font-size, and fetch and render the team member bio descriptions inside the grid cards.
+  - **Implementation**:
+    1. **Layout Grid Columns**: Modified [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L531-L536) to use `grid-template-columns: repeat(3, 1fr)` for the team directory grid.
+    2. **Role Font Size**: Updated [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L5145-L5153) to set `font-size: 1.2rem;` for the team member roles.
+    3. **Plugin Bio Descriptions**: Modified the PHP renderer inside the local plugin [e3es-headless-helper.php](file:///Users/bryanpaul/Local%20Sites/e3es2026/app/public/wp-content/plugins/e3es-headless-helper/e3es-headless-helper.php#L2286-L2294) (and the [scratch copy](file:///Users/bryanpaul/Local%20Sites/astro-e3es/scratch/e3es-headless-helper/e3es-headless-helper.php#L2286-L2294)) to render each employee's `post_content` inside a container `<div class="team-directory__description">`.
+  - **Verification**: Built and verified changes compile successfully.
+
 - **Page Hero Intro Style & Realignment** (July 14, 2026):
   - **Goal**: Remove any restrictive max-width constraint on the page hero metadata text (`.db-page-hero__intro` and its paragraphs) to allow for proper center alignment across all viewport sizes.
   - **Implementation**: Updated [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L735-L745) to define `max-width: none !important;` and `text-align: center;` for `.db-page-hero__intro` and `.db-page-hero__intro p` on the frontend. Aligned the visual editor block overrides by changing the max-width setting to `none !important` at [mobile.scss:L2381-2387](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L2381-L2387).
