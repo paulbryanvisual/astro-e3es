@@ -1,5 +1,10 @@
 # Current State
 
+- **Breadcrumbs Featured Clients Filter** (July 14, 2026):
+  - **Goal**: In the dynamic region breadcrumbs drop-down menu, only list client schools that are marked as featured (`_e3_client_show_in_index === true`). This prevents listing non-featured clients that do not have dedicated case study pages (which would lead to 404/dead links).
+  - **Implementation**: Updated the client filter criteria for `regionClients` inside [[slug].astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/clients/[slug].astro#L192-L195) to check that `c.meta._e3_client_show_in_index` is true before mapping it to the region breadcrumb dropdown.
+  - **Verification**: Built the Astro site and confirmed the menu item filter correctly lists only case-study-enabled schools.
+
 - **Client Services Taxonomy Synchronization** (July 14, 2026):
   - **Goal**: Populate appropriate pills (such as Lighting, HVAC, Water & Plumbing, Building Controls, Building Envelope, and Energy Infrastructure) on all client cards dynamically.
   - **Implementation**:
