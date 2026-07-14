@@ -1,5 +1,13 @@
 # Current State
 
+- **Theme-Agnostic Admin Columns Pro File Storage** (July 14, 2026):
+  - **Goal**: Store Admin Columns Pro layouts on the filesystem (rather than database) inside the custom E3 WordPress plugin (`e3es-headless-helper`) instead of the active theme (`twentytwentyfive`) to keep the column settings theme-agnostic.
+  - **Implementation**:
+    1. **Plugin Storage Filter**: Appended the directory storage filter hook inside `e3es-headless-helper.php` to define the target layout settings directory inside the plugin's folder: `dirname( __FILE__ ) . '/acp-settings'`.
+    2. **Layout Settings Export**: Exported all 6 database layout files (Clients, Employees, Pages, Quotes, Services, and People) and stored them inside the custom plugin's sub-directory at `e3es-headless-helper/acp-settings/`.
+    3. **Cleanup**: Removed the temporary filter configuration from the active theme's `functions.php` file and deleted the redundant `twentytwentyfive/acp-settings` folder.
+  - **Verification**: Verified settings files are loaded successfully on local environment via symlink and versioned under Git.
+
 - **Cloudflare Same-Origin Assets Proxying & Global URL Rewrite** (July 14, 2026):
   - **Goal**: Serve all WordPress assets (`/wp-content/` and `/wp-includes/`) through same-origin relative paths on the Cloudflare Workers deployed site, fully optimized and cached by Cloudflare, instead of linking directly to staging or local WordPress domains.
   - **Implementation**:
