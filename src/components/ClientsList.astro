@@ -52,7 +52,8 @@ const mappedClients = clientsAll.map((client: any) => {
     // Extract Image from WP Featured Media
     let wpImage = null;
     if (client._embedded && client._embedded['wp:featuredmedia'] && client._embedded['wp:featuredmedia'].length > 0) {
-        wpImage = client._embedded['wp:featuredmedia'][0].source_url;
+        const rawWpImage = client._embedded['wp:featuredmedia'][0].source_url;
+        wpImage = rawWpImage.replace(/https?:\/\/[^\/]+\/wp-content/gi, '/wp-content');
     }
 
     // Extract Industry and Services from WP Taxonomies

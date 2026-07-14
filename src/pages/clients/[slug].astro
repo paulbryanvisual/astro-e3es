@@ -57,6 +57,8 @@ if (client._embedded && client._embedded['wp:featuredmedia'] && client._embedded
 } else if (extractedBgImage) {
     bgImage = extractedBgImage;
 }
+bgImage = bgImage.replace(/https?:\/\/[^\/]+\/wp-content/gi, '/wp-content');
+
 
 // Client metadata & focal point
 const fpX = client.meta?._e3_client_focal_point_x !== undefined ? parseFloat(client.meta._e3_client_focal_point_x) : 0.5;

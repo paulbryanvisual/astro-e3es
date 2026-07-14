@@ -314,7 +314,7 @@ export function processWordPressHtml(html: string, slug?: string): string {
 
   let isFirstImage = true;
 
-  return processedHtml.replace(/<img([^>]+)>/gi, (match, attrs) => {
+  processedHtml = processedHtml.replace(/<img([^>]+)>/gi, (match, attrs) => {
     let newAttrs = attrs;
 
     // Force staging URLs to route through relative proxy path (same-origin optimization)
@@ -348,6 +348,9 @@ export function processWordPressHtml(html: string, slug?: string): string {
 
     return `<img${newAttrs}>`;
   });
+
+  // Force all absolute WordPress resource URLs (local or staging) to route through same-origin relative proxy path
+  return processedHtml.replace(/https?:\/\/[^\/]+\/wp-(content|includes)/gi, '/wp-$1');
 }
 
 /**

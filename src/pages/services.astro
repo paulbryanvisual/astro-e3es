@@ -33,7 +33,8 @@ const fallbackImage = "/images/hvac-500x220.jpg";
         <div class="services__container">
             <div class="services__grid">
                 {parentServices.map(service => {
-                    const featuredMedia = service._embedded?.['wp:featuredmedia']?.[0]?.source_url || fallbackImage;
+                    const rawFeaturedMedia = service._embedded?.['wp:featuredmedia']?.[0]?.source_url || fallbackImage;
+                    const featuredMedia = rawFeaturedMedia.replace(/https?:\/\/[^\/]+\/wp-content/gi, '/wp-content');
                     const url = new URL(service.link).pathname;
                     const excerpt = service.excerpt?.rendered || service.meta?._e3_service_excerpt || service.meta?.service_excerpt || '';
                     
