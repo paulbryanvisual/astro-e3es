@@ -1,5 +1,10 @@
 # Current State
 
+- **Featured Clients Quick Filter Link in Admin Panel** (July 14, 2026):
+  - **Goal**: Add a quick "Featured Clients" filter link at the top of the Clients list table in the WordPress admin panel, showing the current count of featured clients and linking to the specific pre-filtered and sorted view.
+  - **Implementation**: Hooked into the WordPress `views_edit-clients` filter inside `e3es-headless-helper.php` to append a new view link pointing to the Admin Columns Pro pre-filtered featured client view (meta `_e3_client_show_in_index` is 1, ordered by title ascending). Queried the dynamic count of featured clients from the database and automatically toggled the `current` active state styling class based on url queries.
+  - **Verification**: Verified the view link displays and filters correctly on local WordPress dashboard.
+
 - **Theme-Agnostic Admin Columns Pro File Storage** (July 14, 2026):
   - **Goal**: Store Admin Columns Pro layouts on the filesystem (rather than database) inside the custom E3 WordPress plugin (`e3es-headless-helper`) instead of the active theme (`twentytwentyfive`) to keep the column settings theme-agnostic.
   - **Implementation**:
