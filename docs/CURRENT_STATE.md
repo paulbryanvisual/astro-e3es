@@ -1,5 +1,13 @@
 # Current State
 
+- **Client Services Taxonomy Synchronization** (July 14, 2026):
+  - **Goal**: Populate appropriate pills (such as Lighting, HVAC, Water & Plumbing, Building Controls, Building Envelope, and Energy Infrastructure) on all client cards dynamically.
+  - **Implementation**:
+    1. **Seeding Script**: Created and ran a PHP database sync script [sync_client_services.php](file:///Users/bryanpaul/Local%20Sites/astro-e3es/scratch/sync_client_services.php) using the Local PHP binary.
+    2. **Taxonomy Association**: The script reads the verified legacy mappings from [legacy_clients.json](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/data/legacy_clients.json) to retrieve service lists for the 25 core projects. For non-legacy client posts, it audits the database page content (`post_content` HTML) for specific mechanical, electrical, and plumbing (MEP) keywords (e.g., HVAC, chiller, boiler, LED, retrofit, plumbing, solar) and dynamically assigns the corresponding `client-services` taxonomy terms.
+    3. **Cache Flushing**: Incremented the `cacheBuster` timestamp inside [cache.ts](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/lib/cache.ts) to force the Astro dev server to pull fresh page data from the local WordPress API.
+  - **Verification**: Verified using a Puppeteer screenshot that all cards now display their respective service pills and filter correctly.
+
 - **Client Card Content Alignment Fix** (July 13, 2026):
   - **Goal**: Align text and tags in the client cards to the top of the details area, preventing layout issues where cards without tags or with shorter titles got their text pushed to the bottom of the card container.
   - **Implementation**: Changed inline card styling from `justify-content: space-between;` to `justify-content: flex-start;` inside [ClientsList.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/ClientsList.astro#L288-L290). This anchors the title and tag layers directly below the card image header and allows empty space to flow naturally to the bottom of the card when container row heights stretch.
