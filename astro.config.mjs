@@ -11,6 +11,20 @@ export default defineConfig({
   server: {
     port: 4383,       // E3-specific port (43 = E3). Shared across dev sessions.
   },
+  vite: {
+    server: {
+      proxy: {
+        '/wp-content': {
+          target: 'http://e3es2026.local',
+          changeOrigin: true
+        },
+        '/wp-includes': {
+          target: 'http://e3es2026.local',
+          changeOrigin: true
+        }
+      }
+    }
+  },
   // Redirect legacy slug variants to WP canonical slugs
   redirects: {
     // Regional pages — hyphen normalization & client to page redirects
@@ -28,7 +42,7 @@ export default defineConfig({
     '/northeast-texas':                    '/k12/north-east-texas',
     '/northwest-texas':                    '/k12/north-west-texas',
     '/southwest-texas':                    '/k12/south-west-texas',
-    // Client pages — slug changed during WP import
+    '/client-pages — slug changed during WP import': '',
     '/gwh':                                '/clients/goodall-witcher-healthcare',
     '/houston-cc':                         '/clients/houston-community-college',
     '/carrizo-springs-consolidated-isd':   '/clients/carrizo-springs-cisd',
