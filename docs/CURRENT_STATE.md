@@ -1,5 +1,12 @@
 # Current State
 
+- **Cloudflare Same-Origin Assets Proxying & Global URL Rewrite** (July 14, 2026):
+  - **Goal**: Serve all WordPress assets (`/wp-content/` and `/wp-includes/`) through same-origin relative paths on the Cloudflare Workers deployed site, fully optimized and cached by Cloudflare, instead of linking directly to staging or local WordPress domains.
+  - **Implementation**:
+    1. **Global URL Rewrite Filter**: Fixed a return structure oversight in `processWordPressHtml` inside [wordpress.ts](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/lib/wordpress.ts#L348-L352) so that a global replacement runs on the completed HTML string, converting all absolute staging and local asset URLs to relative paths. Cleaned image URLs during featured media extraction inside [[slug].astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/clients/[slug].astro#L57-L59), [services.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/services.astro#L36-L38), and [ClientsList.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/ClientsList.astro#L54-L56).
+    2. **Cloudflare Pages Redirect Proxy**: Added a `_redirects` configuration file inside [public/_redirects](file:///Users/bryanpaul/Local%20Sites/astro-e3es/public/_redirects) to define transparent proxy rules (`200` rewrite code). This instructs Cloudflare Pages to serve all requests hitting same-origin `/wp-content/*` and `/wp-includes/*` directly from the Flywheel staging origin behind the scenes and cache them at the edge.
+  - **Verification**: Built and verified that static page builds output only clean, relative paths.
+
 - **Breadcrumbs Featured Clients Filter** (July 14, 2026):
   - **Goal**: In the dynamic region breadcrumbs drop-down menu, only list client schools that are marked as featured (`_e3_client_show_in_index === true`). This prevents listing non-featured clients that do not have dedicated case study pages (which would lead to 404/dead links).
   - **Implementation**: Updated the client filter criteria for `regionClients` inside [[slug].astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/clients/[slug].astro#L192-L195) to check that `c.meta._e3_client_show_in_index` is true before mapping it to the region breadcrumb dropdown.
