@@ -1,24 +1,16 @@
 # Current State
 
-- **Featured Clients Quick Filter Link in Admin Panel** (July 14, 2026):
-  - **Goal**: Add a quick "Featured Clients" filter link at the top of the Clients list table in the WordPress admin panel, showing the current count of featured clients and linking to the specific pre-filtered and sorted view.
-  - **Implementation**: Hooked into the WordPress `views_edit-clients` filter inside `e3es-headless-helper.php` to append a new view link pointing to the Admin Columns Pro pre-filtered featured client view (meta `_e3_client_show_in_index` is 1, ordered by title ascending). Queried the dynamic count of featured clients from the database and automatically toggled the `current` active state styling class based on url queries.
-  - **Verification**: Verified the view link displays and filters correctly on local WordPress dashboard.
-
-- **Theme-Agnostic Admin Columns Pro File Storage** (July 14, 2026):
-  - **Goal**: Store Admin Columns Pro layouts on the filesystem (rather than database) inside the custom E3 WordPress plugin (`e3es-headless-helper`) instead of the active theme (`twentytwentyfive`) to keep the column settings theme-agnostic.
-  - **Implementation**:
-    1. **Plugin Storage Filter**: Appended the directory storage filter hook inside `e3es-headless-helper.php` to define the target layout settings directory inside the plugin's folder: `dirname( __FILE__ ) . '/acp-settings'`.
-    2. **Layout Settings Export**: Exported all 6 database layout files (Clients, Employees, Pages, Quotes, Services, and People) and stored them inside the custom plugin's sub-directory at `e3es-headless-helper/acp-settings/`.
-    3. **Cleanup**: Removed the temporary filter configuration from the active theme's `functions.php` file and deleted the redundant `twentytwentyfive/acp-settings` folder.
-  - **Verification**: Verified settings files are loaded successfully on local environment via symlink and versioned under Git.
+- **Page Hero Intro Style & Realignment** (July 14, 2026):
+  - **Goal**: Remove any restrictive max-width constraint on the page hero metadata text (`.db-page-hero__intro` and its paragraphs) to allow for proper center alignment across all viewport sizes.
+  - **Implementation**: Updated [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L735-L745) to define `max-width: none !important;` and `text-align: center;` for `.db-page-hero__intro` and `.db-page-hero__intro p` on the frontend. Aligned the visual editor block overrides by changing the max-width setting to `none !important` at [mobile.scss:L2381-2387](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L2381-L2387).
+  - **Verification**: Built and verified changes compile successfully.
 
 - **Cloudflare Same-Origin Assets Proxying & Global URL Rewrite** (July 14, 2026):
   - **Goal**: Serve all WordPress assets (`/wp-content/` and `/wp-includes/`) through same-origin relative paths on the Cloudflare Workers deployed site, fully optimized and cached by Cloudflare, instead of linking directly to staging or local WordPress domains.
   - **Implementation**:
     1. **Global URL Rewrite Filter**: Fixed a return structure oversight in `processWordPressHtml` inside [wordpress.ts](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/lib/wordpress.ts#L348-L352) so that a global replacement runs on the completed HTML string, converting all absolute staging and local asset URLs to relative paths. Cleaned image URLs during featured media extraction inside [[slug].astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/clients/[slug].astro#L57-L59), [services.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/pages/services.astro#L36-L38), and [ClientsList.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/ClientsList.astro#L54-L56).
-    2. **Cloudflare Pages Redirect Proxy**: Added a `_redirects` configuration file inside [public/_redirects](file:///Users/bryanpaul/Local%20Sites/astro-e3es/public/_redirects) to define transparent proxy rules (`200` rewrite code). This instructs Cloudflare Pages to serve all requests hitting same-origin `/wp-content/*` and `/wp-includes/*` directly from the Flywheel staging origin behind the scenes and cache them at the edge.
-  - **Verification**: Built and verified that static page builds output only clean, relative paths.
+    2. **Cloudflare Pages Redirect Proxy**: Added a `_redirects` configuration file inside [public/_redirects](file:///Users/bryanpaul/Local%20Sites/astro-e3es/public/_redirects) using `302` redirects to point `/wp-content/*` and `/wp-includes/*` to the staging site origin. (Note: Initial `200` rewrite codes failed Cloudflare Pages build validation, so switching to standard redirects resolved the deployment blocker).
+  - **Verification**: Verified deployment completes successfully and relative assets load correctly.
 
 - **Breadcrumbs Featured Clients Filter** (July 14, 2026):
   - **Goal**: In the dynamic region breadcrumbs drop-down menu, only list client schools that are marked as featured (`_e3_client_show_in_index === true`). This prevents listing non-featured clients that do not have dedicated case study pages (which would lead to 404/dead links).
