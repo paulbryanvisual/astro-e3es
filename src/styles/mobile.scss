@@ -5150,6 +5150,14 @@ main, .editor-styles-wrapper {
       margin: 0;
       text-transform: capitalize;
     }
+
+    &__description {
+      font-size: 0.95rem;
+      color: var(--color-text-main);
+      line-height: 1.6;
+      margin: 0;
+      margin-top: 0.5rem;
+    }
   }
 
   @include responsive-up($breakpoint-sm) {
