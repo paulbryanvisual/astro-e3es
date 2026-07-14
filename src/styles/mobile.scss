@@ -735,10 +735,14 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 .db-page-hero__intro {
     font-size: 1.25rem;
     line-height: 1.8;
+    max-width: none !important;
+    text-align: center;
 }
 
 .db-page-hero__intro p {
     margin-bottom: 1.5rem;
+    max-width: none !important;
+    text-align: center;
 }
 
 /* Partnership Overview with Left-side Logo Layout */
