@@ -1,5 +1,10 @@
 # Current State
 
+- **Local Development Asset Proxying** (July 14, 2026):
+  - **Goal**: Resolve 404 broken images and media files on `localhost` during local Astro development by proxying `/wp-content/` and `/wp-includes/` queries directly to the local WordPress instance.
+  - **Implementation**: Updated [astro.config.mjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/astro.config.mjs#L14-L26) to add a Vite server proxy target routing `/wp-content` and `/wp-includes` to `http://e3es2026.local` with `changeOrigin: true`.
+  - **Verification**: Verified images load correctly on `http://localhost:4008/team/`.
+
 - **Global Gutenberg Paragraph Style Overrides** (July 14, 2026):
   - **Goal**: Apply standard body typographic properties (font-size `1rem`, line-height `1.5`) globally to Gutenberg paragraphs `p.wp-block-paragraph` outside nested modules (two-columns, covers, features) in both frontend and visual editor views.
   - **Implementation**: Updated [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L4853-L4860) to set `font-size: 1rem;` and `line-height: 1.5;` for standard paragraphs, keeping spacing clean.
