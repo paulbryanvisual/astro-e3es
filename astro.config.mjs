@@ -42,7 +42,7 @@ export default defineConfig({
     '/northeast-texas':                    '/k12/north-east-texas',
     '/northwest-texas':                    '/k12/north-west-texas',
     '/southwest-texas':                    '/k12/south-west-texas',
-    '/client-pages — slug changed during WP import': '',
+    // Client pages — slug changed during WP import
     '/gwh':                                '/clients/goodall-witcher-healthcare',
     '/houston-cc':                         '/clients/houston-community-college',
     '/carrizo-springs-consolidated-isd':   '/clients/carrizo-springs-cisd',
