@@ -1,5 +1,13 @@
 # Current State
 
+- **Visual Editor Style Scoping & Namespace Fix** (July 15, 2026):
+  - **Goal**: Fix the visual editor CSS scoping where text inside `.design-build__card` and columns blocks became white (and thus invisible) inside the Gutenberg editor canvas iframe on dark/Cover backgrounds.
+  - **Implementation**:
+    1. **Scoping Fix**: Removed `.editor-styles-wrapper` nesting from the custom overrides block in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L6103-L6136) and [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L15). Instead, scoped editor-specific styling rules to editor-only container structures like `.is-root-container` or `[data-type="..."]` to prevent Gutenberg's editor styles compiler from mangling selectors into `.editor-styles-wrapper .editor-styles-wrapper` inside the iframe.
+    2. **Element Precision**: Targeted rich-text elements and placeholders with specific tag/class rules (`h3[contenteditable]`, `p[contenteditable]`) to avoid font-color overrides between titles and text.
+    3. **Compilation**: Ran `node sync-styles.js` to compile the Sass styles and sync the output directly to the helper plugin's active `editor-styles.css` file.
+  - **Verification**: Confirmed the compiled stylesheet syncs successfully and Astro build runs without error.
+
 - **Local Development Asset Proxying** (July 14, 2026):
   - **Goal**: Resolve 404 broken images and media files on `localhost` during local Astro development by proxying `/wp-content/` and `/wp-includes/` queries directly to the local WordPress instance.
   - **Implementation**: Updated [astro.config.mjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/astro.config.mjs#L14-L26) to add a Vite server proxy target routing `/wp-content` and `/wp-includes` to `http://e3es2026.local` with `changeOrigin: true`.
