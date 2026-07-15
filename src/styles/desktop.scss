@@ -12,7 +12,7 @@
   }
 
   /* Gutenberg Editor Desktop Overrides */
-  .editor-styles-wrapper:not(:has(.is-mobile-preview)):not(:has(.is-tablet-preview)) {
+  .is-root-container:not(:has(.is-mobile-preview)):not(:has(.is-tablet-preview)) {
     // Desktop layout for Verticals Hero in editor
     .wp-block[data-type="e3es/verticals-hero"] {
       height: 72vh !important;

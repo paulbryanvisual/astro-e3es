@@ -2321,9 +2321,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Editor overrides for CTA Banner */
-.editor-styles-wrapper {
-    & .is-root-container > .wp-block[data-type="e3es/cta-banner"],
-    & .is-root-container > .wp-block.wp-block-e3es-cta-banner {
+.is-root-container {
+    & > .wp-block[data-type="e3es/cta-banner"],
+    & > .wp-block.wp-block-e3es-cta-banner {
         max-width: none !important;
         width: 100% !important;
         margin-left: 0 !important;
@@ -2334,18 +2334,18 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         margin: 3rem -32px !important;
     }
 
-    & .is-root-container .cta-banner h1,
-    & .is-root-container .cta-banner h2,
-    & .is-root-container .cta-banner h3,
-    & .is-root-container .cta-banner__title {
+    & .cta-banner h1,
+    & .cta-banner h2,
+    & .cta-banner h3,
+    & .cta-banner__title {
         font-size: 2rem !important;
         font-weight: 900 !important;
         margin-bottom: 1rem !important;
         color: var(--color-bg-white) !important;
     }
 
-    & .is-root-container .cta-banner p,
-    & .is-root-container .cta-banner__text {
+    & .cta-banner p,
+    & .cta-banner__text {
         font-size: 1.1rem !important;
         line-height: 1.6 !important;
         margin-bottom: 2rem !important;
@@ -2353,9 +2353,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         color: var(--color-bg-white) !important;
     }
 
-    & .is-root-container .cta-banner__btn,
-    & .is-root-container .cta-banner a.cta-banner__btn,
-    & .is-root-container .cta-banner span.cta-banner__btn {
+    & .cta-banner__btn,
+    & .cta-banner a.cta-banner__btn,
+    & .cta-banner span.cta-banner__btn {
         display: inline-block !important;
         padding: 0.85rem 2.5rem !important;
         font-size: 1rem !important;
@@ -2369,9 +2369,9 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Editor overrides for E3 Intro Banner */
-.editor-styles-wrapper {
-    & .is-root-container > .wp-block[data-type="e3es/intro-banner"] .db-page-hero__intro,
-    & .is-root-container > .wp-block.wp-block-e3es-intro-banner .db-page-hero__intro {
+.is-root-container {
+    & > .wp-block[data-type="e3es/intro-banner"] .db-page-hero__intro,
+    & > .wp-block.wp-block-e3es-intro-banner .db-page-hero__intro {
         text-align: center !important;
         width: 100% !important;
 
@@ -6101,39 +6101,52 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
 }
 
 /* Gutenberg editor specific overrides to guarantee text visibility in Cover backgrounds */
-.editor-styles-wrapper {
-  .design-build__card,
-  [data-type="e3es/design-build-card"] {
-    background: var(--color-bg-white) !important;
+[data-type="e3es/design-build-card"],
+.design-build__card {
+  background: var(--color-bg-white) !important;
 
-    h3,
-    .design-build__card-title,
-    [contenteditable][data-placeholder="Card Title"] {
-      color: var(--color-primary-dark) !important;
-    }
-
-    p,
-    .design-build__card-text,
-    [contenteditable][data-placeholder="Card Text"] {
-      color: var(--color-text-light) !important;
-    }
+  h3,
+  .design-build__card-title,
+  h3[contenteditable],
+  [contenteditable][data-placeholder="Card Title"],
+  .block-editor-rich-text__editable[data-placeholder="Card Title"] {
+    color: var(--color-primary-dark) !important;
   }
 
+  p,
+  .design-build__card-text,
+  p[contenteditable],
+  [contenteditable][data-placeholder="Card Text"],
+  .block-editor-rich-text__editable[data-placeholder="Card Text"] {
+    color: var(--color-text-light) !important;
+  }
+}
+
+.design-build,
+.design-build__pillars,
+.wp-block-cover:has(.wp-block-e3es-design-build-advantage),
+.wp-block-cover:has(.design-build__grid) {
   .wp-block-column {
     background: var(--color-bg-white) !important;
 
     h3,
     .wp-block-heading,
-    [contenteditable] {
+    h3[contenteditable],
+    .wp-block-heading[contenteditable],
+    [contenteditable][data-placeholder="Title"],
+    [contenteditable][data-placeholder="Heading"] {
       color: var(--color-primary-dark) !important;
     }
 
     p,
-    [contenteditable] {
+    p[contenteditable],
+    [contenteditable][data-placeholder="Text"],
+    [contenteditable][data-placeholder="Paragraph"] {
       color: var(--color-text-light) !important;
     }
   }
 }
+
 
 /* Visual Editor adjustments for E3 Project block */
 .editor-styles-wrapper {
