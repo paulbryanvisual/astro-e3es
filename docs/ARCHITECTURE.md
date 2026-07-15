@@ -1,5 +1,10 @@
 # Architecture Notes
 
+## Gutenberg Block Serialization & Attribute Injection
+- **Dual Representation**: Gutenberg blocks in the database rely on dual representation: attributes encoded inside HTML comments (`<!-- wp:blockName {...} -->`) and pre-rendered markup within the boundaries.
+- **Dynamic Blocks**: When updating block properties (such as injecting subtitles into `e3es/intro-banner`), both the JSON attributes object and the inner HTML block elements must be kept in sync, so that visual rendering in the headless REST API and the edit previews in the admin panel are unified.
+- **Serialization Standard**: Using WordPress core functions like `parse_blocks()` and `serialize_blocks()` ensures compliance with standard Gutenberg schema parsing, maintaining metadata sanity.
+
 ## Multi-Agent Transcription Audit System
 - **Parallel Subagent Execution**: For raw transcription auditing, the system splits verification into two distinct, parallel agent channels:
   - **Transcription Auditor**: Focuses on phonetic, acoustic, and orthographical matches (e.g., spelling and pronunciation patterns).

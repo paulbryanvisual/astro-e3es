@@ -1,5 +1,10 @@
 # Current State
 
+- **Intro Banner Subtitles Database Migration** (July 15, 2026):
+  - **Goal**: Add missing banner subtitles to every `e3es/intro-banner` Gutenberg block on published pages and services across the E3 website (excluding clients CPT).
+  - **Implementation**: Wrote and executed [add_missing_subtitles.php](file:///Users/bryanpaul/.gemini/antigravity/brain/b9c8b880-8835-4792-8e98-4e16468a4b3a/scratch/add_missing_subtitles.php) to automatically detect empty banner block attributes, map professional subtitles based on page titles/keywords, inject the attributes in block JSON comments, and insert the `<div class="db-page-hero__intro">` markup inside the block's `post_content`.
+  - **Verification**: Verified 16 target pages successfully updated, zero empty banner subtitles remaining, and Astro builds compiled successfully.
+
 - **Local Development Asset Proxying** (July 14, 2026):
   - **Goal**: Resolve 404 broken images and media files on `localhost` during local Astro development by proxying `/wp-content/` and `/wp-includes/` queries directly to the local WordPress instance.
   - **Implementation**: Updated [astro.config.mjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/astro.config.mjs#L14-L26) to add a Vite server proxy target routing `/wp-content` and `/wp-includes` to `http://e3es2026.local` with `changeOrigin: true`.
