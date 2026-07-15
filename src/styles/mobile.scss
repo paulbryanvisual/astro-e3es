@@ -692,9 +692,10 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
         .db-page-hero__logo-img {
+            max-width: 100% !important;
             max-height: 100% !important;
-            width: 100% !important;
-            aspect-ratio: 1 / 1 !important;
+            width: auto !important;
+            height: auto !important;
             object-fit: contain !important;
         }
     }
@@ -719,10 +720,12 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 .db-page-hero__logo-img {
     max-height: 80px;
-    width: 80px;
-    aspect-ratio: 1 / 1;
+    max-width: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }
+
 
 .db-page-hero__title {
     font-size: 3rem;
