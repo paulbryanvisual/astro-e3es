@@ -1,5 +1,12 @@
 # Current State
 
+- **WordPress HTML Entity Resolution** (July 14, 2026):
+  - **Goal**: Fix corrupted/raw HTML entity strings (like `and#039;s`, `and#8220;`, etc.) appearing in Gutenberg visual editor blocks and custom metaboxes.
+  - **Implementation**:
+    1. **Database Migration**: Ran a PHP migration script using Local's PHP executable to replace corrupted entity markers (`and#039;`, `and#39;` -> `'`, `and#8220;` -> `“`, `and#8221;` -> `”`, `and#038;` -> `&`, `and#8217;` -> `’`, `and#241;` -> `ñ`) across 60 posts in the `wp_posts` database table.
+    2. **REST API Decoder Wrapper**: Added a recursive helper function `e3es_decode_entities` in [e3es-headless-helper.php](file:///Users/bryanpaul/Local%20Sites/e3es2026/app/public/wp-content/plugins/e3es-headless-helper/e3es-headless-helper.php) to automatically decode all numeric and named entities in REST API return values for services, clients, testimonials, and people lists before they reach Gutenberg block visual previews.
+  - **Verification**: Ran verify script to ensure 0 database occurrences of corrupted entity strings remain, and local Astro builds compiled cleanly.
+
 - **Local Development Asset Proxying** (July 14, 2026):
   - **Goal**: Resolve 404 broken images and media files on `localhost` during local Astro development by proxying `/wp-content/` and `/wp-includes/` queries directly to the local WordPress instance.
   - **Implementation**: Updated [astro.config.mjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/astro.config.mjs#L14-L26) to add a Vite server proxy target routing `/wp-content` and `/wp-includes` to `http://e3es2026.local` with `changeOrigin: true`.

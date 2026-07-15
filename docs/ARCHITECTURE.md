@@ -1,5 +1,10 @@
 # Architecture Notes
 
+## WordPress REST API HTML Entity Decoding & DB Preservation
+- **Entity Preservation**: To avoid double-escaping entities in custom React block views, the WordPress helper plugin registers a recursive `e3es_decode_entities` helper function.
+- **REST Controller Wrappers**: This helper function wraps the outputs of custom REST API endpoints (Services List, Clients List, Testimonials Search/Filters, and People List), decoding numeric and named HTML entities (like `&#039;` -> `'`, `&#038;` -> `&`, `&amp;` -> `&`) before the JSON payload is delivered.
+- **Visual Editor Parity**: By providing decoded text, Gutenberg's block visual previews render quotes and titles cleanly without displaying raw entity codes.
+
 ## Multi-Agent Transcription Audit System
 - **Parallel Subagent Execution**: For raw transcription auditing, the system splits verification into two distinct, parallel agent channels:
   - **Transcription Auditor**: Focuses on phonetic, acoustic, and orthographical matches (e.g., spelling and pronunciation patterns).
