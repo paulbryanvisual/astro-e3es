@@ -1,5 +1,19 @@
 # Current State
 
+
+## [2026-07-16] K-12 Interactive Map Rendering Fixed
+- **Issue:** The custom element `<e3-texas-region-selector>` was completely missing from the Astro `set:html` output on the frontend K-12 page, despite being correctly output by the WordPress REST API.
+- **Root Causes:**
+  1. WordPress's `wptexturize` automatically converted the `-->` in the HTML block wrapper comment to an en-dash (`&#8211;>`), creating a malformed unclosed HTML comment that swallowed the map tag.
+  2. The JSON data for the `data-employees` and `data-region-map` attributes contained unescaped double-quotes. This caused Astro's `ultrahtml` parser to completely crash and silently drop the element.
+- **Resolution:**
+  - Updated `src/lib/wordpress.ts` (`processWordPressHtml`) with regex replacements.
+  - Stripped the corrupted `<!-- Interactive Texas Region Map &#8211;>` string.
+  - Intercepted the `data-employees` and `data-region-map` attributes, base64-encoded their HTML-entity-decoded JSON strings, and injected them as `data-employees-b64` and `data-region-map-b64`.
+  - Updated the `TexasRegionSelector.astro` web component to parse the new B64 attributes gracefully.
+  - Executed `npm run build` successfully (230 pages built in 7.66s) indicating a stable build with no parser crashes.
+
+
 - **Local Development Asset Proxying** (July 14, 2026):
   - **Goal**: Resolve 404 broken images and media files on `localhost` during local Astro development by proxying `/wp-content/` and `/wp-includes/` queries directly to the local WordPress instance.
   - **Implementation**: Updated [astro.config.mjs](file:///Users/bryanpaul/Local%20Sites/astro-e3es/astro.config.mjs#L14-L26) to add a Vite server proxy target routing `/wp-content` and `/wp-includes` to `http://e3es2026.local` with `changeOrigin: true`.
