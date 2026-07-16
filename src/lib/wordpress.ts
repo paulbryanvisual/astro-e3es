@@ -125,7 +125,7 @@ export async function getClients() {
   return [...page1, ...page2];
 }
 
-function getTexasMapSvg() {
+export function getTexasMapSvg() {
   try {
     const svgPath = path.resolve(process.cwd(), 'public/Texas-Map-Editable.svg');
     let svg = fs.readFileSync(svgPath, 'utf8');
@@ -150,10 +150,32 @@ function getTexasMapSvg() {
 /**
  * Server-side HTML utility to optimize images in Gutenberg block content.
  */
+
+
+
 export function processWordPressHtml(html: string, slug?: string): string {
   if (!html) return '';
 
-  // Replace blurry map image with inline SVG of Texas
+  // Fix WordPress's wptexturize breaking the HTML comment closing tag
+  html = html.replace(/<!-- Interactive Texas Region Map \&\#8211;>/g, '');
+
+  // Fix unescaped HTML in map block JSON attributes to prevent Astro set:html parser failure
+  html = html.replace(/<e3-texas-region-selector([^>]*)>/g, (match, p1) => {
+    let newAttrs = p1.replace(/data-employees="([^"]*)"/g, (m, val) => {
+        const rawJson = decodeHtmlEntities(val);
+        const b64 = Buffer.from(rawJson).toString('base64');
+        return `data-employees-b64="${b64}"`;
+    });
+    newAttrs = newAttrs.replace(/data-region-map="([^"]*)"/g, (m, val) => {
+        const rawJson = decodeHtmlEntities(val);
+        const b64 = Buffer.from(rawJson).toString('base64');
+        return `data-region-map-b64="${b64}"`;
+    });
+    return `<e3-texas-region-selector${newAttrs}>`;
+  });
+
+  // Strip encoded HTML comment left behind by wptexturize
+  html = html.replace(/&lt;!&#8211; Interactive Texas Region Map &#8211;&gt;/g, '');
   const mapRegex = /<img[^>]*static-map-600x400\.png[^>]*>/gi;
   let processedHtml = html;
   if (mapRegex.test(processedHtml)) {
@@ -345,12 +367,12 @@ export function processWordPressHtml(html: string, slug?: string): string {
         newAttrs += ' decoding="async"';
       }
     }
-
     return `<img${newAttrs}>`;
   });
 
   // Force all absolute WordPress resource URLs (local or staging) to route through same-origin relative proxy path
-  return processedHtml.replace(/https?:\/\/[^\/]+\/wp-(content|includes)/gi, '/wp-$1');
+  processedHtml = processedHtml.replace(/https?:\/\/[^\/]+\/wp-(content|includes)/gi, '/wp-$1');
+  return processedHtml;
 }
 
 /**
