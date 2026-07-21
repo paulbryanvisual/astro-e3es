@@ -6171,3 +6171,26 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
 
 
 .db-feature--map-spill .db-feature__image-wrapper { margin: 0; }
+
+/* Eliminate white gaps between adjacent background sections and above footer */
+.services-page,
+.services-page__container,
+.services-page__content {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.services-page__content > *:last-child,
+.wp-block-e3es-faq-section,
+.faq-section,
+.wp-block-e3es-cta-banner,
+.cta-banner {
+    margin-bottom: 0 !important;
+}
+
+footer.footer,
+.site-footer {
+    margin-top: 0 !important;
+}
