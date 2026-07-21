@@ -2,20 +2,63 @@
 import Layout from '../layouts/Layout.astro';
 import LeadFormDrawer from '../components/LeadFormDrawer.astro';
 import { getServices } from '../lib/wordpress';
-import { Image } from 'astro:assets';
 
 const allServices = await getServices();
-const excludeSlugs = ['k-12', 'municipal', 'healthcare', 'higher-education', 'buyboard', 'tips', 'job-order-contracting', 'energy-savings-performance-contracting', 'seco', 'water-2__trashed', 'hvac-2__trashed', 'higher-ed__trashed', 'controls', 'wastewater', 'water-treatment'];
 
-// Try to only show services that are active, not trashed, and not industries
-const parentServices = allServices.filter(s => 
-    (s.parent === 0 || !s.parent) && 
-    !excludeSlugs.includes(s.slug) &&
-    !s.slug.includes('__trashed')
-);
+// Canonical list and order of Primary Service Index Pages
+const canonicalParentSlugs = [
+    'hvac',
+    'lighting',
+    'electrical',
+    'water-wastewater',
+    'building-envelope',
+    'roofing',
+    'financing-auditing',
+    'controls-automation',
+    'central-plants'
+];
 
-// Fallback image if no featured image is set
-const fallbackImage = "/images/hvac-500x220.jpg";
+const serviceMap = new Map();
+allServices.forEach(s => {
+    if (canonicalParentSlugs.includes(s.slug)) {
+        serviceMap.set(s.slug, s);
+    }
+});
+
+const parentServices = canonicalParentSlugs
+    .map(slug => serviceMap.get(slug))
+    .filter(Boolean);
+
+// Fallback images per service type
+const serviceFallbacks: Record<string, string> = {
+    'hvac': '/images/hvac-500x220.jpg',
+    'lighting': '/images/led-lighting_hero.jpg',
+    'electrical': '/images/electrical.jpg',
+    'water-wastewater': '/images/water-wells.jpg',
+    'building-envelope': '/images/building-envelope.jpg',
+    'roofing': '/images/roofing.jpg',
+    'financing-auditing': '/images/cooperative-purchasing.jpg',
+    'controls-automation': '/images/controls-automation_hero.jpg',
+    'central-plants': '/images/chiller-replacement.jpg'
+};
+
+function getCardImage(service: any) {
+    // 1. Featured image from WordPress embedded media
+    const featured = service._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    if (featured) {
+        return featured.replace(/https?:\/\/[^\/]+\/wp-content/gi, '/wp-content');
+    }
+    
+    // 2. First img tag in rendered content
+    const content = service.content?.rendered || '';
+    const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+    if (imgMatch) {
+        return imgMatch[1].replace(/https?:\/\/[^\/]+\/wp-content/gi, '/wp-content');
+    }
+
+    // 3. Subject-matched fallback
+    return serviceFallbacks[service.slug] || '/images/hvac-500x220.jpg';
+}
 ---
 
 <Layout wpPostId={11}>
@@ -23,7 +66,7 @@ const fallbackImage = "/images/hvac-500x220.jpg";
         <div class="db-page-hero__container">
             <h1 class="db-page-hero__title" style="margin-bottom: 1rem;">Our Turnkey Services</h1>
             <div class="db-page-hero__intro">
-                <p style="margin-bottom: 0;">We provide comprehensive, start-to-finish solutions designed to modernize your facilities, reduce energy consumption, and eliminate deferred maintenance.</p>
+                <p style="margin-bottom: 0;">Explore E3's comprehensive turnkey engineering services designed to modernize Texas school districts, hospitals, and municipal facilities with zero upfront capital.</p>
             </div>
         </div>
     </section>
@@ -33,20 +76,18 @@ const fallbackImage = "/images/hvac-500x220.jpg";
         <div class="services__container">
             <div class="services__grid">
                 {parentServices.map(service => {
-                    const rawFeaturedMedia = service._embedded?.['wp:featuredmedia']?.[0]?.source_url || fallbackImage;
-                    const featuredMedia = rawFeaturedMedia.replace(/https?:\/\/[^\/]+\/wp-content/gi, '/wp-content');
-                    const url = new URL(service.link).pathname;
-                    const excerpt = service.excerpt?.rendered || service.meta?._e3_service_excerpt || service.meta?.service_excerpt || '';
+                    const cardImage = getCardImage(service);
+                    const url = `/services/${service.slug}/`;
+                    const title = service.title?.rendered || service.slug;
+                    const excerpt = service.excerpt?.rendered || service.meta?._e3_service_excerpt || service.meta?.service_excerpt || 'Explore turnkey design-build infrastructure solutions.';
                     
                     return (
                         <a href={url} class="services__card">
-                            <img src={featuredMedia} alt={service.title.rendered} class="services__card-image" loading="lazy" />
+                            <img src={cardImage} alt={title} class="services__card-image" loading="lazy" />
                             <div class="services__card-content">
-                                <h3 class="services__card-title" set:html={service.title.rendered}></h3>
-                                {excerpt && (
-                                    <div class="services__card-text" set:html={excerpt}></div>
-                                )}
-                                <span class="services__card-link">Learn More →</span>
+                                <h3 class="services__card-title" set:html={title}></h3>
+                                <div class="services__card-text" set:html={excerpt}></div>
+                                <span class="services__card-link">Explore Service &rarr;</span>
                             </div>
                         </a>
                     );
