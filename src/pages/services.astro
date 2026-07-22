@@ -10,12 +10,16 @@ const canonicalParentSlugs = [
     'hvac',
     'lighting',
     'electrical',
-    'water-wastewater',
-    'building-envelope',
+    'water',
     'roofing',
-    'financing-auditing',
-    'controls-automation',
-    'central-plants'
+    'indoor-air-quality',
+    'energy-management',
+    'facility-assessments',
+    'chiller-plants',
+    'boiler-plants',
+    'cooling-towers',
+    'building-envelope',
+    'planning-bond-advisory-services'
 ];
 
 const serviceMap = new Map();
@@ -34,12 +38,16 @@ const serviceFallbacks: Record<string, string> = {
     'hvac': '/images/hvac-500x220.jpg',
     'lighting': '/images/led-lighting_hero.jpg',
     'electrical': '/images/electrical.jpg',
-    'water-wastewater': '/images/water-wells.jpg',
-    'building-envelope': '/images/building-envelope.jpg',
+    'water': '/images/water-wells.jpg',
     'roofing': '/images/roofing.jpg',
-    'financing-auditing': '/images/cooperative-purchasing.jpg',
-    'controls-automation': '/images/controls-automation_hero.jpg',
-    'central-plants': '/images/chiller-replacement.jpg'
+    'indoor-air-quality': '/images/air-quality.jpg',
+    'energy-management': '/images/automation.jpg',
+    'facility-assessments': '/images/Texas-Funding-Solutions-600x400.jpg',
+    'chiller-plants': '/images/clean-mechanical-500x220.png',
+    'boiler-plants': '/images/clean-mechanical-500x220.png',
+    'cooling-towers': '/images/clean-mechanical-500x220.png',
+    'building-envelope': '/images/building-envelope.jpg',
+    'planning-bond-advisory-services': '/images/Texas-Funding-Solutions-600x400.jpg'
 };
 
 function getCardImage(service: any) {
@@ -58,6 +66,25 @@ function getCardImage(service: any) {
 
     // 3. Subject-matched fallback
     return serviceFallbacks[service.slug] || '/images/hvac-500x220.jpg';
+}
+
+function getExploreButtonText(slug: string, titleText: string) {
+    const customNames: Record<string, string> = {
+        'hvac': 'Explore HVAC Services',
+        'lighting': 'Explore LED Services',
+        'electrical': 'Explore Electrical Services',
+        'water': 'Explore Water Services',
+        'roofing': 'Explore Roofing Services',
+        'indoor-air-quality': 'Explore IAQ Services',
+        'energy-management': 'Explore Energy Management Services',
+        'facility-assessments': 'Explore Facility Assessments',
+        'chiller-plants': 'Explore Chiller Plant Services',
+        'boiler-plants': 'Explore Boiler Plant Services',
+        'cooling-towers': 'Explore Cooling Tower Services',
+        'building-envelope': 'Explore Building Envelope Services',
+        'planning-bond-advisory-services': 'Explore Planning & Bond Services'
+    };
+    return (customNames[slug] || `Explore ${titleText} Services`) + ' &rarr;';
 }
 ---
 
@@ -80,6 +107,7 @@ function getCardImage(service: any) {
                     const url = `/services/${service.slug}/`;
                     const title = service.title?.rendered || service.slug;
                     const excerpt = service.excerpt?.rendered || service.meta?._e3_service_excerpt || service.meta?.service_excerpt || 'Explore turnkey design-build infrastructure solutions.';
+                    const btnLabel = getExploreButtonText(service.slug, service.title?.rendered || '');
                     
                     return (
                         <a href={url} class="services__card">
@@ -87,7 +115,7 @@ function getCardImage(service: any) {
                             <div class="services__card-content">
                                 <h3 class="services__card-title" set:html={title}></h3>
                                 <div class="services__card-text" set:html={excerpt}></div>
-                                <span class="services__card-link">Explore Service &rarr;</span>
+                                <span class="services__card-link" set:html={btnLabel}></span>
                             </div>
                         </a>
                     );
