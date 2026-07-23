@@ -79,7 +79,6 @@
         <p class="rep-contact-card__role rep-region-label subtitle" style="margin-bottom: 0;"></p>
         <h3 class="rep-contact-card__name rep-name"></h3>
         <p class="rep-contact-card__role rep-role"></p>
-        <blockquote class="rep-contact-card__bio rep-quote"></blockquote>
         <div class="rep-contact-card__buttons">
           <a href="" class="btn btn--primary rep-email">Email</a>
           <a href="tel:+1" class="btn btn--outline rep-phone">Schedule a Call</a>
@@ -222,16 +221,13 @@
       
       if (rep) {
         placeholder.style.display = 'none';
-        repCard.style.display = 'flex';
+        repCard.style.display = 'block';
         
         const nameEl = this.querySelector('.rep-name');
         if (nameEl) nameEl.textContent = `Meet ${rep.name.split(' ')[0]}`;
         
         const roleEl = this.querySelector('.rep-role');
         if (roleEl) roleEl.textContent = rep.role || '';
-        
-        const quoteEl = this.querySelector('.rep-quote');
-        if (quoteEl) quoteEl.innerHTML = rep.quote || '';
         
         const emailEl = this.querySelector('.rep-email') as HTMLAnchorElement;
         if (emailEl) {
@@ -280,8 +276,13 @@
 <style is:global>
   e3-sales-rep-selector {
     display: block;
-    width: 100%;
-    margin: 40px 0;
+    width: 100vw;
+    max-width: 1400px;
+    margin: 40px auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 40px;
   }
   
   .texas-region-selector-ui {
