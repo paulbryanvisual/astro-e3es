@@ -2265,7 +2265,7 @@
 
     // 10. Mini Case Study Callout
     blocks.registerBlockType('e3es/mini-case-study', {
-        title: 'E3 Case Study Callout',
+        title: 'E3 Client Card',
         icon: 'id',
         category: 'layout',
         attributes: {
@@ -4695,7 +4695,7 @@
 
     // ── Region Showcase — scrollable client card slider section ────────────────
     blocks.registerBlockType('e3es/region-showcase', {
-        title: 'E3 Region Showcase',
+        title: 'E3 Client Cards',
         icon: 'slides',
         category: 'layout',
         description: 'A horizontally-scrolling client project card slider for regional pages. Add a heading and then use inner blocks for content.',
@@ -4717,7 +4717,7 @@
                     el('div', { className: 'region-showcase__container', style: { maxWidth: '1200px', margin: '0 auto' } },
                         el('h2', { style: { textAlign: 'center', marginBottom: '2rem', color: 'var(--color-primary-dark,#0e1b2b)' } }, attr.heading),
                         el('div', { style: { border: '2px dashed #ccc', borderRadius: '4px', padding: '1rem', background: 'rgba(0,0,0,0.02)' } },
-                            el('p', { style: { color: '#999', fontSize: '0.85rem', margin: '0 0 0.5rem', textAlign: 'center' } }, '↓ Inner Blocks — Add core/columns or e3es/mini-case-study blocks below ↓'),
+                            el('p', { style: { color: '#999', fontSize: '0.85rem', margin: '0 0 0.5rem', textAlign: 'center' } }, '↓ Inner Blocks — Add core/columns or E3 Client Card blocks below ↓'),
                             el(InnerBlocks, {
                                 allowedBlocks: ['core/columns', 'e3es/mini-case-study', 'core/group'],
                                 template: [],
@@ -4843,6 +4843,22 @@
         },
         save: function() {
             return el('div', { className: 'project-history-placeholder' });
+        }
+    });
+
+    // 33. E3 Sales Rep by Region
+    blocks.registerBlockType('e3es/sales-rep-region', {
+        title: 'E3 Sales Rep by Region',
+        icon: 'admin-users',
+        category: 'layout',
+        edit: function(props) {
+            return el('div', { style: { background: '#f8fafc', padding: '20px', border: '1px solid #94a3b8', borderRadius: '8px' } },
+                el('h3', { style: { margin: 0, color: '#334155' } }, 'E3 Sales Rep by Region Map'),
+                el('p', null, 'This block renders the interactive map that displays the sales representative on hover.')
+            );
+        },
+        save: function() {
+            return el('e3-sales-rep-selector');
         }
     });
 
