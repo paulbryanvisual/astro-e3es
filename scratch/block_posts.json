@@ -1,0 +1,326 @@
+[
+    {
+        "id": 6883,
+        "post_type": "page",
+        "title": "TORCH",
+        "slug": "torch"
+    },
+    {
+        "id": 3808,
+        "post_type": "page",
+        "title": "Funding Success Stories",
+        "slug": "funding-stories"
+    },
+    {
+        "id": 3807,
+        "post_type": "page",
+        "title": "Panhandle Texas",
+        "slug": "panhandle"
+    },
+    {
+        "id": 1730,
+        "post_type": "page",
+        "title": "East Texas test",
+        "slug": "east-texas"
+    },
+    {
+        "id": 1729,
+        "post_type": "page",
+        "title": "The Design+Build Advantage",
+        "slug": "design-build"
+    },
+    {
+        "id": 1651,
+        "post_type": "page",
+        "title": "Municipalities",
+        "slug": "municipalities"
+    },
+    {
+        "id": 1652,
+        "post_type": "page",
+        "title": "Healthcare",
+        "slug": "healthcare"
+    },
+    {
+        "id": 1654,
+        "post_type": "page",
+        "title": "Far West Texas",
+        "slug": "far-west-texas"
+    },
+    {
+        "id": 1655,
+        "post_type": "page",
+        "title": "West Texas",
+        "slug": "west-texas"
+    },
+    {
+        "id": 1656,
+        "post_type": "page",
+        "title": "North Texas",
+        "slug": "north-texas"
+    },
+    {
+        "id": 1657,
+        "post_type": "page",
+        "title": "North East Texas",
+        "slug": "north-east-texas"
+    },
+    {
+        "id": 1658,
+        "post_type": "page",
+        "title": "South East Texas",
+        "slug": "south-east-texas"
+    },
+    {
+        "id": 1659,
+        "post_type": "page",
+        "title": "Central Texas",
+        "slug": "central-texas"
+    },
+    {
+        "id": 1660,
+        "post_type": "page",
+        "title": "South Texas",
+        "slug": "south-texas"
+    },
+    {
+        "id": 1661,
+        "post_type": "page",
+        "title": "Hill Country",
+        "slug": "hill-country"
+    },
+    {
+        "id": 1226,
+        "post_type": "page",
+        "title": "Higher Education",
+        "slug": "higher-education"
+    },
+    {
+        "id": 251,
+        "post_type": "page",
+        "title": "HVAC Systems &amp; Upgrades",
+        "slug": "hvac-2"
+    },
+    {
+        "id": 177,
+        "post_type": "page",
+        "title": "Our Story &amp; State-Wide Impact",
+        "slug": "story"
+    },
+    {
+        "id": 178,
+        "post_type": "page",
+        "title": "Contact",
+        "slug": "contact"
+    },
+    {
+        "id": 179,
+        "post_type": "page",
+        "title": "Our Team",
+        "slug": "team-2"
+    },
+    {
+        "id": 169,
+        "post_type": "page",
+        "title": "Clients",
+        "slug": "clients"
+    },
+    {
+        "id": 19,
+        "post_type": "page",
+        "title": "About Us",
+        "slug": "about-us"
+    },
+    {
+        "id": 23,
+        "post_type": "page",
+        "title": "Our Story &amp; State-Wide Impact",
+        "slug": "story"
+    },
+    {
+        "id": 24,
+        "post_type": "page",
+        "title": "Our Team",
+        "slug": "team"
+    },
+    {
+        "id": 6,
+        "post_type": "page",
+        "title": "Our Approach",
+        "slug": "our-approach"
+    },
+    {
+        "id": 7,
+        "post_type": "page",
+        "title": "E3 Homepage",
+        "slug": "home"
+    },
+    {
+        "id": 9,
+        "post_type": "page",
+        "title": "Partners in Funding",
+        "slug": "funding"
+    },
+    {
+        "id": 10,
+        "post_type": "page",
+        "title": "K-12 Schools",
+        "slug": "k12"
+    },
+    {
+        "id": 11,
+        "post_type": "page",
+        "title": "Services",
+        "slug": "services"
+    },
+    {
+        "id": 1636,
+        "post_type": "services",
+        "title": "Water & Wastewater Infrastructure Solutions",
+        "slug": "water-wastewater"
+    },
+    {
+        "id": 1637,
+        "post_type": "services",
+        "title": "Controls & Building Automation Solutions",
+        "slug": "controls-automation"
+    },
+    {
+        "id": 1638,
+        "post_type": "services",
+        "title": "Financing, Auditing & Procurement Solutions",
+        "slug": "financing-auditing"
+    },
+    {
+        "id": 1112,
+        "post_type": "services",
+        "title": "LED & Sports Lighting Solutions",
+        "slug": "lighting"
+    },
+    {
+        "id": 102,
+        "post_type": "services",
+        "title": "HVAC Upgrades & Replacements",
+        "slug": "hvac"
+    },
+    {
+        "id": 11206,
+        "post_type": "services",
+        "title": "Water Conservation & Low-Flow Upgrades",
+        "slug": "water-conservation"
+    },
+    {
+        "id": 11207,
+        "post_type": "services",
+        "title": "Water Meter Installation & Lift Station Rehab",
+        "slug": "water-meter-installation"
+    },
+    {
+        "id": 11208,
+        "post_type": "services",
+        "title": "Water Wells & Pump Systems",
+        "slug": "water-wells"
+    },
+    {
+        "id": 11209,
+        "post_type": "services",
+        "title": "Cooperative Purchasing Agreements",
+        "slug": "cooperative-purchasing"
+    },
+    {
+        "id": 11210,
+        "post_type": "services",
+        "title": "Energy Auditing & Business Case Analysis (BCA)",
+        "slug": "energy-auditing"
+    },
+    {
+        "id": 11211,
+        "post_type": "services",
+        "title": "Grant Procurement & Alternative Financing",
+        "slug": "grant-and-funding-procurement"
+    },
+    {
+        "id": 11198,
+        "post_type": "services",
+        "title": "Packaged Rooftop Unit (RTU) Upgrades",
+        "slug": "rtu-replacement"
+    },
+    {
+        "id": 11199,
+        "post_type": "services",
+        "title": "Ventilation & Fresh Air Upgrades",
+        "slug": "ventilation-upgrades"
+    },
+    {
+        "id": 11200,
+        "post_type": "services",
+        "title": "Variable Refrigerant Flow (VRF) Systems",
+        "slug": "vrf-systems"
+    },
+    {
+        "id": 11201,
+        "post_type": "services",
+        "title": "Building Automation Systems (BAS) & HVAC Controls",
+        "slug": "building-automation"
+    },
+    {
+        "id": 3873,
+        "post_type": "clients",
+        "title": "Little Elm ISD",
+        "slug": "little-elm-isd"
+    },
+    {
+        "id": 3874,
+        "post_type": "clients",
+        "title": "Keene ISD",
+        "slug": "keene-isd"
+    },
+    {
+        "id": 3875,
+        "post_type": "clients",
+        "title": "Plano ISD",
+        "slug": "plano-isd"
+    },
+    {
+        "id": 3872,
+        "post_type": "clients",
+        "title": "City of Stockdale",
+        "slug": "city-of-stockdale"
+    },
+    {
+        "id": 1733,
+        "post_type": "clients",
+        "title": "Rio Hondo ISD",
+        "slug": "rio-hondo-isd"
+    },
+    {
+        "id": 1451,
+        "post_type": "clients",
+        "title": "Eagle Pass ISD",
+        "slug": "eagle-pass-isd"
+    },
+    {
+        "id": 1452,
+        "post_type": "clients",
+        "title": "Edcouch-Elsa ISD",
+        "slug": "edcouch-elsa-isd"
+    },
+    {
+        "id": 1453,
+        "post_type": "clients",
+        "title": "Edgewood ISD",
+        "slug": "edgewood-isd"
+    },
+    {
+        "id": 1454,
+        "post_type": "clients",
+        "title": "Ennis ISD",
+        "slug": "ennis-isd"
+    },
+    {
+        "id": 1455,
+        "post_type": "clients",
+        "title": "Ferris ISD",
+        "slug": "ferris-isd"
+    }
+]

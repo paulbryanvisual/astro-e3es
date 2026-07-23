@@ -388,7 +388,6 @@ export function decodeHtmlEntities(text: string): string {
     .replace(/\\u0026/gi, 'and')
     .replace(/u0026amp;/gi, 'and')
     .replace(/u0026/gi, 'and')
-    .replace(/&/g, 'and')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
@@ -403,11 +402,13 @@ export function decodeHtmlEntities(text: string): string {
     .replace(/&#8217;/g, '’')
     .replace(/&#8220;/g, '“')
     .replace(/&#8221;/g, '”')
+    .replace(/&#8230;/g, '…')
     .replace(/&nbsp;/g, ' ')
     .replace(/&deg;/g, '°')
     .replace(/&trade;/g, '™')
     .replace(/&reg;/g, '®')
-    .replace(/&copy;/g, '©');
+    .replace(/&copy;/g, '©')
+    .replace(/&(?!(?:[a-zA-Z]+|#\\d+|#x[a-fA-F0-9]+);)/g, 'and');
 
   // Collapse multiple spaces around 'and' to keep formatting clean
   decoded = decoded.replace(/\s+and\s+/gi, ' and ');
