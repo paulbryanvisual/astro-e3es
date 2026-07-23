@@ -4851,14 +4851,119 @@
         title: 'E3 Sales Rep by Region',
         icon: 'admin-users',
         category: 'layout',
+        attributes: {
+            panhandleRep: { type: 'string', default: '' },
+            northRep: { type: 'string', default: '' },
+            centralRep: { type: 'string', default: '' },
+            southRep: { type: 'string', default: '' },
+            westRep: { type: 'string', default: '' },
+            'hill-countryRep': { type: 'string', default: '' },
+            southeastRep: { type: 'string', default: '' },
+            northeastRep: { type: 'string', default: '' },
+            employeeData: { type: 'string', default: '{}' }
+        },
         edit: function(props) {
+            var attributes = props.attributes;
+            var setAttributes = props.setAttributes;
+            var useState = window.wp.element.useState;
+            var useEffect = window.wp.element.useEffect;
+            var [employees, setEmployees] = useState([]);
+            var regions = [
+                { id: 'panhandle', label: 'Panhandle / West Texas' },
+                { id: 'north', label: 'North Texas' },
+                { id: 'central', label: 'Central Texas' },
+                { id: 'south', label: 'South Texas' },
+                { id: 'west', label: 'Far West Texas' },
+                { id: 'hill-country', label: 'Hill Country' },
+                { id: 'southeast', label: 'South East Texas' },
+                { id: 'northeast', label: 'North East Texas' }
+            ];
+            
+            useEffect(function() {
+                window.wp.apiFetch({ path: '/wp/v2/employees?per_page=100' }).then(function(res) {
+                    var options = [{ value: '', label: 'Select a Representative...' }];
+                    var empDataMap = {};
+                    res.forEach(function(emp) {
+                        options.push({
+                            value: emp.id.toString(),
+                            label: emp.title.rendered + (emp.meta._e3_employee_role ? ' - ' + emp.meta._e3_employee_role : '')
+                        });
+                        empDataMap[emp.id.toString()] = {
+                            id: emp.id,
+                            name: emp.title.rendered,
+                            role: emp.meta._e3_employee_role,
+                            email: emp.meta._e3_employee_email,
+                            quote: emp.content.rendered,
+                            imageUrl: emp._links['wp:featuredmedia'] ? emp._links['wp:featuredmedia'][0].href : ''
+                        };
+                    });
+                    
+                    // Fetch images
+                    var imagePromises = Object.values(empDataMap).map(function(emp) {
+                        if (emp.imageUrl) {
+                            return window.wp.apiFetch({ url: emp.imageUrl }).then(function(media) {
+                                emp.imageUrl = media.source_url;
+                            }).catch(function(){});
+                        }
+                        return Promise.resolve();
+                    });
+                    
+                    Promise.all(imagePromises).then(function() {
+                        setEmployees(options);
+                        setAttributes({ employeeData: JSON.stringify(empDataMap) });
+                    });
+                });
+            }, []);
+
+            var inspectorControls = el(
+                editor.InspectorControls || window.wp.blockEditor.InspectorControls,
+                null,
+                el(
+                    components.PanelBody,
+                    { title: 'Region Representatives', initialOpen: true },
+                    regions.map(function(region) {
+                        return el(components.SelectControl, {
+                            label: region.label,
+                            value: attributes[region.id + 'Rep'],
+                            options: employees.length > 0 ? employees : [{ value: '', label: 'Loading employees...' }],
+                            onChange: function(val) {
+                                var newAttrs = {};
+                                newAttrs[region.id + 'Rep'] = val;
+                                setAttributes(newAttrs);
+                            }
+                        });
+                    })
+                )
+            );
+
             return el('div', { style: { background: '#f8fafc', padding: '20px', border: '1px solid #94a3b8', borderRadius: '8px' } },
+                inspectorControls,
                 el('h3', { style: { margin: 0, color: '#334155' } }, 'E3 Sales Rep by Region Map'),
-                el('p', null, 'This block renders the interactive map that displays the sales representative on hover.')
+                el('p', null, 'This block renders the interactive map that displays the sales representative on hover. Configure the reps for each region in the block settings sidebar (right).')
             );
         },
-        save: function() {
-            return el('e3-sales-rep-selector');
+        save: function(props) {
+            var attributes = props.attributes;
+            var regions = [
+                { id: 'panhandle', label: 'Panhandle / West Texas' },
+                { id: 'north', label: 'North Texas' },
+                { id: 'central', label: 'Central Texas' },
+                { id: 'south', label: 'South Texas' },
+                { id: 'west', label: 'Far West Texas' },
+                { id: 'hill-country', label: 'Hill Country' },
+                { id: 'southeast', label: 'South East Texas' },
+                { id: 'northeast', label: 'North East Texas' }
+            ];
+            var regionMap = {};
+            regions.forEach(function(region) {
+                if (attributes[region.id + 'Rep']) {
+                    regionMap[region.id] = attributes[region.id + 'Rep'];
+                }
+            });
+            return el('e3-sales-rep-selector', {
+                'data-region-map': JSON.stringify(regionMap),
+                'data-employees': attributes.employeeData
+            });
         }
     });
 

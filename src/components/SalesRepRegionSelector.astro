@@ -78,81 +78,15 @@
       
       const content = template.content.cloneNode(true);
       
-      // Hardcode the Sales Rep Mapping
-      this.regionMap = {
-          panhandle: "steven-monkres",
-          north: "mike-cothran",
-          central: "vince-zubicek",
-          south: "bill-savarino",
-          west: "steven-monkres",
-          "hill-country": "bill-savarino",
-          southeast: "adam-anders",
-          northeast: "lance-wyatt"
-      };
-      
-      // Hardcode the Employee Data
-      this.employees = {
-          "steven-monkres": {
-              name: "Steven Monkres",
-              role: "Regional Sales Manager",
-              email: "smonkres@e3es.com",
-              quote: "Steven manages K-12 facility partnerships across the Panhandle and West Texas.",
-              imageUrl: "https://www.e3es.com/wp-content/uploads/2023/12/Steven-Monkres-1.jpg" // fallback placeholder if needed
-          },
-          "mike-cothran": {
-              name: "Mike Cothran",
-              role: "Regional Sales Manager",
-              email: "mcothran@e3es.com",
-              quote: "Mike manages K-12 facility partnerships across North Texas.",
-              imageUrl: "https://www.e3es.com/wp-content/uploads/2023/12/Mike-Cothran-1.jpg"
-          },
-          "vince-zubicek": {
-              name: "Vince Zubicek",
-              role: "Regional Sales Manager",
-              email: "vzubicek@e3es.com",
-              quote: "Vince manages K-12 facility partnerships across Central Texas.",
-              imageUrl: "https://www.e3es.com/wp-content/uploads/2023/12/Vince-Zubicek-1.jpg"
-          },
-          "bill-savarino": {
-              name: "Bill Savarino",
-              role: "Regional Sales Manager",
-              email: "bsavarino@e3es.com",
-              quote: "Bill manages K-12 facility partnerships across South Texas and the Hill Country.",
-              imageUrl: "https://www.e3es.com/wp-content/uploads/2023/12/Bill-Savarino-1.jpg"
-          },
-          "adam-anders": {
-              name: "Adam Anders",
-              role: "Regional Sales Manager",
-              email: "aanders@e3es.com",
-              quote: "Adam manages K-12 facility partnerships across Southeast Texas.",
-              imageUrl: "https://www.e3es.com/wp-content/uploads/2023/12/Adam-Anders-1.jpg"
-          },
-          "lance-wyatt": {
-              name: "Lance Wyatt",
-              role: "Regional Sales Manager",
-              email: "lwyatt@e3es.com",
-              quote: "Lance manages K-12 facility partnerships across Northeast Texas.",
-              imageUrl: "https://www.e3es.com/wp-content/uploads/2023/12/Lance-Wyatt-1.jpg"
-          }
-      };
-      
-      // Override with WordPress data if it was provided
       try {
-        const employeesRaw = this.dataset.employeesB64 ? atob(this.dataset.employeesB64) : (this.dataset.employees || null);
-        if (employeesRaw) {
-            const parsedEmployees = JSON.parse(employeesRaw);
-            if (Array.isArray(parsedEmployees)) {
-               // Update our hardcoded objects with real image URLs and quotes from WP
-               parsedEmployees.forEach((emp: any) => {
-                   const key = Object.keys(this.employees).find(k => emp.name.toLowerCase().includes(this.employees[k].name.toLowerCase()));
-                   if (key) {
-                       this.employees[key] = { ...this.employees[key], ...emp };
-                   }
-               });
-            }
+        if (this.dataset.regionMap) {
+            this.regionMap = JSON.parse(this.dataset.regionMap);
+        }
+        if (this.dataset.employees) {
+            this.employees = JSON.parse(this.dataset.employees);
         }
       } catch (e) {
-        console.error("Failed to parse map data, falling back to hardcoded data:", e);
+        console.error("Failed to parse map data:", e);
       }
       
       this.appendChild(content);
