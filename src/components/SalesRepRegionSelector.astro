@@ -57,9 +57,10 @@
         <p class="rep-contact-card__role rep-region-label subtitle" style="margin-bottom: 0;"></p>
         <h3 class="rep-contact-card__name rep-name"></h3>
         <p class="rep-contact-card__role rep-role"></p>
-        <div class="rep-contact-card__bio rep-quote"></div>
+        <blockquote class="rep-contact-card__bio rep-quote"></blockquote>
         <div class="rep-contact-card__buttons">
-          <a href="" class="btn btn--primary rep-email">Email Representative</a>
+          <a href="" class="btn btn--primary rep-email">Email</a>
+          <a href="tel:+1" class="btn btn--outline rep-phone">Schedule a Call</a>
         </div>
       </div>
     </div>
@@ -161,8 +162,25 @@
     
     setupInteractions() {
       const regions = this.querySelectorAll('.texas-region');
+      
+      // Add global click listener to map to clear lock when clicking outside regions
+      const svgMap = this.querySelector('.texas-svg-map');
+      if (svgMap) {
+          svgMap.addEventListener('click', (e) => {
+              // If we didn't click inside a region, clear all locks
+              if (!(e.target as Element).closest('.texas-region')) {
+                  regions.forEach(r => r.classList.remove('active', 'locked'));
+                  this.showRep(null); // Show placeholder
+              }
+          });
+      }
+      
       regions.forEach(region => {
+        // Mouse enter: show rep if nothing is locked
         region.addEventListener('mouseenter', () => {
+          const lockedRegion = this.querySelector('.texas-region.locked');
+          if (lockedRegion) return; // Don't change on hover if a region is locked
+          
           const regionId = (region as HTMLElement).dataset.region;
           if (regionId) {
             this.showRep(regionId);
@@ -170,23 +188,58 @@
             region.classList.add('active');
           }
         });
+        
+        // Mouse leave: reset to placeholder (or locked rep)
+        region.addEventListener('mouseleave', () => {
+          const lockedRegion = this.querySelector('.texas-region.locked');
+          if (lockedRegion) {
+              return; // Keep locked state
+          }
+          // Reset to default
+          regions.forEach(r => r.classList.remove('active'));
+          this.showRep(null);
+        });
+
+        // Click: lock the region
+        region.addEventListener('click', (e) => {
+          e.stopPropagation(); // prevent svgMap click handler
+          const regionId = (region as HTMLElement).dataset.region;
+          
+          if (region.classList.contains('locked')) {
+              // Toggle off if clicking the already locked region
+              region.classList.remove('locked');
+              // Let mouseleave handle the rest, or just stay active since we are hovering it
+          } else {
+              if (regionId) {
+                this.showRep(regionId);
+                regions.forEach(r => r.classList.remove('active', 'locked'));
+                region.classList.add('active', 'locked');
+              }
+          }
+        });
       });
     }
     
-    showRep(regionId: string) {
-      const repId = this.regionMap[regionId];
-      const rep = this.employees[repId];
+    showRep(regionId: string | null) {
       const repCard = this.querySelector('.rep-card') as HTMLElement;
       const placeholder = this.querySelector('.placeholder-card') as HTMLElement;
-      
       if (!repCard || !placeholder) return;
+
+      if (!regionId) {
+          placeholder.style.display = 'block';
+          repCard.style.display = 'none';
+          return;
+      }
+
+      const repId = this.regionMap[regionId];
+      const rep = this.employees[repId];
       
       if (rep) {
         placeholder.style.display = 'none';
         repCard.style.display = 'flex';
         
         const nameEl = this.querySelector('.rep-name');
-        if (nameEl) nameEl.textContent = rep.name;
+        if (nameEl) nameEl.textContent = `Meet ${rep.name.split(' ')[0]}`;
         
         const roleEl = this.querySelector('.rep-role');
         if (roleEl) roleEl.textContent = rep.role || '';
@@ -195,7 +248,11 @@
         if (quoteEl) quoteEl.innerHTML = rep.quote || '';
         
         const emailEl = this.querySelector('.rep-email') as HTMLAnchorElement;
-        if (emailEl) emailEl.href = 'mailto:' + (rep.email || 'info@e3es.com');
+        if (emailEl) {
+            emailEl.href = 'mailto:' + (rep.email || 'info@e3es.com');
+            emailEl.textContent = `Email ${rep.name.split(' ')[0]}`;
+        }
+
         
         const imgEl = this.querySelector('.rep-image') as HTMLImageElement;
         if (imgEl) {
