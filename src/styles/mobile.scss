@@ -65,6 +65,7 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
+    margin-top: 14px;
 }
 
 .btn--primary {
@@ -1505,7 +1506,12 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem 1.5rem;
+    padding: 3rem 2rem;
+    text-align: left !important;
+
+    * {
+        text-align: left !important;
+    }
 
     .wp-block-heading + .wp-block-heading {
         margin-top: -0.5rem;
@@ -4806,8 +4812,9 @@ main > .wp-block-e3es-full-width-testimonial {
     }
 
     // Prevent white gaps between adjacent full-width background blocks
-    > :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .design-build__pillars, .has-background) {
-      & + :is(.db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .design-build__pillars, .has-background) {
+    > :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background) {
+      margin-bottom: 0 !important;
+      & + :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background) {
         margin-top: 0 !important;
       }
     }
@@ -6163,3 +6170,27 @@ h6.wp-block-heading:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column
 
 
 
+.db-feature--map-spill .db-feature__image-wrapper { margin: 0; }
+
+/* Eliminate white gaps between adjacent background sections and above footer */
+.services-page,
+.services-page__container,
+.services-page__content {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.services-page__content > *:last-child,
+.wp-block-e3es-faq-section,
+.faq-section,
+.wp-block-e3es-cta-banner,
+.cta-banner {
+    margin-bottom: 0 !important;
+}
+
+footer.footer,
+.site-footer {
+    margin-top: 0 !important;
+}

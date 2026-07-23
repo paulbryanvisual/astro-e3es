@@ -1,0 +1,346 @@
+{
+    "plano-isd": {
+        "Lessons in Learning Interview": []
+    },
+    "keene-isd": {
+        "RGB LED Sports Lighting": []
+    },
+    "little-elm-isd": {
+        "Lessons in Learning Interview": []
+    },
+    "city-of-stockdale": {
+        "Lagoon Restoration & Wastewater Treatment": []
+    },
+    "rio-hondo-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "woodville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "west-hardin-ccisd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "weslaco-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "waxahachie-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "vernon-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "valley-view-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "trinity-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "trenton-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "tom-bean-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "texas-facilities-commission": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "somerset-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "skidmore-tynan-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "silsbee-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "santa-fe-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "sanger-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "san-jacinto-community-college": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "san-benito-cisd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "san-angelo-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "saint-jo-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "rusk-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "royal-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "roscoe-collegiate-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "robstown-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "ricardo-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "raymondville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "prosper-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "port-neches-groves-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "poolville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "pilot-point-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "pflugerville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "pecos-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "odem-edroy-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "north-texas-medical-center": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "normangee-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "nocona-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "new-boston-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "needville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "nacogdoches-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "moulton-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "mesquite-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "mercedes-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "marble-falls-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "manor-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "lyford-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "lufkin-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "lubbock-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "llano-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "liberty-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "lancaster-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "lamesa-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "lake-worth-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "kountze-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "kennedale-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "katy-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "jasper-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "italy-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "ingram-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "idea-public-schools": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "houston-community-college": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "hondo-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "highland-park-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "hawkins-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "hardin-jefferson-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "hardin-county": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "gruver-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "greenville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "goodall-witcher-hospital": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "glen-rose-medical-center": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "galena-park-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "gainesville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "ferris-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "ennis-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "edgewood-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "edcouch-elsa-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "eagle-pass-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "desoto-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "corsicana-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "cooke-county": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "columbia-brazoria-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "cleveland-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "chico-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "cedar-hill-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "castleberry-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "caddo-mills-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "brownsville-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "brenham-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "bowie-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "big-sandy-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "bellevue-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "banquete-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "ballinger-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "baird-isd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "anderson-shiro-cisd": {
+        "Energy Efficiency & Facility Upgrades": []
+    },
+    "granbury-isd": {
+        "HVAC Upgrades & Lighting Retrofits": [
+            {
+                "text": "Project Gallery",
+                "level": 3
+            }
+        ],
+        "District-wide Water Conservation & Turf Upgrades": [
+            {
+                "text": "Project Gallery",
+                "level": 3
+            }
+        ]
+    },
+    "bishop-cisd": {
+        "Luehrs Junior High & Badger Den Mechanical Upgrades": [
+            {
+                "text": "Project Gallery",
+                "level": 3
+            }
+        ],
+        "Districtwide LED Lighting Retrofits": [
+            {
+                "text": "Project Gallery",
+                "level": 3
+            }
+        ]
+    },
+    "boyd-isd": {
+        "Districtwide HVAC & Controls Upgrades": [
+            {
+                "text": "The Comprehensive Project Included:",
+                "level": 3
+            },
+            {
+                "text": "Project Video: HVAC Upgrades in Action",
+                "level": 3
+            },
+            {
+                "text": "Project Gallery",
+                "level": 3
+            }
+        ],
+        "LED Sports Lighting & Auxiliary Upgrades": [
+            {
+                "text": "Project Gallery",
+                "level": 3
+            }
+        ]
+    }
+}

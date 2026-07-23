@@ -508,14 +508,16 @@
     flex-direction: column !important;
   }
 
-  .db-feature {
-    .wp-block-columns {
-      flex-direction: row !important;
-      align-items: flex-start !important;
-      gap: 6rem !important;
+  @include responsive-up($breakpoint-lg) {
+    .db-feature {
+      .wp-block-columns {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 6rem !important;
 
-      .wp-block-column {
-        margin: 0 !important;
+        .wp-block-column {
+          margin: 0 !important;
+        }
       }
     }
   }
@@ -629,5 +631,13 @@
       font-size: 1.5rem;
     }
   }
-}
 
+  @include responsive-up($breakpoint-lg) {
+    .db-feature--map-spill .wp-block-columns .db-feature__image-wrapper { margin: -50px 0 -100px 50px; }
+
+    .db-feature:has(e3-texas-region-selector) .wp-block-columns,
+    .db-feature:has(e3-texas-region-selector) .db-feature__container {
+      max-width: 1400px !important;
+    }
+  }
+}

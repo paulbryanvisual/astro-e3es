@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPageById, processWordPressHtml } from '../lib/wordpress';
+import { getPageById, processWordPressHtml, getTexasMapSvg } from '../lib/wordpress';
+
+const texasMapSvg = getTexasMapSvg();
 
 const page = await getPageById(7);
 
@@ -223,8 +225,8 @@ const heroOptions = [
                 <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 2rem; color: var(--color-bg-white);">E3 Entegral Solutions has successfully partnered with public entities across the entire state of Texas. From K-12 school districts to municipal governments and healthcare facilities, our dedicated teams deliver tailored, localized support and transformative energy solutions that benefit communities from the Panhandle to the Gulf Coast.</p>
                 <a href="/clients" class="btn btn--primary btn--large">Explore our Client List</a>
             </div>
-            <div class="db-feature__image-wrapper db-feature__image-wrapper--spill" style="flex: 1;">
-                <img src="/images/static-map-600x400-600x400-600x400.png" alt="Texas Service Map" class="db-feature__image" width="600" height="400" loading="lazy" decoding="async">
+            <div class="db-feature__image-wrapper db-feature__image-wrapper--spill" style="flex: 1; z-index: 10;">
+                <Fragment set:html={texasMapSvg} />
             </div>
         </div>
     </section>
