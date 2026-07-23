@@ -9,9 +9,31 @@
       <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map">
         <defs>
           <style>
-            .texas-region path { fill: var(--color-primary-green, #215734); stroke: #ffffff; stroke-width: 2px; transition: fill 0.3s ease; }
-            .texas-region path:hover { fill: var(--color-primary-gold, #173d24); cursor: pointer; }
-            .texas-region.active path { fill: var(--color-primary-gold, #cfa83f); }
+            .texas-svg-map { filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); max-width: 650px; margin: 0 auto; display: block; }
+            .texas-region { cursor: pointer; pointer-events: all; }
+            .texas-region path, .texas-region polygon, .texas-region rect { transition: all 0.3s ease; }
+            
+            /* Dim inactive regions when one is hovered/active */
+            .texas-svg-map.has-active .texas-region:not(.active) path,
+            .texas-svg-map.has-active .texas-region:not(.active) polygon,
+            .texas-svg-map.has-active .texas-region:not(.active) rect { 
+                fill: #d3dbd5 !important;
+                transition: fill 0.3s ease;
+            }
+            
+            /* Active/Hover states */
+            .texas-region:hover path, .texas-region.active path { filter: brightness(1.2) drop-shadow(0 8px 16px rgba(0,0,0,0.5)); stroke: #ffffff; stroke-width: 4px; }
+            
+            /* Region Base Colors from Prototype */
+            #region-panhandle path { fill: #2b5434; }
+            #region-north path { fill: #598e64; }
+            #region-central path { fill: #31623d; }
+            #region-south path { fill: #034411; }
+            #region-west path { fill: #5b8764; }
+            #region-hill-country path { fill: #65b776; }
+            #region-southeast path { fill: #54725a; }
+            #region-northeast path { fill: #115620; }
+            
             .client-star { fill: #ffffff; stroke: #215734; stroke-width: 2.5px; pointer-events: none; }
           </style>
         </defs>
@@ -96,14 +118,24 @@
     
     setupInteractions() {
       const regions = this.querySelectorAll('.texas-region');
-      
-      // Add global click listener to map to clear lock when clicking outside regions
       const svgMap = this.querySelector('.texas-svg-map');
+      
+      // Store original order of regions so we can restore it when none are active
       if (svgMap) {
+          const parent = this.querySelector('#Layer_1');
+          if (parent) {
+              regions.forEach((region, index) => {
+                  region.setAttribute('data-original-order', index.toString());
+              });
+          }
+          
+          // Add global click listener to map to clear lock when clicking outside regions
           svgMap.addEventListener('click', (e) => {
               // If we didn't click inside a region, clear all locks
               if (!(e.target as Element).closest('.texas-region')) {
                   regions.forEach(r => r.classList.remove('active', 'locked'));
+                  svgMap.classList.remove('has-active');
+                  this.restoreRegionOrder();
                   this.showRep(null); // Show placeholder
               }
           });
@@ -120,6 +152,8 @@
             this.showRep(regionId);
             regions.forEach(r => r.classList.remove('active'));
             region.classList.add('active');
+            if (svgMap) svgMap.classList.add('has-active');
+            if (region.parentNode) region.parentNode.appendChild(region);
           }
         });
         
@@ -131,6 +165,8 @@
           }
           // Reset to default
           regions.forEach(r => r.classList.remove('active'));
+          if (svgMap) svgMap.classList.remove('has-active');
+          this.restoreRegionOrder();
           this.showRep(null);
         });
 
@@ -148,10 +184,21 @@
                 this.showRep(regionId);
                 regions.forEach(r => r.classList.remove('active', 'locked'));
                 region.classList.add('active', 'locked');
+                if (svgMap) svgMap.classList.add('has-active');
+                if (region.parentNode) region.parentNode.appendChild(region);
               }
           }
         });
       });
+    }
+    
+    restoreRegionOrder() {
+        const parent = this.querySelector('#Layer_1');
+        if (parent) {
+            const regionsArray = Array.from(parent.querySelectorAll('.texas-region'));
+            regionsArray.sort((a, b) => parseInt(a.getAttribute('data-original-order') || '0') - parseInt(b.getAttribute('data-original-order') || '0'));
+            regionsArray.forEach(reg => parent.appendChild(reg));
+        }
     }
     
     showRep(regionId: string | null) {
