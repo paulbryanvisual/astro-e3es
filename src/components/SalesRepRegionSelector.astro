@@ -132,17 +132,6 @@
                   region.setAttribute('data-original-order', index.toString());
               });
           }
-          
-          // Add global click listener to map to clear lock when clicking outside regions
-          svgMap.addEventListener('click', (e) => {
-              // If we didn't click inside a region, clear all locks
-              if (!(e.target as Element).closest('.texas-region')) {
-                  regions.forEach(r => r.classList.remove('active', 'locked'));
-                  svgMap.classList.remove('has-active');
-                  this.restoreRegionOrder();
-                  this.showRep(null); // Show placeholder
-              }
-          });
       }
       
       regions.forEach(region => {
@@ -176,13 +165,12 @@
 
         // Click: lock the region
         region.addEventListener('click', (e) => {
-          e.stopPropagation(); // prevent svgMap click handler
+          e.stopPropagation();
           const regionId = (region as HTMLElement).dataset.region;
           
           if (region.classList.contains('locked')) {
-              // Toggle off if clicking the already locked region
-              region.classList.remove('locked');
-              // Let mouseleave handle the rest, or just stay active since we are hovering it
+              // Do nothing if already locked
+              return;
           } else {
               if (regionId) {
                 this.showRep(regionId);
