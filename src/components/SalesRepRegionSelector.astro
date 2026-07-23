@@ -9,7 +9,7 @@
       <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map">
         <defs>
           <style>
-            .texas-svg-map { filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); max-width: 650px; margin: 0 auto; display: block; }
+            .texas-svg-map { filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); max-width: 100%; margin: 0 auto; display: block; }
             .texas-region { cursor: pointer; pointer-events: all; }
             .texas-region path, .texas-region polygon, .texas-region rect { transition: all 0.3s ease; }
             
@@ -68,8 +68,8 @@
     
     <div class="info-column" id="find-your-rep">
       <div class="placeholder-card">
-        <h3>Find Your Representative</h3>
-        <p>Hover over your region on the map to see the contact details of your dedicated educational facility expert.</p>
+        <h3>Find your Rep!</h3>
+        <p>Select your region and contact us to get started.</p>
       </div>
 
       <div class="rep-contact-card rep-card" style="display: none;">
@@ -101,11 +101,16 @@
       const content = template.content.cloneNode(true);
       
       try {
-        if (this.dataset.regionMap) {
-            this.regionMap = JSON.parse(this.dataset.regionMap);
+        if (this.dataset.regionMapB64) {
+            this.regionMap = JSON.parse(decodeURIComponent(atob(this.dataset.regionMapB64)));
+        } else if (this.dataset.regionMap) {
+            this.regionMap = JSON.parse(this.dataset.regionMap); // fallback
         }
-        if (this.dataset.employees) {
-            this.employees = JSON.parse(this.dataset.employees);
+        
+        if (this.dataset.employeesB64) {
+            this.employees = JSON.parse(decodeURIComponent(atob(this.dataset.employeesB64)));
+        } else if (this.dataset.employees) {
+            this.employees = JSON.parse(this.dataset.employees); // fallback
         }
       } catch (e) {
         console.error("Failed to parse map data:", e);
@@ -262,7 +267,7 @@
       } else {
         placeholder.style.display = 'block';
         repCard.style.display = 'none';
-        placeholder.innerHTML = '<h3>No Representative Assigned</h3><p>Please select another region or contact us directly.</p>';
+        placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
       }
     }
   }
