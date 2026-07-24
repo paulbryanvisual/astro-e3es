@@ -3,7 +3,7 @@ import path from 'path';
 import { cacheBuster } from './cache.ts';
 
 const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD 
-  ? 'https://descriptive-goldfish.flywheelstaging.com/wp-json/wp/v2'
+  ? 'https://staging.e3es.com/wp-json/wp/v2'
   : 'http://e3es2026.local/wp-json/wp/v2');
 
 const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
