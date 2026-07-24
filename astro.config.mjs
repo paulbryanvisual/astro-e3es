@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://staging.e3es.com/',
   output: 'static',
   image: {
     domains: ['e3es2026.local'],
