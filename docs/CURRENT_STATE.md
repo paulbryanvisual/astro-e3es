@@ -1,5 +1,20 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Click-Locking State & 1400px Max-Width Verification
+- **Branch**: `task/region-selector-1400px-lock-202607291716`
+- **Goal**: Verify click-locking region selection logic (`isLocked`, `lockedRegionId`), mouseenter hover suppression while locked, click-outside lock persistence, click-another-region switching, and 1400px container max-width SCSS rules across all viewports.
+- **Implementation**:
+  1. **Click-Locking Interaction Logic**: Inspected and verified `SalesRepRegionSelector.astro` interaction routines:
+     - `lockRegion`: Clicking any region sets `isLocked = true` and `lockedRegionId = regionId`, highlights the region (`active` and `locked` classes), displays representative card details (`showRep`), and elevates SVG DOM layer order.
+     - **Hover & Mouseleave Guards**: `mouseenter` and `mouseleave` handlers enforce `if (this.isLocked) return;`, bypassing selection changes and visual highlights on other regions while locked.
+     - **Lock Persistence**: Outside clicks and Escape key presses maintain the locked region selection intact (no document click dismiss listener).
+     - **Region Switching**: Clicking a different region updates `lockedRegionId` to the newly selected region and refreshes representative card details seamlessly.
+  2. **1400px Max-Width SCSS Restraints**:
+     - Verified single-source-of-truth 1400px container width rules in `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss`.
+     - Updated selector group in `desktop.scss` to explicitly include `.wp-block-e3es-sales-rep-region` so Gutenberg block wrappers are constrained to 1400px max-width centered layout.
+  3. **Automated Logical Verification**: Created and executed `verify_selector.js` unit test suite, confirming 8/8 assertions passed with 0 errors.
+- **Verification**: Executed `npm run build` cleanly (200 page(s) built in 5.35s). Committed all modifications to git branch `task/region-selector-1400px-lock-202607291716`.
+
 ## [2026-07-29] SalesRepRegionSelector Map Locking Logic & Dev Server Setup
 - **Branch**: `task/region-selector-1400px-lock-202607291716`
 - **Goal**: Verify map region locking logic (`isLocked`, `lockedRegionId`), mouseenter hover suppression while locked, click-to-switch region behavior, reset button callback (`unlockMap`), and localhost port management dev server configuration.
