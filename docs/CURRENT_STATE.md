@@ -621,3 +621,11 @@
     4. Authored clean BEM SCSS styles in `src/styles/mobile.scss` defining transition states, pulsing animations, and high-contrast visible focus rings (`:focus-visible`) for map interactive elements.
   - **Verification**: Verified successfully using `npm run build` and compiling styles via `node sync-styles.js`.
   - **Git Branches**: `task/contact-map-interactivity-20260710` (in both `astro-e3es` and `website` repositories).
+
+- **Sales Rep Region Selector Click-Locking & Defensiveness Guard** (July 29, 2026):
+  - **Goal**: Investigate and ensure bulletproof region selection and click-locking behavior in `SalesRepRegionSelector.astro`.
+  - **Implementation**:
+    1. Analyzed `SalesRepRegionSelector.astro` component architecture, SVG region interaction listeners, CSS `.has-locked` / `.has-active` classes, and rep card rendering logic.
+    2. Identified potential race conditions where fast mouse movements or async `mouseleave` events after clicking a region path could trigger `unhoverRegion()` and clear rep info or SVG locked styling.
+    3. Added explicit defensive guards `if (this.isLocked) return;` at the top of `hoverRegion()` and `unhoverRegion()` methods to ensure locked selections persist cleanly until another region or clear button is clicked.
+  - **Verification**: Verified code changes and committed to `task/rep-lock-1400px-1785348733`.
