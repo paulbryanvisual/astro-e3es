@@ -185,10 +185,18 @@
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
-          if (region.classList.contains('locked')) {
-              // Do nothing if already locked
-              return;
+          const isCurrentlyLocked = region.classList.contains('locked');
+
+          if (isCurrentlyLocked) {
+            // Toggle off / unlock if user clicks the currently locked region
+            region.classList.remove('active', 'locked');
+            region.setAttribute('aria-selected', 'false');
+            if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+            this.restoreRegionOrder();
+            this.showRep(null);
+            return;
           }
+
           if (regionId) {
             this.showRep(regionId);
             regions.forEach(r => {
@@ -243,6 +251,23 @@
           this.restoreRegionOrder();
           this.showRep(null);
         });
+      });
+
+      // Reset lock state when clicking outside the sales rep selector component
+      document.addEventListener('click', (e: Event) => {
+        const target = e.target as Node;
+        if (target && !this.contains(target)) {
+          const lockedRegion = this.querySelector('.texas-region.locked');
+          if (lockedRegion) {
+            regions.forEach(r => {
+              r.classList.remove('active', 'locked');
+              r.setAttribute('aria-selected', 'false');
+            });
+            if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+            this.restoreRegionOrder();
+            this.showRep(null);
+          }
+        }
       });
     }
     
