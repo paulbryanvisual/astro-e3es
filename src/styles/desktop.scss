@@ -640,6 +640,9 @@
     .db-feature:has(e3-sales-rep-selector) .wp-block-columns,
     .db-feature:has(e3-sales-rep-selector) .db-feature__container {
       max-width: 1400px !important;
+      width: 100%;
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
   }
 }
