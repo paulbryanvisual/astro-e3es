@@ -253,6 +253,7 @@
     }
 
     hoverRegion(regionId: string, regionElement: HTMLElement) {
+      if (this.isLocked) return;
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
@@ -265,6 +266,7 @@
     }
 
     unhoverRegion() {
+      if (this.isLocked) return;
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
