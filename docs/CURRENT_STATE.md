@@ -1,5 +1,20 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Interaction Logic Verification & Constant Refactoring
+- **Branch**: `task/sales-rep-region-selector-202607291748`
+- **Goal**: Audit click event listener and hover event listeners on map regions in `SalesRepRegionSelector.astro` and verify 100% compliance with strict locking rules.
+- **Implementation & Verification**:
+  1. **Strict Lock Rules Verification**:
+     - Region click sets `isLocked = true` and `lockedRegionId = regionId`.
+     - Mouse hover (`mouseenter`/`mouseleave`) and JS methods (`hoverRegion`/`unhoverRegion`) return early while locked (`if (this.isLocked) return;`), and CSS suppresses visual hover fills/glows on unselected regions.
+     - Outside clicks do not clear selection lock (`setupGlobalDismissListeners`).
+     - Re-clicking the currently locked region maintains selection lock and focus without toggling off or clearing.
+     - Clicking a DIFFERENT region cleanly switches `lockedRegionId` to the new region, updates rep details (`showRep`), and elevates SVG DOM layer.
+  2. **Refactoring & Polish**:
+     - Consolidated duplicate `regionLabels` dictionaries into a single module-level `REGION_LABELS` constant in `SalesRepRegionSelector.astro`.
+  3. **Build & Test Verification**:
+     - `npm run build` completed cleanly across all 200 pages with 0 errors.
+
 ## [2026-07-29] SalesRepRegionSelector Multi-Perspective Interaction Logic Review & Verification
 - **Branch**: `task/lock-rep-region-selection-1785348800` (Merged into `main`)
 - **Goal**: Review and verify the JavaScript interaction logic in `SalesRepRegionSelector.astro` for locking rep choices when a region is clicked.

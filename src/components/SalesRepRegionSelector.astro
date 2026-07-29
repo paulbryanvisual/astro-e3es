@@ -61,6 +61,17 @@
 </template>
 
 <script>
+  const REGION_LABELS: Record<string, string> = {
+    panhandle: 'Panhandle / West Texas',
+    north: 'North Texas',
+    central: 'Central Texas',
+    south: 'South Texas',
+    west: 'Far West Texas',
+    'hill-country': 'Hill Country',
+    southeast: 'South East Texas',
+    northeast: 'North East Texas'
+  };
+
   class SalesRepRegionSelector extends HTMLElement {
     regionMap: any = {};
     employees: any = {};
@@ -128,17 +139,6 @@
           }
       }
 
-      const regionLabels: Record<string, string> = {
-        panhandle: 'Panhandle / West Texas',
-        north: 'North Texas',
-        central: 'Central Texas',
-        south: 'South Texas',
-        west: 'Far West Texas',
-        'hill-country': 'Hill Country',
-        southeast: 'South East Texas',
-        northeast: 'North East Texas'
-      };
-      
       const clearBtn = this.querySelector('.rep-clear-btn');
       if (clearBtn) {
         clearBtn.addEventListener('click', (e: Event) => {
@@ -152,7 +152,7 @@
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
         region.setAttribute('aria-pressed', 'false');
-        region.setAttribute('aria-label', `${regionLabels[regionId] || regionId} Region`);
+        region.setAttribute('aria-label', `${REGION_LABELS[regionId] || regionId} Region`);
         region.setAttribute('aria-controls', 'find-your-rep');
 
         const handleSelect = (e: Event) => {
@@ -354,19 +354,8 @@
           }
         }
         
-        const regionLabels: Record<string, string> = {
-          panhandle: 'Panhandle / West Texas',
-          north: 'North Texas',
-          central: 'Central Texas',
-          south: 'South Texas',
-          west: 'Far West Texas',
-          'hill-country': 'Hill Country',
-          southeast: 'South East Texas',
-          northeast: 'North East Texas'
-        };
-        
         const labelEl = this.querySelector('.rep-region-label');
-        if (labelEl) labelEl.textContent = (regionLabels[regionId] || 'Regional') + ' Representative';
+        if (labelEl) labelEl.textContent = (REGION_LABELS[regionId] || 'Regional') + ' Representative';
 
         if (window.innerWidth < 992 && infoCol) {
           infoCol.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
