@@ -4796,7 +4796,7 @@ main > .wp-block-e3es-full-width-testimonial {
     > .design-build__pillars,
     > .has-background {
       box-sizing: border-box;
-      > *:not(.alignfull):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
+      > *:not(.alignfull):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
         max-width: 1200px !important;
         margin-left: auto !important;
         margin-right: auto !important;
@@ -4804,9 +4804,9 @@ main > .wp-block-e3es-full-width-testimonial {
         padding-right: 1.5rem !important;
         box-sizing: border-box;
       }
-      > *:has(e3-sales-rep-selector, e3-texas-region-selector) {
+      > :is(e3-sales-rep-selector, e3-texas-region-selector, *:has(e3-sales-rep-selector, e3-texas-region-selector)) {
         width: 100%;
-        max-width: 1400px !important;
+        max-width: 1440px !important;
         margin-left: auto !important;
         margin-right: auto !important;
       }
@@ -5057,8 +5057,12 @@ main, .editor-styles-wrapper {
     display: block;
   }
   .map-section {
-    padding: 3rem 1rem;
+    padding: 60px 1.5rem;
     background-color: var(--color-bg-white, #ffffff);
+
+    @include responsive-up($breakpoint-lg) {
+      padding: 80px 2.5rem;
+    }
   }
   .map-container {
     max-width: 1200px;
@@ -5069,8 +5073,11 @@ main, .editor-styles-wrapper {
     align-items: center;
     width: 100%;
 
-    &:has(e3-sales-rep-selector, e3-texas-region-selector) {
-      max-width: 1400px !important;
+    &:has(e3-sales-rep-selector, e3-texas-region-selector),
+    > :is(e3-sales-rep-selector, e3-texas-region-selector) {
+      display: block !important;
+      max-width: 1440px !important;
+      gap: 0 !important;
     }
   }
   .map-left {
