@@ -191,6 +191,12 @@
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
+          const isCurrentlyLocked = region.classList.contains('locked');
+
+          if (isCurrentlyLocked) {
+            // Re-clicking an already locked region MUST NOT unlock/deselect it.
+            return;
+          }
 
           if (regionId) {
             this.showRep(regionId);
@@ -201,7 +207,10 @@
             region.classList.add('active', 'locked');
             region.setAttribute('aria-selected', 'true');
             if (svgMap) svgMap.classList.add('has-active', 'has-locked');
-            if (region.parentNode) region.parentNode.appendChild(region);
+            if (region.parentNode) {
+              region.parentNode.appendChild(region);
+              (region as HTMLElement).focus();
+            }
           }
         };
 
