@@ -1,5 +1,16 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector 1400px Container Max-Width & Click-Locking State Verification
+- **Branch**: `task/sales-rep-locking-1400px-1785348772`
+- **Goal**: Verify max-width 1400px container containment and click-locking state logic on `SalesRepRegionSelector.astro` and layout SCSS stylesheets (`mobile.scss` & `desktop.scss`).
+- **Implementation**:
+  1. **1400px Max-Width Layout**: Verified single-source-of-truth 1400px containment on `e3-sales-rep-selector` and `.sales-rep-selector` in `SalesRepRegionSelector.astro` and `desktop.scss`. Enforced explicit 1400px max-width containment on wrapper elements containing `e3-sales-rep-selector` in `src/styles/mobile.scss` (`> *:has(e3-sales-rep-selector, e3-texas-region-selector)`).
+  2. **Click-Locking Mechanics Verification**:
+     - **Click to Lock**: Clicking a region locks it in place (`isLocked = true`, `lockedRegionId = regionId`), highlights the region (`active` and `locked` classes, `aria-selected="true"`), displays rep card details (`showRep`), and raises region in layer stacking order.
+     - **Hover & Leave Suppression**: When locked, `mouseenter` and `mouseleave` handlers exit immediately, ignoring hovering over other regions and preventing selection clearing. Visual hover glow on other regions is suppressed via `.has-locked` CSS.
+     - **Lock Persistence**: Clicking outside the component or re-clicking the currently locked region does NOT unlock it.
+     - **Region Switch**: Clicking a DIFFERENT region safely updates `lockedRegionId` to the newly selected region.
+- **Verification**: Built Astro project cleanly with zero errors (`200 page(s) built in 6.65s`). Updated `progress.MD` and `docs/CURRENT_STATE.md`.
 
 ## [2026-07-29] SalesRepRegionSelector 1400px Hard Containment Architecture & Grid Breakout Refactoring
 - **Branch**: `task/rep-selector-lock-1400px-1785348452`

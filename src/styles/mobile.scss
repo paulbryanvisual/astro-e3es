@@ -4804,6 +4804,12 @@ main > .wp-block-e3es-full-width-testimonial {
         padding-right: 1.5rem !important;
         box-sizing: border-box;
       }
+      > *:has(e3-sales-rep-selector, e3-texas-region-selector) {
+        width: 100%;
+        max-width: 1400px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
     }
 
     // Unconditionally remove margin-bottom from intro-banner to prevent spacing gaps at the top of pages
