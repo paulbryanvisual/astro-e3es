@@ -1,7 +1,22 @@
 # Current State
 
 
-## [2026-07-29] SalesRepRegionSelector 1400px Max-Width & Interactive Region Locking Refinement
+## [2026-07-29] SalesRepRegionSelector 1400px Max-Width & SCSS Container Integration
+- **Branch**: `task/sales-rep-lock-1400px-1785347183`
+- **Goal**: Analyze `/src/components/SalesRepRegionSelector.astro` and surrounding layout styles (`desktop.scss`, `mobile.scss`) to enforce a strict `1400px` max-width container, eliminate `!important` rule conflicts, and verify clean BEM layout hierarchy with zero inline styles.
+- **Implementation**:
+  1. **Component Container (`e3-sales-rep-selector` & `.sales-rep-selector`)**:
+     - Verified `max-width: 1400px; margin-left: auto; margin-right: auto; width: 100%;` on host web component `e3-sales-rep-selector` and inner grid container `.sales-rep-selector`.
+     - Preserved responsive padding (`padding: 0 20px` mobile, `40px` tablet, `60px` desktop) and vertical section spacing (`margin-top: 60px; margin-bottom: 60px` mobile, `80px` desktop).
+  2. **Surrounding Layout Container Support (`desktop.scss` & `mobile.scss`)**:
+     - Audited all parent wrapper containers (`.wp-block-group`, `.wp-block-columns`, `.has-background`, `.db-feature`).
+     - Excluded map region selectors (`e3-sales-rep-selector` and `e3-texas-region-selector`) from the restrictive `1200px` background container constraint in `mobile.scss` (`> *:not(.alignfull):not(:has(e3-sales-rep-selector, e3-texas-region-selector))`), allowing full `1400px` container expansion across viewports.
+  3. **Zero Inline Styles & Clean BEM**:
+     - Verified zero `style="..."` inline attributes exist in `SalesRepRegionSelector.astro`.
+     - Standardized BEM classes (`.sales-rep-selector__map-col`, `.sales-rep-selector__info-col`, `.sales-rep-selector__rep-card`, etc.) with clean SCSS `@include responsive-up` mixins.
+- **Verification**: Built site cleanly and confirmed port assignment `4008` via Localhost Port Manager (`http://astro-e3es.localhost:4008/k12`). Committed state changes cleanly to git.
+
+## [2026-07-29] SalesRepRegionSelector Interactive Region Locking Refinement
 - **Branch**: `task/rep-lock-1400px`
 - **Goal**: Enforce a strict max-width of 1400px on the Sales Rep Region Selector component with centered margins (`margin-left: auto; margin-right: auto; width: 100%; max-width: 1400px;`), and ensure the active region choice locks in on click without resetting when hovering over unselected regions or clicking outside.
 - **Implementation**:
