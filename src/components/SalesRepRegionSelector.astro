@@ -149,6 +149,14 @@
         northeast: 'North East Texas'
       };
       
+      const clearBtn = this.querySelector('.rep-clear-btn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', (e: Event) => {
+          e.stopPropagation();
+          this.unlockMap();
+        });
+      }
+
       regions.forEach(region => {
         const regionId = (region as HTMLElement).dataset.region || '';
         region.setAttribute('tabindex', '0');
@@ -158,6 +166,12 @@
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
+
+          if (this.isLocked && this.lockedRegionId === regionId) {
+            this.unlockMap();
+            (region as HTMLElement).focus();
+            return;
+          }
 
           if (regionId) {
             this.lockRegion(regionId, region as HTMLElement);
@@ -189,7 +203,7 @@
     }
 
     lockRegion(regionId: string, regionElement: HTMLElement) {
-      const regions = this.querySelectorAll('.texas-region');
+      const regions = this.querySelectorAll('.texas-region, .texas-region path');
       const svgMap = this.querySelector('.texas-svg-map');
 
       // Restore baseline SVG DOM order before elevating target region
@@ -216,7 +230,7 @@
     }
 
     unlockMap() {
-      const regions = this.querySelectorAll('.texas-region');
+      const regions = this.querySelectorAll('.texas-region, .texas-region path');
       const svgMap = this.querySelector('.texas-svg-map');
 
       this.isLocked = false;
@@ -249,7 +263,7 @@
     }
 
     unhoverRegion() {
-      const regions = this.querySelectorAll('.texas-region');
+      const regions = this.querySelectorAll('.texas-region, .texas-region path');
       const svgMap = this.querySelector('.texas-svg-map');
 
       regions.forEach(r => {
@@ -273,11 +287,13 @@
     showRep(regionId: string | null) {
       const repCard = this.querySelector('.sales-rep-selector__rep-card') as HTMLElement;
       const placeholder = this.querySelector('.sales-rep-selector__placeholder') as HTMLElement;
+      const infoCol = this.querySelector('.sales-rep-selector__info-col') as HTMLElement;
       if (!repCard || !placeholder) return;
 
       if (!regionId) {
           placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
           repCard.classList.add('sales-rep-selector__rep-card--hidden');
+          placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select a region on the map to find your representative.</p>';
           return;
       }
 
@@ -307,6 +323,7 @@
 
         const imgEl = this.querySelector('.rep-image') as HTMLImageElement;
         if (imgEl) {
+          imgEl.alt = `Photo of ${rep.name}`;
           if (rep.imageUrl) {
             imgEl.src = rep.imageUrl;
             imgEl.classList.remove('sales-rep-selector__photo--hidden');
@@ -328,11 +345,14 @@
         
         const labelEl = this.querySelector('.rep-region-label');
         if (labelEl) labelEl.textContent = (regionLabels[regionId] || 'Regional') + ' Representative';
-        
+
+        if (window.innerWidth < 992 && infoCol) {
+          infoCol.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       } else {
         placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
         repCard.classList.add('sales-rep-selector__rep-card--hidden');
-        placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
+        placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select a region on the map to find your representative.</p>';
       }
     }
   }
