@@ -28,7 +28,7 @@
             .texas-svg-map:not(.has-locked) .texas-region:hover path,
             .texas-region.active path,
             .texas-region.locked path {
-                filter: brightness(1.2) drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+                filter: brightness(1.15) drop-shadow(0 8px 24px rgba(0,0,0,0.15));
                 stroke: #ffffff;
                 stroke-width: 4px;
             }
@@ -340,6 +340,7 @@
 
     @include responsive-up($breakpoint-lg) {
       margin: 80px auto;
+      padding: 0 60px;
     }
   }
 
@@ -347,17 +348,32 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
 
     @include responsive-up($breakpoint-lg) {
       display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       align-items: flex-start;
       gap: 60px;
+    }
+
+    @include responsive-up($breakpoint-xl) {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 80px;
     }
 
     &__map-col {
       width: 100%;
       min-width: 0;
+    }
+
+    &__map {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     &__info-col {
@@ -366,14 +382,33 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+
+      @include responsive-up($breakpoint-lg) {
+        position: sticky;
+        top: 100px;
+      }
     }
 
     &__placeholder {
       background-color: var(--color-light-gray, #f4f6f5);
-      padding: 40px;
+      padding: 40px 30px;
       border-radius: 0;
       text-align: center;
-      border: 2px dashed #ccc;
+      border: 2px dashed var(--color-border, #ccc);
+      color: var(--color-text-main, #333333);
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.6;
+        color: var(--color-text-muted, #666666);
+      }
     }
   }
 
