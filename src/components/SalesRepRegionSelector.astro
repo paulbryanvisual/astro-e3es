@@ -386,16 +386,22 @@
     flex-direction: column;
     gap: 40px;
     width: 100%;
-    max-width: 100%;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 20px;
     box-sizing: border-box;
+
+    @include responsive-up($breakpoint-md) {
+      padding: 0 40px;
+    }
 
     @include responsive-up($breakpoint-lg) {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       align-items: flex-start;
       gap: 60px;
+      padding: 0 60px;
     }
 
     @include responsive-up($breakpoint-xl) {

@@ -642,7 +642,10 @@
     .has-background:has(e3-sales-rep-selector) > *:not(.alignfull),
     .has-background:has(e3-texas-region-selector) > *:not(.alignfull),
     .wp-block-group:has(e3-sales-rep-selector),
-    .wp-block-group:has(e3-texas-region-selector) {
+    .wp-block-group:has(e3-texas-region-selector),
+    .wp-block-columns:has(e3-sales-rep-selector),
+    e3-sales-rep-selector,
+    .sales-rep-selector {
       max-width: 1400px !important;
       width: 100%;
       margin-left: auto !important;
