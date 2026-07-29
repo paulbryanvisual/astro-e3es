@@ -10,20 +10,38 @@
         <defs>
           <style>
             .texas-svg-map { filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); max-width: 100%; margin: 0 auto; display: block; }
-            .texas-region { cursor: pointer; pointer-events: all; }
+            .texas-region { cursor: pointer; pointer-events: all; outline: none; }
             .texas-region path, .texas-region polygon, .texas-region rect { transition: all 0.3s ease; }
             
-            /* Dim inactive regions when one is hovered/active */
+            /* Dim inactive/unselected regions when one is active or locked */
             .texas-svg-map.has-active .texas-region:not(.active) path,
             .texas-svg-map.has-active .texas-region:not(.active) polygon,
-            .texas-svg-map.has-active .texas-region:not(.active) rect { 
+            .texas-svg-map.has-active .texas-region:not(.active) rect,
+            .texas-svg-map.has-locked .texas-region:not(.locked) path,
+            .texas-svg-map.has-locked .texas-region:not(.locked) polygon,
+            .texas-svg-map.has-locked .texas-region:not(.locked) rect { 
                 fill: #d3dbd5 !important;
                 transition: fill 0.3s ease;
             }
             
-            /* Active/Hover states */
-            .texas-region:hover path, .texas-region.active path { filter: brightness(1.2) drop-shadow(0 8px 16px rgba(0,0,0,0.5)); stroke: #ffffff; stroke-width: 4px; }
-            
+            /* Active/Locked states and normal hover when NOT locked */
+            .texas-svg-map:not(.has-locked) .texas-region:hover path,
+            .texas-region.active path,
+            .texas-region.locked path {
+                filter: brightness(1.2) drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+                stroke: #ffffff;
+                stroke-width: 4px;
+            }
+
+            /* Suppress visual hover glow on unselected regions while locked */
+            .texas-svg-map.has-locked .texas-region:not(.locked):hover path,
+            .texas-svg-map.has-locked .texas-region:not(.locked):hover polygon,
+            .texas-svg-map.has-locked .texas-region:not(.locked):hover rect {
+                filter: none !important;
+                stroke: none !important;
+                fill: #d3dbd5 !important;
+            }
+
             /* Region Base Colors from Prototype */
             #region-panhandle path { fill: #2b5434; }
             #region-north path { fill: #598e64; }
@@ -101,13 +119,13 @@
       
       try {
         if (this.dataset.regionMapB64) {
-            this.regionMap = JSON.parse(decodeURIComponent(atob(this.dataset.regionMapB64)));
+            this.regionMap = this.parseBase64Json(this.dataset.regionMapB64) || {};
         } else if (this.dataset.regionMap) {
             this.regionMap = JSON.parse(this.dataset.regionMap); // fallback
         }
         
         if (this.dataset.employeesB64) {
-            this.employees = JSON.parse(decodeURIComponent(atob(this.dataset.employeesB64)));
+            this.employees = this.parseBase64Json(this.dataset.employeesB64) || {};
         } else if (this.dataset.employees) {
             this.employees = JSON.parse(this.dataset.employees); // fallback
         }
@@ -116,8 +134,20 @@
       }
       
       this.appendChild(content);
-      
       this.setupInteractions();
+    }
+    
+    parseBase64Json(b64Str: string) {
+      try {
+        return JSON.parse(decodeURIComponent(escape(atob(b64Str))));
+      } catch (e) {
+        try {
+          return JSON.parse(atob(b64Str));
+        } catch (e2) {
+          console.error("Failed to decode base64 JSON:", e2);
+          return null;
+        }
+      }
     }
     
     setupInteractions() {
@@ -133,14 +163,61 @@
               });
           }
       }
+
+      const regionLabels: Record<string, string> = {
+        panhandle: 'Panhandle / West Texas',
+        north: 'North Texas',
+        central: 'Central Texas',
+        south: 'South Texas',
+        west: 'Far West Texas',
+        'hill-country': 'Hill Country',
+        southeast: 'South East Texas',
+        northeast: 'North East Texas'
+      };
       
       regions.forEach(region => {
+        const regionId = (region as HTMLElement).dataset.region || '';
+        region.setAttribute('tabindex', '0');
+        region.setAttribute('role', 'button');
+        region.setAttribute('aria-selected', 'false');
+        region.setAttribute('aria-label', `${regionLabels[regionId] || regionId} Region`);
+
+        const handleSelect = (e: Event) => {
+          e.stopPropagation();
+          if (region.classList.contains('locked')) {
+              // Do nothing if already locked
+              return;
+          }
+          if (regionId) {
+            this.showRep(regionId);
+            regions.forEach(r => {
+              r.classList.remove('active', 'locked');
+              r.setAttribute('aria-selected', 'false');
+            });
+            region.classList.add('active', 'locked');
+            region.setAttribute('aria-selected', 'true');
+            if (svgMap) svgMap.classList.add('has-active', 'has-locked');
+            if (region.parentNode) region.parentNode.appendChild(region);
+          }
+        };
+
+        // Click: lock the region
+        region.addEventListener('click', handleSelect);
+
+        // Keyboard navigation (Enter or Space)
+        region.addEventListener('keydown', (e: Event) => {
+          const keyEvent = e as KeyboardEvent;
+          if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+            keyEvent.preventDefault();
+            handleSelect(e);
+          }
+        });
+
         // Mouse enter: show rep if nothing is locked
         region.addEventListener('mouseenter', () => {
           const lockedRegion = this.querySelector('.texas-region.locked');
           if (lockedRegion) return; // Don't change on hover if a region is locked
           
-          const regionId = (region as HTMLElement).dataset.region;
           if (regionId) {
             this.showRep(regionId);
             regions.forEach(r => r.classList.remove('active'));
@@ -150,40 +227,20 @@
           }
         });
         
-        // Mouse leave: reset to placeholder (or locked rep)
+        // Mouse leave: reset to placeholder (or keep locked rep)
         region.addEventListener('mouseleave', () => {
           const lockedRegion = this.querySelector('.texas-region.locked');
           if (lockedRegion) {
               return; // Keep locked state
           }
           // Reset to default
-          regions.forEach(r => r.classList.remove('active'));
-          if (svgMap) svgMap.classList.remove('has-active');
+          regions.forEach(r => {
+            r.classList.remove('active');
+            r.setAttribute('aria-selected', 'false');
+          });
+          if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
           this.restoreRegionOrder();
           this.showRep(null);
-        });
-
-        // Click: lock the region
-        region.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const regionId = (region as HTMLElement).dataset.region;
-          
-          if (region.classList.contains('locked')) {
-              // Do nothing if already locked
-              return;
-          } else {
-              if (regionId) {
-                this.showRep(regionId);
-                regions.forEach(r => {
-                  r.classList.remove('active', 'locked');
-                  r.setAttribute('aria-selected', 'false');
-                });
-                region.classList.add('active', 'locked');
-                region.setAttribute('aria-selected', 'true');
-                if (svgMap) svgMap.classList.add('has-active');
-                if (region.parentNode) region.parentNode.appendChild(region);
-              }
-          }
         });
       });
     }
@@ -265,55 +322,63 @@
   }
 </script>
 
-<style is:global>
+<style lang="scss" is:global>
+  @use "../styles/variables" as *;
+  @use "../styles/mixins" as *;
+
   e3-sales-rep-selector {
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin: 60px auto;
-    padding: 0 40px;
+    margin: 40px auto;
+    padding: 0 20px;
     box-sizing: border-box;
-  }
-  
-  @media (max-width: 767px) {
-    e3-sales-rep-selector {
-      padding: 0 20px;
-      margin: 40px auto;
+
+    @include responsive-up($breakpoint-md) {
+      padding: 0 40px;
+      margin: 60px auto;
+    }
+
+    @include responsive-up($breakpoint-lg) {
+      margin: 80px auto;
     }
   }
-  
+
+  .sales-rep-selector-ui,
   .texas-region-selector-ui {
     display: flex;
     flex-direction: column;
     gap: 40px;
-  }
-  
-  .texas-region-selector-ui .map-column {
-    flex: 1.5;
-    min-width: 0;
-  }
-  
-  .texas-region-selector-ui .info-column {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  
-  .placeholder-card {
-    background-color: var(--color-light-gray, #f4f6f5);
-    padding: 40px;
-    border-radius: 8px;
-    text-align: center;
-    border: 2px dashed #ccc;
-  }
-  
-  @media (min-width: 992px) {
-    .texas-region-selector-ui {
-      flex-direction: row;
+
+    @include responsive-up($breakpoint-lg) {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       align-items: flex-start;
       gap: 60px;
     }
+
+    .map-column,
+    &__map-col {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .info-column,
+    &__info-col {
+      width: 100%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+
+  .placeholder-card,
+  .sales-rep-selector__placeholder {
+    background-color: var(--color-light-gray, #f4f6f5);
+    padding: 40px;
+    border-radius: 0;
+    text-align: center;
+    border: 2px dashed #ccc;
   }
 </style>
