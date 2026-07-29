@@ -4795,7 +4795,7 @@ main > .wp-block-e3es-full-width-testimonial {
     > .design-build__pillars,
     > .has-background {
       box-sizing: border-box;
-      > *:not(.alignfull) {
+      > *:not(.alignfull):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
         max-width: 1200px !important;
         margin-left: auto !important;
         margin-right: auto !important;
