@@ -1,6 +1,23 @@
 # Current State
 
-## [2026-07-29] SalesRepRegionSelector Click-Locking State & 1400px Max-Width Verification
+## [2026-07-29] SalesRepRegionSelector SVG Layer Elevation & Accessibility Refinement
+- **Branch**: `fix/region-selector-a11y-dom-elevation-202607291730`
+- **Goal**: Audit SVG layer elevation, keyboard accessibility, ARIA attributes, and DOM manipulation during region locking and unlocking in `SalesRepRegionSelector.astro`.
+- **Implementation**:
+  1. **SVG Layer Elevation Optimization (O(1) DOM Operations)**:
+     - Replaced redundant 17 DOM node mutations per hover cycle with `elevateRegion(regionElement: HTMLElement)`.
+     - Verified that `appendChild()` on SVG `<g>` nodes preserves native `addEventListener` subscriptions and class-based CSS selectors without event detachment.
+     - Added last-child checking (`if (parent.lastElementChild !== regionElement) parent.appendChild(regionElement);`) to eliminate unnecessary DOM mutations when hovering top elements.
+     - Updated `restoreRegionOrder()` with conditional order checking (`needsSort`) so DOM sorting is only performed when elements are out of position.
+  2. **WAI-ARIA & Screen Reader Fixes**:
+     - Replaced invalid `aria-selected` on `role="button"` elements with `aria-pressed="true"|"false"` per WAI-ARIA 1.2 specifications.
+     - Added `<div class="sr-only sales-rep-selector__status-announcer" aria-live="polite" aria-atomic="true"></div>` for deliberate status announcements upon locking or clearing regions.
+     - Removed `aria-live="polite"` from the main representative info column to eliminate screen reader announcement spam during hover movements.
+     - Added `aria-controls="find-your-rep"` to all region button elements to establish accessibility relationships.
+  3. **Focus Retention & Clear Button Focus Recovery**:
+     - Wrapped DOM re-ordering in focus-preservation logic (`activeEl && this.contains(activeEl)` check) so keyboard focus is retained across DOM operations.
+     - Resolved focus destruction when clicking `.rep-clear-btn` ("← Select Another Region") by programmatically transferring focus back to the previously locked SVG region element (`#region-${targetRegionId}`) after card dismissal.
+- **Verification**: Executed `npm run build` cleanly (200 page(s) built in 6.95s). All changes committed to git.
 - **Branch**: `task/region-selector-1400px-lock-202607291716`
 - **Goal**: Verify click-locking region selection logic (`isLocked`, `lockedRegionId`), mouseenter hover suppression while locked, click-outside lock persistence, click-another-region switching, and 1400px container max-width SCSS rules across all viewports.
 - **Implementation**:
