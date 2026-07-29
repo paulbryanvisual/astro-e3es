@@ -636,7 +636,9 @@
     .db-feature--map-spill .wp-block-columns .db-feature__image-wrapper { margin: -50px 0 -100px 50px; }
 
     .db-feature:has(e3-texas-region-selector) .wp-block-columns,
-    .db-feature:has(e3-texas-region-selector) .db-feature__container {
+    .db-feature:has(e3-texas-region-selector) .db-feature__container,
+    .db-feature:has(e3-sales-rep-selector) .wp-block-columns,
+    .db-feature:has(e3-sales-rep-selector) .db-feature__container {
       max-width: 1400px !important;
     }
   }
