@@ -1,5 +1,59 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector UX & Accessibility Interaction Logic Refactoring
+- **Branch**: `task/sales-rep-lock-1400px-1785362913`
+- **Goal**: Refactor `SalesRepRegionSelector.astro` click-locking and hover interaction logic from a UX & Accessibility perspective.
+- **Implementation**:
+  1. **Toggle Unlocking Behavior**:
+     - Updated `handleSelect` to check if `this.isLocked && this.lockedRegionId === regionId`. Clicking an already-locked region executes `unlockAll()`, clearing locked state (`isLocked = false`, `lockedRegionId = null`), removing `.active` and `.locked` classes, resetting `aria-pressed="false"`, clearing map state, restoring original SVG region order, showing default placeholder ("Find your Rep!"), and returning keyboard focus to the clicked region.
+  2. **WAI-ARIA & Screen Reader Enhancements**:
+     - Replaced invalid `aria-selected` attributes on `role="button"` elements with standard WAI-ARIA `aria-pressed="true|false"` toggle button attributes across all 8 regions.
+     - Added `aria-live="polite"` and `aria-atomic="true"` to `.sales-rep-selector__info-col` so representative details are automatically announced by screen readers when regions are locked, switched, or unlocked.
+     - Attached `Escape` key listener (`keydown`) allowing keyboard users to quickly clear active selection and return to overview without moving focus away.
+  3. **Clean Region Switching & Hover Gracefulness**:
+     - Switching between locked regions cleanly transfers the lock to the newly clicked region, updating attributes, rep details, and layer stacking order seamlessly.
+     - Preserved `this.isLocked` checks in `mouseenter` and `mouseleave` handlers to suppress unwanted preview card changes during hover over other regions while locked, ensuring visual stability and predictable interaction.
+- **Verification**: Executed clean build and committed changes to git.
+
+## [2026-07-29] SalesRepRegionSelector 1400px Container Max-Width & Click-Locking State Verification
+- **Branch**: `task/sales-rep-locking-1400px-1785348772`
+- **Goal**: Verify max-width 1400px container containment and click-locking state logic on `SalesRepRegionSelector.astro` and layout SCSS stylesheets (`mobile.scss` & `desktop.scss`).
+- **Implementation**:
+  1. **1400px Max-Width Layout**: Verified single-source-of-truth 1400px containment on `e3-sales-rep-selector` and `.sales-rep-selector` in `SalesRepRegionSelector.astro` and `desktop.scss`. Enforced explicit 1400px max-width containment on wrapper elements containing `e3-sales-rep-selector` in `src/styles/mobile.scss` (`> *:has(e3-sales-rep-selector, e3-texas-region-selector)`).
+  2. **Click-Locking Mechanics Verification**:
+     - **Click to Lock**: Clicking a region locks it in place (`isLocked = true`, `lockedRegionId = regionId`), highlights the region (`active` and `locked` classes, `aria-selected="true"`), displays rep card details (`showRep`), and raises region in layer stacking order.
+     - **Hover & Leave Suppression**: When locked, `mouseenter` and `mouseleave` handlers exit immediately, ignoring hovering over other regions and preventing selection clearing. Visual hover glow on other regions is suppressed via `.has-locked` CSS.
+     - **Lock Persistence**: Clicking outside the component or re-clicking the currently locked region does NOT unlock it.
+     - **Region Switch**: Clicking a DIFFERENT region safely updates `lockedRegionId` to the newly selected region.
+- **Verification**: Built Astro project cleanly with zero errors (`200 page(s) built in 6.65s`). Updated `progress.MD` and `docs/CURRENT_STATE.md`.
+
+## [2026-07-29] SalesRepRegionSelector 1400px Hard Containment Architecture & Grid Breakout Refactoring
+- **Branch**: `task/rep-selector-lock-1400px-1785348452`
+- **Goal**: Refactor `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss` to eliminate double-containment caps, enforce a single-source-of-truth hard `1400px` max-width content grid, and grant Gutenberg parent wrappers full-width grid breakout capability.
+- **Implementation**:
+  1. **Single Source of Truth 1400px Containment (`SalesRepRegionSelector.astro`)**:
+     - Set outer element `<e3-sales-rep-selector>` to `width: 100%; max-width: 100%;` with responsive side paddings (`20px` mobile $\rightarrow$ `40px` tablet $\rightarrow$ `60px` desktop $\rightarrow$ `80px` xl) and vertical section margins (`60px auto` mobile, `80px auto` desktop).
+     - Standardized inner `.sales-rep-selector` as the single source of truth for hard canvas containment (`max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box;`), enabling the content grid to expand to a full 1400px without inner padding shrinkage.
+  2. **Gutenberg Parent Container Breakout (`mobile.scss` & `desktop.scss`)**:
+     - Updated `mobile.scss` grid rules to include `:is(.wp-block-group, .wp-block-columns, .db-feature):has(e3-sales-rep-selector, e3-texas-region-selector)` in the `grid-column: full` breakout list, ensuring intermediate WordPress wrappers extend full-bleed.
+     - Refactored `desktop.scss` to reset parent wrappers (`max-width: 100%`) while retaining `.sales-rep-selector` `max-width: 1400px` centered alignment without `!important` rule clutter.
+  3. **Asymmetrical Grid & Sticky Card Mechanics**:
+     - Preserved asymmetrical desktop grid column proportions (`minmax(0, 1.35fr) minmax(0, 1fr)` at lg, `minmax(0, 1.4fr) minmax(0, 1fr)` at xl) to avoid 50/50 splits and maintain visual dominance of the SVG map.
+     - Maintained `align-items: flex-start` on `.sales-rep-selector` to support sticky rep card positioning (`position: sticky; top: 100px`) during scroll.
+- **Verification**: Executed `npm run build` cleanly (200 pages built in 10.17s with 0 errors).
+
+## [2026-07-29] SalesRepRegionSelector Interactive Region Locking Refinement
+- **Branch**: `task/rep-lock-1400px`
+- **Goal**: Enforce a strict max-width of 1400px on the Sales Rep Region Selector component with centered margins (`margin-left: auto; margin-right: auto; width: 100%; max-width: 1400px;`), and ensure the active region choice locks in on click without resetting when hovering over unselected regions or clicking outside.
+- **Implementation**:
+  1. **1400px Max-Width Layout**: Explicitly declared `width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto;` on both `e3-sales-rep-selector` and `.sales-rep-selector` in `src/components/SalesRepRegionSelector.astro` and `.texas-region-selector-ui` in `src/components/TexasRegionSelector.astro`.
+  2. **Bulletproof Click & Lock-In Mechanism**:
+     - **Click to Lock**: Clicking any region on the SVG map adds `.active` and `.locked` classes, sets `aria-selected="true"`, updates the sales rep contact card (`showRep(regionId)`), and appends the region element to the top of the SVG layer stack.
+     - **Hover Suppression**: When a region is locked, `.has-locked` is applied to the SVG map. Hovering over unselected regions while a region is locked is suppressed both functionally (`mouseenter` / `mouseleave` JS check for `.texas-region.locked`) and visually via CSS (`.texas-svg-map.has-locked .texas-region:not(.locked):hover path` overrides glow/stroke effects).
+     - **Lock Persistence**: Clicking the same region again or clicking outside the map/component does NOT clear or reset the locked selection.
+     - **Selecting Another Region**: Clicking a DIFFERENT region cleanly transfers the lock to the new region, updating `.active`, `.locked`, layer stacking order, and representative details.
+     - **Base64 JSON Resilience & Accessibility**: Added robust multi-try Base64 JSON parsing (`parseBase64Json`) to handle encoded data attributes safely, and attached `tabindex="0"`, `role="button"`, and keyboard handlers (`Enter` / `Space`) to each region `<g>` for WCAG keyboard accessibility.
+- **Verification**: Executed `npm run build` cleanly (200 pages built in 19.60s with 0 errors). Committed changes to `task/rep-lock-1400px`.
 
 ## [2026-07-16] K-12 Interactive Map Rendering Fixed
 - **Issue:** The custom element `<e3-texas-region-selector>` was completely missing from the Astro `set:html` output on the frontend K-12 page, despite being correctly output by the WordPress REST API.

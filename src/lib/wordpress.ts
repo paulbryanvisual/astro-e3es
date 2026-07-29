@@ -159,7 +159,6 @@ export function processWordPressHtml(html: string, slug?: string): string {
   // Fix WordPress's wptexturize breaking the HTML comment closing tag
   html = html.replace(/<!-- Interactive Texas Region Map \&\#8211;>/g, '');
 
-  // Fix unescaped HTML in map block JSON attributes to prevent Astro set:html parser failure
   html = html.replace(/<e3-texas-region-selector([^>]*)>/g, (match, p1) => {
     let newAttrs = p1.replace(/data-employees="([^"]*)"/g, (m, val) => {
         const rawJson = decodeHtmlEntities(val);
@@ -173,6 +172,21 @@ export function processWordPressHtml(html: string, slug?: string): string {
     });
     return `<e3-texas-region-selector${newAttrs}>`;
   });
+
+  html = html.replace(/<e3-sales-rep-selector([^>]*)>/g, (match, p1) => {
+    let newAttrs = p1.replace(/data-employees="([^"]*)"/g, (m, val) => {
+        const rawJson = decodeHtmlEntities(val);
+        const b64 = Buffer.from(rawJson).toString('base64');
+        return `data-employees-b64="${b64}"`;
+    });
+    newAttrs = newAttrs.replace(/data-region-map="([^"]*)"/g, (m, val) => {
+        const rawJson = decodeHtmlEntities(val);
+        const b64 = Buffer.from(rawJson).toString('base64');
+        return `data-region-map-b64="${b64}"`;
+    });
+    return `<e3-sales-rep-selector${newAttrs}>`;
+  });
+
 
   // Strip encoded HTML comment left behind by wptexturize
   html = html.replace(/&lt;!&#8211; Interactive Texas Region Map &#8211;&gt;/g, '');

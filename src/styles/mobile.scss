@@ -28,7 +28,7 @@ html, body {
 body {
     font-family: var(--font-main);
     color: var(--color-text-main);
-    line-height: 2;
+    line-height: 1.6;
     background-color: var(--color-bg-white);
 }
 
@@ -69,15 +69,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn--primary {
-    background-color: var(--color-tertiary);
+    background-color: #A95C00;
     color: var(--color-bg-white);
     border: 2px solid #ffffff;
 }
 
 .btn--primary:hover {
     background-color: #ffffff;
-    color: var(--color-tertiary);
-    border-color: var(--color-tertiary);
+    color: #A95C00;
+    border-color: #A95C00;
 }
 
 .btn--green {
@@ -3658,8 +3658,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Client Content Layout Constraints */
-main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content),
-.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner) {
+main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)),
+.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
   max-width: 1200px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -3669,7 +3669,7 @@ main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3
   padding-right: 2rem;
 }
 
-main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container) {
+main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
   max-width: 850px !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -4776,7 +4776,10 @@ main > .wp-block-e3es-full-width-testimonial {
     > .alignfull,
     > .map-section,
     > .design-build__pillars,
-    > .has-background {
+    > .has-background,
+    > e3-sales-rep-selector,
+    > e3-texas-region-selector,
+    > :is(.wp-block-group, .wp-block-columns, .db-feature):has(e3-sales-rep-selector, e3-texas-region-selector) {
       grid-column: full;
       width: 100%;
       padding-left: 0 !important;
@@ -4793,13 +4796,19 @@ main > .wp-block-e3es-full-width-testimonial {
     > .design-build__pillars,
     > .has-background {
       box-sizing: border-box;
-      > *:not(.alignfull) {
+      > *:not(.alignfull):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
         max-width: 1200px !important;
         margin-left: auto !important;
         margin-right: auto !important;
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
         box-sizing: border-box;
+      }
+      > *:has(e3-sales-rep-selector, e3-texas-region-selector) {
+        width: 100%;
+        max-width: 1400px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
     }
 
@@ -5059,6 +5068,10 @@ main, .editor-styles-wrapper {
     gap: 2rem;
     align-items: center;
     width: 100%;
+
+    &:has(e3-sales-rep-selector, e3-texas-region-selector) {
+      max-width: 1400px !important;
+    }
   }
   .map-left {
     width: 100%;

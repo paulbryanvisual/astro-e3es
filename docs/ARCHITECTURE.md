@@ -36,6 +36,10 @@
 - **CSS Staggering**: Texas map SVG elements animate their regions (.texas-region) sequentially. The CSS resides globally in `src/styles/mobile.scss` to allow map blocks to trigger correctly regardless of whether they are rendered dynamically by WordPress or statically in Astro.
 - **Scroll Reveal**: Instead of executing unconditionally on DOM load, a global `IntersectionObserver` within `src/layouts/Layout.astro` triggers animations (`.is-visible`) when the SVG map enters the viewport. This is more resilient for maps placed lower down on the page (like K-12).
 
+## Sales Rep Region Selector Component
+- **1400px Max-Width Container**: Standardized outer container bounds in `SalesRepRegionSelector.astro` with `display: block; width: 100%; max-width: 1400px; margin: 40px auto; padding: 0 40px; box-sizing: border-box;` for responsive centering within screen constraints up to 1400px canvas width.
+- **Interactive Region Locking**: Clicking a map region locks its selection by adding `.active` and `.locked` classes and `aria-selected="true"`. Hover state previews (`mouseenter`) are bypassed while any region is locked. Clicking the locked region again or outside the map preserves the selection, while clicking a different region transitions the lock state to the newly clicked region.
+
 ## Design-Build Column Constraints
 - **1200px Grid Bounds**: Consistent with user layout restraints, standard Design-Build columns layout constraints are set to a max-width of `1200px` and centered on the page.
 - **Editor Synchronization**: SCSS files (`src/styles/mobile.scss` and `src/styles/desktop.scss`) configure these limits for both the frontend rendering and Gutenberg editor styling overrides. This prevents layout differences between the block editor view and the frontend.

@@ -634,10 +634,28 @@
 
   @include responsive-up($breakpoint-lg) {
     .db-feature--map-spill .wp-block-columns .db-feature__image-wrapper { margin: -50px 0 -100px 50px; }
+  }
 
-    .db-feature:has(e3-texas-region-selector) .wp-block-columns,
-    .db-feature:has(e3-texas-region-selector) .db-feature__container {
-      max-width: 1400px !important;
-    }
+  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector) .wp-block-columns,
+  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector) .db-feature__container,
+  .has-background:has(e3-sales-rep-selector, e3-texas-region-selector) > *:not(.alignfull),
+  .wp-block-group:has(e3-sales-rep-selector, e3-texas-region-selector),
+  .wp-block-columns:has(e3-sales-rep-selector, e3-texas-region-selector),
+  .map-section:has(e3-sales-rep-selector, e3-texas-region-selector) .map-container,
+  .map-container:has(e3-sales-rep-selector, e3-texas-region-selector),
+  :is(.wp-block-group, .wp-block-columns, .wp-block-cover, .db-feature, .map-section):has(e3-sales-rep-selector, e3-texas-region-selector),
+  e3-sales-rep-selector,
+  e3-texas-region-selector {
+    width: 100%;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .sales-rep-selector {
+    max-width: 1400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
