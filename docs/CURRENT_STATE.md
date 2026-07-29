@@ -1,5 +1,59 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector SVG Layer Elevation & Accessibility Refinement
+- **Branch**: `fix/region-selector-a11y-dom-elevation-202607291730`
+- **Goal**: Audit SVG layer elevation, keyboard accessibility, ARIA attributes, and DOM manipulation during region locking and unlocking in `SalesRepRegionSelector.astro`.
+- **Implementation**:
+  1. **SVG Layer Elevation Optimization (O(1) DOM Operations)**:
+     - Replaced redundant 17 DOM node mutations per hover cycle with `elevateRegion(regionElement: HTMLElement)`.
+     - Verified that `appendChild()` on SVG `<g>` nodes preserves native `addEventListener` subscriptions and class-based CSS selectors without event detachment.
+     - Added last-child checking (`if (parent.lastElementChild !== regionElement) parent.appendChild(regionElement);`) to eliminate unnecessary DOM mutations when hovering top elements.
+     - Updated `restoreRegionOrder()` with conditional order checking (`needsSort`) so DOM sorting is only performed when elements are out of position.
+  2. **WAI-ARIA & Screen Reader Fixes**:
+     - Replaced invalid `aria-selected` on `role="button"` elements with `aria-pressed="true"|"false"` per WAI-ARIA 1.2 specifications.
+     - Added `<div class="sr-only sales-rep-selector__status-announcer" aria-live="polite" aria-atomic="true"></div>` for deliberate status announcements upon locking or clearing regions.
+     - Removed `aria-live="polite"` from the main representative info column to eliminate screen reader announcement spam during hover movements.
+     - Added `aria-controls="find-your-rep"` to all region button elements to establish accessibility relationships.
+  3. **Focus Retention & Clear Button Focus Recovery**:
+     - Wrapped DOM re-ordering in focus-preservation logic (`activeEl && this.contains(activeEl)` check) so keyboard focus is retained across DOM operations.
+     - Resolved focus destruction when clicking `.rep-clear-btn` ("← Select Another Region") by programmatically transferring focus back to the previously locked SVG region element (`#region-${targetRegionId}`) after card dismissal.
+- **Verification**: Executed `npm run build` cleanly (200 page(s) built in 6.95s). All changes committed to git.
+- **Branch**: `task/region-selector-1400px-lock-202607291716`
+- **Goal**: Verify click-locking region selection logic (`isLocked`, `lockedRegionId`), mouseenter hover suppression while locked, click-outside lock persistence, click-another-region switching, and 1400px container max-width SCSS rules across all viewports.
+- **Implementation**:
+  1. **Click-Locking Interaction Logic**: Inspected and verified `SalesRepRegionSelector.astro` interaction routines:
+     - `lockRegion`: Clicking any region sets `isLocked = true` and `lockedRegionId = regionId`, highlights the region (`active` and `locked` classes), displays representative card details (`showRep`), and elevates SVG DOM layer order.
+     - **Hover & Mouseleave Guards**: `mouseenter` and `mouseleave` handlers enforce `if (this.isLocked) return;`, bypassing selection changes and visual highlights on other regions while locked.
+     - **Lock Persistence**: Outside clicks and Escape key presses maintain the locked region selection intact (no document click dismiss listener).
+     - **Region Switching**: Clicking a different region updates `lockedRegionId` to the newly selected region and refreshes representative card details seamlessly.
+  2. **1400px Max-Width SCSS Restraints**:
+     - Verified single-source-of-truth 1400px container width rules in `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss`.
+     - Updated selector group in `desktop.scss` to explicitly include `.wp-block-e3es-sales-rep-region` so Gutenberg block wrappers are constrained to 1400px max-width centered layout.
+  3. **Automated Logical Verification**: Created and executed `verify_selector.js` unit test suite, confirming 8/8 assertions passed with 0 errors.
+- **Verification**: Executed `npm run build` cleanly (200 page(s) built in 5.35s). Committed all modifications to git branch `task/region-selector-1400px-lock-202607291716`.
+
+## [2026-07-29] SalesRepRegionSelector Map Locking Logic & Dev Server Setup
+- **Branch**: `task/region-selector-1400px-lock-202607291716`
+- **Goal**: Verify map region locking logic (`isLocked`, `lockedRegionId`), mouseenter hover suppression while locked, click-to-switch region behavior, reset button callback (`unlockMap`), and localhost port management dev server configuration.
+- **Implementation**:
+  1. **Region Locking Verification**: Confirmed that `SalesRepRegionSelector.astro` enforces permanent lock on region click, ignores mouse hover over unselected regions while locked (`if (this.isLocked) return;`), updates rep details on clicking another region, and resets lock when clicking "← Select Another Region".
+  2. **Localhost Port Management**: Registered workspace with LPM on port 4008, confirmed active dev server and Caddy proxy forwarding at `http://astro-e3es.localhost:8080/k12`.
+  3. **Progress Log & Git**: Updated `progress.MD` with 3 sections, unique emojis, and clickable links. Committed all changes cleanly to Git branch.
+- **Verification**: Clean git branch, port 4008 registered with LPM, page successfully served via Caddy proxy.
+
+## [2026-07-29] SalesRepRegionSelector Permanent Selection Lock Refinement
+- **Branch**: `task/region-selector-lock-1400px`
+- **Goal**: Refine `SalesRepRegionSelector.astro` JS logic to enforce strict selection locking rules: clicking a region locks it, hovering when locked is ignored, clicking outside does not unlock, clicking the same region stays locked (no unlock), and ONLY clicking a DIFFERENT region changes lock and updates rep card.
+- **Implementation**:
+  1. **Strict Lock State Maintenance**:
+     - Updated `handleSelect` in `SalesRepRegionSelector.astro` to remove `this.unlockMap()` call when clicking an already-locked region (`this.isLocked && this.lockedRegionId === regionId`). Now, clicking the same region maintains focus without toggling off or clearing selection.
+  2. **Hover & Outside Click Immunity**:
+     - Maintained early return guards (`if (this.isLocked) return;`) in `mouseenter` and `mouseleave` handlers.
+     - Preserved empty `setupGlobalDismissListeners()` so outside clicks or Escape key presses leave the locked region intact.
+  3. **Region Switching Protocol**:
+     - Clicking a DIFFERENT region updates `lockedRegionId`, updates SVG layer styles/stacking order, and refreshes rep card details seamlessly.
+- **Verification**: Built and committed changes cleanly to git branch `task/region-selector-lock-1400px`.
+
 ## [2026-07-29] SalesRepRegionSelector UX & Accessibility Interaction Logic Refactoring
 - **Branch**: `task/sales-rep-lock-1400px-1785362913`
 - **Goal**: Refactor `SalesRepRegionSelector.astro` click-locking and hover interaction logic from a UX & Accessibility perspective.
@@ -567,3 +621,11 @@
     4. Authored clean BEM SCSS styles in `src/styles/mobile.scss` defining transition states, pulsing animations, and high-contrast visible focus rings (`:focus-visible`) for map interactive elements.
   - **Verification**: Verified successfully using `npm run build` and compiling styles via `node sync-styles.js`.
   - **Git Branches**: `task/contact-map-interactivity-20260710` (in both `astro-e3es` and `website` repositories).
+
+- **Sales Rep Region Selector Click-Locking & Defensiveness Guard** (July 29, 2026):
+  - **Goal**: Investigate and ensure bulletproof region selection and click-locking behavior in `SalesRepRegionSelector.astro`.
+  - **Implementation**:
+    1. Analyzed `SalesRepRegionSelector.astro` component architecture, SVG region interaction listeners, CSS `.has-locked` / `.has-active` classes, and rep card rendering logic.
+    2. Identified potential race conditions where fast mouse movements or async `mouseleave` events after clicking a region path could trigger `unhoverRegion()` and clear rep info or SVG locked styling.
+    3. Added explicit defensive guards `if (this.isLocked) return;` at the top of `hoverRegion()` and `unhoverRegion()` methods to ensure locked selections persist cleanly until another region or clear button is clicked.
+  - **Verification**: Verified code changes and committed to `task/rep-lock-1400px-1785348733`.
