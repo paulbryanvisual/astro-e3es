@@ -3669,7 +3669,7 @@ main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3
   padding-right: 2rem;
 }
 
-main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container) {
+main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
   max-width: 850px !important;
   margin-left: auto !important;
   margin-right: auto !important;
