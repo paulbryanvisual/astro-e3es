@@ -1,5 +1,18 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Permanent Selection Lock Refinement
+- **Branch**: `task/region-selector-lock-1400px`
+- **Goal**: Refine `SalesRepRegionSelector.astro` JS logic to enforce strict selection locking rules: clicking a region locks it, hovering when locked is ignored, clicking outside does not unlock, clicking the same region stays locked (no unlock), and ONLY clicking a DIFFERENT region changes lock and updates rep card.
+- **Implementation**:
+  1. **Strict Lock State Maintenance**:
+     - Updated `handleSelect` in `SalesRepRegionSelector.astro` to remove `this.unlockMap()` call when clicking an already-locked region (`this.isLocked && this.lockedRegionId === regionId`). Now, clicking the same region maintains focus without toggling off or clearing selection.
+  2. **Hover & Outside Click Immunity**:
+     - Maintained early return guards (`if (this.isLocked) return;`) in `mouseenter` and `mouseleave` handlers.
+     - Preserved empty `setupGlobalDismissListeners()` so outside clicks or Escape key presses leave the locked region intact.
+  3. **Region Switching Protocol**:
+     - Clicking a DIFFERENT region updates `lockedRegionId`, updates SVG layer styles/stacking order, and refreshes rep card details seamlessly.
+- **Verification**: Built and committed changes cleanly to git branch `task/region-selector-lock-1400px`.
+
 ## [2026-07-29] SalesRepRegionSelector UX & Accessibility Interaction Logic Refactoring
 - **Branch**: `task/sales-rep-lock-1400px-1785362913`
 - **Goal**: Refactor `SalesRepRegionSelector.astro` click-locking and hover interaction logic from a UX & Accessibility perspective.
