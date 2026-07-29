@@ -1,20 +1,20 @@
 # Current State
 
 
-## [2026-07-29] SalesRepRegionSelector 1400px Max-Width & SCSS Container Integration
-- **Branch**: `task/sales-rep-lock-1400px-1785347183`
-- **Goal**: Analyze `/src/components/SalesRepRegionSelector.astro` and surrounding layout styles (`desktop.scss`, `mobile.scss`) to enforce a strict `1400px` max-width container, eliminate `!important` rule conflicts, and verify clean BEM layout hierarchy with zero inline styles.
+## [2026-07-29] SalesRepRegionSelector 1400px Hard Containment Architecture & Grid Breakout Refactoring
+- **Branch**: `task/rep-selector-lock-1400px-1785348452`
+- **Goal**: Refactor `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss` to eliminate double-containment caps, enforce a single-source-of-truth hard `1400px` max-width content grid, and grant Gutenberg parent wrappers full-width grid breakout capability.
 - **Implementation**:
-  1. **Component Container (`e3-sales-rep-selector` & `.sales-rep-selector`)**:
-     - Verified `max-width: 1400px; margin-left: auto; margin-right: auto; width: 100%;` on host web component `e3-sales-rep-selector` and inner grid container `.sales-rep-selector`.
-     - Preserved responsive padding (`padding: 0 20px` mobile, `40px` tablet, `60px` desktop) and vertical section spacing (`margin-top: 60px; margin-bottom: 60px` mobile, `80px` desktop).
-  2. **Surrounding Layout Container Support (`desktop.scss` & `mobile.scss`)**:
-     - Audited all parent wrapper containers (`.wp-block-group`, `.wp-block-columns`, `.has-background`, `.db-feature`).
-     - Excluded map region selectors (`e3-sales-rep-selector` and `e3-texas-region-selector`) from the restrictive `1200px` background container constraint in `mobile.scss` (`> *:not(.alignfull):not(:has(e3-sales-rep-selector, e3-texas-region-selector))`), allowing full `1400px` container expansion across viewports.
-  3. **Zero Inline Styles & Clean BEM**:
-     - Verified zero `style="..."` inline attributes exist in `SalesRepRegionSelector.astro`.
-     - Standardized BEM classes (`.sales-rep-selector__map-col`, `.sales-rep-selector__info-col`, `.sales-rep-selector__rep-card`, etc.) with clean SCSS `@include responsive-up` mixins.
-- **Verification**: Built site cleanly and confirmed port assignment `4008` via Localhost Port Manager (`http://astro-e3es.localhost:4008/k12`). Committed state changes cleanly to git.
+  1. **Single Source of Truth 1400px Containment (`SalesRepRegionSelector.astro`)**:
+     - Set outer element `<e3-sales-rep-selector>` to `width: 100%; max-width: 100%;` with responsive side paddings (`20px` mobile $\rightarrow$ `40px` tablet $\rightarrow$ `60px` desktop $\rightarrow$ `80px` xl) and vertical section margins (`60px auto` mobile, `80px auto` desktop).
+     - Standardized inner `.sales-rep-selector` as the single source of truth for hard canvas containment (`max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box;`), enabling the content grid to expand to a full 1400px without inner padding shrinkage.
+  2. **Gutenberg Parent Container Breakout (`mobile.scss` & `desktop.scss`)**:
+     - Updated `mobile.scss` grid rules to include `:is(.wp-block-group, .wp-block-columns, .db-feature):has(e3-sales-rep-selector, e3-texas-region-selector)` in the `grid-column: full` breakout list, ensuring intermediate WordPress wrappers extend full-bleed.
+     - Refactored `desktop.scss` to reset parent wrappers (`max-width: 100%`) while retaining `.sales-rep-selector` `max-width: 1400px` centered alignment without `!important` rule clutter.
+  3. **Asymmetrical Grid & Sticky Card Mechanics**:
+     - Preserved asymmetrical desktop grid column proportions (`minmax(0, 1.35fr) minmax(0, 1fr)` at lg, `minmax(0, 1.4fr) minmax(0, 1fr)` at xl) to avoid 50/50 splits and maintain visual dominance of the SVG map.
+     - Maintained `align-items: flex-start` on `.sales-rep-selector` to support sticky rep card positioning (`position: sticky; top: 100px`) during scroll.
+- **Verification**: Executed `npm run build` cleanly (200 pages built in 10.17s with 0 errors).
 
 ## [2026-07-29] SalesRepRegionSelector Interactive Region Locking Refinement
 - **Branch**: `task/rep-lock-1400px`
