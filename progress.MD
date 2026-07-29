@@ -1,9 +1,20 @@
 # 📊 Project Progress Tracker
 
 ## 🔨 Section 1: Currently Working On
-*(None - task complete)*
+* 🔒 **Task 3: Analysis & JS Implementation of Region and Rep Choice Locking**
+  * 📁 Component File: [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  * 📁 Related Component File: [TexasRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/TexasRegionSelector.astro)
+  * 🌐 Review Link: [http://astro-e3es.localhost:4008/k12/](http://astro-e3es.localhost:4008/k12/)
+  * 🔍 Investigating state locking mechanism (isLocked, lockedRegionId, hover suppression, selection switching, and accessibility attributes).
+
 
 ## 🔍 Section 2: For Review
+* 📐 **Task 2: Technical Evaluation & SCSS Structural Analysis for SalesRepRegionSelector 1400px Max-Width Enforceability**
+  * 📁 Component File: [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  * 🎨 Desktop SCSS: [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L639-L657)
+  * 📱 Mobile SCSS: [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L4778-L4812)
+  * 🌐 Review link: [http://astro-e3es.localhost:4008/k12/](http://astro-e3es.localhost:4008/k12/)
+  * 🔒 Formulated technical solution decoupling host/inner padding, unifying 1400px max-width centering, fixing Gutenberg deep-nesting 1200px bottlenecks, and eliminating vertical margin collapse inside background wrappers.
 * 🗺️ **Task 1: SalesRepRegionSelector 1400px Max-Width & Grid Isolation Implementation**
   * 📁 Component File: [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
   * 🎨 Desktop Styles: [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L636-L656)
