@@ -1,6 +1,17 @@
 # Current State
 
 
+## [2026-07-29] SalesRepRegionSelector 1400px Max-Width & Click-Lock Refinement
+- **Goal**: Enforce a strict max-width of 1400px on the Sales Rep Region Selector component with centered margins, and ensure the active region choice locks in on click without resetting when hovering or clicking outside.
+- **Implementation**:
+  1. **1400px Max-Width Layout**: Updated the custom element container CSS in `src/components/SalesRepRegionSelector.astro` from `width: 100vw; position: relative; left: 50%; transform: translateX(-50%);` to `width: 100%; max-width: 1400px; margin: 40px auto; padding: 0 40px; box-sizing: border-box;`. This removes viewport breakout shifts and cleanly centers the section up to a hard 1400px bounds limit.
+  2. **Click Lock-In Behavior**: Verified and enhanced click event handling in `SalesRepRegionSelector.astro`:
+     - Clicking a region locks it as active (`active` and `locked` classes added, `aria-selected="true"` set).
+     - Hovering over other regions while locked does NOT change the active region rep card (`mouseenter` early return when `.texas-region.locked` exists).
+     - Clicking the same region again or clicking outside the map does NOT clear or unlock the selection.
+     - Only clicking a DIFFERENT region clears the previous lock and sets the new region as active & locked.
+- **Verification**: Executed `npm run build` successfully with 200 pages built cleanly in 5.16s.
+
 ## [2026-07-16] K-12 Interactive Map Rendering Fixed
 - **Issue:** The custom element `<e3-texas-region-selector>` was completely missing from the Astro `set:html` output on the frontend K-12 page, despite being correctly output by the WordPress REST API.
 - **Root Causes:**
