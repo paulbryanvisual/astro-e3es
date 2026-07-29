@@ -638,7 +638,11 @@
     .db-feature:has(e3-texas-region-selector) .wp-block-columns,
     .db-feature:has(e3-texas-region-selector) .db-feature__container,
     .db-feature:has(e3-sales-rep-selector) .wp-block-columns,
-    .db-feature:has(e3-sales-rep-selector) .db-feature__container {
+    .db-feature:has(e3-sales-rep-selector) .db-feature__container,
+    .has-background:has(e3-sales-rep-selector) > *:not(.alignfull),
+    .has-background:has(e3-texas-region-selector) > *:not(.alignfull),
+    .wp-block-group:has(e3-sales-rep-selector),
+    .wp-block-group:has(e3-texas-region-selector) {
       max-width: 1400px !important;
       width: 100%;
       margin-left: auto !important;
