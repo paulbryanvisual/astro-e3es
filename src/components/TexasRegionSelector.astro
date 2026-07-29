@@ -112,8 +112,8 @@
     
     <div class="info-column" id="find-your-rep">
       <div class="placeholder-card">
-        <h3>Find Your Representative</h3>
-        <p>Click on your region on the map to see the contact details of your dedicated educational facility expert.</p>
+        <h3>Find your Rep!</h3>
+        <p>Select your region and contact us to get started.</p>
       </div>
 
       <div class="rep-contact-card rep-card" style="display: none;">
@@ -123,7 +123,6 @@
         <p class="rep-contact-card__role rep-region-label subtitle" style="margin-bottom: 0;"></p>
         <h3 class="rep-contact-card__name rep-name"></h3>
         <p class="rep-contact-card__role rep-role"></p>
-        <div class="rep-contact-card__bio rep-quote"></div>
         <div class="rep-contact-card__buttons">
           <a href="" class="btn btn--primary rep-email">Email Representative</a>
         </div>
@@ -197,9 +196,6 @@
         const roleEl = this.querySelector('.rep-role');
         if (roleEl) roleEl.textContent = rep.role || '';
         
-        const quoteEl = this.querySelector('.rep-quote');
-        if (quoteEl) quoteEl.innerHTML = rep.quote || '';
-        
         const emailEl = this.querySelector('.rep-email') as HTMLAnchorElement;
         if (emailEl) emailEl.href = 'mailto:' + (rep.email || 'info@e3es.com');
         
@@ -230,7 +226,7 @@
       } else {
         placeholder.style.display = 'block';
         repCard.style.display = 'none';
-        placeholder.innerHTML = '<h3>No Representative Assigned</h3><p>Please select another region or contact us directly.</p>';
+        placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
       }
     }
   }
@@ -244,13 +240,18 @@
   e3-texas-region-selector {
     display: block;
     width: 100%;
-    margin: 40px 0;
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
   
   .texas-region-selector-ui {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
   }
   
   .texas-region-selector-ui .map-column {
@@ -268,8 +269,8 @@
   
   .placeholder-card {
     background-color: var(--color-light-gray, #f4f6f5);
-    padding: 40px;
-    border-radius: 8px;
+    padding: 40px 30px;
+    border-radius: 0;
     text-align: center;
     border: 2px dashed #ccc;
   }

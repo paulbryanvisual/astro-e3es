@@ -11,6 +11,7 @@
           <style>
             .texas-svg-map { filter: drop-shadow(0 8px 24px rgba(0,0,0,0.08)); max-width: 100%; margin: 0 auto; display: block; }
             .texas-region { cursor: pointer; pointer-events: all; outline: none; }
+            .texas-region:focus-visible { outline: 3px solid #215734; outline-offset: 4px; }
             .texas-region path, .texas-region polygon, .texas-region rect { transition: all 0.3s ease; }
             
             /* Dim inactive/unselected regions when one is active or locked */
@@ -284,6 +285,11 @@
             emailEl.textContent = `Email ${rep.name.split(' ')[0]}`;
         }
 
+        const phoneEl = this.querySelector('.rep-phone') as HTMLAnchorElement;
+        if (phoneEl) {
+            phoneEl.href = rep.phone ? ('tel:' + rep.phone.replace(/[^0-9+]/g, '')) : 'tel:+18005551234';
+        }
+
         
         const imgEl = this.querySelector('.rep-image') as HTMLImageElement;
         if (imgEl) {
@@ -330,7 +336,10 @@
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin: 60px auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
     padding: 0 20px;
     box-sizing: border-box;
 
@@ -339,7 +348,10 @@
     }
 
     @include responsive-up($breakpoint-lg) {
-      margin: 80px auto;
+      margin-top: 80px;
+      margin-bottom: 80px;
+      margin-left: auto;
+      margin-right: auto;
       padding: 0 60px;
     }
   }
@@ -350,7 +362,8 @@
     gap: 40px;
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-lg) {
