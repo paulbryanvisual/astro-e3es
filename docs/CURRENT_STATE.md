@@ -2,16 +2,17 @@
 
 
 ## [2026-07-29] SalesRepRegionSelector 1400px Max-Width & Interactive Region Locking Refinement
-- **Goal**: Enforce a strict max-width of 1400px on the Sales Rep Region Selector component with centered margins, and ensure the active region choice locks in on click without resetting when hovering over unselected regions or clicking outside.
+- **Branch**: `task/rep-lock-1400px`
+- **Goal**: Enforce a strict max-width of 1400px on the Sales Rep Region Selector component with centered margins (`margin-left: auto; margin-right: auto; width: 100%; max-width: 1400px;`), and ensure the active region choice locks in on click without resetting when hovering over unselected regions or clicking outside.
 - **Implementation**:
-  1. **1400px Max-Width Layout**: Updated the custom element container CSS in `src/components/SalesRepRegionSelector.astro` to `width: 100%; max-width: 1400px; margin: 60px auto; padding: 0 40px; box-sizing: border-box;`. This removes viewport breakout shifts and cleanly centers the section up to a hard 1400px bounds limit.
+  1. **1400px Max-Width Layout**: Explicitly declared `width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto;` on both `e3-sales-rep-selector` and `.sales-rep-selector` in `src/components/SalesRepRegionSelector.astro` and `.texas-region-selector-ui` in `src/components/TexasRegionSelector.astro`.
   2. **Bulletproof Click & Lock-In Mechanism**:
      - **Click to Lock**: Clicking any region on the SVG map adds `.active` and `.locked` classes, sets `aria-selected="true"`, updates the sales rep contact card (`showRep(regionId)`), and appends the region element to the top of the SVG layer stack.
      - **Hover Suppression**: When a region is locked, `.has-locked` is applied to the SVG map. Hovering over unselected regions while a region is locked is suppressed both functionally (`mouseenter` / `mouseleave` JS check for `.texas-region.locked`) and visually via CSS (`.texas-svg-map.has-locked .texas-region:not(.locked):hover path` overrides glow/stroke effects).
      - **Lock Persistence**: Clicking the same region again or clicking outside the map/component does NOT clear or reset the locked selection.
      - **Selecting Another Region**: Clicking a DIFFERENT region cleanly transfers the lock to the new region, updating `.active`, `.locked`, layer stacking order, and representative details.
      - **Base64 JSON Resilience & Accessibility**: Added robust multi-try Base64 JSON parsing (`parseBase64Json`) to handle encoded data attributes safely, and attached `tabindex="0"`, `role="button"`, and keyboard handlers (`Enter` / `Space`) to each region `<g>` for WCAG keyboard accessibility.
-- **Verification**: Verified logic and committed changes cleanly to Git on `agent/sales-rep-layout-1400px-1785345722`.
+- **Verification**: Executed `npm run build` cleanly (200 pages built in 19.60s with 0 errors). Committed changes to `task/rep-lock-1400px`.
 
 ## [2026-07-16] K-12 Interactive Map Rendering Fixed
 - **Issue:** The custom element `<e3-texas-region-selector>` was completely missing from the Astro `set:html` output on the frontend K-12 page, despite being correctly output by the WordPress REST API.
