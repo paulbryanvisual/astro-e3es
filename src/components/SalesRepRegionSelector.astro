@@ -168,7 +168,6 @@
           e.stopPropagation();
 
           if (this.isLocked && this.lockedRegionId === regionId) {
-            this.unlockMap();
             (region as HTMLElement).focus();
             return;
           }
@@ -366,11 +365,11 @@
   @use "../styles/variables" as *;
   @use "../styles/mixins" as *;
 
-  /* Custom Element Container Constraint (Strict 1400px Max-Width Canvas) */
+  /* Custom Element Container Constraint (Strict 1440px Max-Width Canvas) */
   e3-sales-rep-selector {
     display: block;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1440px;
     margin-top: 60px;
     margin-bottom: 60px;
     margin-left: auto;
@@ -422,6 +421,8 @@
       @include responsive-up($breakpoint-lg) {
         position: sticky;
         top: 100px;
+        z-index: 10;
+        align-self: start;
       }
     }
 
@@ -434,7 +435,7 @@
       color: var(--color-text-main, #1a1a1a);
 
       @include responsive-up($breakpoint-lg) {
-        padding: 60px 40px;
+        padding: 60px 60px;
       }
 
       &--hidden {
@@ -464,7 +465,7 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 
       @include responsive-up($breakpoint-lg) {
-        padding: 60px 40px;
+        padding: 60px 60px;
       }
 
       &--hidden {
@@ -521,6 +522,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
+      margin-bottom: 32px;
     }
 
     &__btn {
@@ -534,6 +536,32 @@
       text-decoration: none;
       font-weight: 600;
       transition: all 0.2s ease;
+
+      &:focus-visible {
+        outline: 3px solid #005fcc;
+        outline-offset: 3px;
+      }
+    }
+
+    &__clear-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-primary, #215734);
+      background-color: transparent;
+      border: 1px solid var(--color-primary, #215734);
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-primary, #215734);
+        color: #ffffff;
+      }
 
       &:focus-visible {
         outline: 3px solid #005fcc;
