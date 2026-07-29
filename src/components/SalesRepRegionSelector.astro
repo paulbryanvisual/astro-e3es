@@ -64,6 +64,8 @@
     employees: any = {};
     isLocked: boolean = false;
     lockedRegionId: string | null = null;
+    private outsideClickListener: ((e: MouseEvent) => void) | null = null;
+    private escapeKeyListener: ((e: KeyboardEvent) => void) | null = null;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -91,8 +93,18 @@
       
       this.appendChild(content);
       this.setupInteractions();
+      this.setupGlobalDismissListeners();
     }
     
+    disconnectedCallback() {
+      if (this.outsideClickListener) {
+        document.removeEventListener('click', this.outsideClickListener);
+      }
+      if (this.escapeKeyListener) {
+        document.removeEventListener('keydown', this.escapeKeyListener);
+      }
+    }
+
     parseBase64Json(b64Str: string) {
       try {
         return JSON.parse(decodeURIComponent(escape(atob(b64Str))));
@@ -106,9 +118,31 @@
       }
     }
     
+    setupGlobalDismissListeners() {
+      this.outsideClickListener = (e: MouseEvent) => {
+        if (this.isLocked && !this.contains(e.target as Node)) {
+          this.unlockMap();
+        }
+      };
+      document.addEventListener('click', this.outsideClickListener);
+
+      this.escapeKeyListener = (e: KeyboardEvent) => {
+        if (this.isLocked && e.key === 'Escape') {
+          this.unlockMap();
+        }
+      };
+      document.addEventListener('keydown', this.escapeKeyListener);
+    }
+
     setupInteractions() {
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
+      const infoCol = this.querySelector('.sales-rep-selector__info-col');
+      
+      if (infoCol) {
+        infoCol.setAttribute('aria-live', 'polite');
+        infoCol.setAttribute('aria-atomic', 'true');
+      }
       
       if (svgMap) {
           const parent = this.querySelector('#Layer_1');
@@ -130,17 +164,31 @@
         northeast: 'North East Texas'
       };
       
+      const unlockAll = () => {
+        this.isLocked = false;
+        this.lockedRegionId = null;
+        regions.forEach(r => {
+          r.classList.remove('active', 'locked');
+          r.setAttribute('aria-pressed', 'false');
+        });
+        if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+        this.restoreRegionOrder();
+        this.showRep(null);
+      };
+      
       regions.forEach(region => {
         const regionId = (region as HTMLElement).dataset.region || '';
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
-        region.setAttribute('aria-selected', 'false');
+        region.setAttribute('aria-pressed', 'false');
         region.setAttribute('aria-label', `${regionLabels[regionId] || regionId} Region`);
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
 
           if (this.isLocked && this.lockedRegionId === regionId) {
+            unlockAll();
+            (region as HTMLElement).focus();
             return;
           }
 
@@ -151,12 +199,15 @@
 
             regions.forEach(r => {
               r.classList.remove('active', 'locked');
-              r.setAttribute('aria-selected', 'false');
+              r.setAttribute('aria-pressed', 'false');
             });
             region.classList.add('active', 'locked');
-            region.setAttribute('aria-selected', 'true');
+            region.setAttribute('aria-pressed', 'true');
 
-            if (svgMap) svgMap.classList.add('has-active', 'has-locked');
+            if (svgMap) {
+              svgMap.classList.remove('has-active');
+              svgMap.classList.add('has-locked');
+            }
             if (region.parentNode) {
               region.parentNode.appendChild(region);
               (region as HTMLElement).focus();
@@ -171,6 +222,10 @@
           if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
             keyEvent.preventDefault();
             handleSelect(e);
+          } else if (keyEvent.key === 'Escape' && this.isLocked) {
+            keyEvent.preventDefault();
+            unlockAll();
+            (region as HTMLElement).focus();
           }
         });
 
@@ -179,8 +234,12 @@
           
           if (regionId) {
             this.showRep(regionId);
-            regions.forEach(r => r.classList.remove('active'));
+            regions.forEach(r => {
+              r.classList.remove('active');
+              r.setAttribute('aria-pressed', 'false');
+            });
             region.classList.add('active');
+            region.setAttribute('aria-pressed', 'true');
             if (svgMap) svgMap.classList.add('has-active');
             if (region.parentNode) region.parentNode.appendChild(region);
           }
@@ -191,7 +250,7 @@
           
           regions.forEach(r => {
             r.classList.remove('active');
-            r.setAttribute('aria-selected', 'false');
+            r.setAttribute('aria-pressed', 'false');
           });
           if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
           this.restoreRegionOrder();
@@ -199,7 +258,80 @@
         });
       });
     }
-    
+
+    lockRegion(regionId: string, regionElement: HTMLElement) {
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      // Restore baseline SVG DOM order before elevating target region
+      this.restoreRegionOrder();
+
+      this.isLocked = true;
+      this.lockedRegionId = regionId;
+
+      regions.forEach(r => {
+        r.classList.remove('active', 'locked');
+        r.setAttribute('aria-selected', 'false');
+      });
+      regionElement.classList.add('active', 'locked');
+      regionElement.setAttribute('aria-selected', 'true');
+
+      if (svgMap) svgMap.classList.add('has-active', 'has-locked');
+
+      if (regionElement.parentNode) {
+        regionElement.parentNode.appendChild(regionElement);
+        regionElement.focus();
+      }
+
+      this.showRep(regionId);
+    }
+
+    unlockMap() {
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      this.isLocked = false;
+      this.lockedRegionId = null;
+
+      regions.forEach(r => {
+        r.classList.remove('active', 'locked');
+        r.setAttribute('aria-selected', 'false');
+      });
+
+      if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+
+      this.restoreRegionOrder();
+      this.showRep(null);
+    }
+
+    hoverRegion(regionId: string, regionElement: HTMLElement) {
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      this.restoreRegionOrder();
+
+      this.showRep(regionId);
+      regions.forEach(r => r.classList.remove('active'));
+      regionElement.classList.add('active');
+      if (svgMap) svgMap.classList.add('has-active');
+      if (regionElement.parentNode) {
+        regionElement.parentNode.appendChild(regionElement);
+      }
+    }
+
+    unhoverRegion() {
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      regions.forEach(r => {
+        r.classList.remove('active');
+        r.setAttribute('aria-selected', 'false');
+      });
+      if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+      this.restoreRegionOrder();
+      this.showRep(null);
+    }
+
     restoreRegionOrder() {
         const parent = this.querySelector('#Layer_1');
         if (parent) {
@@ -285,26 +417,29 @@
   @use "../styles/variables" as *;
   @use "../styles/mixins" as *;
 
-  /* Custom Element Container Constraint (Strict 1400px Max-Width) */
+  /* Custom Element Container Constraint (Strict 1400px Max-Width Canvas) */
   e3-sales-rep-selector {
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin: 60px auto;
-    padding: 0 20px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-md) {
-      padding: 0 32px;
+      padding-left: 32px;
+      padding-right: 32px;
     }
 
     @include responsive-up($breakpoint-lg) {
-      margin: 80px auto;
-      padding: 0 40px;
-    }
-
-    @include responsive-up($breakpoint-xl) {
-      padding: 0 40px;
+      margin-top: 80px;
+      margin-bottom: 80px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
@@ -312,10 +447,8 @@
   .sales-rep-selector {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-lg) {
