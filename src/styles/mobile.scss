@@ -3658,8 +3658,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Client Content Layout Constraints */
-main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content),
-.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner) {
+main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)),
+.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
   max-width: 1200px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -5068,6 +5068,10 @@ main, .editor-styles-wrapper {
     gap: 2rem;
     align-items: center;
     width: 100%;
+
+    &:has(e3-sales-rep-selector, e3-texas-region-selector) {
+      max-width: 1400px !important;
+    }
   }
   .map-left {
     width: 100%;

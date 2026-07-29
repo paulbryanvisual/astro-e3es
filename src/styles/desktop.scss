@@ -641,12 +641,15 @@
   .has-background:has(e3-sales-rep-selector, e3-texas-region-selector) > *:not(.alignfull),
   .wp-block-group:has(e3-sales-rep-selector, e3-texas-region-selector),
   .wp-block-columns:has(e3-sales-rep-selector, e3-texas-region-selector),
+  .map-section:has(e3-sales-rep-selector, e3-texas-region-selector) .map-container,
+  .map-container:has(e3-sales-rep-selector, e3-texas-region-selector),
+  :is(.wp-block-group, .wp-block-columns, .wp-block-cover, .db-feature, .map-section):has(e3-sales-rep-selector, e3-texas-region-selector),
   e3-sales-rep-selector,
   e3-texas-region-selector {
     width: 100%;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .sales-rep-selector {
