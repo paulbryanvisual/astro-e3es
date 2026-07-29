@@ -3,65 +3,10 @@
 // Defines the interactive map Web Component that shows Sales Reps on Hover and Click.
 ---
 <template id="sales-rep-map-template">
-  <div class="sales-rep-selector texas-region-selector-ui">
-    <div class="sales-rep-selector__map-col map-column">
+  <div class="sales-rep-selector">
+    <div class="sales-rep-selector__map-col">
       <?xml version="1.0" encoding="utf-8"?>
       <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map sales-rep-selector__map">
-        <defs>
-          <style>
-            .texas-svg-map { filter: drop-shadow(0 8px 24px rgba(0,0,0,0.08)); max-width: 100%; margin: 0 auto; display: block; }
-            .texas-region { cursor: pointer; pointer-events: all; outline: none; }
-            .texas-region:focus-visible { outline: 3px solid #215734; outline-offset: 4px; }
-            .texas-region path, .texas-region polygon, .texas-region rect { transition: all 0.3s ease; }
-            
-            /* Dim inactive/unselected regions when one is active or locked */
-            .texas-svg-map.has-active .texas-region:not(.active) path,
-            .texas-svg-map.has-active .texas-region:not(.active) polygon,
-            .texas-svg-map.has-active .texas-region:not(.active) rect,
-            .texas-svg-map.has-locked .texas-region:not(.locked) path,
-            .texas-svg-map.has-locked .texas-region:not(.locked) polygon,
-            .texas-svg-map.has-locked .texas-region:not(.locked) rect { 
-                fill: #d3dbd5 !important;
-                transition: fill 0.3s ease;
-            }
-            
-            /* Active/Locked states and normal hover when NOT locked */
-            .texas-svg-map:not(.has-locked) .texas-region:hover path,
-            .texas-svg-map:not(.has-locked) .texas-region:hover polygon,
-            .texas-svg-map:not(.has-locked) .texas-region:hover rect,
-            .texas-region.active path,
-            .texas-region.active polygon,
-            .texas-region.active rect,
-            .texas-region.locked path,
-            .texas-region.locked polygon,
-            .texas-region.locked rect {
-                filter: brightness(1.15) drop-shadow(0 8px 24px rgba(0,0,0,0.15));
-                stroke: #ffffff;
-                stroke-width: 4px;
-            }
-
-            /* Suppress visual hover glow on unselected regions while locked */
-            .texas-svg-map.has-locked .texas-region:not(.locked):hover path,
-            .texas-svg-map.has-locked .texas-region:not(.locked):hover polygon,
-            .texas-svg-map.has-locked .texas-region:not(.locked):hover rect {
-                filter: none !important;
-                stroke: none !important;
-                fill: #d3dbd5 !important;
-            }
-
-            /* Region Base Colors from Prototype */
-            #region-panhandle path { fill: #2b5434; }
-            #region-north path { fill: #598e64; }
-            #region-central path { fill: #31623d; }
-            #region-south path { fill: #034411; }
-            #region-west path { fill: #5b8764; }
-            #region-hill-country path { fill: #65b776; }
-            #region-southeast path { fill: #54725a; }
-            #region-northeast path { fill: #115620; }
-            
-            .client-star { fill: #ffffff; stroke: #215734; stroke-width: 2.5px; pointer-events: none; }
-          </style>
-        </defs>
         <g id="Layer_1" data-name="Layer 1">
           <g class="texas-region" data-region="panhandle" id="region-panhandle">
             <path d="M625.37,271.22c-3.01-.1-4.59-.27-6.39-3.06-6.58-9.19-16.48,14.39-19.8,2.98.36-12.2-8.33-1.94-8.68-9.28-.05-4.19-1.51-9.2-6.52-5.59-3.56.59-9.11-1.64-12.88-1.13-2.48-.02-1.4,6.05-4.73,4.49-6.32-7.95-15.5-1.81-23.12-6.03-3.75-3.62-10.11-1.56-14.61-3.1-2.33-1.43-.54-4.57-2.19-6.73-2.42-2.19-3.04-7.27-6.69-7.09-4.38-1.98-5.68-3.6-8.22,1.67-2.51.26-2.98-2.32-6.84-.25-10.36,5.8-11.52-9.11-19.29-11.6-1.46-1.04-4.6,0-5.36-1.51-1.15-34.93,1.6-104.83-1.86-133.08-55.21.18-122.84-1.67-173.01-2.19-1.76,103.62-6.17,210.23-9.82,313.06-27.93-.6-84.62-3.23-108.69-3.72-1.97,27.93-1.31,53.4-3.71,83.08-.94,7.07,1.81,8.26-6.01,10.84-4.13,6.35,5.25.95,6.4,18.25,1.89,5.53,5.99,9.43,8.57,14.47-.31,16.55-4.5,15.32,6.36,30.43.88,10.24,10.27,16.23,18.87,20.16,5.92,9.06,14.63,16.01,25.45,18.46,4.36,4.92,10.16,9.4,16.94,9.86,6.97,7.77,25.03,19.67,31.44,5.88,2.02-1.99,3.99-5.7,6.61-7.36,1.98-1,4.46-1.67,5.74-3.68,1.35-2.35-.84-5.87,1.16-8.11,3.61-4.48,3.61-10.47,6.72-15.26,1.02-4.57,4.97-7.46,6.35-11.46,4.79-2.35,10.8-1.55,15.86-2.66,3.34-1.38,3.24-8.25,8.02-4.82,9.84,5.84,10.08,2.93,19.54,5.2,3.29-.09,11.61.56,11.61.56,0,0,.22-29.67,1.17-33.49-.73-5.57,3.61-4.21,5.18-7.68-3.27-7.86,7.46-18.36-1.92-24.22-1.19-.7-3.29.1-3.66-1.63-2.85-13.26.88-20.67-11.7-20.97-2.88-.07-20.83-4.72-20.83-4.72l66.15,1.83s-.1-49.4.39-67.86c34.3-.18,102.16-2.52,134.48-.3,2.9,4.56,12.03,20.41,14.34,24.02,2.55,2.23,6.92-.89,10.06,0,2.14.45,2.61,2.32,4.1,1.84,4.84-3.34,15.89-8.44,19.17-12.65-11.29-23.53-5.92,5.32-22.26-27.27-.57-1.71,1.94-2.31,2.6-4.28.67-4.47.02-10.01.06-14.42-.17-2.93-4-1.41-5.52-2.68-.96-5.37-.47-20.63-.68-25.25.81-3.39,7.13.29,8.44-3.22.39-1.12.68-2.24,2.09-2.13,5.28-.02,20.58.06,26.87-.04.85-.06.81-.77.82-1.45.15-4.35-.61-21.34-.12-28.22,6.3-1.31,17.85-.4,24.51-1.2,1.75-4.97-.61-28.35-.03-34.32.1-.71-.37-1.25-.94-1.39Z"/>
@@ -82,7 +27,7 @@
             <path d="M672.48,678.22c13.46-9.72,28.22-22.41,41.81-32.02,10.15-6.35,22.56-10.98,32.23-18.06,1.68-1.69,14.33-7.97,5.07-7.47-22.72-13.6-6.74-7.08-17.69-18.17-1.13-3.88-.64-9.52-3.97-12.4-21.04-24.33.09-18.88-13.11-35.67-1.66-1.15-1.12-3.13-1.56-4.87-.92-2.86,1.16-5.4.25-8.49-.45-3.71-5.51-5.65-4.33-9.5.36-2.47,2.4-3.8,3.63-5.69,2.72-5.75-4.93-6.5-1.26-10.09,2.01-2.17,1.43-4.46-.63-6.23-3.33-6.42-2.97-13.01-3.37-20.23,1.21-7.68-5.92-13.11-5.26-20.51-2.89-6.36-10.24-21.38-.26-24.47,4.48-3.03,21.76-11.36,26.07-15.63.6-4.69-2-4.55-4.66-7.07-1.45-3.45-6.14-3.72-7.33-7.27-.43-3.09-11.6-27.06-14.35-27.57-3.94-1.98-7.56-8.14-12.72-6.39-7.76,4.01-23.92,16.72-31.24,18.24-3.72-2.32-5.95-11.46-10.08-13.29-6.87,1.37-17.13,4.25-23.43,6.63-1.98,2.95-4.16.87-6.28-.66-1.44-.97-2.12-.81-3.79.22-9.86,6.32-21.29,12.68-30.92,18.6-3.84,1.99,2.92,6.2-1.39,7.97-3.45,2.12-9.84,6.26-13.26,8.12-1.57.82-2.43-1.24-3.81-1.26-7.19,3.36-22.72,12.62-28.37,15.52-.83.43-1.68.97-1.74,1.96.02,3.79,4.01,3.65,6.81,4.11,3.1,1.01,5.91,3.71,9.19,2.82.44-.09.93-.09,1.1.36,1.21,5.87,3.71-.65,7.35,8.87,1.16,1.94,2.24,3.98,3.04,6.04.16,6.64,4.18,2.63,5,8.08.05,1.93,2.64,8.31-.49,7.89-37.61,2.53-28.68-10.1-29.35,28.7-.42,2.85-22.53-1.53-20.54,2.93,2,30.29-7.7,24.81,21.44,24.61,1.08-.08,1.93.15,1.89,1.36.12,3.37.31,17.01.42,21.23-.04,3.57,7.2,4.59,9.95,6.22,5.7.68,11.39-3.54,17.12-1.09,1.65.72,3.66.44,5.17.58,1.98,8.38,9.51,12.7,15.7,17.56.74,2.1-.04,6.67,2.93,7.51,14.07.29,10.85-5.19,20.74,7.03.66.89.99,1.24.37,1.94-3.22,2.88-22.52,19.45-26.17,22.66-1.02.7-.28,1.6.38,2.32,18.43,22.01,6.86,4.99,26.07,15.38,2,1.75,2.19,5.26,3.91,6.96,2.75,2.24,8.45.82,9.53,5.51,1.26,3.74,10.09,1.9,8.92,6.63-.7,2.77-9.16,13.12-6.96,14.55,2.63-.09,4.53,1.56,6.65,2.71,3.92.03,7.06.99,10.59,2.63,6.62.15,17.87,0,25-.32ZM577.95,564.78h0s.03-.04.03-.04l.02.02-.04.02h0ZM719.36,577.92h.08v-.17h.27l-.35.36v-.18h0ZM714.27,553.28l-.07.02-.02-.02h.1ZM709,500.18h.12l-.1.1-.02-.1h0ZM700.44,656.41l-.16-.66h.16v.66h0Z"/>
           </g>
           <g class="texas-region" data-region="southeast" id="region-southeast">
-            <path d="M867.07,461.62c-.95-2.6-1.22-6.24-2.56-8.76-2.65-1.95-3.51-5.24-5.69-7.88-2.35-6.24-3.33-14.65-10.32-17.95-7.47-8.02-20.65-4.73-31.29-5.5-9.1.86-3.53-14.17-12.97-13.24-18.92,1.96-37.87-5.22-24.74,22.06,1.62,2.68.6,5.49-2.43,6.62-5.57,1.62-6.98-6.92-11.43-8.18-10.08-1.8-21.42,1.52-31.33,4.72-2.85.36-.07-5.92-3.61-6.93-8.81,2.9-25.99,14.79-33.39,18.4-7.06,7.2,5.14,29.6,7.35,38.51,2.51,8.35-.21,17.76,4.38,25.73,2.59,6.5-2.34,5.75,2.13,13.86,0,3.67-4.32,6.72-3.76,10.14,1.53,4.71,5.21,8.55,3.57,13.95-1.15,7.4,7.8,9.61,5.22,16.63.06,1.71.77,3.45-.23,5.04-1.13,1.92-.15,3.78-.06,6.25-.46,3.45,1.67,5.88,4.25,7.9,2.26,2.36,3.49,5.41,5.88,7.62,3.28,3.28,2.57,8.31,4.34,12.35.74,1.76,2.05,3.11,2.76,4.53,1.03,1.87,1,4.35,2.77,5.76,11.1,2.99,10.16,12.85,17.29,9.77,11.7-3.13,18-14.61,27.23-21.54,5.9-4.12,13.81-9.49,19.93-13.84,3.82-2.78-.78-5.11,3.19-7.64,13.79-10.38,28.55-17.36,45.98-20.03,1.86-.14,4.1.13,3.81-2.16-.3-3.17-3.69-4.69-5.02-7.19-2.56-10.79,12.74-15.25,11.89-25.78-.48-3.85-.63-8.08-3.14-11.25-2.73-4.82,3.4-6.5.74-15.31,1.1-7.95,7.51-14.57,8.11-22.83.89-4.78-.16-9.24,1.16-13.83ZM808.34,410.84v.17l-.16-.16h.16ZM702.22,474.17c-.22-.03-1.55.68-.57-.2.16-.11.22-.32.3-.03.09.05.25.07.3.17l-.02.06Z"/>
+            <path d="M867.07,461.62c-.95-2.6-1.22-6.24-2.56-8.76-2.65-1.95-3.51-5.24-5.69-7.88-2.35-6.24-3.33-14.65-10.32-17.95-7.47-8.02-20.65-4.73-31.29-5.5-9.1.86-3.53-14.17-12.97-13.24-18.92,1.96-37.87-5.22-24.74,22.06,1.62,2.68.6,5.49-2.43,6.62-5.57,1.62-6.98-6.92-11.43-8.18-10.08-1.8-21.42,1.52-31.33,4.72-2.85.36-.07-5.92-3.61-6.93-8.81,2.9-25.99,14.79-33.39,18.4-7.06,7.2,5.14,29.6,7.35,38.51,2.51,8.35-.21,17.76,4.38,25.73,2.59,6.5-2.34,5.75,2.13,13.86,0,3.67-4.32,6.72-3.76,10.14,1.53,4.71,5.21,8.55,3.57,13.95-1.15,7.4,7.8,9.61,5.22,16.63.06,1.71.77,3.45-.23,5.04-1.13,1.92-.15,3.78-.06,6.25-.46,3.45,1.67,5.88,4.25,7.9,7.9,2.26,2.36,3.49,5.41,5.88,7.62,3.28,3.28,2.57,8.31,4.34,12.35.74,1.76,2.05,3.11,2.76,4.53,1.03,1.87,1,4.35,2.77,5.76,11.1,2.99,10.16,12.85,17.29,9.77,11.7-3.13,18-14.61,27.23-21.54,5.9-4.12,13.81-9.49,19.93-13.84,3.82-2.78-.78-5.11,3.19-7.64,13.79-10.38,28.55-17.36,45.98-20.03,1.86-.14,4.1.13,3.81-2.16-.3-3.17-3.69-4.69-5.02-7.19-2.56-10.79,12.74-15.25,11.89-25.78-.48-3.85-.63-8.08-3.14-11.25-2.73-4.82,3.4-6.5.74-15.31,1.1-7.95,7.51-14.57,8.11-22.83.89-4.78-.16-9.24,1.16-13.83ZM808.34,410.84v.17l-.16-.16h.16ZM702.22,474.17c-.22-.03-1.55.68-.57-.2.16-.11.22-.32.3-.03.09.05.25.07.3.17l-.02.06Z"/>
           </g>
           <g class="texas-region" data-region="northeast" id="region-northeast">
             <path d="M848.18,422.34c.89-12.68-9.57-17.6-15.25-26.33-3.7-36.34-2.49-70.91-6.57-107.61-6.78-6.62-18.34,4.41-24.48-3.92-4.17-2.02-8.95-3.94-13.61-4.88-2.88-1.94-5.54-3.83-9.19-3.64-3-.71-4.01-4.43-6.75-5.74-4.97-2.43-10.17-7.53-16.13-6.62-13.45,11.6-14.44,1.53-23.84,2.67-5.57,2.63-15.4,4.2-14.62,12.31.69,14.3.16,30.45.97,45.01-.29,2.87,1.29,6.88-.97,9.08-4.02,1.34-5.29,5.52-5.6,9.35-.72,3.07-5.34.93-4.85,5.33-.45,33.97,9.27,30.01-18.7,30.68-1.83.07-3.32.34-2.88,1.55.74,1.69,3.78,2.66,5.62,3.27,19.24,11.06,21.91,32.11,24.93,35.85s13.6,15.96,14.1,17.77c1.76,4.41,7.87-1.1,10.9-1.38,7.93-1.28,16.56-5.46,24.17-1.68,3.79,1.88,7.51,10.12,12.06,7.73,14.19-7.46-.43-19.42,2.17-25.66s19.6-3.2,24.2-4.14c8.26.8,1.61,14.68,11.76,13.37,5.88.31,15.17.85,21.64,1.2,4.42.16,10.05,3.08,10.91-3.57ZM806.42,289.91l.03-.12.08.68-.5-.17.39-.39h0ZM805.84,290.46l-.04.04h-.05s.09-.04.09-.04ZM735.58,267.46l-.14-.1.14-.55v.65h0Z"/>
@@ -91,20 +36,20 @@
       </svg>
     </div>
     
-    <div class="sales-rep-selector__info-col info-column" id="find-your-rep">
-      <div class="sales-rep-selector__placeholder placeholder-card">
+    <div class="sales-rep-selector__info-col" id="find-your-rep">
+      <div class="sales-rep-selector__placeholder">
         <h3>Find your Rep!</h3>
         <p>Select your region and contact us to get started.</p>
       </div>
 
-      <div class="sales-rep-selector__rep-card rep-contact-card rep-card sales-rep-selector__rep-card--hidden">
-        <div class="sales-rep-selector__photo-wrap rep-contact-card__photo-wrap">
-          <img src="" alt="Representative" class="sales-rep-selector__photo rep-contact-card__photo rep-image" />
+      <div class="sales-rep-selector__rep-card sales-rep-selector__rep-card--hidden">
+        <div class="sales-rep-selector__photo-wrap">
+          <img src="" alt="Representative" class="sales-rep-selector__photo rep-image" />
         </div>
-        <p class="sales-rep-selector__region-label rep-contact-card__role rep-contact-card__role--region rep-region-label subtitle"></p>
-        <h3 class="sales-rep-selector__rep-name rep-contact-card__name rep-name"></h3>
-        <p class="sales-rep-selector__rep-role rep-contact-card__role rep-role"></p>
-        <div class="sales-rep-selector__buttons rep-contact-card__buttons">
+        <p class="sales-rep-selector__region-label rep-region-label"></p>
+        <h3 class="sales-rep-selector__rep-name rep-name"></h3>
+        <p class="sales-rep-selector__rep-role rep-role"></p>
+        <div class="sales-rep-selector__buttons">
           <a href="" class="btn btn--primary sales-rep-selector__btn sales-rep-selector__btn--primary rep-email">Email</a>
           <a href="tel:+1" class="btn btn--outline sales-rep-selector__btn sales-rep-selector__btn--outline rep-phone">Schedule a Call</a>
         </div>
@@ -165,7 +110,6 @@
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
       
-      // Store original order of regions so we can restore it when none are active
       if (svgMap) {
           const parent = this.querySelector('#Layer_1');
           if (parent) {
@@ -196,7 +140,6 @@
         const handleSelect = (e: Event) => {
           e.stopPropagation();
 
-          // Clicking the same region when locked MUST NOT unlock or deselect it
           if (this.isLocked && this.lockedRegionId === regionId) {
             return;
           }
@@ -221,10 +164,8 @@
           }
         };
 
-        // Click: lock the region
         region.addEventListener('click', handleSelect);
 
-        // Keyboard navigation (Enter or Space)
         region.addEventListener('keydown', (e: Event) => {
           const keyEvent = e as KeyboardEvent;
           if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
@@ -233,9 +174,8 @@
           }
         });
 
-        // Mouse enter: show rep if nothing is locked
         region.addEventListener('mouseenter', () => {
-          if (this.isLocked) return; // Once locked, hovering over other regions does NOT switch rep card
+          if (this.isLocked) return;
           
           if (regionId) {
             this.showRep(regionId);
@@ -246,11 +186,9 @@
           }
         });
         
-        // Mouse leave: reset to placeholder unless locked
         region.addEventListener('mouseleave', () => {
-          if (this.isLocked) return; // Keep locked state and active rep card
+          if (this.isLocked) return;
           
-          // Reset to default when not locked
           regions.forEach(r => {
             r.classList.remove('active');
             r.setAttribute('aria-selected', 'false');
@@ -347,6 +285,7 @@
   @use "../styles/variables" as *;
   @use "../styles/mixins" as *;
 
+  /* Custom Element Container Constraint (Strict 1400px Max-Width) */
   e3-sales-rep-selector {
     display: block;
     width: 100%;
@@ -369,6 +308,7 @@
     }
   }
 
+  /* BEM Block: sales-rep-selector */
   .sales-rep-selector {
     display: flex;
     flex-direction: column;
@@ -385,20 +325,9 @@
       gap: 60px;
     }
 
-    @include responsive-up($breakpoint-xl) {
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 60px;
-    }
-
     &__map-col {
       width: 100%;
       min-width: 0;
-    }
-
-    &__map {
-      width: 100%;
-      height: auto;
-      display: block;
     }
 
     &__info-col {
@@ -416,11 +345,11 @@
 
     &__placeholder {
       background-color: var(--color-light-gray, #f4f6f5);
-      padding: 40px 30px;
+      padding: 60px 32px;
       border-radius: 0;
       text-align: center;
-      border: 2px dashed var(--color-border, #ccc);
-      color: var(--color-text-main, #333333);
+      border: 2px dashed var(--color-border-dark, #767676);
+      color: var(--color-text-main, #1a1a1a);
 
       @include responsive-up($breakpoint-lg) {
         padding: 60px 40px;
@@ -447,8 +376,8 @@
 
     &__rep-card {
       background-color: #ffffff;
-      border: 1px solid var(--color-border, #e0e0e0);
-      padding: 40px 30px;
+      border: 1px solid var(--color-border-card, #b0b0b0);
+      padding: 60px 32px;
       border-radius: 0;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 
@@ -517,6 +446,7 @@
       align-items: center;
       justify-content: center;
       min-height: 44px;
+      min-width: 120px;
       padding: 12px 24px;
       border-radius: 0;
       text-decoration: none;
@@ -524,19 +454,98 @@
       transition: all 0.2s ease;
 
       &:focus-visible {
-        outline: 3px solid #215734;
-        outline-offset: 4px;
+        outline: 3px solid #005fcc;
+        outline-offset: 3px;
       }
     }
   }
 
-  /* Support legacy class hooks alongside BEM */
+  /* Interactive SVG Texas Map Styling */
+  .texas-svg-map {
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.08));
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+
+    /* Inactive / dim state when another region is selected/active */
+    &.has-active .texas-region:not(.active) path,
+    &.has-active .texas-region:not(.active) polygon,
+    &.has-active .texas-region:not(.active) rect,
+    &.has-locked .texas-region:not(.locked) path,
+    &.has-locked .texas-region:not(.locked) polygon,
+    &.has-locked .texas-region:not(.locked) rect {
+      fill: #8e9b91 !important;
+      transition: fill 0.3s ease;
+    }
+
+    /* Suppress visual hover glow when map is locked */
+    &.has-locked .texas-region:not(.locked):hover path,
+    &.has-locked .texas-region:not(.locked):hover polygon,
+    &.has-locked .texas-region:not(.locked):hover rect {
+      filter: none !important;
+      stroke: none !important;
+      fill: #8e9b91 !important;
+    }
+
+    /* Hover & Active Region States */
+    &:not(.has-locked) .texas-region:hover path,
+    &:not(.has-locked) .texas-region:hover polygon,
+    &:not(.has-locked) .texas-region:hover rect,
+    .texas-region.active path,
+    .texas-region.active polygon,
+    .texas-region.active rect,
+    .texas-region.locked path,
+    .texas-region.locked polygon,
+    .texas-region.locked rect {
+      filter: brightness(1.15) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15));
+      stroke: #ffffff;
+      stroke-width: 4px;
+    }
+  }
+
+  /* Region Base Fills */
+  .texas-region {
+    cursor: pointer;
+    pointer-events: all;
+    outline: none;
+
+    path, polygon, rect {
+      transition: all 0.3s ease;
+    }
+
+    /* High-contrast focus state for keyboard navigation */
+    &:focus-visible {
+      outline: 3px solid #005fcc;
+      outline-offset: 3px;
+      
+      path, polygon, rect {
+        stroke: #ffffff;
+        stroke-width: 3px;
+      }
+    }
+
+    &#region-panhandle path { fill: #2b5434; }
+    &#region-north path { fill: #598e64; }
+    &#region-central path { fill: #31623d; }
+    &#region-south path { fill: #034411; }
+    &#region-west path { fill: #5b8764; }
+    &#region-hill-country path { fill: #4a985b; }
+    &#region-southeast path { fill: #54725a; }
+    &#region-northeast path { fill: #115620; }
+  }
+
+  .client-star {
+    fill: #ffffff;
+    stroke: #215734;
+    stroke-width: 2.5px;
+    pointer-events: none;
+  }
+
+  /* Support legacy wrapper class hooks */
   .texas-region-selector-ui {
     @extend .sales-rep-selector;
   }
-
   .rep-contact-card {
     @extend .sales-rep-selector__rep-card;
   }
 </style>
-

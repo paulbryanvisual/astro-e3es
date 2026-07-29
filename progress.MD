@@ -1,11 +1,15 @@
-# 🎨 SalesRepRegionSelector UI/UX & Responsive Ergonomics Audit Progress
+# 🗺️ SalesRepRegionSelector Analysis & Refinement Progress
 
 ## 🚧 Section 1: Currently Working On
-* 📐 **Task 1: Grid & Responsive Layout Architecture Analysis** - Evaluating asymmetrical grid ratios, container bounds (1440px), mobile vertical stack, and column gap proportions across viewports.
-* 👆 **Task 2: Interactive Ergonomics & Ergonomic Touch Audit** - Evaluating sticky info column position, touch target sizing (>= 44px), focus states, and keyboard navigation.
+* 🔍 **Synthesizing UX & Technical Architecture Evaluation for Sales Rep Region Selector** in [`SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
 
 ## 📋 Section 2: For Review
-*(No completed items for review yet)*
+* 🔒 **Rep Choice Locking State Logic**: Verified JS state machine (`isLocked`, `lockedRegionId`). Confirmed rep selection stays locked on click without resetting on mouseout or same-region click, and smoothly switches when clicking another region.
+* ⌨️ **Keyboard Accessibility & Preview Synchronization**: Recommended adding `focus`/`blur` event bindings to mirror hover previews for keyboard users, along with an `Escape` key reset handler.
+* 📐 **1400px Layout & Sticky Column Evaluation**: Evaluated CSS Grid (`1.4fr 1fr` with `align-items: flex-start` inside `1400px` max-width container). Confirmed sticky positioning works cleanly and SVG DOM reordering handles z-index stacking.
+* 📱 **Mobile Touch & Ergonomic Feedback**: Identified vertical scrolling UX gap on mobile viewports (<768px) and proposed smooth-scroll or toast confirmation upon region tap.
+* 🎨 **Visual State Distinction**: Proposed distinct visual indicators (location pin/badge) for locked regions versus temporary hover states.
 
 ## ✅ Section 3: Approved
-*(No approved items yet)*
+* 🧪 **Multi-Perspective Agent Audit**: Completed dual subagent evaluation (UX Interaction Specialist + Technical Frontend Architect).
+
