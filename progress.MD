@@ -1,18 +1,15 @@
 # 🚀 Project Progress Tracker
 
 ## 🛠️ Section 1: Currently Working On
-*(None)*
+* 🔄 **Local Dev Server & Sales Rep Selector Verification**
+  * 🌐 Local dev server running on port `4008` (Caddy domain: [http://astro-e3es.localhost:8080/k12/](http://astro-e3es.localhost:8080/k12/) or [http://localhost:4008/k12/](http://localhost:4008/k12/))
 
 ## 📋 Section 2: For Review
-* 📌 **Task 1: SalesRepRegionSelector max-width 1400px and Lock Mechanism Implementation**
-  * Created feature branch `task/rep-selector-lock-1400px-1785348452` following Strict Version Control Rules.
-  * Verified and implemented strict `max-width: 1400px; margin: 0 auto;` section max-width in SCSS.
-  * Implemented explicit `isLocked` state tracking (`isLocked: boolean = false`, `lockedRegionId: string | null = null`) in `SalesRepRegionSelector.astro`.
-  * Prevented rep card switches on hover when locked (`if (this.isLocked) return;`).
-  * Updated active region and locked state when clicking a different region.
-  * Preserved lock on re-clicking the same region or clicking outside.
-  * Ensured BEM formatting and SCSS structure across mobile and desktop breakpoints.
-  * Code File: [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+* 🔒 **Task 1: Sales Rep Region Selector Max-Width & Locking Mechanism**
+  * 📐 Verified container and element max-width enforced at `1400px` (`max-width: 1400px; margin: 0 auto;`).
+  * 🔐 Verified interactive region locking logic (`isLocked: boolean`, `lockedRegionId: string | null`) in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L196-L262).
+  * 🛑 Ensured clicking locked regions maintains the lock state and hovering over other regions does not swap rep details while locked.
+  * 🌐 Interactive preview page ready for testing at: [http://astro-e3es.localhost:8080/k12/](http://astro-e3es.localhost:8080/k12/) (Localhost direct link: [http://localhost:4008/k12/](http://localhost:4008/k12/)).
 
 ## ✅ Section 3: Approved
 *(No items approved yet)*
