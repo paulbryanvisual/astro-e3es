@@ -1,6 +1,6 @@
 ---
 // SalesRepRegionSelector.astro
-// Defines the interactive map Web Component that shows Sales Reps on Hover.
+// Defines the interactive map Web Component that shows Sales Reps on Hover and Click.
 ---
 <template id="sales-rep-map-template">
   <div class="sales-rep-selector texas-region-selector-ui">
@@ -91,16 +91,16 @@
         <p>Select your region and contact us to get started.</p>
       </div>
 
-      <div class="rep-contact-card rep-card" style="display: none;">
-        <div class="rep-contact-card__photo-wrap">
-          <img src="" alt="Representative" class="rep-contact-card__photo rep-image" />
+      <div class="sales-rep-selector__rep-card rep-contact-card rep-card sales-rep-selector__rep-card--hidden">
+        <div class="sales-rep-selector__photo-wrap rep-contact-card__photo-wrap">
+          <img src="" alt="Representative" class="sales-rep-selector__photo rep-contact-card__photo rep-image" />
         </div>
-        <p class="rep-contact-card__role rep-contact-card__role--region rep-region-label subtitle"></p>
-        <h3 class="rep-contact-card__name rep-name"></h3>
-        <p class="rep-contact-card__role rep-role"></p>
-        <div class="rep-contact-card__buttons">
-          <a href="" class="btn btn--primary rep-email">Email</a>
-          <a href="tel:+1" class="btn btn--outline rep-phone">Schedule a Call</a>
+        <p class="sales-rep-selector__region-label rep-contact-card__role rep-contact-card__role--region rep-region-label subtitle"></p>
+        <h3 class="sales-rep-selector__rep-name rep-contact-card__name rep-name"></h3>
+        <p class="sales-rep-selector__rep-role rep-contact-card__role rep-role"></p>
+        <div class="sales-rep-selector__buttons rep-contact-card__buttons">
+          <a href="" class="btn btn--primary sales-rep-selector__btn sales-rep-selector__btn--primary rep-email">Email</a>
+          <a href="tel:+1" class="btn btn--outline sales-rep-selector__btn sales-rep-selector__btn--outline rep-phone">Schedule a Call</a>
         </div>
       </div>
     </div>
@@ -281,13 +281,13 @@
     }
     
     showRep(regionId: string | null) {
-      const repCard = this.querySelector('.rep-card') as HTMLElement;
-      const placeholder = this.querySelector('.placeholder-card') as HTMLElement;
+      const repCard = this.querySelector('.sales-rep-selector__rep-card') as HTMLElement;
+      const placeholder = this.querySelector('.sales-rep-selector__placeholder') as HTMLElement;
       if (!repCard || !placeholder) return;
 
       if (!regionId) {
-          placeholder.style.display = 'block';
-          repCard.style.display = 'none';
+          placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
+          repCard.classList.add('sales-rep-selector__rep-card--hidden');
           return;
       }
 
@@ -295,8 +295,8 @@
       const rep = this.employees[repId];
       
       if (rep) {
-        placeholder.style.display = 'none';
-        repCard.style.display = 'block';
+        placeholder.classList.add('sales-rep-selector__placeholder--hidden');
+        repCard.classList.remove('sales-rep-selector__rep-card--hidden');
         
         const nameEl = this.querySelector('.rep-name');
         if (nameEl) nameEl.textContent = `Meet ${rep.name.split(' ')[0]}`;
@@ -315,14 +315,13 @@
             phoneEl.href = rep.phone ? ('tel:' + rep.phone.replace(/[^0-9+]/g, '')) : 'tel:+18005551234';
         }
 
-        
         const imgEl = this.querySelector('.rep-image') as HTMLImageElement;
         if (imgEl) {
           if (rep.imageUrl) {
             imgEl.src = rep.imageUrl;
-            imgEl.style.display = 'block';
+            imgEl.classList.remove('sales-rep-selector__photo--hidden');
           } else {
-            imgEl.style.display = 'none';
+            imgEl.classList.add('sales-rep-selector__photo--hidden');
           }
         }
         
@@ -341,8 +340,8 @@
         if (labelEl) labelEl.textContent = (regionLabels[regionId] || 'Regional') + ' Representative';
         
       } else {
-        placeholder.style.display = 'block';
-        repCard.style.display = 'none';
+        placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
+        repCard.classList.add('sales-rep-selector__rep-card--hidden');
         placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
       }
     }
@@ -389,19 +388,13 @@
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 20px;
     box-sizing: border-box;
-
-    @include responsive-up($breakpoint-md) {
-      padding: 0 40px;
-    }
 
     @include responsive-up($breakpoint-lg) {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       align-items: flex-start;
       gap: 60px;
-      padding: 0 60px;
     }
 
     @include responsive-up($breakpoint-xl) {
@@ -441,17 +434,110 @@
       border: 2px dashed var(--color-border, #ccc);
       color: var(--color-text-main, #333333);
 
+      @include responsive-up($breakpoint-lg) {
+        padding: 60px 40px;
+      }
+
+      &--hidden {
+        display: none !important;
+      }
+
       h3 {
         margin-top: 0;
         margin-bottom: 12px;
         font-size: 1.5rem;
         font-weight: 700;
+        line-height: 1.3;
       }
 
       p {
         margin: 0;
         line-height: 1.6;
         color: var(--color-text-muted, #666666);
+      }
+    }
+
+    &__rep-card {
+      background-color: #ffffff;
+      border: 1px solid var(--color-border, #e0e0e0);
+      padding: 40px 30px;
+      border-radius: 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+      @include responsive-up($breakpoint-lg) {
+        padding: 60px 40px;
+      }
+
+      &--hidden {
+        display: none !important;
+      }
+    }
+
+    &__photo-wrap {
+      width: 100%;
+      max-width: 240px;
+      margin-bottom: 24px;
+    }
+
+    &__photo {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0;
+
+      &--hidden {
+        display: none !important;
+      }
+    }
+
+    &__region-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-primary, #215734);
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    &__rep-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      color: var(--color-text-main, #1a1a1a);
+    }
+
+    &__rep-role {
+      font-size: 1rem;
+      color: var(--color-text-muted, #666666);
+      margin-top: 0;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    &__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 24px;
+      border-radius: 0;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+
+      &:focus-visible {
+        outline: 3px solid #215734;
+        outline-offset: 4px;
       }
     }
   }
@@ -462,8 +548,7 @@
   }
 
   .rep-contact-card {
-    &__role--region {
-      margin-bottom: 0;
-    }
+    @extend .sales-rep-selector__rep-card;
   }
 </style>
+
