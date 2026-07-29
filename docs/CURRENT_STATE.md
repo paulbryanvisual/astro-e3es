@@ -1,5 +1,14 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Map Locking Logic & Dev Server Setup
+- **Branch**: `task/region-selector-1400px-lock-202607291716`
+- **Goal**: Verify map region locking logic (`isLocked`, `lockedRegionId`), mouseenter hover suppression while locked, click-to-switch region behavior, reset button callback (`unlockMap`), and localhost port management dev server configuration.
+- **Implementation**:
+  1. **Region Locking Verification**: Confirmed that `SalesRepRegionSelector.astro` enforces permanent lock on region click, ignores mouse hover over unselected regions while locked (`if (this.isLocked) return;`), updates rep details on clicking another region, and resets lock when clicking "← Select Another Region".
+  2. **Localhost Port Management**: Registered workspace with LPM on port 4008, confirmed active dev server and Caddy proxy forwarding at `http://astro-e3es.localhost:8080/k12`.
+  3. **Progress Log & Git**: Updated `progress.MD` with 3 sections, unique emojis, and clickable links. Committed all changes cleanly to Git branch.
+- **Verification**: Clean git branch, port 4008 registered with LPM, page successfully served via Caddy proxy.
+
 ## [2026-07-29] SalesRepRegionSelector Permanent Selection Lock Refinement
 - **Branch**: `task/region-selector-lock-1400px`
 - **Goal**: Refine `SalesRepRegionSelector.astro` JS logic to enforce strict selection locking rules: clicking a region locks it, hovering when locked is ignored, clicking outside does not unlock, clicking the same region stays locked (no unlock), and ONLY clicking a DIFFERENT region changes lock and updates rep card.
