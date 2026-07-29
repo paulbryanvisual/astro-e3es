@@ -117,6 +117,8 @@
   class SalesRepRegionSelector extends HTMLElement {
     regionMap: any = {};
     employees: any = {};
+    isLocked: boolean = false;
+    lockedRegionId: string | null = null;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -193,21 +195,24 @@
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
-          const isCurrentlyLocked = region.classList.contains('locked');
 
-          if (isCurrentlyLocked) {
-            // Re-clicking an already locked region MUST NOT unlock/deselect it.
+          // Clicking the same region when locked MUST NOT unlock or deselect it
+          if (this.isLocked && this.lockedRegionId === regionId) {
             return;
           }
 
           if (regionId) {
+            this.isLocked = true;
+            this.lockedRegionId = regionId;
             this.showRep(regionId);
+
             regions.forEach(r => {
               r.classList.remove('active', 'locked');
               r.setAttribute('aria-selected', 'false');
             });
             region.classList.add('active', 'locked');
             region.setAttribute('aria-selected', 'true');
+
             if (svgMap) svgMap.classList.add('has-active', 'has-locked');
             if (region.parentNode) {
               region.parentNode.appendChild(region);
@@ -230,8 +235,7 @@
 
         // Mouse enter: show rep if nothing is locked
         region.addEventListener('mouseenter', () => {
-          const lockedRegion = this.querySelector('.texas-region.locked');
-          if (lockedRegion) return; // Don't change on hover if a region is locked
+          if (this.isLocked) return; // Once locked, hovering over other regions does NOT switch rep card
           
           if (regionId) {
             this.showRep(regionId);
@@ -242,13 +246,11 @@
           }
         });
         
-        // Mouse leave: reset to placeholder (or keep locked rep)
+        // Mouse leave: reset to placeholder unless locked
         region.addEventListener('mouseleave', () => {
-          const lockedRegion = this.querySelector('.texas-region.locked');
-          if (lockedRegion) {
-              return; // Keep locked state
-          }
-          // Reset to default
+          if (this.isLocked) return; // Keep locked state and active rep card
+          
+          // Reset to default when not locked
           regions.forEach(r => {
             r.classList.remove('active');
             r.setAttribute('aria-selected', 'false');
@@ -349,10 +351,7 @@
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
-    margin-bottom: 60px;
+    margin: 60px auto;
     padding: 0 20px;
     box-sizing: border-box;
 
@@ -361,10 +360,7 @@
     }
 
     @include responsive-up($breakpoint-lg) {
-      margin-top: 80px;
-      margin-bottom: 80px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 80px auto;
       padding: 0 60px;
     }
 
@@ -379,8 +375,7 @@
     gap: 40px;
     width: 100%;
     max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-lg) {
