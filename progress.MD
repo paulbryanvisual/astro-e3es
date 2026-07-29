@@ -4,10 +4,10 @@
 * (No tasks currently in progress)
 
 ## Section 2: For Review
-* 📐 **Task 1: Max-Width Layout Audit (1400px & 1440px Canvas Limit)** - Complete line-by-line inspection of container wrappers (`e3-sales-rep-selector` and parent WordPress containers `.wp-block-columns`, `.wp-block-group`, `.db-feature`, `.map-section`) in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro), [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss), and [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss).
-* 📏 **Task 2: Whitespace Padding & Asymmetrical Grid Alignment** - Verified mobile baseline (`padding: 40px 20px`, `gap: 32px`) and desktop scaling (`padding: 80px 40px`, `gap: 60px; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)`). Strict whitespace padding around text blocks (60px–80px vertical breathing room).
-* ♿ **Task 3: Accessibility (a11y) & Interactive Focus States** - Verified min interactive touch targets (44px), high-contrast keyboard focus indicators (`:focus-visible`), body text contrast (4.5:1 min), and graphical component contrast (3:1 min).
-* 📝 **Comprehensive Architectural SCSS Edits Report** - Full audit report with exact proposed SCSS code edits for [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss), [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss), and [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro).
+* (No tasks currently pending review)
 
 ## Section 3: Approved
-* (No tasks approved yet)
+* 🔍 **Task 1: SalesRepRegionSelector Interactive UX & Click-to-Lock Refactoring** — Implemented toggle-to-unlock state machine, "← Select Another Region" reset button, screen reader `aria-live="polite"` announcements, dynamic photo `alt` attributes, and mobile smooth auto-scroll in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro).
+* 🎨 **Task 2: Visual UI, Micro-Interactions & Contrast Remediation** — Fixed WCAG contrast failures (`.btn--primary` `#A95C00`, SVG active `#215734` & inactive `#5F6E63` fills in [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss)), standardized global body `line-height: 1.6`, and aligned header typography to Major Third scale ($1.953\text{rem}$).
+* 🗑️ **Task 3: Legacy TexasRegionSelector Deprecation** — Removed `<TexasRegionSelector />` from [Layout.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/layouts/Layout.astro) to eliminate duplicate DOM SVG region element IDs.
+
