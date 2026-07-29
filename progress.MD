@@ -1,11 +1,13 @@
 # 📊 Project Progress Tracker
 
 ## 🔨 Section 1: Currently Working On
-* 🔒 **Task 3: Analysis & JS Implementation of Region and Rep Choice Locking**
+* 🔍 **Task 4: Architectural & Design System Analysis of SalesRepRegionSelector 1400px Max-Width**
   * 📁 Component File: [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
-  * 📁 Related Component File: [TexasRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/TexasRegionSelector.astro)
+  * 🎨 Desktop SCSS: [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L639-L661)
+  * 🎨 Layout File: [Layout.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/layouts/Layout.astro#L64)
   * 🌐 Review Link: [http://astro-e3es.localhost:4008/k12/](http://astro-e3es.localhost:4008/k12/)
-  * 🔍 Investigating state locking mechanism (isLocked, lockedRegionId, hover suppression, selection switching, and accessibility attributes).
+  * 📐 Performing dual-perspective architectural analysis (CSS Container Encapsulation & Design System/UX Standards) to widen and lock the region selector section to strictly 1400px max-width while maintaining clean spacing and responsiveness across screen sizes.
+
 
 
 ## 🔍 Section 2: For Review
