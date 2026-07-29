@@ -365,11 +365,11 @@
   @use "../styles/variables" as *;
   @use "../styles/mixins" as *;
 
-  /* Custom Element Container Constraint (Strict 1440px Max-Width Canvas) */
+  /* Custom Element Container Constraint (Strict 1400px Max-Width Canvas) */
   e3-sales-rep-selector {
     display: block;
     width: 100%;
-    max-width: 1440px;
+    max-width: 1400px;
     margin-top: 60px;
     margin-bottom: 60px;
     margin-left: auto;
@@ -397,6 +397,9 @@
     flex-direction: column;
     gap: 32px;
     width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-lg) {

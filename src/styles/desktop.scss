@@ -652,16 +652,16 @@
   e3-sales-rep-selector,
   e3-texas-region-selector {
     width: 100%;
-    max-width: 1440px !important;
+    max-width: 1400px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     overflow: visible !important;
   }
 
   .sales-rep-selector {
-    max-width: 1400px;
+    max-width: 1400px !important;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
