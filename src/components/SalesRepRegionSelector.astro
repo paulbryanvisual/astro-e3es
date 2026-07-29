@@ -39,7 +39,7 @@
     <div class="sales-rep-selector__info-col" id="find-your-rep" aria-live="polite" role="status">
       <div class="sales-rep-selector__placeholder">
         <h3>Find your Rep!</h3>
-        <p>Select a region on the map to find your representative.</p>
+        <p>Select your region and contact us to get started.</p>
       </div>
 
       <div class="sales-rep-selector__rep-card sales-rep-selector__rep-card--hidden">
@@ -292,7 +292,7 @@
       if (!regionId) {
           placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
           repCard.classList.add('sales-rep-selector__rep-card--hidden');
-          placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select a region on the map to find your representative.</p>';
+          placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
           return;
       }
 
@@ -351,7 +351,7 @@
       } else {
         placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
         repCard.classList.add('sales-rep-selector__rep-card--hidden');
-        placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select a region on the map to find your representative.</p>';
+        placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
       }
     }
   }
