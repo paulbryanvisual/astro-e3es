@@ -4778,7 +4778,8 @@ main > .wp-block-e3es-full-width-testimonial {
     > .design-build__pillars,
     > .has-background,
     > e3-sales-rep-selector,
-    > e3-texas-region-selector {
+    > e3-texas-region-selector,
+    > :is(.wp-block-group, .wp-block-columns, .db-feature):has(e3-sales-rep-selector, e3-texas-region-selector) {
       grid-column: full;
       width: 100%;
       padding-left: 0 !important;

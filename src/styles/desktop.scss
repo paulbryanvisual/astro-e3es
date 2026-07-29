@@ -636,22 +636,23 @@
     .db-feature--map-spill .wp-block-columns .db-feature__image-wrapper { margin: -50px 0 -100px 50px; }
   }
 
-  .db-feature:has(e3-texas-region-selector) .wp-block-columns,
-  .db-feature:has(e3-texas-region-selector) .db-feature__container,
-  .db-feature:has(e3-sales-rep-selector) .wp-block-columns,
-  .db-feature:has(e3-sales-rep-selector) .db-feature__container,
-  .has-background:has(e3-sales-rep-selector) > *:not(.alignfull),
-  .has-background:has(e3-texas-region-selector) > *:not(.alignfull),
-  .wp-block-group:has(e3-sales-rep-selector),
-  .wp-block-group:has(e3-texas-region-selector),
-  .wp-block-columns:has(e3-sales-rep-selector),
-  .wp-block-columns:has(e3-texas-region-selector),
+  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector) .wp-block-columns,
+  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector) .db-feature__container,
+  .has-background:has(e3-sales-rep-selector, e3-texas-region-selector) > *:not(.alignfull),
+  .wp-block-group:has(e3-sales-rep-selector, e3-texas-region-selector),
+  .wp-block-columns:has(e3-sales-rep-selector, e3-texas-region-selector),
   e3-sales-rep-selector,
-  e3-texas-region-selector,
-  .sales-rep-selector {
-    max-width: 1400px !important;
+  e3-texas-region-selector {
     width: 100%;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sales-rep-selector {
+    max-width: 1400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
