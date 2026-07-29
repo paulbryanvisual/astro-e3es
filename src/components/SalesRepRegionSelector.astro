@@ -36,10 +36,10 @@
       </svg>
     </div>
     
-    <div class="sales-rep-selector__info-col" id="find-your-rep">
+    <div class="sales-rep-selector__info-col" id="find-your-rep" aria-live="polite" role="status">
       <div class="sales-rep-selector__placeholder">
         <h3>Find your Rep!</h3>
-        <p>Select your region and contact us to get started.</p>
+        <p>Select a region on the map to find your representative.</p>
       </div>
 
       <div class="sales-rep-selector__rep-card sales-rep-selector__rep-card--hidden">
@@ -53,6 +53,7 @@
           <a href="" class="btn btn--primary sales-rep-selector__btn sales-rep-selector__btn--primary rep-email">Email</a>
           <a href="tel:+1" class="btn btn--outline sales-rep-selector__btn sales-rep-selector__btn--outline rep-phone">Schedule a Call</a>
         </div>
+        <button type="button" class="sales-rep-selector__clear-btn rep-clear-btn" aria-label="Clear region selection">← Select Another Region</button>
       </div>
     </div>
   </div>
@@ -119,30 +120,14 @@
     }
     
     setupGlobalDismissListeners() {
-      this.outsideClickListener = (e: MouseEvent) => {
-        if (this.isLocked && !this.contains(e.target as Node)) {
-          this.unlockMap();
-        }
-      };
-      document.addEventListener('click', this.outsideClickListener);
-
-      this.escapeKeyListener = (e: KeyboardEvent) => {
-        if (this.isLocked && e.key === 'Escape') {
-          this.unlockMap();
-        }
-      };
-      document.addEventListener('keydown', this.escapeKeyListener);
+      // Permanent selection locking protocol:
+      // Clicking outside or pressing Escape does not clear the rep selection lock.
+      // The lock persists until another region is explicitly clicked.
     }
 
     setupInteractions() {
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
-      const infoCol = this.querySelector('.sales-rep-selector__info-col');
-      
-      if (infoCol) {
-        infoCol.setAttribute('aria-live', 'polite');
-        infoCol.setAttribute('aria-atomic', 'true');
-      }
       
       if (svgMap) {
           const parent = this.querySelector('#Layer_1');
@@ -164,54 +149,18 @@
         northeast: 'North East Texas'
       };
       
-      const unlockAll = () => {
-        this.isLocked = false;
-        this.lockedRegionId = null;
-        regions.forEach(r => {
-          r.classList.remove('active', 'locked');
-          r.setAttribute('aria-pressed', 'false');
-        });
-        if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
-        this.restoreRegionOrder();
-        this.showRep(null);
-      };
-      
       regions.forEach(region => {
         const regionId = (region as HTMLElement).dataset.region || '';
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
-        region.setAttribute('aria-pressed', 'false');
+        region.setAttribute('aria-selected', 'false');
         region.setAttribute('aria-label', `${regionLabels[regionId] || regionId} Region`);
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
 
-          if (this.isLocked && this.lockedRegionId === regionId) {
-            unlockAll();
-            (region as HTMLElement).focus();
-            return;
-          }
-
           if (regionId) {
-            this.isLocked = true;
-            this.lockedRegionId = regionId;
-            this.showRep(regionId);
-
-            regions.forEach(r => {
-              r.classList.remove('active', 'locked');
-              r.setAttribute('aria-pressed', 'false');
-            });
-            region.classList.add('active', 'locked');
-            region.setAttribute('aria-pressed', 'true');
-
-            if (svgMap) {
-              svgMap.classList.remove('has-active');
-              svgMap.classList.add('has-locked');
-            }
-            if (region.parentNode) {
-              region.parentNode.appendChild(region);
-              (region as HTMLElement).focus();
-            }
+            this.lockRegion(regionId, region as HTMLElement);
           }
         };
 
@@ -222,39 +171,19 @@
           if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
             keyEvent.preventDefault();
             handleSelect(e);
-          } else if (keyEvent.key === 'Escape' && this.isLocked) {
-            keyEvent.preventDefault();
-            unlockAll();
-            (region as HTMLElement).focus();
           }
         });
 
         region.addEventListener('mouseenter', () => {
           if (this.isLocked) return;
-          
           if (regionId) {
-            this.showRep(regionId);
-            regions.forEach(r => {
-              r.classList.remove('active');
-              r.setAttribute('aria-pressed', 'false');
-            });
-            region.classList.add('active');
-            region.setAttribute('aria-pressed', 'true');
-            if (svgMap) svgMap.classList.add('has-active');
-            if (region.parentNode) region.parentNode.appendChild(region);
+            this.hoverRegion(regionId, region as HTMLElement);
           }
         });
         
         region.addEventListener('mouseleave', () => {
           if (this.isLocked) return;
-          
-          regions.forEach(r => {
-            r.classList.remove('active');
-            r.setAttribute('aria-pressed', 'false');
-          });
-          if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
-          this.restoreRegionOrder();
-          this.showRep(null);
+          this.unhoverRegion();
         });
       });
     }
@@ -552,11 +481,11 @@
     }
 
     &__rep-name {
-      font-size: 1.75rem;
+      font-size: 1.953rem;
       font-weight: 700;
       margin-top: 0;
       margin-bottom: 8px;
-      line-height: 1.3;
+      line-height: 1.6;
       color: var(--color-text-main, #1a1a1a);
     }
 
@@ -607,7 +536,7 @@
     &.has-locked .texas-region:not(.locked) path,
     &.has-locked .texas-region:not(.locked) polygon,
     &.has-locked .texas-region:not(.locked) rect {
-      fill: #8e9b91 !important;
+      fill: #5F6E63 !important;
       transition: fill 0.3s ease;
     }
 
@@ -617,7 +546,7 @@
     &.has-locked .texas-region:not(.locked):hover rect {
       filter: none !important;
       stroke: none !important;
-      fill: #8e9b91 !important;
+      fill: #5F6E63 !important;
     }
 
     /* Hover & Active Region States */
@@ -630,6 +559,7 @@
     .texas-region.locked path,
     .texas-region.locked polygon,
     .texas-region.locked rect {
+      fill: #215734 !important;
       filter: brightness(1.15) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15));
       stroke: #ffffff;
       stroke-width: 4px;

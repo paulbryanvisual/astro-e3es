@@ -28,7 +28,7 @@ html, body {
 body {
     font-family: var(--font-main);
     color: var(--color-text-main);
-    line-height: 2;
+    line-height: 1.6;
     background-color: var(--color-bg-white);
 }
 
@@ -69,15 +69,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn--primary {
-    background-color: var(--color-tertiary);
+    background-color: #A95C00;
     color: var(--color-bg-white);
     border: 2px solid #ffffff;
 }
 
 .btn--primary:hover {
     background-color: #ffffff;
-    color: var(--color-tertiary);
-    border-color: var(--color-tertiary);
+    color: #A95C00;
+    border-color: #A95C00;
 }
 
 .btn--green {
