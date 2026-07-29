@@ -119,6 +119,8 @@
     employees: any = {};
     
     connectedCallback() {
+      if (this.querySelector('.sales-rep-selector')) return;
+
       const template = document.getElementById('sales-rep-map-template') as HTMLTemplateElement;
       if (!template) return;
       
