@@ -4,6 +4,7 @@
 ---
 <template id="sales-rep-map-template">
   <div class="sales-rep-selector">
+    <div class="sr-only sales-rep-selector__status-announcer" aria-live="polite" aria-atomic="true"></div>
     <div class="sales-rep-selector__map-col">
       <?xml version="1.0" encoding="utf-8"?>
       <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map sales-rep-selector__map">
@@ -36,7 +37,7 @@
       </svg>
     </div>
     
-    <div class="sales-rep-selector__info-col" id="find-your-rep" aria-live="polite" role="status">
+    <div class="sales-rep-selector__info-col" id="find-your-rep">
       <div class="sales-rep-selector__placeholder">
         <h3>Find your Rep!</h3>
         <p>Select your region and contact us to get started.</p>
@@ -150,8 +151,9 @@
         const regionId = (region as HTMLElement).dataset.region || '';
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
-        region.setAttribute('aria-selected', 'false');
+        region.setAttribute('aria-pressed', 'false');
         region.setAttribute('aria-label', `${regionLabels[regionId] || regionId} Region`);
+        region.setAttribute('aria-controls', 'find-your-rep');
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
@@ -190,35 +192,41 @@
       });
     }
 
-    lockRegion(regionId: string, regionElement: HTMLElement) {
-      const regions = this.querySelectorAll('.texas-region, .texas-region path');
-      const svgMap = this.querySelector('.texas-svg-map');
+    elevateRegion(regionElement: HTMLElement) {
+      const parent = regionElement.parentNode;
+      if (parent && parent.lastElementChild !== regionElement) {
+        parent.appendChild(regionElement);
+      }
+    }
 
-      // Restore baseline SVG DOM order before elevating target region
-      this.restoreRegionOrder();
+    lockRegion(regionId: string, regionElement: HTMLElement) {
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
 
       this.isLocked = true;
       this.lockedRegionId = regionId;
 
       regions.forEach(r => {
         r.classList.remove('active', 'locked');
-        r.setAttribute('aria-selected', 'false');
+        r.setAttribute('aria-pressed', 'false');
       });
       regionElement.classList.add('active', 'locked');
-      regionElement.setAttribute('aria-selected', 'true');
+      regionElement.setAttribute('aria-pressed', 'true');
 
       if (svgMap) svgMap.classList.add('has-active', 'has-locked');
 
-      if (regionElement.parentNode) {
-        regionElement.parentNode.appendChild(regionElement);
-        regionElement.focus();
-      }
+      this.elevateRegion(regionElement);
+      regionElement.focus();
 
       this.showRep(regionId);
+
+      const regionLabel = regionElement.getAttribute('aria-label') || regionId;
+      this.announceStatus(`Selected ${regionLabel}. Representative details loaded.`);
     }
 
     unlockMap() {
-      const regions = this.querySelectorAll('.texas-region, .texas-region path');
+      const targetRegionId = this.lockedRegionId;
+      const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
       this.isLocked = false;
@@ -226,50 +234,74 @@
 
       regions.forEach(r => {
         r.classList.remove('active', 'locked');
-        r.setAttribute('aria-selected', 'false');
+        r.setAttribute('aria-pressed', 'false');
       });
 
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
 
       this.restoreRegionOrder();
       this.showRep(null);
+
+      this.announceStatus('Region selection cleared.');
+
+      if (targetRegionId) {
+        const targetEl = this.querySelector(`#region-${targetRegionId}`) as HTMLElement;
+        if (targetEl) {
+          targetEl.focus();
+        }
+      }
     }
 
     hoverRegion(regionId: string, regionElement: HTMLElement) {
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
-      this.restoreRegionOrder();
-
       this.showRep(regionId);
       regions.forEach(r => r.classList.remove('active'));
       regionElement.classList.add('active');
       if (svgMap) svgMap.classList.add('has-active');
-      if (regionElement.parentNode) {
-        regionElement.parentNode.appendChild(regionElement);
-      }
+
+      this.elevateRegion(regionElement);
     }
 
     unhoverRegion() {
-      const regions = this.querySelectorAll('.texas-region, .texas-region path');
+      const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
       regions.forEach(r => {
         r.classList.remove('active');
-        r.setAttribute('aria-selected', 'false');
+        r.setAttribute('aria-pressed', 'false');
       });
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
-      this.restoreRegionOrder();
       this.showRep(null);
     }
 
     restoreRegionOrder() {
-        const parent = this.querySelector('#Layer_1');
-        if (parent) {
-            const regionsArray = Array.from(parent.querySelectorAll('.texas-region'));
-            regionsArray.sort((a, b) => parseInt(a.getAttribute('data-original-order') || '0') - parseInt(b.getAttribute('data-original-order') || '0'));
-            regionsArray.forEach(reg => parent.appendChild(reg));
+      const activeEl = document.activeElement as HTMLElement | null;
+      const isFocusedInThis = activeEl && this.contains(activeEl);
+
+      const parent = this.querySelector('#Layer_1');
+      if (parent) {
+        const regionsArray = Array.from(parent.querySelectorAll('.texas-region'));
+        const needsSort = regionsArray.some((reg, idx) => 
+          parseInt(reg.getAttribute('data-original-order') || '0', 10) !== idx
+        );
+        if (needsSort) {
+          regionsArray.sort((a, b) => parseInt(a.getAttribute('data-original-order') || '0', 10) - parseInt(b.getAttribute('data-original-order') || '0', 10));
+          regionsArray.forEach(reg => parent.appendChild(reg));
         }
+      }
+
+      if (isFocusedInThis && activeEl && typeof activeEl.focus === 'function') {
+        activeEl.focus();
+      }
+    }
+
+    announceStatus(message: string) {
+      const announcer = this.querySelector('.sales-rep-selector__status-announcer');
+      if (announcer) {
+        announcer.textContent = message;
+      }
     }
     
     showRep(regionId: string | null) {
@@ -353,6 +385,18 @@
 <style lang="scss" is:global>
   @use "../styles/variables" as *;
   @use "../styles/mixins" as *;
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   /* Custom Element Container Constraint (Strict 1400px Max-Width Canvas) */
   e3-sales-rep-selector {
