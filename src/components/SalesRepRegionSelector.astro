@@ -3,10 +3,10 @@
 // Defines the interactive map Web Component that shows Sales Reps on Hover.
 ---
 <template id="sales-rep-map-template">
-  <div class="texas-region-selector-ui">
-    <div class="map-column">
+  <div class="sales-rep-selector texas-region-selector-ui">
+    <div class="sales-rep-selector__map-col map-column">
       <?xml version="1.0" encoding="utf-8"?>
-      <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map">
+      <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map sales-rep-selector__map">
         <defs>
           <style>
             .texas-svg-map { filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); max-width: 100%; margin: 0 auto; display: block; }
@@ -84,8 +84,8 @@
       </svg>
     </div>
     
-    <div class="info-column" id="find-your-rep">
-      <div class="placeholder-card">
+    <div class="sales-rep-selector__info-col info-column" id="find-your-rep">
+      <div class="sales-rep-selector__placeholder placeholder-card">
         <h3>Find your Rep!</h3>
         <p>Select your region and contact us to get started.</p>
       </div>
@@ -94,7 +94,7 @@
         <div class="rep-contact-card__photo-wrap">
           <img src="" alt="Representative" class="rep-contact-card__photo rep-image" />
         </div>
-        <p class="rep-contact-card__role rep-region-label subtitle" style="margin-bottom: 0;"></p>
+        <p class="rep-contact-card__role rep-contact-card__role--region rep-region-label subtitle"></p>
         <h3 class="rep-contact-card__name rep-name"></h3>
         <p class="rep-contact-card__role rep-role"></p>
         <div class="rep-contact-card__buttons">
@@ -330,13 +330,12 @@
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin: 40px auto;
+    margin: 60px auto;
     padding: 0 20px;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-md) {
       padding: 0 40px;
-      margin: 60px auto;
     }
 
     @include responsive-up($breakpoint-lg) {
@@ -344,8 +343,7 @@
     }
   }
 
-  .sales-rep-selector-ui,
-  .texas-region-selector-ui {
+  .sales-rep-selector {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -357,13 +355,11 @@
       gap: 60px;
     }
 
-    .map-column,
     &__map-col {
       width: 100%;
       min-width: 0;
     }
 
-    .info-column,
     &__info-col {
       width: 100%;
       min-width: 0;
@@ -371,14 +367,24 @@
       flex-direction: column;
       justify-content: flex-start;
     }
+
+    &__placeholder {
+      background-color: var(--color-light-gray, #f4f6f5);
+      padding: 40px;
+      border-radius: 0;
+      text-align: center;
+      border: 2px dashed #ccc;
+    }
   }
 
-  .placeholder-card,
-  .sales-rep-selector__placeholder {
-    background-color: var(--color-light-gray, #f4f6f5);
-    padding: 40px;
-    border-radius: 0;
-    text-align: center;
-    border: 2px dashed #ccc;
+  /* Support legacy class hooks alongside BEM */
+  .texas-region-selector-ui {
+    @extend .sales-rep-selector;
+  }
+
+  .rep-contact-card {
+    &__role--region {
+      margin-bottom: 0;
+    }
   }
 </style>
