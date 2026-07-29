@@ -1,5 +1,20 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector UX & Accessibility Interaction Logic Refactoring
+- **Branch**: `task/sales-rep-lock-1400px-1785362913`
+- **Goal**: Refactor `SalesRepRegionSelector.astro` click-locking and hover interaction logic from a UX & Accessibility perspective.
+- **Implementation**:
+  1. **Toggle Unlocking Behavior**:
+     - Updated `handleSelect` to check if `this.isLocked && this.lockedRegionId === regionId`. Clicking an already-locked region executes `unlockAll()`, clearing locked state (`isLocked = false`, `lockedRegionId = null`), removing `.active` and `.locked` classes, resetting `aria-pressed="false"`, clearing map state, restoring original SVG region order, showing default placeholder ("Find your Rep!"), and returning keyboard focus to the clicked region.
+  2. **WAI-ARIA & Screen Reader Enhancements**:
+     - Replaced invalid `aria-selected` attributes on `role="button"` elements with standard WAI-ARIA `aria-pressed="true|false"` toggle button attributes across all 8 regions.
+     - Added `aria-live="polite"` and `aria-atomic="true"` to `.sales-rep-selector__info-col` so representative details are automatically announced by screen readers when regions are locked, switched, or unlocked.
+     - Attached `Escape` key listener (`keydown`) allowing keyboard users to quickly clear active selection and return to overview without moving focus away.
+  3. **Clean Region Switching & Hover Gracefulness**:
+     - Switching between locked regions cleanly transfers the lock to the newly clicked region, updating attributes, rep details, and layer stacking order seamlessly.
+     - Preserved `this.isLocked` checks in `mouseenter` and `mouseleave` handlers to suppress unwanted preview card changes during hover over other regions while locked, ensuring visual stability and predictable interaction.
+- **Verification**: Executed clean build and committed changes to git.
+
 ## [2026-07-29] SalesRepRegionSelector 1400px Container Max-Width & Click-Locking State Verification
 - **Branch**: `task/sales-rep-locking-1400px-1785348772`
 - **Goal**: Verify max-width 1400px container containment and click-locking state logic on `SalesRepRegionSelector.astro` and layout SCSS stylesheets (`mobile.scss` & `desktop.scss`).
