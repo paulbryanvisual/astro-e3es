@@ -27,8 +27,14 @@
             
             /* Active/Locked states and normal hover when NOT locked */
             .texas-svg-map:not(.has-locked) .texas-region:hover path,
+            .texas-svg-map:not(.has-locked) .texas-region:hover polygon,
+            .texas-svg-map:not(.has-locked) .texas-region:hover rect,
             .texas-region.active path,
-            .texas-region.locked path {
+            .texas-region.active polygon,
+            .texas-region.active rect,
+            .texas-region.locked path,
+            .texas-region.locked polygon,
+            .texas-region.locked rect {
                 filter: brightness(1.15) drop-shadow(0 8px 24px rgba(0,0,0,0.15));
                 stroke: #ffffff;
                 stroke-width: 4px;
@@ -185,17 +191,6 @@
 
         const handleSelect = (e: Event) => {
           e.stopPropagation();
-          const isCurrentlyLocked = region.classList.contains('locked');
-
-          if (isCurrentlyLocked) {
-            // Toggle off / unlock if user clicks the currently locked region
-            region.classList.remove('active', 'locked');
-            region.setAttribute('aria-selected', 'false');
-            if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
-            this.restoreRegionOrder();
-            this.showRep(null);
-            return;
-          }
 
           if (regionId) {
             this.showRep(regionId);
@@ -251,23 +246,6 @@
           this.restoreRegionOrder();
           this.showRep(null);
         });
-      });
-
-      // Reset lock state when clicking outside the sales rep selector component
-      document.addEventListener('click', (e: Event) => {
-        const target = e.target as Node;
-        if (target && !this.contains(target)) {
-          const lockedRegion = this.querySelector('.texas-region.locked');
-          if (lockedRegion) {
-            regions.forEach(r => {
-              r.classList.remove('active', 'locked');
-              r.setAttribute('aria-selected', 'false');
-            });
-            if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
-            this.restoreRegionOrder();
-            this.showRep(null);
-          }
-        }
       });
     }
     
