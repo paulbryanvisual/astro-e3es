@@ -65,8 +65,6 @@
     employees: any = {};
     isLocked: boolean = false;
     lockedRegionId: string | null = null;
-    private outsideClickListener: ((e: MouseEvent) => void) | null = null;
-    private escapeKeyListener: ((e: KeyboardEvent) => void) | null = null;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -97,15 +95,6 @@
       this.setupGlobalDismissListeners();
     }
     
-    disconnectedCallback() {
-      if (this.outsideClickListener) {
-        document.removeEventListener('click', this.outsideClickListener);
-      }
-      if (this.escapeKeyListener) {
-        document.removeEventListener('keydown', this.escapeKeyListener);
-      }
-    }
-
     parseBase64Json(b64Str: string) {
       try {
         return JSON.parse(decodeURIComponent(escape(atob(b64Str))));
@@ -121,8 +110,8 @@
     
     setupGlobalDismissListeners() {
       // Permanent selection locking protocol:
-      // Clicking outside or pressing Escape does not clear the rep selection lock.
-      // The lock persists until another region is explicitly clicked.
+      // Clicking outside or pressing Escape does NOT clear the rep selection lock.
+      // The lock persists until another region is explicitly clicked or the "Select Another Region" button is used.
     }
 
     setupInteractions() {
