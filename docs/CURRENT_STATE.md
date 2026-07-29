@@ -1,5 +1,20 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Multi-Perspective Interaction Logic Review & Verification
+- **Branch**: `task/lock-rep-region-selection-1785348800` (Merged into `main`)
+- **Goal**: Review and verify the JavaScript interaction logic in `SalesRepRegionSelector.astro` for locking rep choices when a region is clicked.
+- **Implementation & Verification**:
+  1. **Multi-Subagent Review**: Dispatched `code_reviewer_agent` and `qa_testing_agent` to audit all 7 core interaction rules.
+  2. **7/7 Checks Verified**:
+     - Region click sets `isLocked = true` and `lockedRegionId = regionId`.
+     - Mouse hover (`mouseenter`/`mouseleave`) is strictly ignored while locked.
+     - Outside clicks and `Escape` key leave lock intact (permanent lock spec).
+     - Clicking a different region updates selection to the new region.
+     - Clicking the same region maintains locked state and focus.
+     - Clicking "← Select Another Region" unlocks selection and returns focus.
+     - Keyboard navigation (`Enter`/`Space`), DOM elevation (`elevateRegion`), ARIA live status announcements, and SVG order restoration verified clean.
+  3. **Build Verification**: `npm run build` completed with 200 pages rendered cleanly in 7.06s.
+
 ## [2026-07-29] SalesRepRegionSelector SVG Layer Elevation & Accessibility Refinement
 - **Branch**: `fix/region-selector-a11y-dom-elevation-202607291730`
 - **Goal**: Audit SVG layer elevation, keyboard accessibility, ARIA attributes, and DOM manipulation during region locking and unlocking in `SalesRepRegionSelector.astro`.
