@@ -1,5 +1,19 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector 1400px Max-Width, Selection Locking, Bio Removal & Placeholder Verification
+- **Branch**: `task/sales-rep-selector-1400px-lock`
+- **Goal**: Perform comprehensive code audit of `SalesRepRegionSelector.astro` against all 4 user specification rules:
+  1. Section / wrapper container max-width set to 1400px (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.sales-rep-selector`).
+  2. Clicking a region locks selection in place (`isLocked = true`, `lockedRegionId = regionId`); hovering over other regions, clicking outside, or re-clicking the same region does not clear selection lock; only clicking a different region changes active region.
+  3. Rep bio field is completely removed from representative details card (no `rep-bio` / `rep.bio` element rendered).
+  4. Placeholder text is explicitly set to `"Select your region and contact us to get started."`
+- **Implementation & Verification**:
+  - `e3-sales-rep-selector` and `e3-texas-region-selector` SCSS rules enforce `max-width: 1400px; width: 100%; margin-left: auto; margin-right: auto;`.
+  - `handleSelect` logic checks `if (this.isLocked && this.lockedRegionId === regionId) { (region as HTMLElement).focus(); return; }`, ensuring same-region clicks maintain lock. `setupGlobalDismissListeners()` is empty, preventing outside clicks from unlocking. `mouseenter` / `mouseleave` enforce `if (this.isLocked) return;`.
+  - HTML card layout line 46-58 contains only photo, region label, name, role, email button, schedule call button, and clear button. No bio element exists.
+  - Line 43 and line 319 / 367 set placeholder HTML to `<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>`.
+- **Status**: 100% verified. Working tree clean on branch `task/sales-rep-selector-1400px-lock`.
+
 ## [2026-07-29] SalesRepRegionSelector Interaction Logic Verification & Constant Refactoring
 - **Branch**: `task/sales-rep-region-selector-202607291748`
 - **Goal**: Audit click event listener and hover event listeners on map regions in `SalesRepRegionSelector.astro` and verify 100% compliance with strict locking rules.
