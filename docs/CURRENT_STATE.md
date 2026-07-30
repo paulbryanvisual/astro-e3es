@@ -1,5 +1,19 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector 1400px Max-Width Layout Lock Verification & Architecture Review
+- **Branch**: `task/rep-selector-1400px-lock`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L396-L440)
+  - [`src/styles/desktop.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L652-L667)
+  - [`src/styles/mobile.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L3661-L3675)
+- **1400px Max-Width Layout Lock Verification**:
+  1. **Component-Level Host Styles**: `e3-sales-rep-selector`, `e3-texas-region-selector`, and `.wp-block-e3es-sales-rep-region` in `SalesRepRegionSelector.astro` enforce `max-width: 1400px; width: 100%; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px; box-sizing: border-box;` (scaling to `32px` padding on `$breakpoint-md` and `40px` padding on `$breakpoint-lg`).
+  2. **BEM Block Container**: `.sales-rep-selector` inside the Web Component template enforces `width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto; box-sizing: border-box;`.
+  3. **Global SCSS Container Overrides**: `src/styles/desktop.scss` utilizes `:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector)` to ensure parent Gutenberg blocks (`.wp-block-group`, `.wp-block-columns`, `.wp-block-cover`, `.db-feature`) do not break or force full-width overflow beyond the strict 1400px canvas limit.
+  4. **BEM & SCSS Structure Recommendation**: Styles are cleanly structured into component-scoped `<style lang="scss" is:global>` for BEM element encapsulation and global desktop/mobile SCSS rules for parent wrapper container normalization.
+- **Status**: 100% verified. Working tree clean on branch `task/rep-selector-1400px-lock`.
+
+
 ## [2026-07-29] SalesRepRegionSelector Comprehensive UX & CSS Layout Inspection & Architecture Report
 - **Target File**: `file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro`
 - **1400px Max-Width Layout**: Web Component host elements (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`) and internal container `.sales-rep-selector` strictly enforce `max-width: 1400px; margin-left: auto; margin-right: auto;`. `:has()` selectors in `desktop.scss` and `mobile.scss` override parent Gutenberg wrapper widths to guarantee full 1400px canvas rendering across all embedding environments.
