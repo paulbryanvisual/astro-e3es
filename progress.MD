@@ -1,12 +1,12 @@
-# 📋 Progress Tracker - Sales Rep Selector Task
+# 📋 Progress Tracker - Sales Rep Selector & 1400px Max-Width Verification
 
 ## 🛠️ Section 1: Currently Working On
 *(No tasks currently active)*
 
 ## 👀 Section 2: For Review
-- 🗺️ [SalesRepRegionSelector Lock & 1400px Max-Width](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro): Enforced persistent region selection locking (hover suppression while locked, region switching, re-click focus, clear button unlock) and 1400px container max-width limits across `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss`.
-- 🌿 [Git Repository Isolation](file:///Users/bryanpaul/Local%20Sites/astro-e3es): Isolated working branch `task/sales-rep-selector-lock-maxwidth-1785380137` per Strict Version Control Protocol with clean local commits.
-- 🔌 [LPM Registration & Port Mapping](file:///Users/bryanpaul/Dropbox/PaulDropbox/localhost%20port%20managment/lpm.sh): Registered `astro-e3es.localhost` on port `4008`, proxying at `http://astro-e3es.localhost:8080`.
+- 🗺️ [SalesRepRegionSelector Lock Logic](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L78-L280): Verified and confirmed persistent map selection locking (`isLocked`, `lockedRegionId`). Hover (`mouseenter`/`mouseleave`) is suppressed while locked. Clicking a different region updates the selection to the newly clicked region. Clear button ("← Select Another Region") unlocks the map.
+- 📐 [1400px Section Max-Width Constraint](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L397-L440): Verified 1400px (`87.5rem`) max-width strictly applied across `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss`.
+- 🌿 [Feature Branch Isolation](file:///Users/bryanpaul/Local%20Sites/astro-e3es): Created and verified on branch `task/sales-rep-lock-and-width-1400`.
 
 ## ✅ Section 3: Approved
-- 🏁 [Audit & Component Logic Plan](file:///Users/bryanpaul/Local%20Sites/astro-e3es/progress.MD): Initialized multi-agent verification and component logic task tracking.
+- 🏁 [Environment & Component Audit](file:///Users/bryanpaul/Local%20Sites/astro-e3es/progress.MD): Sales Rep Region Selector map selection lock, 1400px layout width constraint, and build pipeline verified clean.
