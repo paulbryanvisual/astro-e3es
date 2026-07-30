@@ -80,6 +80,7 @@
     lockedRegionId: string | null = null;
     isReordering: boolean = false;
     isUnlocking: boolean = false;
+    exitTimeoutId: any = null;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -224,6 +225,10 @@
     }
 
     lockRegion(regionId: string, regionElement: HTMLElement) {
+      if (this.exitTimeoutId) {
+        clearTimeout(this.exitTimeoutId);
+        this.exitTimeoutId = null;
+      }
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
@@ -288,6 +293,10 @@
 
     hoverRegion(regionId: string, regionElement: HTMLElement) {
       if (this.isLocked || this.isReordering || this.isUnlocking) return;
+      if (this.exitTimeoutId) {
+        clearTimeout(this.exitTimeoutId);
+        this.exitTimeoutId = null;
+      }
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
@@ -305,16 +314,19 @@
 
     unhoverRegion() {
       if (this.isLocked || this.isReordering || this.isUnlocking) return;
-      const regions = this.querySelectorAll('.texas-region');
-      const svgMap = this.querySelector('.texas-svg-map');
+      
+      this.exitTimeoutId = setTimeout(() => {
+        const regions = this.querySelectorAll('.texas-region');
+        const svgMap = this.querySelector('.texas-svg-map');
 
-      regions.forEach(r => {
-        r.classList.remove('active');
-        r.setAttribute('aria-expanded', 'false');
-      });
-      if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
-      this.restoreRegionOrder();
-      this.showRep(null);
+        regions.forEach(r => {
+          r.classList.remove('active');
+          r.setAttribute('aria-expanded', 'false');
+        });
+        if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+        this.restoreRegionOrder();
+        this.showRep(null);
+      }, 200);
     }
 
     restoreRegionOrder() {
