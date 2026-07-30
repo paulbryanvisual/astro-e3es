@@ -74,6 +74,8 @@
   };
 
   class SalesRepRegionSelector extends HTMLElement {
+    exitTimeoutId: any = null;
+    globalClickListener: any = null;
     regionMap: any = {};
     employees: any = {};
     isLocked: boolean = false;
