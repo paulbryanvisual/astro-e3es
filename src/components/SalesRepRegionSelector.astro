@@ -81,6 +81,7 @@
     isReordering: boolean = false;
     isUnlocking: boolean = false;
     exitTimeoutId: any = null;
+    globalClickListener: any = null;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -110,6 +111,13 @@
       this.setupInteractions();
       this.setupGlobalDismissListeners();
     }
+
+    disconnectedCallback() {
+      if (this.globalClickListener) {
+        document.removeEventListener('click', this.globalClickListener);
+        this.globalClickListener = null;
+      }
+    }
     
     parseBase64Json(b64Str: string) {
       try {
@@ -126,11 +134,19 @@
     }
     
     setupGlobalDismissListeners() {
-      // Permanent selection locking protocol:
-      // Clicking outside or pressing Escape does NOT clear the rep selection lock.
-      // Clicking a region locks that rep selection in place until another region is explicitly clicked or the "Select Another Region" clear button is used.
-      // Hover behavior (mouseenter/mouseleave) is ignored while selection is locked.
-      // VERIFIED: User click locks region, click outside does not unlock.
+      this.globalClickListener = (e: Event) => {
+        if (!this.isLocked) return;
+
+        const target = e.target as HTMLElement;
+        const isRegionClick = target.closest('.texas-region');
+        const isCardClick = target.closest('.sales-rep-selector__rep-card');
+
+        if (!isRegionClick && !isCardClick) {
+          this.unlockMap();
+        }
+      };
+
+      document.addEventListener('click', this.globalClickListener);
     }
 
     setupInteractions() {
