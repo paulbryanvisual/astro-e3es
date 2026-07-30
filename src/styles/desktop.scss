@@ -652,19 +652,12 @@
   e3-sales-rep-selector,
   e3-texas-region-selector,
   .wp-block-e3es-sales-rep-region,
-  .texas-region-selector-ui {
-    width: 100%;
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    overflow: visible !important;
-  }
-
   .sales-rep-selector,
   .texas-region-selector-ui {
-    max-width: 1400px !important;
     width: 100%;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: visible;
   }
 }

@@ -424,9 +424,10 @@
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
-    padding: 60px 20px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
+    padding: 60px 20px;
 
     @include responsive-up($breakpoint-md) {
       padding-left: 32px;
@@ -434,19 +435,17 @@
     }
 
     @include responsive-up($breakpoint-lg) {
-      padding: 80px 40px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
   /* Prevent double padding/margins when nested inside custom element host elements */
-  e3-sales-rep-selector .sales-rep-selector,
-  e3-texas-region-selector .sales-rep-selector,
-  .wp-block-e3es-sales-rep-region .sales-rep-selector,
-  e3-sales-rep-selector .texas-region-selector-ui,
-  e3-texas-region-selector .texas-region-selector-ui,
-  .wp-block-e3es-sales-rep-region .texas-region-selector-ui {
-    margin: 0 auto;
+  :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .sales-rep-selector {
     padding: 0;
+    margin: 0 auto;
     max-width: 100%;
   }
 
