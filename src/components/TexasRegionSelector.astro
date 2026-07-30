@@ -257,6 +257,18 @@
           if (this.isLocked) return;
           this.unhoverRegion();
         });
+
+        region.addEventListener('focus', () => {
+          if (this.isLocked) return;
+          if (regionId) {
+            this.hoverRegion(regionId, region as HTMLElement);
+          }
+        });
+
+        region.addEventListener('blur', () => {
+          if (this.isLocked) return;
+          this.unhoverRegion();
+        });
       });
     }
 
