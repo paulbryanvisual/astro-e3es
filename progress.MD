@@ -1,12 +1,13 @@
 # 🚀 Task Progress & Review Board
 
 ## 📍 Section 1: Currently Working On
-- 🔍 **Inspect Git Repository Status & Branch**: Checking current git status and branch in `/Users/bryanpaul/Local Sites/astro-e3es`.
-- 📐 **Verify 1400px Max-Width Layout**: Verifying section/wrapper max-width constraint in `src/components/SalesRepRegionSelector.astro`.
-- 🔒 **Verify Click Locking Behavior**: Checking region selection click-locking behavior (only region switching unlocks/changes active selection).
+*(All current inspection and refactoring tasks completed!)*
 
 ## 🕵️‍♂️ Section 2: For Review
-*(No items pending review yet)*
+- 🌐 **Sales Representative Region Selector Preview**: [http://astro-e3es.localhost:4008/k12](http://astro-e3es.localhost:4008/k12)
 
 ## ✅ Section 3: Approved
-*(No items approved yet)*
+- 🌿 **Git Repository & Branch Verification**: Verified branch `task/sales-rep-width-lock-1785380447`.
+- 📏 **1400px Max-Width Compliance**: Verified `max-width: 1400px` on component container (`.sales-rep-selector`) and parent layout wrappers (`desktop.scss` / `mobile.scss`).
+- 🔒 **Click Locking Mechanics**: Verified region selection lock, hover suppression, outside-click resilience, and seamless lock transfer.
+- 🎨 **SVG Layer Stacking Refinement**: Enhanced `lockRegion` in `src/components/SalesRepRegionSelector.astro` to cleanly reset SVG layer ordering before elevating newly locked regions.
