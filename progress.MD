@@ -1,13 +1,15 @@
 # 🚀 Task Progress & Review Board
 
 ## 📍 Section 1: Currently Working On
-*(All current inspection and refactoring tasks completed!)*
+*(Awaiting user review on Sales Rep Region Selector JavaScript state audit & proposed enhancements)*
 
 ## 🕵️‍♂️ Section 2: For Review
-- 🌐 **Sales Representative Region Selector Preview**: [http://astro-e3es.localhost:4008/k12](http://astro-e3es.localhost:4008/k12)
+- 🌐 **Sales Representative Region Selector Interactive Page**: [http://astro-e3es.localhost:4008/k12](http://astro-e3es.localhost:4008/k12)
+- 🗺️ **Sales Rep Region Selector JS Lock Behavior Audit**: Comprehensive audit of click/lock state management, hover suppression, DOM elevation z-indexing, and proposed clean refactoring in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro).
 
 ## ✅ Section 3: Approved
-- 🌿 **Git Repository & Branch Verification**: Verified branch `task/sales-rep-width-lock-1785380447`.
-- 📏 **1400px Max-Width Compliance**: Verified `max-width: 1400px` on component container (`.sales-rep-selector`) and parent layout wrappers (`desktop.scss` / `mobile.scss`).
-- 🔒 **Click Locking Mechanics**: Verified region selection lock, hover suppression, outside-click resilience, and seamless lock transfer.
-- 🎨 **SVG Layer Stacking Refinement**: Enhanced `lockRegion` in `src/components/SalesRepRegionSelector.astro` to cleanly reset SVG layer ordering before elevating newly locked regions.
+- 📐 **1400px Max-Width Verification**: Verified `max-width: 1400px` on `.sales-rep-selector` and custom elements (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`) in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L404).
+- 🔒 **Selection Locking Behavior Verification**: Verified persistent region locking on click (`lockRegion()`), hover suppression when locked, unlock via clear button (`unlockMap()`), and non-dismissal on outside clicks/esc in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L123-L194).
+- 🚫 **Bio Field Removal Verification**: Verified bio text area is completely omitted from the HTML markup and JS population in [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L46-L59).
+
+
