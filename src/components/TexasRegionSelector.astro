@@ -133,6 +133,11 @@
 
 <script>
   class TexasRegionSelector extends HTMLElement {
+    regionMap: any = {};
+    employees: any = {};
+    isLocked: boolean = false;
+    lockedRegionId: string | null = null;
+
     connectedCallback() {
       const template = document.getElementById('texas-map-template') as HTMLTemplateElement;
       if (!template) return;
@@ -159,23 +164,57 @@
     setupInteractions() {
       const regions = this.querySelectorAll('.texas-region');
       regions.forEach(region => {
-        region.addEventListener('click', () => {
-          const regionId = (region as HTMLElement).dataset.region;
+        const regionId = (region as HTMLElement).dataset.region || '';
+
+        const handleSelect = (e: Event) => {
+          e.stopPropagation();
+
+          // 1 & 2: Re-clicking locked region does NOT unlock or clear
+          if (this.isLocked && this.lockedRegionId === regionId) {
+            (region as HTMLElement).focus();
+            return;
+          }
+
+          // 3: Clicking a different region locks the new selection in place
+          if (regionId) {
+            this.lockRegion(regionId, region as HTMLElement);
+          }
+        };
+
+        region.addEventListener('click', handleSelect);
+
+        region.addEventListener('mouseenter', () => {
+          if (this.isLocked) return;
           if (regionId) {
             this.showRep(regionId);
             regions.forEach(r => r.classList.remove('active'));
             region.classList.add('active');
-            
-            // Scroll to the info card on mobile if screen width is narrow
-            if (window.innerWidth < 768) {
-              const repCard = this.querySelector('.info-column');
-              if (repCard) {
-                repCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-              }
-            }
           }
         });
+
+        region.addEventListener('mouseleave', () => {
+          if (this.isLocked) return;
+          regions.forEach(r => r.classList.remove('active'));
+          this.showRep('');
+        });
       });
+    }
+
+    lockRegion(regionId: string, regionElement: HTMLElement) {
+      const regions = this.querySelectorAll('.texas-region');
+      this.isLocked = true;
+      this.lockedRegionId = regionId;
+
+      regions.forEach(r => r.classList.remove('active'));
+      regionElement.classList.add('active');
+      this.showRep(regionId);
+
+      if (window.innerWidth < 768) {
+        const repCard = this.querySelector('.info-column');
+        if (repCard) {
+          repCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
     }
     
     showRep(regionId: string) {
