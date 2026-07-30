@@ -1,11 +1,11 @@
 # 🚀 Progress Dashboard
 
 ## 🚧 Section 1: Currently Working On
-- 🗺️ **Region Click Locking Logic**: Ensure clicking a region locks it in place, hover does not change cards when locked, clicking outside does not unlock, and only clicking a different region switches selection.
-- 📐 **Section Max-Width Constraint**: Enforce strict 1400px maximum width for `.sales-rep-selector` and web component container with appropriate padding and margins.
+*(No tasks currently in progress)*
 
 ## 🔍 Section 2: For Review
-*(No tasks currently awaiting review)*
+- 🗺️ **Region Click Locking Logic**: Verified and tested state machine implementation in [`SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L75-L282). Clicking locks the region, hover is suppressed when locked, clicking outside does not unlock, clicking another region transfers lock cleanly, and clear button resets state.
+- 📐 **1400px Section Max-Width Constraint**: Consolidated max-width container styles in [`SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L398-L435) with strict 1400px limit, responsive margins (60px mobile / 80px desktop), paddings (20px mobile / 32px tablet / 40px desktop), and nesting protection.
 
 ## ✅ Section 3: Approved
 *(No tasks approved yet)*
