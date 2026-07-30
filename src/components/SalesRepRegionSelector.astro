@@ -275,6 +275,7 @@
         r.setAttribute('aria-pressed', 'false');
       });
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+      this.restoreRegionOrder();
       this.showRep(null);
     }
 
