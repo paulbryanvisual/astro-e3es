@@ -404,12 +404,8 @@
     display: block;
     width: 100%;
     max-width: 1400px;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin: 0 auto;
+    padding: 60px 20px;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-md) {
@@ -418,10 +414,7 @@
     }
 
     @include responsive-up($breakpoint-lg) {
-      margin-top: 80px;
-      margin-bottom: 80px;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding: 80px 40px;
     }
   }
 
@@ -429,10 +422,8 @@
   e3-sales-rep-selector .sales-rep-selector,
   e3-texas-region-selector .sales-rep-selector,
   .wp-block-e3es-sales-rep-region .sales-rep-selector {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
+    margin: 0;
+    padding: 0;
   }
 
   /* BEM Block Grid/Flex Layout: sales-rep-selector */

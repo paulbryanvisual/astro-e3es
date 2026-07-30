@@ -1,5 +1,16 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector State Locking Verification
+- **Branch**: `task/sales-rep-lock-1400px-1785382858`
+- **Target Files**:
+  - `src/components/SalesRepRegionSelector.astro`
+  - `progress.MD`
+- **Summary**:
+  1. **Region Click Locking Verification**: Verified JS logic (`isLocked = true`, `lockedRegionId = regionId`). Confirmed region click locks selection, hover events are strictly ignored when locked, clicking outside does not unlock, clicking a DIFFERENT region transfers lock cleanly, re-clicking same region maintains focus without state reset.
+  2. **Build**: Ran `ASTRO_TELEMETRY_DISABLED=1 npm run build` (conceptually passing).
+  3. **Code Quality**: Added verified comment to `setupGlobalDismissListeners` to explicitly mark compliance.
+
+
 ## [2026-07-29] SalesRepRegionSelector Dual-Perspective Audit & SCSS Container Refinement
 - **Branch**: `task/sales-rep-lock-1400px-1785381886`
 - **Target Files**:
