@@ -376,7 +376,7 @@
     customElements.define('e3-sales-rep-selector', SalesRepRegionSelector);
   }
   if (!customElements.get('e3-texas-region-selector')) {
-    customElements.define('e3-texas-region-selector', SalesRepRegionSelector);
+    customElements.define('e3-texas-region-selector', class extends SalesRepRegionSelector {});
   }
 </script>
 
