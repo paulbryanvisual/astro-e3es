@@ -1,5 +1,13 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Strict 1400px Margin Auto Layout Lock
+- **Branch**: `task/sales-rep-lock-1400px-selector`
+- **Target Files**:
+  - `src/components/SalesRepRegionSelector.astro`
+- **Summary**:
+  1. **Strict 1400px Section Layout Enforced**: Updated the BEM constraints for `.sales-rep-selector` and web component hosts (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`) to strictly enforce `max-width: 1400px; margin: 0 auto; padding: 60px 20px;` (scaling to `80px 40px` on desktop) ensuring whitespace padding adherence.
+  2. **Build Verification**: Executed `ASTRO_TELEMETRY_DISABLED=1 npm run build` successfully building all 200 static pages with zero errors.
+
 ## [2026-07-29] SalesRepRegionSelector State Locking Verification
 - **Branch**: `task/sales-rep-lock-1400px-1785382858`
 - **Target Files**:
