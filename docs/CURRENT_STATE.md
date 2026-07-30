@@ -1,5 +1,17 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Selection Locking & Card Rendering Logic Verification
+- **Branch**: `task/sales-rep-lock-1400px-1785381463`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  - [`src/components/TexasRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/TexasRegionSelector.astro)
+- **Summary**:
+  1. **Region Selection Locking**: Confirmed that clicking any Texas region path sets `isLocked = true` and `lockedRegionId = regionId`, rendering representative details in the card and applying `.active` / `.locked` state styling to the SVG region.
+  2. **Hovering Isolation While Locked**: Verified that `mouseenter` and `mouseleave` handlers check `if (this.isLocked) return;` immediately. Hovering over unselected regions while a region is locked does NOT override the rep card, clear active region styling, or shift SVG elevation.
+  3. **Persistent Locking Rules**: Confirmed that clicking outside the map component does NOT clear the lock, and clicking the already-locked region again maintains focus on the active region without unlocking. Only clicking a DIFFERENT region locks the new selection, and clicking "← Select Another Region" (`.rep-clear-btn`) unlocks the map.
+  4. **Component Parity**: Added missing `.rep-clear-btn` clear button to `TexasRegionSelector.astro` template to ensure complete functional alignment with `SalesRepRegionSelector.astro`.
+  5. **Verification**: Executed production build (`npm run build`), confirming zero warnings or build regressions across all 200 static pages.
+
 ## [2026-07-29] SalesRepRegionSelector 1400px Max-Width SCSS & BEM Dual-Perspective Analysis
 - **Branch**: `task/sales-rep-lock-and-width-1400`
 - **Target Files**:
