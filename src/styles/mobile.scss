@@ -6217,3 +6217,15 @@ footer.footer,
 .site-footer {
     margin-top: 0 !important;
 }
+
+/* Representative Contact Card Styles */
+.rep-contact-card__role {
+    color: var(--color-primary-dark);
+}
+
+.rep-contact-card .btn:focus-visible,
+.rep-contact-card__btn:focus-visible,
+.rep-contact-card button:focus-visible {
+    outline: 3px solid #005fcc;
+    outline-offset: 3px;
+}
