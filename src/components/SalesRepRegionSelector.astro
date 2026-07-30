@@ -114,7 +114,7 @@
 
     disconnectedCallback() {
       if (this.globalClickListener) {
-        document.removeEventListener('click', this.globalClickListener);
+        document.removeEventListener('click', this.globalClickListener, true);
         this.globalClickListener = null;
       }
     }
@@ -137,7 +137,9 @@
       this.globalClickListener = (e: Event) => {
         if (!this.isLocked) return;
 
-        const target = e.target as HTMLElement;
+        const target = e.target as HTMLElement | null;
+        if (!target || typeof target.closest !== 'function') return;
+
         const isRegionClick = target.closest('.texas-region');
         const isCardClick = target.closest('.sales-rep-selector__rep-card');
 
@@ -146,7 +148,7 @@
         }
       };
 
-      document.addEventListener('click', this.globalClickListener);
+      document.addEventListener('click', this.globalClickListener, true);
     }
 
     setupInteractions() {
