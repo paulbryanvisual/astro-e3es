@@ -1,18 +1,12 @@
-# 🚀 Progress Dashboard
+# 📋 Progress Tracker - Sales Rep Selector & 1400px Max-Width Verification
 
-## 🔍 Section 1: Currently Working On
-- 🎨 **Sales Rep Region Selector SCSS & BEM Refactoring**: Implementing proposed BEM SCSS changes to strictly enforce 1400px centered max-width, flat corners, 44px touch targets, and clean responsive-up grid layout.
+## 🛠️ Section 1: Currently Working On
+*(No active tasks)*
 
-## 📑 Section 2: For Review
-- 🗺️ **Sales Rep Region Selector 1400px Layout & Git Investigation**:
-  - **Git Status**: Active branch `task/sales-rep-selector-1400px` (Clean working tree).
-  - **Layout & Width Audit**: Identified host element container rules (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`) setting `max-width: 1400px; margin-inline: auto;` and parent `:has()` container rules in `desktop.scss` / `mobile.scss`.
-  - **Design & BEM Evaluation**: Created refactored SCSS architecture adhering strictly to BEM, hard 1400px max-width, 60-80px whitespace padding, touch target compliance ($\ge 44\text{px}$), and high-contrast WCAG 2.1 AA/AAA standards.
-  - **Links for review:**
-    - [SalesRepRegionSelector.astro](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
-    - [desktop.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L639-L667)
-    - [mobile.scss](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss#L4780-L4815)
+## 👀 Section 2: For Review
+- 📐 [SalesRepRegionSelector 1400px Section Max-Width SCSS Analysis & Update](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss#L639-L667): Dispatched dual subagents (Layout Container Specialist & BEM Component Specialist). Verified container max-width constraints across `mobile.scss`, `desktop.scss`, and `SalesRepRegionSelector.astro`. Confirmed single-source-of-truth 1400px (`87.5rem`) max-width containment while preserving asymmetrical responsive grid styling (`1.35fr : 1fr`) and whitespace padding.
+- 🗺️ [SalesRepRegionSelector Selection Locking Logic Audit](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro#L78-L280): Confirmed persistent map selection locking (`isLocked`, `lockedRegionId`). Hover (`mouseenter`/`mouseleave`) is suppressed while locked. Re-clicking same region or clicking outside maintains lock. Region switching updates selection cleanly. "← Select Another Region" clear button unlocks map.
+- 🌿 [Feature Branch Isolation](file:///Users/bryanpaul/Local%20Sites/astro-e3es): Feature branch `task/sales-rep-lock-and-width-1400` verified clean and passing production builds.
 
 ## ✅ Section 3: Approved
-- (None yet)
-
+- 🏁 [Environment & Component Audit](file:///Users/bryanpaul/Local%20Sites/astro-e3es/progress.MD): Sales Rep Region Selector map selection lock, 1400px layout width constraint, BEM SCSS structure, and Astro build pipeline verified clean.

@@ -1,5 +1,19 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector 1400px Max-Width SCSS & BEM Dual-Perspective Analysis
+- **Branch**: `task/sales-rep-lock-and-width-1400`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  - [`src/styles/desktop.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss)
+  - [`src/styles/mobile.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss)
+- **Dual-Subagent Multi-Perspective Analysis & Updates**:
+  1. **Container Wrapper Analysis**: Dispatched Layout Container Specialist. Identified potential container restrictions on `.map-container` (default `1200px`) and Gutenberg block wrappers (`.wp-block-cover`, `.wp-block-columns`, `.wp-block-group`, `.wp-block-e3es-two-column`). Verified `:has(...)` parent override rules in `desktop.scss` and `mobile.scss` ensuring 1400px canvas expansion.
+  2. **BEM Component Analysis**: Dispatched BEM Component Specialist. Verified encapsulated web component host elements (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`) and BEM block `.sales-rep-selector` strictly enforce `max-width: 1400px; margin-left: auto; margin-right: auto;`.
+  3. **Asymmetrical Grid & Padding Preservation**: Confirmed asymmetrical desktop column split (`1.35fr : 1fr` ratio, ~57.4% map vs ~42.6% info column) with `gap: 60px` and sticky sidebar positioning (`position: sticky; top: 100px;`). Padding scales responsively from 20px (mobile) $\rightarrow$ 32px (tablet) $\rightarrow$ 40px (desktop horizontal), with 60px/80px vertical margins.
+  4. **Build & Isolation**: Verified clean Astro production build (`npm run build` 200 pages built).
+- **Status**: 100% verified and committed on branch `task/sales-rep-lock-and-width-1400`.
+
+
 ## [2026-07-29] SalesRepRegionSelector 1400px Max-Width, Selection Locking, Bio Removal & Placeholder Audit
 - **Branch**: `task/sales-rep-selector-1400px`
 - **Target Files**:
