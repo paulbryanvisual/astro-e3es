@@ -636,22 +636,23 @@
     .db-feature--map-spill .wp-block-columns .db-feature__image-wrapper { margin: -50px 0 -100px 50px; }
   }
 
-  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector) .wp-block-columns,
-  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector) .db-feature__container,
-  .has-background:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector) > *:not(.alignfull),
-  .wp-block-group:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  .wp-block-group__inner-container:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  .wp-block-columns:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  .wp-block-column:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  .wp-block-cover:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  .wp-block-cover__inner-container:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  .map-section:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector) .map-container,
-  .map-container:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  :is(.wp-block-group, .wp-block-columns, .wp-block-cover, .db-feature, .map-section, .map-container):has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
-  :is(.wp-block-group, .wp-block-columns, .wp-block-cover, .db-feature, .map-section, .map-container) > :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
+  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui) .wp-block-columns,
+  .db-feature:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui) .db-feature__container,
+  .has-background:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui) > *:not(.alignfull),
+  .wp-block-group:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  .wp-block-group__inner-container:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  .wp-block-columns:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  .wp-block-column:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  .wp-block-cover:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  .wp-block-cover__inner-container:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  .map-section:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui) .map-container,
+  .map-container:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  :is(.wp-block-group, .wp-block-columns, .wp-block-cover, .db-feature, .map-section, .map-container):has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
+  :is(.wp-block-group, .wp-block-columns, .wp-block-cover, .db-feature, .map-section, .map-container) > :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui),
   e3-sales-rep-selector,
   e3-texas-region-selector,
-  .wp-block-e3es-sales-rep-region {
+  .wp-block-e3es-sales-rep-region,
+  .texas-region-selector-ui {
     width: 100%;
     max-width: 1400px !important;
     margin-left: auto !important;
@@ -659,7 +660,8 @@
     overflow: visible !important;
   }
 
-  .sales-rep-selector {
+  .sales-rep-selector,
+  .texas-region-selector-ui {
     max-width: 1400px !important;
     width: 100%;
     margin-left: auto !important;

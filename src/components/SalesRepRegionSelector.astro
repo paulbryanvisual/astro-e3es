@@ -400,7 +400,8 @@
   e3-sales-rep-selector,
   e3-texas-region-selector,
   .wp-block-e3es-sales-rep-region,
-  .sales-rep-selector {
+  .sales-rep-selector,
+  .texas-region-selector-ui {
     display: block;
     width: 100%;
     max-width: 1400px !important;
@@ -422,7 +423,10 @@
   /* Prevent double padding/margins when nested inside custom element host elements */
   e3-sales-rep-selector .sales-rep-selector,
   e3-texas-region-selector .sales-rep-selector,
-  .wp-block-e3es-sales-rep-region .sales-rep-selector {
+  .wp-block-e3es-sales-rep-region .sales-rep-selector,
+  e3-sales-rep-selector .texas-region-selector-ui,
+  e3-texas-region-selector .texas-region-selector-ui,
+  .wp-block-e3es-sales-rep-region .texas-region-selector-ui {
     margin: 0;
     padding: 0;
   }
