@@ -10,8 +10,8 @@
         <defs>
           <style>
             .texas-region path { fill: var(--color-primary-green, #215734); stroke: #ffffff; stroke-width: 2px; transition: fill 0.3s ease; }
-            .texas-region path:hover { fill: var(--color-primary-gold, #173d24); cursor: pointer; }
-            .texas-region.active path { fill: var(--color-primary-gold, #cfa83f); }
+            .texas-svg-map:not(.has-locked) .texas-region path:hover { fill: var(--color-primary-gold, #173d24); cursor: pointer; }
+            .texas-region.active path, .texas-region.locked path { fill: var(--color-primary-gold, #cfa83f); }
             .client-star { fill: #ffffff; stroke: #215734; stroke-width: 2.5px; pointer-events: none; }
           </style>
         </defs>
