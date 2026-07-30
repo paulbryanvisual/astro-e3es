@@ -249,8 +249,9 @@
       const repId = this.regionMap[regionId];
       const rep = this.employees[repId];
       let bioAnnounce = '';
-      if (rep && rep.bio) {
-        bioAnnounce = ' ' + rep.bio.replace(/<\/?p[^>]*>/g, '').trim();
+      const repBio = rep ? (rep.quote || rep.bio) : null;
+      if (repBio) {
+        bioAnnounce = ' ' + repBio.replace(/<\/?p[^>]*>/g, '').trim();
       }
       this.announceStatus(`Selected ${regionLabel}. Representative details loaded.${bioAnnounce}`);
     }
@@ -402,8 +403,9 @@
 
         const bioEl = this.querySelector('.rep-bio') as HTMLElement;
         if (bioEl) {
-          if (rep.bio) {
-            bioEl.textContent = rep.bio.replace(/<\/?p[^>]*>/g, '').trim();
+          const repBio = rep.quote || rep.bio;
+          if (repBio) {
+            bioEl.textContent = repBio.replace(/<\/?p[^>]*>/g, '').trim();
             bioEl.style.display = 'block';
           } else {
             bioEl.style.display = 'none';
