@@ -54,9 +54,35 @@ class MockSalesRepRegionSelector {
     }
   }
 
+  parseBase64Json(b64Str) {
+    try {
+      const bytes = Uint8Array.from(atob(b64Str), c => c.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (e) {
+      try {
+        return JSON.parse(atob(b64Str));
+      } catch (e2) {
+        console.error("Failed to decode base64 JSON:", e2);
+        return null;
+      }
+    }
+  }
+
+  setupInteractions() {
+    this.regions.forEach((region, id) => {
+      region.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   lockRegion(regionId, regionElement) {
     this.isLocked = true;
     this.lockedRegionId = regionId;
+    this.regions.forEach(r => {
+      r.setAttribute('aria-expanded', 'false');
+    });
+    if (regionElement) {
+      regionElement.setAttribute('aria-expanded', 'true');
+    }
     this.showRep(regionId);
   }
 
@@ -67,12 +93,18 @@ class MockSalesRepRegionSelector {
 
   unhoverRegion() {
     if (this.isLocked) return;
+    this.regions.forEach(r => {
+      r.setAttribute('aria-expanded', 'false');
+    });
     this.showRep(null);
   }
 
   unlockMap() {
     this.isLocked = false;
     this.lockedRegionId = null;
+    this.regions.forEach(r => {
+      r.setAttribute('aria-expanded', 'false');
+    });
     this.showRep(null);
   }
 
@@ -122,3 +154,40 @@ test('Sales Rep Region Selector - Permanently locks selected region until anothe
   component.hoverRegion('central');
   assert.equal(component.currentRepShown, 'south');
 });
+
+test('Sales Rep Region Selector - parseBase64Json correctly decodes UTF-8 JSON', () => {
+  const component = new MockSalesRepRegionSelector();
+  const testData = { name: "René François", region: "South Texas – Austin & San Antonio" };
+  const encoded = Buffer.from(JSON.stringify(testData)).toString('base64');
+  
+  const decoded = component.parseBase64Json(encoded);
+  assert.deepEqual(decoded, testData);
+});
+
+test('Sales Rep Region Selector - aria-expanded and focus/blur preview behaviors', () => {
+  const component = new MockSalesRepRegionSelector();
+  component.setupInteractions();
+
+  // Initial aria-expanded state
+  component.regions.forEach(r => {
+    assert.equal(r.getAttribute('aria-expanded'), 'false');
+  });
+
+  // Focus preview when unlocked
+  component.hoverRegion('north');
+  assert.equal(component.currentRepShown, 'north');
+
+  component.unhoverRegion();
+  assert.equal(component.currentRepShown, null);
+  assert.equal(component.regions.get('north').getAttribute('aria-expanded'), 'false');
+
+  // Lock region sets aria-expanded true for selected region
+  component.handleSelect('north');
+  assert.equal(component.regions.get('north').getAttribute('aria-expanded'), 'true');
+  assert.equal(component.regions.get('south').getAttribute('aria-expanded'), 'false');
+
+  // Unlock map resets aria-expanded to false
+  component.unlockMap();
+  assert.equal(component.regions.get('north').getAttribute('aria-expanded'), 'false');
+});
+

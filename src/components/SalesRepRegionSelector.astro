@@ -77,6 +77,8 @@
     employees: any = {};
     isLocked: boolean = false;
     lockedRegionId: string | null = null;
+    isReordering: boolean = false;
+    isUnlocking: boolean = false;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -109,7 +111,8 @@
     
     parseBase64Json(b64Str: string) {
       try {
-        return JSON.parse(decodeURIComponent(escape(atob(b64Str))));
+        const bytes = Uint8Array.from(atob(b64Str), c => c.charCodeAt(0));
+        return JSON.parse(new TextDecoder().decode(bytes));
       } catch (e) {
         try {
           return JSON.parse(atob(b64Str));
@@ -153,7 +156,7 @@
         const regionId = (region as HTMLElement).dataset.region || '';
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
-        region.setAttribute('aria-pressed', 'false');
+        region.setAttribute('aria-expanded', 'false');
         region.setAttribute('aria-label', `${REGION_LABELS[regionId] || regionId} Region`);
         region.setAttribute('aria-controls', 'find-your-rep');
 
@@ -181,14 +184,26 @@
         });
 
         region.addEventListener('mouseenter', () => {
-          if (this.isLocked) return;
+          if (this.isLocked || this.isReordering) return;
           if (regionId) {
             this.hoverRegion(regionId, region as HTMLElement);
           }
         });
         
         region.addEventListener('mouseleave', () => {
-          if (this.isLocked) return;
+          if (this.isLocked || this.isReordering) return;
+          this.unhoverRegion();
+        });
+
+        region.addEventListener('focus', () => {
+          if (this.isLocked || this.isReordering || this.isUnlocking) return;
+          if (regionId) {
+            this.hoverRegion(regionId, region as HTMLElement);
+          }
+        });
+
+        region.addEventListener('blur', () => {
+          if (this.isLocked || this.isReordering || this.isUnlocking) return;
           this.unhoverRegion();
         });
       });
@@ -197,7 +212,13 @@
     elevateRegion(regionElement: HTMLElement) {
       const parent = regionElement.parentNode;
       if (parent && parent.lastElementChild !== regionElement) {
+        this.isReordering = true;
+        const activeEl = document.activeElement as HTMLElement | null;
         parent.appendChild(regionElement);
+        if (activeEl && typeof activeEl.focus === 'function') {
+          activeEl.focus();
+        }
+        this.isReordering = false;
       }
     }
 
@@ -210,10 +231,10 @@
 
       regions.forEach(r => {
         r.classList.remove('active', 'locked');
-        r.setAttribute('aria-pressed', 'false');
+        r.setAttribute('aria-expanded', 'false');
       });
       regionElement.classList.add('active', 'locked');
-      regionElement.setAttribute('aria-pressed', 'true');
+      regionElement.setAttribute('aria-expanded', 'true');
 
       if (svgMap) svgMap.classList.add('has-active', 'has-locked');
 
@@ -221,7 +242,7 @@
       this.elevateRegion(regionElement);
       regionElement.focus();
 
-      this.showRep(regionId);
+      this.showRep(regionId, true);
 
       const regionLabel = regionElement.getAttribute('aria-label') || regionId;
       this.announceStatus(`Selected ${regionLabel}. Representative details loaded.`);
@@ -237,7 +258,7 @@
 
       regions.forEach(r => {
         r.classList.remove('active', 'locked');
-        r.setAttribute('aria-pressed', 'false');
+        r.setAttribute('aria-expanded', 'false');
       });
 
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
@@ -250,32 +271,38 @@
       if (targetRegionId) {
         const targetEl = this.querySelector(`#region-${targetRegionId}`) as HTMLElement;
         if (targetEl) {
+          this.isUnlocking = true;
           targetEl.focus();
+          this.isUnlocking = false;
         }
       }
     }
 
     hoverRegion(regionId: string, regionElement: HTMLElement) {
-      if (this.isLocked) return;
+      if (this.isLocked || this.isReordering || this.isUnlocking) return;
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
-      this.showRep(regionId);
-      regions.forEach(r => r.classList.remove('active'));
+      this.showRep(regionId, false);
+      regions.forEach(r => {
+        r.classList.remove('active');
+        r.setAttribute('aria-expanded', 'false');
+      });
       regionElement.classList.add('active');
+      regionElement.setAttribute('aria-expanded', 'true');
       if (svgMap) svgMap.classList.add('has-active');
 
       this.elevateRegion(regionElement);
     }
 
     unhoverRegion() {
-      if (this.isLocked) return;
+      if (this.isLocked || this.isReordering || this.isUnlocking) return;
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
       regions.forEach(r => {
         r.classList.remove('active');
-        r.setAttribute('aria-pressed', 'false');
+        r.setAttribute('aria-expanded', 'false');
       });
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
       this.restoreRegionOrder();
@@ -293,13 +320,14 @@
           parseInt(reg.getAttribute('data-original-order') || '0', 10) !== idx
         );
         if (needsSort) {
+          this.isReordering = true;
           regionsArray.sort((a, b) => parseInt(a.getAttribute('data-original-order') || '0', 10) - parseInt(b.getAttribute('data-original-order') || '0', 10));
           regionsArray.forEach(reg => parent.appendChild(reg));
+          if (isFocusedInThis && activeEl && typeof activeEl.focus === 'function') {
+            activeEl.focus();
+          }
+          this.isReordering = false;
         }
-      }
-
-      if (isFocusedInThis && activeEl && typeof activeEl.focus === 'function') {
-        activeEl.focus();
       }
     }
 
@@ -311,7 +339,7 @@
       }
     }
     
-    showRep(regionId: string | null) {
+    showRep(regionId: string | null, isExplicitClick: boolean = false) {
       const repCard = this.querySelector('.sales-rep-selector__rep-card') as HTMLElement;
       const placeholder = this.querySelector('.sales-rep-selector__placeholder') as HTMLElement;
       const infoCol = this.querySelector('.sales-rep-selector__info-col') as HTMLElement;
@@ -331,8 +359,11 @@
         placeholder.classList.add('sales-rep-selector__placeholder--hidden');
         repCard.classList.remove('sales-rep-selector__rep-card--hidden');
         
+        const repName = rep.name || 'Representative';
+        const firstName = repName.split(' ')[0] || repName;
+
         const nameEl = this.querySelector('.rep-name');
-        if (nameEl) nameEl.textContent = `Meet ${rep.name.split(' ')[0]}`;
+        if (nameEl) nameEl.textContent = `Meet ${firstName}`;
         
         const roleEl = this.querySelector('.rep-role');
         if (roleEl) roleEl.textContent = rep.role || '';
@@ -340,7 +371,7 @@
         const emailEl = this.querySelector('.rep-email') as HTMLAnchorElement;
         if (emailEl) {
             emailEl.href = 'mailto:' + (rep.email || 'info@e3es.com');
-            emailEl.textContent = `Email ${rep.name.split(' ')[0]}`;
+            emailEl.textContent = `Email ${firstName}`;
         }
 
         const phoneEl = this.querySelector('.rep-phone') as HTMLAnchorElement;
@@ -350,7 +381,7 @@
 
         const imgEl = this.querySelector('.rep-image') as HTMLImageElement;
         if (imgEl) {
-          imgEl.alt = `Photo of ${rep.name}`;
+          imgEl.alt = `Photo of ${repName}`;
           if (rep.imageUrl) {
             imgEl.src = rep.imageUrl;
             imgEl.classList.remove('sales-rep-selector__photo--hidden');
@@ -362,7 +393,7 @@
         const labelEl = this.querySelector('.rep-region-label');
         if (labelEl) labelEl.textContent = (REGION_LABELS[regionId] || 'Regional') + ' Representative';
 
-        if (window.innerWidth < 992 && infoCol) {
+        if (isExplicitClick && window.innerWidth < 992 && infoCol) {
           infoCol.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       } else {
@@ -380,6 +411,7 @@
     customElements.define('e3-texas-region-selector', class extends SalesRepRegionSelector {});
   }
 </script>
+
 
 <style lang="scss" is:global>
   @use "../styles/variables" as *;
@@ -405,11 +437,11 @@
   .texas-region-selector-ui {
     display: block;
     width: 100%;
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 60px 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
+    padding: 60px 20px;
 
     @include responsive-up($breakpoint-md) {
       padding-left: 32px;
@@ -417,19 +449,18 @@
     }
 
     @include responsive-up($breakpoint-lg) {
-      padding: 80px 40px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
   /* Prevent double padding/margins when nested inside custom element host elements */
-  e3-sales-rep-selector .sales-rep-selector,
-  e3-texas-region-selector .sales-rep-selector,
-  .wp-block-e3es-sales-rep-region .sales-rep-selector,
-  e3-sales-rep-selector .texas-region-selector-ui,
-  e3-texas-region-selector .texas-region-selector-ui,
-  .wp-block-e3es-sales-rep-region .texas-region-selector-ui {
-    margin: 0;
+  :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .sales-rep-selector {
     padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
   }
 
   /* BEM Block Grid/Flex Layout: sales-rep-selector */

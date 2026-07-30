@@ -8,14 +8,7 @@
     <div class="map-column">
       <?xml version="1.0" encoding="utf-8"?>
       <svg viewBox="0 0 941.76 907.17" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" class="texas-svg-map">
-        <defs>
-          <style>
-            .texas-region path { fill: var(--color-primary-green, #215734); stroke: #ffffff; stroke-width: 2px; transition: fill 0.3s ease; }
-            .texas-svg-map:not(.has-locked) .texas-region path:hover { fill: var(--color-primary-gold, #173d24); cursor: pointer; }
-            .texas-region.active path, .texas-region.locked path { fill: var(--color-primary-gold, #cfa83f); }
-            .client-star { fill: #ffffff; stroke: #215734; stroke-width: 2.5px; pointer-events: none; }
-          </style>
-        </defs>
+
         <g id="Layer_1" data-name="Layer 1">
           <g class="texas-region" data-region="panhandle" id="region-panhandle">
             <path d="M625.37,271.22c-3.01-.1-4.59-.27-6.39-3.06-6.58-9.19-16.48,14.39-19.8,2.98.36-12.2-8.33-1.94-8.68-9.28-.05-4.19-1.51-9.2-6.52-5.59-3.56.59-9.11-1.64-12.88-1.13-2.48-.02-1.4,6.05-4.73,4.49-6.32-7.95-15.5-1.81-23.12-6.03-3.75-3.62-10.11-1.56-14.61-3.1-2.33-1.43-.54-4.57-2.19-6.73-2.42-2.19-3.04-7.27-6.69-7.09-4.38-1.98-5.68-3.6-8.22,1.67-2.51.26-2.98-2.32-6.84-.25-10.36,5.8-11.52-9.11-19.29-11.6-1.46-1.04-4.6,0-5.36-1.51-1.15-34.93,1.6-104.83-1.86-133.08-55.21.18-122.84-1.67-173.01-2.19-1.76,103.62-6.17,210.23-9.82,313.06-27.93-.6-84.62-3.23-108.69-3.72-1.97,27.93-1.31,53.4-3.71,83.08-.94,7.07,1.81,8.26-6.01,10.84-4.13,6.35,5.25.95,6.4,18.25,1.89,5.53,5.99,9.43,8.57,14.47-.31,16.55-4.5,15.32,6.36,30.43.88,10.24,10.27,16.23,18.87,20.16,5.92,9.06,14.63,16.01,25.45,18.46,4.36,4.92,10.16,9.4,16.94,9.86,6.97,7.77,25.03,19.67,31.44,5.88,2.02-1.99,3.99-5.7,6.61-7.36,1.98-1,4.46-1.67,5.74-3.68,1.35-2.35-.84-5.87,1.16-8.11,3.61-4.48,3.61-10.47,6.72-15.26,1.02-4.57,4.97-7.46,6.35-11.46,4.79-2.35,10.8-1.55,15.86-2.66,3.34-1.38,3.24-8.25,8.02-4.82,9.84,5.84,10.08,2.93,19.54,5.2,3.29-.09,11.61.56,11.61.56,0,0,.22-29.67,1.17-33.49-.73-5.57,3.61-4.21,5.18-7.68-3.27-7.86,7.46-18.36-1.92-24.22-1.19-.7-3.29.1-3.66-1.63-2.85-13.26.88-20.67-11.7-20.97-2.88-.07-20.83-4.72-20.83-4.72l66.15,1.83s-.1-49.4.39-67.86c34.3-.18,102.16-2.52,134.48-.3,2.9,4.56,12.03,20.41,14.34,24.02,2.55,2.23,6.92-.89,10.06,0,2.14.45,2.61,2.32,4.1,1.84,4.84-3.34,15.89-8.44,19.17-12.65-11.29-23.53-5.92,5.32-22.26-27.27-.57-1.71,1.94-2.31,2.6-4.28.67-4.47.02-10.01.06-14.42-.17-2.93-4-1.41-5.52-2.68-.96-5.37-.47-20.63-.68-25.25.81-3.39,7.13.29,8.44-3.22.39-1.12.68-2.24,2.09-2.13,5.28-.02,20.58.06,26.87-.04.85-.06.81-.77.82-1.45.15-4.35-.61-21.34-.12-28.22,6.3-1.31,17.85-.4,24.51-1.2,1.75-4.97-.61-28.35-.03-34.32.1-.71-.37-1.25-.94-1.39Z"/>
@@ -121,7 +114,7 @@
         <div class="rep-contact-card__photo-wrap sales-rep-selector__photo-wrap">
           <img src="" alt="Representative" class="rep-contact-card__photo sales-rep-selector__photo rep-image" />
         </div>
-        <p class="rep-contact-card__role rep-region-label sales-rep-selector__region-label subtitle" style="margin-bottom: 0;"></p>
+        <p class="rep-contact-card__role rep-region-label sales-rep-selector__region-label subtitle"></p>
         <h3 class="rep-contact-card__name rep-name sales-rep-selector__rep-name"></h3>
         <p class="rep-contact-card__role rep-role sales-rep-selector__rep-role"></p>
         <div class="rep-contact-card__buttons sales-rep-selector__buttons">
@@ -254,6 +247,18 @@
         });
 
         region.addEventListener('mouseleave', () => {
+          if (this.isLocked) return;
+          this.unhoverRegion();
+        });
+
+        region.addEventListener('focus', () => {
+          if (this.isLocked) return;
+          if (regionId) {
+            this.hoverRegion(regionId, region as HTMLElement);
+          }
+        });
+
+        region.addEventListener('blur', () => {
           if (this.isLocked) return;
           this.unhoverRegion();
         });
@@ -445,9 +450,22 @@
   }
 </script>
 
-<style is:global>
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-  
+<style lang="scss" is:global>
+  @use "../styles/variables" as *;
+  @use "../styles/mixins" as *;
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   e3-texas-region-selector,
   e3-sales-rep-selector,
   .wp-block-e3es-sales-rep-region,
@@ -455,62 +473,110 @@
   .texas-region-selector-ui {
     display: block;
     width: 100%;
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 60px 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
-  }
+    padding: 60px 20px;
 
-  @media (min-width: 992px) {
-    e3-texas-region-selector,
-    e3-sales-rep-selector,
-    .wp-block-e3es-sales-rep-region,
-    .sales-rep-selector,
-    .texas-region-selector-ui {
-      padding: 80px 40px;
+    @include responsive-up($breakpoint-md) {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    @include responsive-up($breakpoint-lg) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
-  
+
+  :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .texas-region-selector-ui,
+  :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .sales-rep-selector {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
   .texas-region-selector-ui {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    gap: 32px;
     width: 100%;
-  }
-  
-  .texas-region-selector-ui .map-column {
-    flex: 1.5;
-    min-width: 0;
-  }
-  
-  .texas-region-selector-ui .info-column {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  
-  .placeholder-card {
-    background-color: var(--color-light-gray, #f4f6f5);
-    padding: 40px 30px;
-    border-radius: 0;
-    text-align: center;
-    border: 2px dashed #ccc;
-  }
-  
-  .rep-card {
-    /* Styles are now inherited from .rep-contact-card */
-  }
-  
-  @media (min-width: 992px) {
-    .texas-region-selector-ui {
-      flex-direction: row;
+
+    @include responsive-up($breakpoint-lg) {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       align-items: flex-start;
+      gap: 60px;
+    }
+
+    .map-column {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .info-column {
+      width: 100%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      @include responsive-up($breakpoint-lg) {
+        position: sticky;
+        top: 100px;
+        z-index: 10;
+        align-self: start;
+      }
+    }
+
+    .placeholder-card {
+      background-color: var(--color-light-gray, #f4f6f5);
+      padding: 60px 32px;
+      border-radius: 0;
+      text-align: center;
+      border: 2px dashed var(--color-border-dark, #767676);
+      color: var(--color-text-main, #1a1a1a);
+
+      @include responsive-up($breakpoint-lg) {
+        padding: 80px 60px;
+      }
+
+      &--hidden {
+        display: none !important;
+      }
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.6;
+        color: var(--color-text-muted, #666666);
+      }
+    }
+
+    .rep-card {
+      background-color: #ffffff;
+      border: 1px solid var(--color-border-card, #b0b0b0);
+      padding: 60px 32px;
+      border-radius: 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+      @include responsive-up($breakpoint-lg) {
+        padding: 80px 60px;
+      }
+
+      &--hidden {
+        display: none !important;
+      }
     }
   }
 </style>
