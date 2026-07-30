@@ -77,6 +77,8 @@
     employees: any = {};
     isLocked: boolean = false;
     lockedRegionId: string | null = null;
+    isReordering: boolean = false;
+    isUnlocking: boolean = false;
     
     connectedCallback() {
       if (this.querySelector('.sales-rep-selector')) return;
@@ -154,7 +156,6 @@
         const regionId = (region as HTMLElement).dataset.region || '';
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
-        region.setAttribute('aria-pressed', 'false');
         region.setAttribute('aria-expanded', 'false');
         region.setAttribute('aria-label', `${REGION_LABELS[regionId] || regionId} Region`);
         region.setAttribute('aria-controls', 'find-your-rep');
@@ -183,26 +184,26 @@
         });
 
         region.addEventListener('mouseenter', () => {
-          if (this.isLocked) return;
+          if (this.isLocked || this.isReordering) return;
           if (regionId) {
             this.hoverRegion(regionId, region as HTMLElement);
           }
         });
         
         region.addEventListener('mouseleave', () => {
-          if (this.isLocked) return;
+          if (this.isLocked || this.isReordering) return;
           this.unhoverRegion();
         });
 
         region.addEventListener('focus', () => {
-          if (this.isLocked) return;
+          if (this.isLocked || this.isReordering || this.isUnlocking) return;
           if (regionId) {
             this.hoverRegion(regionId, region as HTMLElement);
           }
         });
 
         region.addEventListener('blur', () => {
-          if (this.isLocked) return;
+          if (this.isLocked || this.isReordering || this.isUnlocking) return;
           this.unhoverRegion();
         });
       });
@@ -211,7 +212,13 @@
     elevateRegion(regionElement: HTMLElement) {
       const parent = regionElement.parentNode;
       if (parent && parent.lastElementChild !== regionElement) {
+        this.isReordering = true;
+        const activeEl = document.activeElement as HTMLElement | null;
         parent.appendChild(regionElement);
+        if (activeEl && typeof activeEl.focus === 'function') {
+          activeEl.focus();
+        }
+        this.isReordering = false;
       }
     }
 
@@ -224,11 +231,9 @@
 
       regions.forEach(r => {
         r.classList.remove('active', 'locked');
-        r.setAttribute('aria-pressed', 'false');
         r.setAttribute('aria-expanded', 'false');
       });
       regionElement.classList.add('active', 'locked');
-      regionElement.setAttribute('aria-pressed', 'true');
       regionElement.setAttribute('aria-expanded', 'true');
 
       if (svgMap) svgMap.classList.add('has-active', 'has-locked');
@@ -237,7 +242,7 @@
       this.elevateRegion(regionElement);
       regionElement.focus();
 
-      this.showRep(regionId);
+      this.showRep(regionId, true);
 
       const regionLabel = regionElement.getAttribute('aria-label') || regionId;
       this.announceStatus(`Selected ${regionLabel}. Representative details loaded.`);
@@ -253,7 +258,6 @@
 
       regions.forEach(r => {
         r.classList.remove('active', 'locked');
-        r.setAttribute('aria-pressed', 'false');
         r.setAttribute('aria-expanded', 'false');
       });
 
@@ -267,32 +271,37 @@
       if (targetRegionId) {
         const targetEl = this.querySelector(`#region-${targetRegionId}`) as HTMLElement;
         if (targetEl) {
+          this.isUnlocking = true;
           targetEl.focus();
+          this.isUnlocking = false;
         }
       }
     }
 
     hoverRegion(regionId: string, regionElement: HTMLElement) {
-      if (this.isLocked) return;
+      if (this.isLocked || this.isReordering || this.isUnlocking) return;
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
-      this.showRep(regionId);
-      regions.forEach(r => r.classList.remove('active'));
+      this.showRep(regionId, false);
+      regions.forEach(r => {
+        r.classList.remove('active');
+        r.setAttribute('aria-expanded', 'false');
+      });
       regionElement.classList.add('active');
+      regionElement.setAttribute('aria-expanded', 'true');
       if (svgMap) svgMap.classList.add('has-active');
 
       this.elevateRegion(regionElement);
     }
 
     unhoverRegion() {
-      if (this.isLocked) return;
+      if (this.isLocked || this.isReordering || this.isUnlocking) return;
       const regions = this.querySelectorAll('.texas-region');
       const svgMap = this.querySelector('.texas-svg-map');
 
       regions.forEach(r => {
         r.classList.remove('active');
-        r.setAttribute('aria-pressed', 'false');
         r.setAttribute('aria-expanded', 'false');
       });
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
@@ -311,13 +320,14 @@
           parseInt(reg.getAttribute('data-original-order') || '0', 10) !== idx
         );
         if (needsSort) {
+          this.isReordering = true;
           regionsArray.sort((a, b) => parseInt(a.getAttribute('data-original-order') || '0', 10) - parseInt(b.getAttribute('data-original-order') || '0', 10));
           regionsArray.forEach(reg => parent.appendChild(reg));
+          if (isFocusedInThis && activeEl && typeof activeEl.focus === 'function') {
+            activeEl.focus();
+          }
+          this.isReordering = false;
         }
-      }
-
-      if (isFocusedInThis && activeEl && typeof activeEl.focus === 'function') {
-        activeEl.focus();
       }
     }
 
@@ -329,7 +339,7 @@
       }
     }
     
-    showRep(regionId: string | null) {
+    showRep(regionId: string | null, isExplicitClick: boolean = false) {
       const repCard = this.querySelector('.sales-rep-selector__rep-card') as HTMLElement;
       const placeholder = this.querySelector('.sales-rep-selector__placeholder') as HTMLElement;
       const infoCol = this.querySelector('.sales-rep-selector__info-col') as HTMLElement;
@@ -349,8 +359,11 @@
         placeholder.classList.add('sales-rep-selector__placeholder--hidden');
         repCard.classList.remove('sales-rep-selector__rep-card--hidden');
         
+        const repName = rep.name || 'Representative';
+        const firstName = repName.split(' ')[0] || repName;
+
         const nameEl = this.querySelector('.rep-name');
-        if (nameEl) nameEl.textContent = `Meet ${rep.name.split(' ')[0]}`;
+        if (nameEl) nameEl.textContent = `Meet ${firstName}`;
         
         const roleEl = this.querySelector('.rep-role');
         if (roleEl) roleEl.textContent = rep.role || '';
@@ -358,7 +371,7 @@
         const emailEl = this.querySelector('.rep-email') as HTMLAnchorElement;
         if (emailEl) {
             emailEl.href = 'mailto:' + (rep.email || 'info@e3es.com');
-            emailEl.textContent = `Email ${rep.name.split(' ')[0]}`;
+            emailEl.textContent = `Email ${firstName}`;
         }
 
         const phoneEl = this.querySelector('.rep-phone') as HTMLAnchorElement;
@@ -368,7 +381,7 @@
 
         const imgEl = this.querySelector('.rep-image') as HTMLImageElement;
         if (imgEl) {
-          imgEl.alt = `Photo of ${rep.name}`;
+          imgEl.alt = `Photo of ${repName}`;
           if (rep.imageUrl) {
             imgEl.src = rep.imageUrl;
             imgEl.classList.remove('sales-rep-selector__photo--hidden');
@@ -380,7 +393,7 @@
         const labelEl = this.querySelector('.rep-region-label');
         if (labelEl) labelEl.textContent = (REGION_LABELS[regionId] || 'Regional') + ' Representative';
 
-        if (window.innerWidth < 992 && infoCol) {
+        if (isExplicitClick && window.innerWidth < 992 && infoCol) {
           infoCol.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       } else {
@@ -398,6 +411,7 @@
     customElements.define('e3-texas-region-selector', class extends SalesRepRegionSelector {});
   }
 </script>
+
 
 <style lang="scss" is:global>
   @use "../styles/variables" as *;
