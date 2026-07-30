@@ -216,6 +216,7 @@
 
       if (svgMap) svgMap.classList.add('has-active', 'has-locked');
 
+      this.restoreRegionOrder();
       this.elevateRegion(regionElement);
       regionElement.focus();
 
