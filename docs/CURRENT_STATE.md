@@ -1,6 +1,19 @@
 # Current State
 
-## [2026-07-29] SalesRepRegionSelector Selection Locking Logic Audit & LPM Server Verification
+## [2026-07-29] SalesRepRegionSelector 1400px Max-Width, Selection Locking, Bio Removal & Placeholder Audit
+- **Branch**: `task/sales-rep-selector-1400px`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  - [`src/styles/desktop.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss)
+  - [`src/styles/mobile.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss)
+- **Verified Checklist Requirements**:
+  1. **Component Inspection**: Inspected `SalesRepRegionSelector.astro` and SCSS files. All BEM classes and element hooks are properly defined.
+  2. **Click-Locking Interaction**: Verified region click locks selection (`isLocked = true`, `lockedRegionId = regionId`). Hover is strictly ignored while locked (`mouseenter` / `mouseleave` return early). Clicking a new region smoothly transfers lock; re-clicking same region maintains lock.
+  3. **1400px Max-Width**: Confirmed and explicitly applied `max-width: 1400px` in `SalesRepRegionSelector.astro`, `desktop.scss`, and `mobile.scss`.
+  4. **Placeholder Text**: Verified placeholder exact text is `"Select your region and contact us to get started."`.
+  5. **Bio Field Removal**: Confirmed rep card contains photo, region label, name, role, email button, schedule call button, and clear button. Bio field is completely absent.
+- **Status**: 100% verified and committed on `task/sales-rep-selector-1400px`.
+
 - **Branch**: `task/sales-rep-locking-logic-1785380372`
 - **Target Files**:
   - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
