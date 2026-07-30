@@ -457,9 +457,22 @@
   }
 </script>
 
-<style is:global>
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-  
+<style lang="scss" is:global>
+  @use "../styles/variables" as *;
+  @use "../styles/mixins" as *;
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   e3-texas-region-selector,
   e3-sales-rep-selector,
   .wp-block-e3es-sales-rep-region,
@@ -467,62 +480,110 @@
   .texas-region-selector-ui {
     display: block;
     width: 100%;
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 60px 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
-  }
+    padding: 60px 20px;
 
-  @media (min-width: 992px) {
-    e3-texas-region-selector,
-    e3-sales-rep-selector,
-    .wp-block-e3es-sales-rep-region,
-    .sales-rep-selector,
-    .texas-region-selector-ui {
-      padding: 80px 40px;
+    @include responsive-up($breakpoint-md) {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    @include responsive-up($breakpoint-lg) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
-  
+
+  :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .texas-region-selector-ui,
+  :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .sales-rep-selector {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
   .texas-region-selector-ui {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    gap: 32px;
     width: 100%;
-  }
-  
-  .texas-region-selector-ui .map-column {
-    flex: 1.5;
-    min-width: 0;
-  }
-  
-  .texas-region-selector-ui .info-column {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  
-  .placeholder-card {
-    background-color: var(--color-light-gray, #f4f6f5);
-    padding: 40px 30px;
-    border-radius: 0;
-    text-align: center;
-    border: 2px dashed #ccc;
-  }
-  
-  .rep-card {
-    /* Styles are now inherited from .rep-contact-card */
-  }
-  
-  @media (min-width: 992px) {
-    .texas-region-selector-ui {
-      flex-direction: row;
+
+    @include responsive-up($breakpoint-lg) {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       align-items: flex-start;
+      gap: 60px;
+    }
+
+    .map-column {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .info-column {
+      width: 100%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      @include responsive-up($breakpoint-lg) {
+        position: sticky;
+        top: 100px;
+        z-index: 10;
+        align-self: start;
+      }
+    }
+
+    .placeholder-card {
+      background-color: var(--color-light-gray, #f4f6f5);
+      padding: 60px 32px;
+      border-radius: 0;
+      text-align: center;
+      border: 2px dashed var(--color-border-dark, #767676);
+      color: var(--color-text-main, #1a1a1a);
+
+      @include responsive-up($breakpoint-lg) {
+        padding: 80px 60px;
+      }
+
+      &--hidden {
+        display: none !important;
+      }
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.6;
+        color: var(--color-text-muted, #666666);
+      }
+    }
+
+    .rep-card {
+      background-color: #ffffff;
+      border: 1px solid var(--color-border-card, #b0b0b0);
+      padding: 60px 32px;
+      border-radius: 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+      @include responsive-up($breakpoint-lg) {
+        padding: 80px 60px;
+      }
+
+      &--hidden {
+        display: none !important;
+      }
     }
   }
 </style>
