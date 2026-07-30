@@ -1,6 +1,23 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Comprehensive UX & CSS Layout Inspection & Architecture Report
+- **Target File**: `file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro`
+- **1400px Max-Width Layout**: Web Component host elements (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`) and internal container `.sales-rep-selector` strictly enforce `max-width: 1400px; margin-left: auto; margin-right: auto;`. `:has()` selectors in `desktop.scss` and `mobile.scss` override parent Gutenberg wrapper widths to guarantee full 1400px canvas rendering across all embedding environments.
+- **Asymmetric Desktop Grid**: Uses `grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)` with `gap: 60px;` at `$breakpoint-lg` (992px+), allocating `1.35fr` to the SVG map column and `1fr` to the sticky representative info column (`position: sticky; top: 100px;`).
+- **Click-Lock Interaction Mechanics**:
+  - `isLocked` (boolean) & `lockedRegionId` (string) track state locking.
+  - Clicking a region sets persistent lock (`.active`, `.locked`, `aria-pressed="true"`), elevates SVG DOM z-index stack (`elevateRegion()`), displays rep details, and announces via `aria-live="polite"`.
+  - Same-region re-click guard: Re-clicking locked region maintains lock state and restores element focus without toggling off.
+  - Region switching: Clicking a different region while locked seamlessly updates `lockedRegionId` and transfers active styles.
+  - Reset / Unlock: Clicking `"← Select Another Region"` (`.rep-clear-btn`) invokes `unlockMap()`, resetting lock state, restoring original SVG DOM order, clearing rep card to initial placeholder `"Select your region and contact us to get started."`, and returning focus to the previously selected region.
+  - Outside click protection: `setupGlobalDismissListeners()` intentionally omits outside click and `Escape` handlers to enforce permanent selection locking protocol.
+- **Visual Feedback & Hover Suppression**:
+  - Unlocked: Hovering elevates SVG region, applies `#215734` fill, white stroke border (`stroke: #ffffff`, `stroke-width: 4px`), and dims inactive regions (`fill: #5F6E63 !important`). Unhovering restores initial colors and placeholder.
+  - Locked: SVG map maintains `.has-locked` container class. Non-locked regions are dimmed (`#5F6E63`) and hover glow effects are suppressed via `.has-locked .texas-region:not(.locked):hover path { filter: none !important; fill: #5F6E63 !important; }`.
+- **Design System Restraints**: 0px border-radius, soft depth shadows (`0 8px 24px rgba(0, 0, 0, 0.08)`), 60-30-10 color rule with primary green `#215734`, minimum 44px touch targets, and high-contrast `:focus-visible` ring (`outline: 3px solid #005fcc`).
+
 ## [2026-07-29] SalesRepRegionSelector 1400px Max-Width, Selection Locking, Bio Removal & Placeholder Verification
+
 - **Branch**: `task/sales-rep-selector-1400px-lock`
 - **Goal**: Perform comprehensive code audit of `SalesRepRegionSelector.astro` against all 4 user specification rules:
   1. Section / wrapper container max-width set to 1400px (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.sales-rep-selector`).
