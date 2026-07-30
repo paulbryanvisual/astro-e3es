@@ -3658,8 +3658,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Client Content Layout Constraints */
-main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)),
-.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
+main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector)),
+.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector)) {
   max-width: 1200px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -3669,7 +3669,7 @@ main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3
   padding-right: 2rem;
 }
 
-main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
+main.client-detail > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector)) {
   max-width: 850px !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -4779,7 +4779,9 @@ main > .wp-block-e3es-full-width-testimonial {
     > .has-background,
     > e3-sales-rep-selector,
     > e3-texas-region-selector,
-    > :is(.wp-block-group, .wp-block-columns, .db-feature):has(e3-sales-rep-selector, e3-texas-region-selector) {
+    > .wp-block-e3es-sales-rep-region,
+    > .sales-rep-selector,
+    > :is(.wp-block-group, .wp-block-columns, .db-feature):has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector) {
       grid-column: full;
       width: 100%;
       padding-left: 0 !important;
@@ -4796,7 +4798,7 @@ main > .wp-block-e3es-full-width-testimonial {
     > .design-build__pillars,
     > .has-background {
       box-sizing: border-box;
-      > *:not(.alignfull):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(:has(e3-sales-rep-selector, e3-texas-region-selector)) {
+      > *:not(.alignfull):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector)) {
         max-width: 1200px !important;
         margin-left: auto !important;
         margin-right: auto !important;
@@ -4804,7 +4806,7 @@ main > .wp-block-e3es-full-width-testimonial {
         padding-right: 1.5rem !important;
         box-sizing: border-box;
       }
-      > :is(e3-sales-rep-selector, e3-texas-region-selector, *:has(e3-sales-rep-selector, e3-texas-region-selector)) {
+      > :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, *:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector)) {
         width: 100%;
         max-width: 1400px !important;
         margin-left: auto !important;
@@ -5073,8 +5075,8 @@ main, .editor-styles-wrapper {
     align-items: center;
     width: 100%;
 
-    &:has(e3-sales-rep-selector, e3-texas-region-selector),
-    > :is(e3-sales-rep-selector, e3-texas-region-selector) {
+    &:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector),
+    > :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector) {
       display: block !important;
       max-width: 1400px !important;
       gap: 0 !important;
