@@ -1,5 +1,20 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Selection Locking Logic Audit & LPM Server Verification
+- **Branch**: `task/sales-rep-locking-logic-1785380372`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+- **Selection Locking Logic Verification**:
+  - **Locking on Click**: Clicking any region sets `isLocked = true` and `lockedRegionId = regionId`, applying `.active` and `.locked` classes and displaying the representative card details.
+  - **Hover Suppression while Locked**: `mouseenter` and `mouseleave` handlers check `if (this.isLocked) return;`, ensuring hovering over unselected regions is completely ignored. CSS overrides (`.has-locked .texas-region:not(.locked):hover path`) suppress visual glow on unselected regions.
+  - **Re-click & Lock Persistence**: Re-clicking the locked region retains focus and selection lock without resetting. Outside clicks and Escape key do not clear selection lock.
+  - **Region Switching**: Clicking a different region cleanly transfers the lock state to the new region, updates SVG stacking order (`elevateRegion()`), and displays the new rep details (`showRep()`).
+  - **Unlocking**: Clicking "← Select Another Region" (`.rep-clear-btn`) invokes `unlockMap()`, resetting lock state, restoring initial SVG order, hiding rep card, and recovering focus to the previously locked region.
+- **Build & Server Verification**:
+  - Executed `npm run build` with 0 errors (200 pages built cleanly in 6.13s).
+  - Registered workspace with LPM on port 4008 and confirmed Caddy proxy forwarding at `http://astro-e3es.localhost:8080`.
+- **Status**: 100% verified and operational.
+
 ## [2026-07-29] SalesRepRegionSelector Selection Locking & 1400px Max-Width Verification & Branch Finalization
 - **Branch**: `task/sales-rep-selector-lock-maxwidth-1785380137`
 - **Target Files**:
