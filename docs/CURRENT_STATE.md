@@ -1,5 +1,16 @@
 # Current State
 
+## [2026-07-30] SalesRepRegionSelector State Lock-in Audit & SVG Hover Suppression
+- **Branch**: `task/region-selector-lockin-audit-20260730`
+- **Target Files**:
+  - `src/components/SalesRepRegionSelector.astro`
+  - `src/components/TexasRegionSelector.astro`
+  - `progress.MD`
+- **Summary**:
+  1. **Dual-Perspective Audit**: Verified JS state machine (`isLocked = true`, `lockedRegionId = regionId`). Confirmed region click locks selection, mouse hover is ignored when locked, clicking outside does not unlock, clicking another region re-locks onto the new selection, and clear button resets map.
+  2. **SVG CSS Hover Fix**: Fixed SVG path hover glow bleed in `TexasRegionSelector.astro` using `.texas-svg-map:not(.has-locked) .texas-region path:hover`.
+  3. **Max-Width 1400px Layout Compliance**: Audited container constraints in `desktop.scss` and `mobile.scss`, confirming strict 1400px maximum width compliance.
+
 ## [2026-07-29] SalesRepRegionSelector Strict 1400px Margin Auto Layout Lock
 - **Branch**: `task/sales-rep-lock-1400px-selector`
 - **Target Files**:
