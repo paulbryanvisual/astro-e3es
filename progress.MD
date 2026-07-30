@@ -1,6 +1,6 @@
 # Progress Tracker
 
-## Section 1: 🚧 Currently Working On
+## Section 1: 🏗️ Currently Working On
 *(No active tasks in progress)*
 
 ## Section 2: 🔍 For Review
