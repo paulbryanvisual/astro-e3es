@@ -1,5 +1,17 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Lock Logic & 1400px Max-Width Re-Audit & Verification
+- **Branch**: `task/sales-rep-selector-check-20260729`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  - [`src/components/TexasRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/TexasRegionSelector.astro)
+  - [`src/styles/desktop.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss)
+  - [`src/styles/mobile.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss)
+- **Summary**:
+  1. **Region Selection Locking**: Re-verified `isLocked` state persistence in `SalesRepRegionSelector.astro` and `TexasRegionSelector.astro`. Confirmed region selection locks upon click, hovering over other regions is suppressed when locked, clicking outside or re-clicking the same region does NOT clear the lock, and locking persists until another region or the "← Select Another Region" button is clicked.
+  2. **1400px Max-Width Layout Constraint**: Re-verified `max-width: 1400px` rules in component tags (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.sales-rep-selector`, `.wp-block-e3es-sales-rep-region`) and SCSS wrapper rules (`desktop.scss` and `mobile.scss`).
+  3. **Build & Quality Check**: Ran full production build (`npm run build`), confirming 200/200 static pages built cleanly with zero errors.
+
 ## [2026-07-29] SalesRepRegionSelector Selection Locking & Card Rendering Logic Verification
 - **Branch**: `task/sales-rep-lock-1400px-1785381463`
 - **Target Files**:
