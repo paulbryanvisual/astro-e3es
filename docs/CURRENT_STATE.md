@@ -1,5 +1,15 @@
 # Current State
 
+## [2026-07-30] SalesRepRegionSelector JS Interaction & Focus Guard Refinement
+- **Target Files**:
+  - `src/components/SalesRepRegionSelector.astro`
+- **Summary**:
+  1. **Reordering Focus Loop Guard**: Introduced `isReordering` boolean flag around `parent.appendChild(regionElement)` in `elevateRegion()` and `restoreRegionOrder()`. Prevents browser-dispatched SVG `blur` events from triggering focus loss or endless hover loops when tabbing through regions via keyboard.
+  2. **Unlock Map Re-activation Fix**: Added `isUnlocking` boolean guard to `unlockMap()` around `targetEl.focus()`. Prevents the programmatic `focus` event from re-triggering `hoverRegion()` and re-locking/re-opening the rep card after clearing.
+  3. **Safe Property Access**: Updated `showRep()` to use fallback `const repName = rep?.name || 'Representative';` and `repName.split(' ')[0]`, preventing `TypeError` on missing employee attributes.
+  4. **ARIA Standard Consistency**: Removed conflicting `aria-pressed` toggle attribute from `role="button"` SVG regions, standardizing on `aria-expanded` synchronized dynamically during hover preview (`true`) and unhover/clear (`false`).
+  5. **Mobile Smooth Scroll Control**: Restricted `infoCol.scrollIntoView()` to explicit region click selections (`lockRegion`), preventing intrusive page auto-scrolling during desktop mouse hover or keyboard tab previews.
+
 ## [2026-07-30] SalesRepRegionSelector Selection Locking & Interaction Model Audit
 - **Target Files**:
   - `src/components/SalesRepRegionSelector.astro`
