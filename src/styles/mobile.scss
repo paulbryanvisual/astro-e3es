@@ -2315,6 +2315,47 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     padding: 4rem 2rem;
     text-align: center;
     margin: 3rem 0;
+
+    .cta-banner__title {
+        color: inherit;
+    }
+
+    .cta-banner__text {
+        color: inherit;
+        opacity: 0.9;
+    }
+
+    &--dark-bg {
+        color: var(--color-bg-white);
+        
+        .cta-banner__btn {
+            color: var(--color-bg-white);
+            border-color: var(--color-bg-white);
+            
+            &:hover {
+                background-color: var(--color-bg-white);
+                color: var(--color-primary-dark);
+            }
+        }
+    }
+
+    &--light-bg {
+        color: var(--color-text-main);
+        
+        .cta-banner__title {
+            color: var(--color-primary-dark);
+        }
+        
+        .cta-banner__btn {
+            color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            
+            &:hover {
+                background-color: var(--color-primary-dark);
+                color: var(--color-bg-white);
+            }
+        }
+    }
 }
 
 .cta-banner__container {
@@ -2347,7 +2388,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         font-size: 2rem !important;
         font-weight: 900 !important;
         margin-bottom: 1rem !important;
-        color: var(--color-bg-white) !important;
+        color: inherit !important;
     }
 
     & .is-root-container .cta-banner p,
@@ -2356,7 +2397,42 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         line-height: 1.6 !important;
         margin-bottom: 2rem !important;
         opacity: 0.9 !important;
+        color: inherit !important;
+    }
+
+    & .is-root-container .cta-banner--dark-bg h1,
+    & .is-root-container .cta-banner--dark-bg h2,
+    & .is-root-container .cta-banner--dark-bg h3,
+    & .is-root-container .cta-banner--dark-bg .cta-banner__title,
+    & .is-root-container .cta-banner--dark-bg p,
+    & .is-root-container .cta-banner--dark-bg .cta-banner__text {
         color: var(--color-bg-white) !important;
+    }
+
+    & .is-root-container .cta-banner--dark-bg .cta-banner__btn,
+    & .is-root-container .cta-banner--dark-bg a.cta-banner__btn,
+    & .is-root-container .cta-banner--dark-bg span.cta-banner__btn {
+        color: var(--color-bg-white) !important;
+        border-color: var(--color-bg-white) !important;
+    }
+
+    & .is-root-container .cta-banner--light-bg h1,
+    & .is-root-container .cta-banner--light-bg h2,
+    & .is-root-container .cta-banner--light-bg h3,
+    & .is-root-container .cta-banner--light-bg .cta-banner__title {
+        color: var(--color-primary-dark) !important;
+    }
+
+    & .is-root-container .cta-banner--light-bg p,
+    & .is-root-container .cta-banner--light-bg .cta-banner__text {
+        color: var(--color-text-main) !important;
+    }
+
+    & .is-root-container .cta-banner--light-bg .cta-banner__btn,
+    & .is-root-container .cta-banner--light-bg a.cta-banner__btn,
+    & .is-root-container .cta-banner--light-bg span.cta-banner__btn {
+        color: var(--color-primary-dark) !important;
+        border-color: var(--color-primary-dark) !important;
     }
 
     & .is-root-container .cta-banner__btn,
@@ -2368,9 +2444,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
-        color: var(--color-bg-white) !important;
-        border: 2px solid var(--color-bg-white) !important;
         margin-top: 1.5rem !important;
+        border: 2px solid !important;
     }
 }
 
