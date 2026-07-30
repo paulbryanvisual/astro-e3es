@@ -1,5 +1,16 @@
 # Current State
 
+## [2026-07-30] SalesRepRegionSelector Strict 1400px Container & Host Elements Audit
+- **Target Files**:
+  - `src/components/SalesRepRegionSelector.astro`
+  - `src/components/TexasRegionSelector.astro`
+  - `src/styles/desktop.scss`
+  - `src/styles/mobile.scss`
+- **Summary**:
+  1. **Strict 1400px Max-Width Compliance**: Confirmed `max-width: 1400px !important;`, `width: 100%;`, `margin-left: auto !important;`, and `margin-right: auto !important;` on all host elements (`e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`, `.sales-rep-selector`, `.texas-region-selector-ui`).
+  2. **Container Parent Wrapper Overrides**: Expanded `:has(...)` and `:is(...)` selector lists in `desktop.scss` and `mobile.scss` across `.has-background`, `.wp-block-group`, `.wp-block-columns`, `.wp-block-column`, `.wp-block-cover`, `.db-feature`, `.map-section`, and `.map-container` to include `.texas-region-selector-ui`.
+  3. **Main Layout Constraint Exclusions**: Updated `main > *` and `main.client-detail > *` rules in `mobile.scss` to exclude `.texas-region-selector-ui` from 1200px or 850px max-width limits, preserving strict 1400px width.
+
 ## [2026-07-30] SalesRepRegionSelector State Lock-in Audit & SVG Hover Suppression
 - **Branch**: `task/region-selector-lockin-audit-20260730`
 - **Target Files**:
