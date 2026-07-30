@@ -1,5 +1,16 @@
 # Current State
 
+## [2026-07-30] SalesRepRegionSelector Selection Locking & Interaction Model Audit
+- **Target Files**:
+  - `src/components/SalesRepRegionSelector.astro`
+  - `progress.MD`
+- **Summary**:
+  1. **Permanent Locking on Click**: Confirmed that clicking a region sets `isLocked = true` and `lockedRegionId = regionId`, applying `.active` and `.locked` classes to the region element and `.has-locked` to the SVG container.
+  2. **Hover Suppression**: Verified that `mouseenter` and `mouseleave` event handlers execute `if (this.isLocked) return;` and CSS rule `.has-locked .texas-region:not(.locked):hover` suppresses hover fills/glows while locked.
+  3. **Outside Click & Dismiss Resilience**: Confirmed no outside document click listeners exist; lock remains active when clicking outside or pressing Escape, and can only be cleared via the explicit `.rep-clear-btn` ("← Select Another Region").
+  4. **Region Switching**: Confirmed that clicking a different region updates `lockedRegionId` to the new choice, updates rep card details (`showRep`), and locks the new region choice.
+  5. **Build Verification**: Executed Astro build (`npm run build`), successfully compiling all 200 pages with zero errors.
+
 ## [2026-07-30] SalesRepRegionSelector Strict 1400px Container & Host Elements Audit
 - **Target Files**:
   - `src/components/SalesRepRegionSelector.astro`
