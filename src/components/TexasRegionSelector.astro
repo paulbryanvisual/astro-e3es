@@ -10,8 +10,8 @@
         <defs>
           <style>
             .texas-region path { fill: var(--color-primary-green, #215734); stroke: #ffffff; stroke-width: 2px; transition: fill 0.3s ease; }
-            .texas-region path:hover { fill: var(--color-primary-gold, #173d24); cursor: pointer; }
-            .texas-region.active path { fill: var(--color-primary-gold, #cfa83f); }
+            .texas-svg-map:not(.has-locked) .texas-region path:hover { fill: var(--color-primary-gold, #173d24); cursor: pointer; }
+            .texas-region.active path, .texas-region.locked path { fill: var(--color-primary-gold, #cfa83f); }
             .client-star { fill: #ffffff; stroke: #215734; stroke-width: 2.5px; pointer-events: none; }
           </style>
         </defs>
@@ -126,25 +126,50 @@
         <div class="rep-contact-card__buttons">
           <a href="" class="btn btn--primary rep-email">Email Representative</a>
         </div>
+        <button type="button" class="sales-rep-selector__clear-btn rep-clear-btn" aria-label="Clear region selection">← Select Another Region</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  const REGION_LABELS: Record<string, string> = {
+    panhandle: 'Panhandle / West Texas',
+    north: 'North Texas',
+    central: 'Central Texas',
+    south: 'South Texas',
+    west: 'Far West Texas',
+    'hill-country': 'Hill Country',
+    southeast: 'South East Texas',
+    northeast: 'North East Texas'
+  };
+
   class TexasRegionSelector extends HTMLElement {
+    regionMap: any = {};
+    employees: any = {};
+    isLocked: boolean = false;
+    lockedRegionId: string | null = null;
+
     connectedCallback() {
-      const template = document.getElementById('texas-map-template') as HTMLTemplateElement;
+      if (this.querySelector('.texas-region-selector-ui') || this.querySelector('.sales-rep-selector')) return;
+
+      const template = (document.getElementById('texas-map-template') || document.getElementById('sales-rep-map-template')) as HTMLTemplateElement;
       if (!template) return;
       
       const content = template.content.cloneNode(true);
       
       try {
-        const regionMapRaw = this.dataset.regionMapB64 ? atob(this.dataset.regionMapB64) : (this.dataset.regionMap || '{}');
-        const employeesRaw = this.dataset.employeesB64 ? atob(this.dataset.employeesB64) : (this.dataset.employees || '{}');
-        
-        this.regionMap = JSON.parse(regionMapRaw);
-        this.employees = JSON.parse(employeesRaw);
+        if (this.dataset.regionMapB64) {
+          this.regionMap = this.parseBase64Json(this.dataset.regionMapB64) || {};
+        } else if (this.dataset.regionMap) {
+          this.regionMap = JSON.parse(this.dataset.regionMap);
+        }
+
+        if (this.dataset.employeesB64) {
+          this.employees = this.parseBase64Json(this.dataset.employeesB64) || {};
+        } else if (this.dataset.employees) {
+          this.employees = JSON.parse(this.dataset.employees);
+        }
       } catch (e) {
         console.error("Failed to parse map data:", e);
         this.regionMap = {};
@@ -152,43 +177,205 @@
       }
       
       this.appendChild(content);
-      
       this.setupInteractions();
     }
     
+    parseBase64Json(b64Str: string) {
+      try {
+        return JSON.parse(decodeURIComponent(escape(atob(b64Str))));
+      } catch (e) {
+        try {
+          return JSON.parse(atob(b64Str));
+        } catch (e2) {
+          console.error("Failed to decode base64 JSON:", e2);
+          return null;
+        }
+      }
+    }
+
     setupInteractions() {
       const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      if (svgMap) {
+        const parent = this.querySelector('#Layer_1');
+        if (parent) {
+          regions.forEach((region, index) => {
+            region.setAttribute('data-original-order', index.toString());
+          });
+        }
+      }
+
+      const clearBtn = this.querySelector('.rep-clear-btn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', (e: Event) => {
+          e.stopPropagation();
+          this.unlockMap();
+        });
+      }
+
       regions.forEach(region => {
-        region.addEventListener('click', () => {
-          const regionId = (region as HTMLElement).dataset.region;
+        const regionId = (region as HTMLElement).dataset.region || '';
+        region.setAttribute('tabindex', '0');
+        region.setAttribute('role', 'button');
+        region.setAttribute('aria-pressed', 'false');
+        region.setAttribute('aria-label', `${REGION_LABELS[regionId] || regionId} Region`);
+        region.setAttribute('aria-controls', 'find-your-rep');
+
+        const handleSelect = (e: Event) => {
+          e.stopPropagation();
+
+          if (this.isLocked && this.lockedRegionId === regionId) {
+            (region as HTMLElement).focus();
+            return;
+          }
+
           if (regionId) {
-            this.showRep(regionId);
-            regions.forEach(r => r.classList.remove('active'));
-            region.classList.add('active');
-            
-            // Scroll to the info card on mobile if screen width is narrow
-            if (window.innerWidth < 768) {
-              const repCard = this.querySelector('.info-column');
-              if (repCard) {
-                repCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-              }
-            }
+            this.lockRegion(regionId, region as HTMLElement);
+          }
+        };
+
+        region.addEventListener('click', handleSelect);
+
+        region.addEventListener('keydown', (e: Event) => {
+          const keyEvent = e as KeyboardEvent;
+          if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+            keyEvent.preventDefault();
+            handleSelect(e);
           }
         });
+
+        region.addEventListener('mouseenter', () => {
+          if (this.isLocked) return;
+          if (regionId) {
+            this.hoverRegion(regionId, region as HTMLElement);
+          }
+        });
+
+        region.addEventListener('mouseleave', () => {
+          if (this.isLocked) return;
+          this.unhoverRegion();
+        });
       });
+    }
+
+    elevateRegion(regionElement: HTMLElement) {
+      const parent = regionElement.parentNode;
+      if (parent && parent.lastElementChild !== regionElement) {
+        parent.appendChild(regionElement);
+      }
+    }
+
+    lockRegion(regionId: string, regionElement: HTMLElement) {
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      this.isLocked = true;
+      this.lockedRegionId = regionId;
+
+      regions.forEach(r => {
+        r.classList.remove('active', 'locked');
+        r.setAttribute('aria-pressed', 'false');
+      });
+      regionElement.classList.add('active', 'locked');
+      regionElement.setAttribute('aria-pressed', 'true');
+
+      if (svgMap) svgMap.classList.add('has-active', 'has-locked');
+
+      this.restoreRegionOrder();
+      this.elevateRegion(regionElement);
+      regionElement.focus();
+
+      this.showRep(regionId);
+    }
+
+    unlockMap() {
+      const targetRegionId = this.lockedRegionId;
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      this.isLocked = false;
+      this.lockedRegionId = null;
+
+      regions.forEach(r => {
+        r.classList.remove('active', 'locked');
+        r.setAttribute('aria-pressed', 'false');
+      });
+
+      if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+
+      this.restoreRegionOrder();
+      this.showRep('');
+
+      if (targetRegionId) {
+        const targetEl = this.querySelector(`#region-${targetRegionId}`) as HTMLElement;
+        if (targetEl) {
+          targetEl.focus();
+        }
+      }
+    }
+
+    hoverRegion(regionId: string, regionElement: HTMLElement) {
+      if (this.isLocked) return;
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      this.showRep(regionId);
+      regions.forEach(r => r.classList.remove('active'));
+      regionElement.classList.add('active');
+      if (svgMap) svgMap.classList.add('has-active');
+
+      this.elevateRegion(regionElement);
+    }
+
+    unhoverRegion() {
+      if (this.isLocked) return;
+      const regions = this.querySelectorAll('.texas-region');
+      const svgMap = this.querySelector('.texas-svg-map');
+
+      regions.forEach(r => {
+        r.classList.remove('active');
+        r.setAttribute('aria-pressed', 'false');
+      });
+      if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+      this.restoreRegionOrder();
+      this.showRep('');
+    }
+
+    restoreRegionOrder() {
+      const activeEl = document.activeElement as HTMLElement | null;
+      const isFocusedInThis = activeEl && this.contains(activeEl);
+
+      const parent = this.querySelector('#Layer_1');
+      if (parent) {
+        const regionsArray = Array.from(parent.querySelectorAll('.texas-region'));
+        const needsSort = regionsArray.some((reg, idx) => 
+          parseInt(reg.getAttribute('data-original-order') || '0', 10) !== idx
+        );
+        if (needsSort) {
+          regionsArray.sort((a, b) => parseInt(a.getAttribute('data-original-order') || '0', 10) - parseInt(b.getAttribute('data-original-order') || '0', 10));
+          regionsArray.forEach(reg => parent.appendChild(reg));
+        }
+      }
+
+      if (isFocusedInThis && activeEl && typeof activeEl.focus === 'function') {
+        activeEl.focus();
+      }
     }
     
     showRep(regionId: string) {
       const repId = this.regionMap[regionId];
       const rep = this.employees[repId];
-      const repCard = this.querySelector('.rep-card') as HTMLElement;
-      const placeholder = this.querySelector('.placeholder-card') as HTMLElement;
+      const repCard = (this.querySelector('.rep-card') || this.querySelector('.sales-rep-selector__rep-card')) as HTMLElement;
+      const placeholder = (this.querySelector('.placeholder-card') || this.querySelector('.sales-rep-selector__placeholder')) as HTMLElement;
       
       if (!repCard || !placeholder) return;
       
       if (rep) {
         placeholder.style.display = 'none';
+        placeholder.classList.add('sales-rep-selector__placeholder--hidden');
         repCard.style.display = 'flex';
+        repCard.classList.remove('sales-rep-selector__rep-card--hidden');
         
         const nameEl = this.querySelector('.rep-name');
         if (nameEl) nameEl.textContent = rep.name;
@@ -204,28 +391,27 @@
           if (rep.imageUrl) {
             imgEl.src = rep.imageUrl;
             imgEl.style.display = 'block';
+            imgEl.classList.remove('sales-rep-selector__photo--hidden');
           } else {
             imgEl.style.display = 'none';
+            imgEl.classList.add('sales-rep-selector__photo--hidden');
           }
         }
         
-        const regionLabels: Record<string, string> = {
-          panhandle: 'Panhandle / West Texas',
-          north: 'North Texas',
-          central: 'Central Texas',
-          south: 'South Texas',
-          west: 'Far West Texas',
-          'hill-country': 'Hill Country',
-          southeast: 'South East Texas',
-          northeast: 'North East Texas'
-        };
-        
         const labelEl = this.querySelector('.rep-region-label');
-        if (labelEl) labelEl.textContent = (regionLabels[regionId] || 'Regional') + ' Representative';
+        if (labelEl) labelEl.textContent = (REGION_LABELS[regionId] || 'Regional') + ' Representative';
         
+        if (window.innerWidth < 992) {
+          const infoCol = (this.querySelector('.info-column') || this.querySelector('.sales-rep-selector__info-col'));
+          if (infoCol) {
+            infoCol.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
       } else {
         placeholder.style.display = 'block';
+        placeholder.classList.remove('sales-rep-selector__placeholder--hidden');
         repCard.style.display = 'none';
+        repCard.classList.add('sales-rep-selector__rep-card--hidden');
         placeholder.innerHTML = '<h3>Find your Rep!</h3><p>Select your region and contact us to get started.</p>';
       }
     }
@@ -240,8 +426,9 @@
   e3-texas-region-selector {
     display: block;
     width: 100%;
-    max-width: 1400px;
-    margin: 60px auto;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     padding: 0 20px;
     box-sizing: border-box;
   }
@@ -250,8 +437,10 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
   }
   
   .texas-region-selector-ui .map-column {

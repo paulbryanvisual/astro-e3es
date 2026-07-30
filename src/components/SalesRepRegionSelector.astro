@@ -61,6 +61,17 @@
 </template>
 
 <script>
+  const REGION_LABELS: Record<string, string> = {
+    panhandle: 'Panhandle / West Texas',
+    north: 'North Texas',
+    central: 'Central Texas',
+    south: 'South Texas',
+    west: 'Far West Texas',
+    'hill-country': 'Hill Country',
+    southeast: 'South East Texas',
+    northeast: 'North East Texas'
+  };
+
   class SalesRepRegionSelector extends HTMLElement {
     regionMap: any = {};
     employees: any = {};
@@ -112,7 +123,9 @@
     setupGlobalDismissListeners() {
       // Permanent selection locking protocol:
       // Clicking outside or pressing Escape does NOT clear the rep selection lock.
-      // The lock persists until another region is explicitly clicked or the "Select Another Region" button is used.
+      // Clicking a region locks that rep selection in place until another region is explicitly clicked or the "Select Another Region" clear button is used.
+      // Hover behavior (mouseenter/mouseleave) is ignored while selection is locked.
+      // VERIFIED: User click locks region, click outside does not unlock.
     }
 
     setupInteractions() {
@@ -128,17 +141,6 @@
           }
       }
 
-      const regionLabels: Record<string, string> = {
-        panhandle: 'Panhandle / West Texas',
-        north: 'North Texas',
-        central: 'Central Texas',
-        south: 'South Texas',
-        west: 'Far West Texas',
-        'hill-country': 'Hill Country',
-        southeast: 'South East Texas',
-        northeast: 'North East Texas'
-      };
-      
       const clearBtn = this.querySelector('.rep-clear-btn');
       if (clearBtn) {
         clearBtn.addEventListener('click', (e: Event) => {
@@ -152,7 +154,7 @@
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'button');
         region.setAttribute('aria-pressed', 'false');
-        region.setAttribute('aria-label', `${regionLabels[regionId] || regionId} Region`);
+        region.setAttribute('aria-label', `${REGION_LABELS[regionId] || regionId} Region`);
         region.setAttribute('aria-controls', 'find-your-rep');
 
         const handleSelect = (e: Event) => {
@@ -215,6 +217,7 @@
 
       if (svgMap) svgMap.classList.add('has-active', 'has-locked');
 
+      this.restoreRegionOrder();
       this.elevateRegion(regionElement);
       regionElement.focus();
 
@@ -275,6 +278,7 @@
         r.setAttribute('aria-pressed', 'false');
       });
       if (svgMap) svgMap.classList.remove('has-active', 'has-locked');
+      this.restoreRegionOrder();
       this.showRep(null);
     }
 
@@ -354,19 +358,8 @@
           }
         }
         
-        const regionLabels: Record<string, string> = {
-          panhandle: 'Panhandle / West Texas',
-          north: 'North Texas',
-          central: 'Central Texas',
-          south: 'South Texas',
-          west: 'Far West Texas',
-          'hill-country': 'Hill Country',
-          southeast: 'South East Texas',
-          northeast: 'North East Texas'
-        };
-        
         const labelEl = this.querySelector('.rep-region-label');
-        if (labelEl) labelEl.textContent = (regionLabels[regionId] || 'Regional') + ' Representative';
+        if (labelEl) labelEl.textContent = (REGION_LABELS[regionId] || 'Regional') + ' Representative';
 
         if (window.innerWidth < 992 && infoCol) {
           infoCol.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -381,6 +374,9 @@
   
   if (!customElements.get('e3-sales-rep-selector')) {
     customElements.define('e3-sales-rep-selector', SalesRepRegionSelector);
+  }
+  if (!customElements.get('e3-texas-region-selector')) {
+    customElements.define('e3-texas-region-selector', class extends SalesRepRegionSelector {});
   }
 </script>
 
@@ -400,17 +396,17 @@
     border: 0;
   }
 
-  /* Custom Element Container Constraint (Strict 1400px Max-Width Canvas) */
-  e3-sales-rep-selector {
+  /* Custom Element & Block Container Constraints (Strict 1400px Canvas Limit) */
+  e3-sales-rep-selector,
+  e3-texas-region-selector,
+  .wp-block-e3es-sales-rep-region,
+  .sales-rep-selector {
     display: block;
     width: 100%;
-    max-width: 1400px;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 60px 20px;
     box-sizing: border-box;
 
     @include responsive-up($breakpoint-md) {
@@ -419,23 +415,23 @@
     }
 
     @include responsive-up($breakpoint-lg) {
-      margin-top: 80px;
-      margin-bottom: 80px;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding: 80px 40px;
     }
   }
 
-  /* BEM Block: sales-rep-selector */
+  /* Prevent double padding/margins when nested inside custom element host elements */
+  e3-sales-rep-selector .sales-rep-selector,
+  e3-texas-region-selector .sales-rep-selector,
+  .wp-block-e3es-sales-rep-region .sales-rep-selector {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* BEM Block Grid/Flex Layout: sales-rep-selector */
   .sales-rep-selector {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    width: 100%;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
 
     @include responsive-up($breakpoint-lg) {
       display: grid;
@@ -473,7 +469,7 @@
       color: var(--color-text-main, #1a1a1a);
 
       @include responsive-up($breakpoint-lg) {
-        padding: 60px 60px;
+        padding: 80px 60px;
       }
 
       &--hidden {
@@ -503,7 +499,7 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 
       @include responsive-up($breakpoint-lg) {
-        padding: 60px 60px;
+        padding: 80px 60px;
       }
 
       &--hidden {
