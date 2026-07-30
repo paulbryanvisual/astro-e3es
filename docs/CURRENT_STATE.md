@@ -1,5 +1,21 @@
 # Current State
 
+## [2026-07-29] SalesRepRegionSelector Selection Locking & 1400px Max-Width Verification & Branch Finalization
+- **Branch**: `task/sales-rep-selector-lock-maxwidth-1785380137`
+- **Target Files**:
+  - [`src/components/SalesRepRegionSelector.astro`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/components/SalesRepRegionSelector.astro)
+  - [`src/styles/desktop.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/desktop.scss)
+  - [`src/styles/mobile.scss`](file:///Users/bryanpaul/Local%20Sites/astro-e3es/src/styles/mobile.scss)
+- **Selection Locking Logic**:
+  - Clicking a region sets `isLocked = true` and `lockedRegionId = regionId`, locking rep details and map styling in place.
+  - Hover behavior (`mouseenter` / `mouseleave`) is strictly bypassed while selection is locked (`if (this.isLocked) return;`).
+  - Clicking a different region seamlessly updates the lock to the newly clicked region.
+  - Re-clicking the currently locked region preserves selection lock and focus.
+  - Outside clicks and Escape do not unlock selection; unlocking occurs only when clicking another region or using the "← Select Another Region" clear button.
+- **1400px Max-Width Enforced**:
+  - `e3-sales-rep-selector`, `e3-texas-region-selector`, `.wp-block-e3es-sales-rep-region`, and `.sales-rep-selector` strictly enforce `max-width: 87.5rem;` (1400px), centered with `margin-left: auto; margin-right: auto;`.
+- **Status**: 100% verified. Clean build (`npm run build` 200 pages built). Committed locally on branch `task/sales-rep-selector-lock-maxwidth-1785380137`.
+
 ## [2026-07-29] SalesRepRegionSelector 1400px Max-Width Layout Lock Verification & Architecture Review
 - **Branch**: `task/rep-selector-1400px-lock`
 - **Target Files**:
