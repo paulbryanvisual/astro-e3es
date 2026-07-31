@@ -9,7 +9,8 @@
   1. **HTML Entity Decoding**: Integrated `decodeHtmlEntities()` on service title strings in `buildBreadcrumbs()` for both root services and child service dropdown arrays, ensuring ampersands and special entities (e.g., `&#038;`) are decoded prior to sorting.
   2. **LocaleCompare Alphabetical Sorting**: Implemented `localeCompare(b.label, 'en', { sensitivity: 'base', numeric: true })` sorting for top-level root services (the "Services" breadcrumb dropdown) and nested child service dropdowns.
   3. **Trashed Entity Filtering**: Excluded trashed/legacy service slugs (`!item.slug?.includes('trashed')`) from dropdown list resolution.
-  4. **Build Verification**: Ran full static Astro build (`ASTRO_TELEMETRY_DISABLED=1 npx astro build`), cleanly building all 200 pages with 0 errors.
+  4. **Services Index Breadcrumbs**: Integrated the `Breadcrumb` component on the Services index page (`src/pages/services.astro`) and configured `buildBreadcrumbs()` to treat top-level root services as children dropdown items of the Services parent page (`id === 11` or `slug === 'services'`).
+  5. **Build Verification**: Ran full static Astro build (`ASTRO_TELEMETRY_DISABLED=1 npx astro build`), cleanly building all 200 pages with 0 errors.
 
 ## [2026-07-30] SalesRepRegionSelector JS Interaction & Focus Guard Refinement
 - **Target Files**:
