@@ -1,5 +1,17 @@
 # Current State
 
+## [2026-07-30] Staging SSR and Production Static Conditional Deployment
+- **Target Files**:
+  - `astro.config.mjs`
+  - `package.json`
+  - `src/lib/wordpress.ts`
+  - `wordpress-plugins/cloudflare-deploy-trigger/cloudflare-deploy-trigger.php`
+- **Summary**:
+  1. **Conditional Astro Adapter**: Configured `astro.config.mjs` to dynamically toggle `output` mode to `'server'` and apply `@astrojs/cloudflare` adapter when `PUBLIC_ENV === 'staging'`. Otherwise, it defaults to `'static'` (SSG).
+  2. **Build Scripts**: Added `"build:staging": "PUBLIC_ENV=staging astro build"` in `package.json` to compile the Cloudflare SSR server.
+  3. **Vite Raw SVG Import**: Replaced Node.js runtime filesystem dependencies (`fs` and `path`) in `src/lib/wordpress.ts` with Vite's raw import syntax to bundle the Texas region map SVG directly into the worker JavaScript bundle at build time, preventing runtime errors in the Cloudflare Worker.
+  4. **WordPress Webhook Bypass**: Modified the custom WordPress deployment trigger plugin to return early on staging/local environments (avoiding slow, redundant Cloudflare rebuild runs on page saves) and maintained asynchronous non-blocking webhook requests for production publishing.
+
 ## [2026-07-30] Alphabetical Service Breadcrumb Dropdown Sorting
 - **Target Files**:
   - `src/lib/wordpress.ts`

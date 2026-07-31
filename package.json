@@ -8,12 +8,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:staging": "PUBLIC_ENV=staging astro build",
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
+    "@astrojs/cloudflare": "^13.7.0",
     "@fontsource/raleway": "^5.2.8",
     "astro": "^6.4.3",
     "puppeteer-core": "^25.3.0",
