@@ -319,7 +319,10 @@ export function processWordPressHtml(html: string, slug?: string): string {
       'prosper-isd': { id: '850698679', title: 'Prosper ISD Case Study Video' },
       'granbury-isd': { id: '227283498', title: 'Granbury ISD Case Study Video' },
       'glen-rose-medical-center': { id: '1078371126', title: 'Glen Rose Medical Center Case Study Video' },
+      'goodall-witcher-hospital': { id: '740399213', title: 'Goodall Witcher Hospital Case Study Video' },
+      'goodall-witcher-healthcare': { id: '740399213', title: 'Goodall Witcher Healthcare Case Study Video' },
       'gwh': { id: '740399213', title: 'Goodall Witcher Healthcare Case Study Video' },
+
       'ferris-isd': { id: '1119239095', title: 'Ferris ISD Case Study Video' },
       'caldwell-isd': { id: '290317803', title: 'Caldwell ISD Case Study Video' },
       'port-neches-groves-isd': { id: '1043784118', title: 'Port Neches-Groves ISD Case Study Video' },
