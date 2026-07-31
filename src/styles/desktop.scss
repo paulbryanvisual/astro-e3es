@@ -216,7 +216,10 @@
 
       // Section background/padding on section.db-feature (from mobile.scss)
       .wp-block-e3es-two-column {
-        padding: 3rem 2rem !important;
+        padding: 3rem 3rem !important;
+        @media (max-width: 768px) {
+          padding: 2.5rem 2.5rem !important;
+        }
       }
 
       // Flex columns side-by-side
@@ -376,10 +379,22 @@
         text-decoration: none !important;
         display: inline-flex !important;
         align-items: center !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        justify-content: flex-start !important;
 
         &:hover {
           color: var(--color-primary-green, #7DA044) !important;
         }
+      }
+
+      .db-feature__content .wp-block-buttons,
+      .db-feature .wp-block-buttons,
+      .db-feature__content .wp-block-button,
+      .db-feature .wp-block-button {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        justify-content: flex-start !important;
       }
 
       // Reverse layout: skew the opposite way and apply mirrored clip-path
@@ -518,6 +533,58 @@
         .wp-block-column {
           margin: 0 !important;
         }
+      }
+    }
+  }
+
+  /* --- Skewed Two-Column Feature Overrides --- */
+  @media (min-width: 1024px) {
+    .db-feature--skewed,
+    .db-feature {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 5rem 0;
+
+      .db-feature__container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 3rem;
+      }
+
+      .db-feature__container,
+      .wp-block-columns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+      }
+
+      .db-feature__container--reverse {
+        flex-direction: row-reverse;
+      }
+
+      .db-feature__content,
+      .db-feature__content-col {
+        flex: 0 0 55%;
+        max-width: 55%;
+      }
+
+      .db-feature__image-wrapper,
+      .db-feature__image-col {
+        flex: 0 0 45%;
+        max-width: 45%;
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .db-feature--skewed,
+    .db-feature {
+      padding: 3rem 3rem;
+
+      @media (max-width: 768px) {
+        padding: 2.5rem 2.5rem;
       }
     }
   }
@@ -661,3 +728,23 @@
     overflow: visible;
   }
 }
+
+.db-video-wrapper,
+.video-embed__wrapper,
+.video-block {
+  position: relative;
+  
+  &.is-playing::after,
+  &.hidden::after,
+  &.is-playing .video-block__overlay,
+  &.is-playing .video-block__play-btn,
+  &.hidden .video-block__overlay,
+  &.hidden .video-block__play-btn {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+    transform: translate(-50%, -50%) scale(0.8) !important;
+  }
+}
+

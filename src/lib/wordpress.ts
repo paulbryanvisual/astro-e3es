@@ -15,10 +15,19 @@ const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD
 
 const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
+const fetchCache = new Map<string, any>();
+
 async function wpFetch(urlPath: string) {
+  if (fetchCache.has(urlPath)) {
+    return fetchCache.get(urlPath).clone();
+  }
   const separator = urlPath.includes('?') ? '&' : '?';
   const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
-  return fetch(url, { cache: 'no-store' });
+  const response = await fetch(url, { cache: 'no-store' });
+  if (response.ok) {
+    fetchCache.set(urlPath, response.clone());
+  }
+  return response;
 }
 
 export async function getPosts() {
@@ -306,7 +315,8 @@ export function processWordPressHtml(html: string, slug?: string): string {
       'keene-isd': { id: '1176712805', title: 'Keene ISD, Sports Lighting' },
       'plano-isd': { id: '1007829512', title: 'Lessons in Learning - Dr. Theresa Williams' },
       'city-of-stockdale': { id: '1171901749', title: 'Lessons in Learning - Stephen Mayfield' },
-      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' }
+      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' },
+      'royal-isd': { id: '1179578579', title: 'Royal ISD Case Study Video' }
     };
 
     if (expectedVideos[slug]) {
@@ -479,16 +489,43 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     });
   }
 
+const shortServiceNames: Record<string, string> = {
+  'roofing': 'Roofing',
+  'building-envelope': 'Building Envelope',
+  'facility-assessments': 'Facility Assessments',
+  'lighting': 'LED Lighting',
+  'electrical': 'Electrical',
+  'energy-management': 'Energy Management',
+  'hvac': 'HVAC & Controls',
+  'indoor-air-quality': 'Indoor Air Quality',
+  'planning-bond-advisory-services': 'Planning & Bond Services',
+  'water': 'Water & Wastewater'
+};
+
+function getServiceShortLabel(c: any): string {
+  if (c.meta && c.meta._e3_menu_link_text && c.meta._e3_menu_link_text.trim() !== '') {
+    return decodeHtmlEntities(c.meta._e3_menu_link_text);
+  }
+  if (c._e3_menu_link_text && typeof c._e3_menu_link_text === 'string' && c._e3_menu_link_text.trim() !== '') {
+    return decodeHtmlEntities(c._e3_menu_link_text);
+  }
+  if (c.slug && shortServiceNames[c.slug]) {
+    return shortServiceNames[c.slug];
+  }
+  const raw = c.title?.rendered || c.title || 'Untitled';
+  return decodeHtmlEntities(raw);
+}
+
   if (path.length > 0 && path[0].type === 'services') {
+    const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
     const rootServices = allItems.filter(item => {
       const parentId = item.parent || (item.meta && parseInt(item.meta.cross_post_parent));
-      return item.type === 'services' && !parentId && !item.slug?.includes('trashed');
+      return item.type === 'services' && !parentId && !item.slug?.includes('trashed') && !excludedSlugs.includes(item.slug);
     });
 
     const rootDropdown = rootServices.map(c => {
-      const rawTitle = c.title?.rendered || c.title || 'Untitled';
       return {
-        label: decodeHtmlEntities(rawTitle),
+        label: getServiceShortLabel(c),
         href: getRelativeUrl(c.link)
       };
     });
@@ -511,10 +548,11 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     
     // Find children for dropdown (pages that have this item as their parent)
     let children = [];
+    const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
     if (item.id === 11 || item.slug === 'services') {
       children = allItems.filter(child => {
         const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
-        return child.type === 'services' && !childParentId && !child.slug?.includes('trashed');
+        return child.type === 'services' && !childParentId && !child.slug?.includes('trashed') && !excludedSlugs.includes(child.slug);
       });
     } else {
       children = allItems.filter(child => {
@@ -530,9 +568,8 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     }
 
     const childrenDropdown = children.map(c => {
-      const rawTitle = c.title?.rendered || c.title || 'Untitled';
       return {
-        label: decodeHtmlEntities(rawTitle),
+        label: getServiceShortLabel(c),
         href: getRelativeUrl(c.link)
       };
     });
