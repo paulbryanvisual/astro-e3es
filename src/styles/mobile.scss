@@ -821,7 +821,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 .db-video-wrapper,
-.video-embed__wrapper {
+.video-embed__wrapper,
+.video-block {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -869,9 +870,17 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
   }
 
   /* Hide play button once video is playing */
-  &.is-playing::after {
-    opacity: 0;
-    pointer-events: none;
+  &.is-playing::after,
+  &.hidden::after,
+  &.is-playing .video-block__overlay,
+  &.is-playing .video-block__play-btn,
+  &.hidden .video-block__overlay,
+  &.hidden .video-block__play-btn {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+    transform: translate(-50%, -50%) scale(0.8) !important;
   }
 }
 

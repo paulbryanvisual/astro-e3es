@@ -315,7 +315,8 @@ export function processWordPressHtml(html: string, slug?: string): string {
       'keene-isd': { id: '1176712805', title: 'Keene ISD, Sports Lighting' },
       'plano-isd': { id: '1007829512', title: 'Lessons in Learning - Dr. Theresa Williams' },
       'city-of-stockdale': { id: '1171901749', title: 'Lessons in Learning - Stephen Mayfield' },
-      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' }
+      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' },
+      'royal-isd': { id: '1179578579', title: 'Royal ISD Case Study Video' }
     };
 
     if (expectedVideos[slug]) {

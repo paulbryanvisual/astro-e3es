@@ -728,3 +728,23 @@
     overflow: visible;
   }
 }
+
+.db-video-wrapper,
+.video-embed__wrapper,
+.video-block {
+  position: relative;
+  
+  &.is-playing::after,
+  &.hidden::after,
+  &.is-playing .video-block__overlay,
+  &.is-playing .video-block__play-btn,
+  &.hidden .video-block__overlay,
+  &.hidden .video-block__play-btn {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+    transform: translate(-50%, -50%) scale(0.8) !important;
+  }
+}
+
