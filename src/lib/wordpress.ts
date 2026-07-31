@@ -480,9 +480,10 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
   }
 
   if (path.length > 0 && path[0].type === 'services') {
+    const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
     const rootServices = allItems.filter(item => {
       const parentId = item.parent || (item.meta && parseInt(item.meta.cross_post_parent));
-      return item.type === 'services' && !parentId && !item.slug?.includes('trashed');
+      return item.type === 'services' && !parentId && !item.slug?.includes('trashed') && !excludedSlugs.includes(item.slug);
     });
 
     const rootDropdown = rootServices.map(c => {
@@ -511,10 +512,11 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     
     // Find children for dropdown (pages that have this item as their parent)
     let children = [];
+    const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
     if (item.id === 11 || item.slug === 'services') {
       children = allItems.filter(child => {
         const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
-        return child.type === 'services' && !childParentId && !child.slug?.includes('trashed');
+        return child.type === 'services' && !childParentId && !child.slug?.includes('trashed') && !excludedSlugs.includes(child.slug);
       });
     } else {
       children = allItems.filter(child => {

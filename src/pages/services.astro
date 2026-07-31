@@ -22,9 +22,6 @@ const canonicalParentSlugs = [
     'indoor-air-quality',
     'energy-management',
     'facility-assessments',
-    'chiller-plants',
-    'boiler-plants',
-    'cooling-towers',
     'building-envelope',
     'planning-bond-advisory-services'
 ];
@@ -50,9 +47,6 @@ const serviceFallbacks: Record<string, string> = {
     'indoor-air-quality': '/images/indoor-air-quality.jpg',
     'energy-management': '/images/automation.jpg',
     'facility-assessments': '/images/facility-assessments.jpg',
-    'chiller-plants': '/images/chiller-plants.jpg',
-    'boiler-plants': '/images/boiler-plants.jpg',
-    'cooling-towers': '/images/cooling-towers.jpg',
     'building-envelope': '/images/building-envelope.jpg',
     'planning-bond-advisory-services': '/images/planning-bond-advisory.jpg'
 };
@@ -85,9 +79,6 @@ function getExploreButtonText(slug: string, titleText: string) {
         'indoor-air-quality': 'Explore IAQ Services',
         'energy-management': 'Explore Energy Management Services',
         'facility-assessments': 'Explore Facility Assessments',
-        'chiller-plants': 'Explore Chiller Plant Services',
-        'boiler-plants': 'Explore Boiler Plant Services',
-        'cooling-towers': 'Explore Cooling Tower Services',
         'building-envelope': 'Explore Building Envelope Services',
         'planning-bond-advisory-services': 'Explore Planning & Bond Services'
     };
