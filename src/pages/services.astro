@@ -1,9 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import LeadFormDrawer from '../components/LeadFormDrawer.astro';
-import { getServices } from '../lib/wordpress';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { getServices, getPages, getPageById, buildBreadcrumbs } from '../lib/wordpress';
 
-const allServices = await getServices();
+const [servicesPage, pages, allServices] = await Promise.all([
+    getPageById(11),
+    getPages(),
+    getServices()
+]);
+const allItems = [...pages, ...allServices];
+const breadcrumbs = buildBreadcrumbs(servicesPage, allItems);
 
 // Canonical list and order of Primary Service Index Pages
 const canonicalParentSlugs = [
@@ -89,6 +96,8 @@ function getExploreButtonText(slug: string, titleText: string) {
 ---
 
 <Layout wpPostId={11}>
+    <!-- Breadcrumb Bar -->
+    <Breadcrumb items={breadcrumbs} />
     <section class="db-page-hero" style="background-image: linear-gradient(rgba(14, 27, 43, 0.7), rgba(14, 27, 43, 0.8)), url('/images/E3-background-layered-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg'); padding: 4rem 2rem;">
         <div class="db-page-hero__container">
             <h1 class="db-page-hero__title" style="margin-bottom: 1rem;">Our Turnkey Services</h1>

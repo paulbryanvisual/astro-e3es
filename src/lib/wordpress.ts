@@ -1,6 +1,13 @@
-import fs from 'fs';
-import path from 'path';
+import rawTexasMapSvg from '../../public/Texas-Map-Editable.svg?raw';
 import { cacheBuster } from './cache.ts';
+
+const texasMapSvg = rawTexasMapSvg
+  .replace(/<\?xml[^>]*\?>/i, '')
+  .replace(/<svg([^>]*)>/i, (match, attrs) => {
+    const viewBoxMatch = attrs.match(/viewBox=["']([^"']+)["']/i);
+    const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 941.76 907.17';
+    return `<svg id="texas-map-svg" viewBox="${viewBox}" class="db-feature__image texas-svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">`;
+  });
 
 const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD 
   ? 'https://descriptive-goldfish.flywheelstaging.com/wp-json/wp/v2'
@@ -126,25 +133,7 @@ export async function getClients() {
 }
 
 export function getTexasMapSvg() {
-  try {
-    const svgPath = path.resolve(process.cwd(), 'public/Texas-Map-Editable.svg');
-    let svg = fs.readFileSync(svgPath, 'utf8');
-    
-    // Remove XML declaration
-    svg = svg.replace(/<\?xml[^>]*\?>/i, '');
-    
-    // Ensure the SVG element has the correct class and id for styling
-    svg = svg.replace(/<svg([^>]*)>/i, (match, attrs) => {
-      const viewBoxMatch = attrs.match(/viewBox=["']([^"']+)["']/i);
-      const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 941.76 907.17';
-      return `<svg id="texas-map-svg" viewBox="${viewBox}" class="db-feature__image texas-svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">`;
-    });
-    
-    return svg;
-  } catch (e) {
-    console.error("Failed to read editable SVG map from public folder:", e);
-    return '';
-  }
+  return texasMapSvg;
 }
 
 /**
@@ -521,10 +510,18 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     const isLast = i === path.length - 1;
     
     // Find children for dropdown (pages that have this item as their parent)
-    const children = allItems.filter(child => {
-      const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
-      return childParentId === item.id && !child.slug?.includes('trashed');
-    });
+    let children = [];
+    if (item.id === 11 || item.slug === 'services') {
+      children = allItems.filter(child => {
+        const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
+        return child.type === 'services' && !childParentId && !child.slug?.includes('trashed');
+      });
+    } else {
+      children = allItems.filter(child => {
+        const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
+        return childParentId === item.id && !child.slug?.includes('trashed');
+      });
+    }
 
     let label = item.title?.rendered || item.title || 'Untitled';
     label = decodeHtmlEntities(label);
