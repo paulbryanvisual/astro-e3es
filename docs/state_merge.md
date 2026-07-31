@@ -320,3 +320,21 @@
 - Astro: `astro.config.mjs`, `package.json`, `package-lock.json`, `src/lib/wordpress.ts`
 - WordPress: `wordpress-plugins/cloudflare-deploy-trigger/cloudflare-deploy-trigger.php`
 
+## Session Wrapup: 2026-07-31T11:02:00Z - Unified Deploy Helper & Case Study Video Mappings
+
+**Architectural Decisions**:
+- **Consolidated Headless Settings Options**: Merged all build triggering, staging bypass, and deployment features from the separate `cloudflare-deploy-trigger` plugin directly into the main `e3es-headless-helper` plugin. Deactivated and deleted the redundant secondary plugin.
+- **Hierarchical Environments Settings Layout**: Reorganized the dashboard under **Settings -> Headless Settings** to group settings logically: Production settings first (including URLs and live deploy webhook), Staging settings second (including staging URL and staging deploy webhook), and Local settings third.
+- **Simplified UI Fields**: Removed unused GitHub repository dispatch configuration fields (`owner`, `repo`, `token`) from the WordPress settings page to clean up the user interface when deploying via direct Pages webhooks.
+- **Flexible Manual Triggers & Multi-Target Deployments**: Restructured the deployment triggering function `e3es_dispatch_github_rebuild()` to support a `$target` argument (`'prod'` or `'staging'`). Triggering manual builds from the WordPress dashboard or the new `⚡ Deploy Headless` admin toolbar dropdown menu fires targeted webhook dispatches with success/failure feedback (using blocking requests).
+- **Asynchronous Auto-Saves**: Automated post transitions now trigger the Cloudflare Pages deploy webhook using asynchronous, non-blocking requests (`'blocking' => false`) to keep the editor post saving fast, while automatically skipping builds for staging/local environments to prevent unnecessary queueing.
+- **Localized Editor Config & Iframe Video Mapping**: Added localized `E3_Headless_Config` to the block editor, passing environment URLs. Updated Astro's client video fallback mapping dictionary inside `src/lib/wordpress.ts` with 17-client mappings to automatically resolve and inject responsive Vimeo iframes based on case study slugs.
+
+**New Dependencies**:
+- None.
+
+**Core Files Modified**:
+- Astro: `src/lib/wordpress.ts`
+- WordPress: `wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php`
+
+
