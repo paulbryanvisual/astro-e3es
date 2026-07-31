@@ -493,6 +493,12 @@ const shortServiceNames: Record<string, string> = {
 };
 
 function getServiceShortLabel(c: any): string {
+  if (c.meta && c.meta._e3_menu_link_text && c.meta._e3_menu_link_text.trim() !== '') {
+    return decodeHtmlEntities(c.meta._e3_menu_link_text);
+  }
+  if (c._e3_menu_link_text && typeof c._e3_menu_link_text === 'string' && c._e3_menu_link_text.trim() !== '') {
+    return decodeHtmlEntities(c._e3_menu_link_text);
+  }
   if (c.slug && shortServiceNames[c.slug]) {
     return shortServiceNames[c.slug];
   }
