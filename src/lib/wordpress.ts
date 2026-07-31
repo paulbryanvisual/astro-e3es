@@ -493,16 +493,25 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
   if (path.length > 0 && path[0].type === 'services') {
     const rootServices = allItems.filter(item => {
       const parentId = item.parent || (item.meta && parseInt(item.meta.cross_post_parent));
-      return item.type === 'services' && !parentId;
+      return item.type === 'services' && !parentId && !item.slug?.includes('trashed');
     });
+
+    const rootDropdown = rootServices.map(c => {
+      const rawTitle = c.title?.rendered || c.title || 'Untitled';
+      return {
+        label: decodeHtmlEntities(rawTitle),
+        href: getRelativeUrl(c.link)
+      };
+    });
+
+    rootDropdown.sort((a, b) => 
+      a.label.localeCompare(b.label, 'en', { sensitivity: 'base', numeric: true })
+    );
 
     breadcrumbs.push({
       label: 'Services',
       href: '/services',
-      dropdown: rootServices.map(c => ({
-        label: c.title?.rendered || c.title,
-        href: getRelativeUrl(c.link)
-      }))
+      dropdown: rootDropdown
     });
   }
 
@@ -514,7 +523,7 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     // Find children for dropdown (pages that have this item as their parent)
     const children = allItems.filter(child => {
       const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
-      return childParentId === item.id;
+      return childParentId === item.id && !child.slug?.includes('trashed');
     });
 
     let label = item.title?.rendered || item.title || 'Untitled';
@@ -523,13 +532,22 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
       label = 'Home';
     }
 
+    const childrenDropdown = children.map(c => {
+      const rawTitle = c.title?.rendered || c.title || 'Untitled';
+      return {
+        label: decodeHtmlEntities(rawTitle),
+        href: getRelativeUrl(c.link)
+      };
+    });
+
+    childrenDropdown.sort((a, b) => 
+      a.label.localeCompare(b.label, 'en', { sensitivity: 'base', numeric: true })
+    );
+
     breadcrumbs.push({
       label: label,
       href: isLast ? undefined : getRelativeUrl(item.link),
-      dropdown: children.map(c => ({
-        label: c.title?.rendered || c.title,
-        href: getRelativeUrl(c.link)
-      }))
+      dropdown: childrenDropdown
     });
   }
 
