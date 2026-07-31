@@ -304,3 +304,19 @@
 - `src/lib/cache.ts`
 - `docs/ARCHITECTURE.md`
 - `docs/CURRENT_STATE.md`
+
+## Session Wrapup: 2026-07-31T00:26:00Z - Staging SSR, Production Static Setup & Push to Production Button
+
+**Architectural Decisions**:
+- **Conditional Environment Routing**: Configured `astro.config.mjs` to dynamically toggle `output: 'server'` and apply the `@astrojs/cloudflare` adapter when `PUBLIC_ENV === 'staging'`. This enables the staging site (`staging.e3es.com`) to run in dynamic Server-Side Rendering (SSR) mode on Cloudflare Workers, rendering content updates instantly upon refresh. Otherwise, Astro compiles the production site as static HTML (`output: 'static'`).
+- **Asset Bundling for Serverless Edge Compatibility**: Eliminated Node.js runtime filesystem dependencies (`fs` and `path`) from `src/lib/wordpress.ts` to prevent runtime failures in the Cloudflare Worker. Bundled `Texas-Map-Editable.svg` directly into the compiled JavaScript bundle at build time using Vite's raw import suffix (`import rawTexasMapSvg from '../../public/Texas-Map-Editable.svg?raw'`).
+- **Asynchronous Webhook and Staging Bypass**: Modified `cf_deploy_trigger_build()` in the WordPress deploy trigger plugin to skip automatic build triggers when saving posts in staging or local environments (since staging is dynamic SSR, making rebuilds redundant). Integrated an asynchronous, non-blocking webhook (`'blocking' => false`) for automatic production builds to ensure fast editor saves.
+- **Push to Production Toolbar Menu**: Added a manual "Push to Production" menu link in the WordPress Admin Toolbar (visible to administrators on all dashboard pages). Clicking the link redirects the user, bypasses the staging early-return checks, and dispatches a synchronous production build trigger with status feedback.
+
+**New Dependencies**:
+- `@astrojs/cloudflare`
+
+**Core Files Modified**:
+- Astro: `astro.config.mjs`, `package.json`, `package-lock.json`, `src/lib/wordpress.ts`
+- WordPress: `wordpress-plugins/cloudflare-deploy-trigger/cloudflare-deploy-trigger.php`
+
