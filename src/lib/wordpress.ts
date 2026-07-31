@@ -308,29 +308,66 @@ export function processWordPressHtml(html: string, slug?: string): string {
   });
 
   // Fallback: If comments are stripped (default public REST API behaviour), use the slug to inject expected Vimeo iframes
+  // Fallback: If comments are stripped (default public REST API behaviour), use the slug to inject expected Vimeo iframes
   if (slug) {
     const expectedVideos: Record<string, { id: string; title: string }> = {
+      'bryan-isd': { id: '622731248', title: 'Bryan ISD Case Study Video' },
+      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' },
+      'royal-isd': { id: '716162057', title: 'Royal ISD Case Study Video' },
+      'carrizo-springs-cisd': { id: '1161564113', title: 'Carrizo Springs CISD Case Study Video' },
+      'lake-worth-isd': { id: '647005651', title: 'Lake Worth ISD Case Study Video' },
+      'prosper-isd': { id: '850698679', title: 'Prosper ISD Case Study Video' },
       'granbury-isd': { id: '227283498', title: 'Granbury ISD Case Study Video' },
+      'glen-rose-medical-center': { id: '1078371126', title: 'Glen Rose Medical Center Case Study Video' },
+      'gwh': { id: '740399213', title: 'Goodall Witcher Healthcare Case Study Video' },
+      'ferris-isd': { id: '1119239095', title: 'Ferris ISD Case Study Video' },
+      'caldwell-isd': { id: '290317803', title: 'Caldwell ISD Case Study Video' },
+      'port-neches-groves-isd': { id: '1043784118', title: 'Port Neches-Groves ISD Case Study Video' },
+      'edcouch-elsa-isd': { id: '935503628', title: 'Edcouch-Elsa ISD Case Study Video' },
       'little-elm-isd': { id: '946653874', title: 'Lessons In Learning - Mike Lamb' },
       'keene-isd': { id: '1176712805', title: 'Keene ISD, Sports Lighting' },
       'plano-isd': { id: '1007829512', title: 'Lessons in Learning - Dr. Theresa Williams' },
-      'city-of-stockdale': { id: '1171901749', title: 'Lessons in Learning - Stephen Mayfield' },
-      'boyd-isd': { id: '1179578579', title: 'Boyd ISD Case Study Video' },
-      'royal-isd': { id: '1179578579', title: 'Royal ISD Case Study Video' }
+      'city-of-stockdale': { id: '1171901749', title: 'Lessons in Learning - Stephen Mayfield' }
     };
 
     if (expectedVideos[slug]) {
       const { id, title } = expectedVideos[slug];
+      const cleanUrl = `https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`;
+      const videoEmbedHtml = `<!-- wp:e3es/video-embed {"videoUrl":"${cleanUrl}","title":"${title}"} -->\n<div class="db-video-wrapper"><iframe src="${cleanUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title}"></iframe></div>\n<!-- /wp:e3es/video-embed -->`;
+
       const wrapperRegex = /<div class="db-video-wrapper">([\s\S]*?)<\/div>/i;
       const match = processedHtml.match(wrapperRegex);
-      if (match && !match[1].includes('<iframe')) {
-        const cleanUrl = `https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`;
-        processedHtml = processedHtml.replace(
-          match[0],
-          `<div class="db-video-wrapper"><iframe src="${cleanUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title}"></iframe></div>`
-        );
+
+      if (match) {
+        if (!match[1].includes('<iframe')) {
+          processedHtml = processedHtml.replace(
+            match[0],
+            `<div class="db-video-wrapper"><iframe src="${cleanUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title}"></iframe></div>`
+          );
+        }
+      } else if (!processedHtml.includes(cleanUrl) && !processedHtml.includes(`vimeo.com/video/${id}`)) {
+        // Inject video section if no video wrapper exists on the page
+        if (processedHtml.includes('<h4 class="wp-block-heading">Project Gallery</h4>')) {
+          processedHtml = processedHtml.replace(
+            '<h4 class="wp-block-heading">Project Gallery</h4>',
+            `${videoEmbedHtml}\n\n<h4 class="wp-block-heading">Project Gallery</h4>`
+          );
+        } else if (processedHtml.includes('<div class="wp-block-group legacy-archive">')) {
+          processedHtml = processedHtml.replace(
+            '<div class="wp-block-group legacy-archive">',
+            `${videoEmbedHtml}\n\n<div class="wp-block-group legacy-archive">`
+          );
+        } else if (processedHtml.includes('<section class="wp-block-e3es-faq-section')) {
+          processedHtml = processedHtml.replace(
+            '<section class="wp-block-e3es-faq-section',
+            `${videoEmbedHtml}\n\n<section class="wp-block-e3es-faq-section`
+          );
+        } else {
+          processedHtml += `\n\n${videoEmbedHtml}`;
+        }
       }
     }
+
 
     const partnershipParagraphs: Record<string, string> = {
       'bishop-cisd': 'E3 Entegral Solutions partnered with Bishop CISD to implement comprehensive facility improvements including mechanical upgrades and LED lighting retrofits across the district.',
