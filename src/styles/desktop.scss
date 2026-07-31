@@ -522,6 +522,57 @@
     }
   }
 
+  /* --- Skewed Two-Column Feature Overrides --- */
+  @media (min-width: 1024px) {
+    .db-feature--skewed,
+    .db-feature {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+
+      .db-feature__container,
+      .wp-block-columns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+      }
+
+      .db-feature__container--reverse {
+        flex-direction: row-reverse;
+      }
+
+      .db-feature__content,
+      .db-feature__content-col {
+        flex: 0 0 55%;
+        max-width: 55%;
+      }
+
+      .db-feature__image-wrapper,
+      .db-feature__image-col {
+        flex: 0 0 45%;
+        max-width: 45%;
+        clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
+
+          .db-feature__image {
+            transform: scale(1.04);
+          }
+        }
+      }
+
+      .db-feature__container--reverse {
+        .db-feature__image-wrapper,
+        .db-feature__image-col {
+          clip-path: polygon(0% 0%, 93% 0%, 100% 100%, 0% 100%);
+        }
+      }
+    }
+  }
+
   /* --- Team Directory Section --- */
   main, .editor-styles-wrapper {
     .team-directory {
