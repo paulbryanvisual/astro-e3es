@@ -871,3 +871,14 @@
     2. Identified potential race conditions where fast mouse movements or async `mouseleave` events after clicking a region path could trigger `unhoverRegion()` and clear rep info or SVG locked styling.
     3. Added explicit defensive guards `if (this.isLocked) return;` at the top of `hoverRegion()` and `unhoverRegion()` methods to ensure locked selections persist cleanly until another region or clear button is clicked.
   - **Verification**: Verified code changes and committed to `task/rep-lock-1400px-1785348733`.
+
+- **Staging Deployment & WordPress Post-Save Speed Optimizations** (July 30, 2026):
+  - **Goal**: Resolve slow page-saving times in the WordPress admin panel (caused by blocking webhook calls) and optimize static site build/deployment times on Cloudflare Pages.
+  - **Implementation**:
+    1. **WordPress Webhook Asynchrony**: Modified the `cloudflare-deploy-trigger` custom WordPress plugin (`cloudflare-deploy-trigger.php`) to run webhook pings and GitHub Actions API triggers asynchronously by setting `'blocking' => false` in `wp_remote_post` options during post transitions. Maintained `'blocking' => true` for manual trigger submissions to preserve admin dashboard feedback.
+    2. **Astro REST API Caching**: Implemented module-level in-memory caching (`fetchCache`) in `src/lib/wordpress.ts` to store and reuse `wpFetch` response streams (`response.clone()`) across Astro dynamic route templates during the static build, preventing redundant API calls.
+    3. **Static Map SVG Read Caching**: Added file-read caching (`cachedMapSvg`) inside `getTexasMapSvg` to avoid reading `Texas-Map-Editable.svg` synchronously from the filesystem on every page render loop.
+    4. **CI/CD Build Clean Install Reduction**: Moved `wrangler` and `puppeteer-core` from production `dependencies` to `devDependencies` in `package.json` to reduce package payload sizes during production clean installs on Cloudflare.
+  - **Verification**: Local Astro production build completed successfully in under 6 seconds, fetching and compiling 200 pages. Webhook triggering verified as fully functional.
+  - **Git Branches**: `agent-c-1785430145006-211-cta-bg-options` (in both `astro-e3es` and `website` repositories).
+

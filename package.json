@@ -16,14 +16,14 @@
     "@astrojs/check": "^0.9.10",
     "@fontsource/raleway": "^5.2.8",
     "astro": "^6.4.3",
-    "puppeteer-core": "^25.3.0",
-    "typescript": "^6.0.3",
-    "wrangler": "^4.97.0"
+    "typescript": "^6.0.3"
   },
   "overrides": {
     "vite": "^7"
   },
   "devDependencies": {
-    "sass": "^1.100.0"
+    "puppeteer-core": "^25.3.0",
+    "sass": "^1.100.0",
+    "wrangler": "^4.97.0"
   }
 }

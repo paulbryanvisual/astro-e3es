@@ -15,10 +15,19 @@ const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD
 
 const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
+const fetchCache = new Map<string, any>();
+
 async function wpFetch(urlPath: string) {
+  if (fetchCache.has(urlPath)) {
+    return fetchCache.get(urlPath).clone();
+  }
   const separator = urlPath.includes('?') ? '&' : '?';
   const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
-  return fetch(url, { cache: 'no-store' });
+  const response = await fetch(url, { cache: 'no-store' });
+  if (response.ok) {
+    fetchCache.set(urlPath, response.clone());
+  }
+  return response;
 }
 
 export async function getPosts() {
