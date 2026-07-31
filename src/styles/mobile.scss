@@ -1785,13 +1785,30 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     .db-feature__container,
     .db-feature__container--reverse {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
+        align-items: flex-start;
         gap: 3rem;
     }
 
     .db-feature__header {
         margin-left: 0;
-        justify-content: center;
+        justify-content: flex-start;
+    }
+
+    .db-feature__content,
+    .db-feature__content h2,
+    .db-feature__content h3,
+    .db-feature__content .wp-block-heading,
+    .db-feature__content p,
+    .db-feature__content .wp-block-paragraph,
+    .db-feature__content ul,
+    .db-feature__content ol,
+    .db-feature__content .wp-block-buttons,
+    .db-feature__content .wp-block-button,
+    .db-feature .wp-block-buttons,
+    .db-feature .wp-block-button {
+        text-align: left;
+        justify-content: flex-start !important;
     }
     
     .db-feature__image-wrapper {
