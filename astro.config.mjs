@@ -1,10 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
+
+const isStaging = process.env.PUBLIC_ENV === 'staging';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://staging.e3es.com/',
-  output: 'static',
+  output: isStaging ? 'server' : 'static',
+  adapter: isStaging ? cloudflare({ imageService: 'passthrough' }) : undefined,
   image: {
     domains: ['e3es2026.local'],
     remotePatterns: [{ protocol: 'https' }, { protocol: 'http' }]
