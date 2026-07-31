@@ -526,9 +526,16 @@
   @media (min-width: 1024px) {
     .db-feature--skewed,
     .db-feature {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 5rem 3rem;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 5rem 0;
+
+      .db-feature__container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 3rem;
+      }
 
       .db-feature__container,
       .wp-block-columns {
