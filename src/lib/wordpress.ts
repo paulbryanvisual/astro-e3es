@@ -1,6 +1,13 @@
-import fs from 'fs';
-import path from 'path';
+import rawTexasMapSvg from '../../public/Texas-Map-Editable.svg?raw';
 import { cacheBuster } from './cache.ts';
+
+const texasMapSvg = rawTexasMapSvg
+  .replace(/<\?xml[^>]*\?>/i, '')
+  .replace(/<svg([^>]*)>/i, (match, attrs) => {
+    const viewBoxMatch = attrs.match(/viewBox=["']([^"']+)["']/i);
+    const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 941.76 907.17';
+    return `<svg id="texas-map-svg" viewBox="${viewBox}" class="db-feature__image texas-svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">`;
+  });
 
 const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD 
   ? 'https://descriptive-goldfish.flywheelstaging.com/wp-json/wp/v2'
@@ -134,32 +141,8 @@ export async function getClients() {
   return [...page1, ...page2];
 }
 
-let cachedMapSvg: string | null = null;
-
 export function getTexasMapSvg() {
-  if (cachedMapSvg !== null) {
-    return cachedMapSvg;
-  }
-  try {
-    const svgPath = path.resolve(process.cwd(), 'public/Texas-Map-Editable.svg');
-    let svg = fs.readFileSync(svgPath, 'utf8');
-    
-    // Remove XML declaration
-    svg = svg.replace(/<\?xml[^>]*\?>/i, '');
-    
-    // Ensure the SVG element has the correct class and id for styling
-    svg = svg.replace(/<svg([^>]*)>/i, (match, attrs) => {
-      const viewBoxMatch = attrs.match(/viewBox=["']([^"']+)["']/i);
-      const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 941.76 907.17';
-      return `<svg id="texas-map-svg" viewBox="${viewBox}" class="db-feature__image texas-svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">`;
-    });
-    
-    cachedMapSvg = svg;
-    return svg;
-  } catch (e) {
-    console.error("Failed to read editable SVG map from public folder:", e);
-    return '';
-  }
+  return texasMapSvg;
 }
 
 /**
@@ -505,19 +488,55 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     });
   }
 
+const shortServiceNames: Record<string, string> = {
+  'roofing': 'Roofing',
+  'building-envelope': 'Building Envelope',
+  'facility-assessments': 'Facility Assessments',
+  'lighting': 'LED Lighting',
+  'electrical': 'Electrical',
+  'energy-management': 'Energy Management',
+  'hvac': 'HVAC & Controls',
+  'indoor-air-quality': 'Indoor Air Quality',
+  'planning-bond-advisory-services': 'Planning & Bond Services',
+  'water': 'Water & Wastewater'
+};
+
+function getServiceShortLabel(c: any): string {
+  if (c.meta && c.meta._e3_menu_link_text && c.meta._e3_menu_link_text.trim() !== '') {
+    return decodeHtmlEntities(c.meta._e3_menu_link_text);
+  }
+  if (c._e3_menu_link_text && typeof c._e3_menu_link_text === 'string' && c._e3_menu_link_text.trim() !== '') {
+    return decodeHtmlEntities(c._e3_menu_link_text);
+  }
+  if (c.slug && shortServiceNames[c.slug]) {
+    return shortServiceNames[c.slug];
+  }
+  const raw = c.title?.rendered || c.title || 'Untitled';
+  return decodeHtmlEntities(raw);
+}
+
   if (path.length > 0 && path[0].type === 'services') {
+    const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
     const rootServices = allItems.filter(item => {
       const parentId = item.parent || (item.meta && parseInt(item.meta.cross_post_parent));
-      return item.type === 'services' && !parentId;
+      return item.type === 'services' && !parentId && !item.slug?.includes('trashed') && !excludedSlugs.includes(item.slug);
     });
+
+    const rootDropdown = rootServices.map(c => {
+      return {
+        label: getServiceShortLabel(c),
+        href: getRelativeUrl(c.link)
+      };
+    });
+
+    rootDropdown.sort((a, b) => 
+      a.label.localeCompare(b.label, 'en', { sensitivity: 'base', numeric: true })
+    );
 
     breadcrumbs.push({
       label: 'Services',
       href: '/services',
-      dropdown: rootServices.map(c => ({
-        label: c.title?.rendered || c.title,
-        href: getRelativeUrl(c.link)
-      }))
+      dropdown: rootDropdown
     });
   }
 
@@ -527,10 +546,19 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     const isLast = i === path.length - 1;
     
     // Find children for dropdown (pages that have this item as their parent)
-    const children = allItems.filter(child => {
-      const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
-      return childParentId === item.id;
-    });
+    let children = [];
+    const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
+    if (item.id === 11 || item.slug === 'services') {
+      children = allItems.filter(child => {
+        const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
+        return child.type === 'services' && !childParentId && !child.slug?.includes('trashed') && !excludedSlugs.includes(child.slug);
+      });
+    } else {
+      children = allItems.filter(child => {
+        const childParentId = child.parent || (child.meta && parseInt(child.meta.cross_post_parent));
+        return childParentId === item.id && !child.slug?.includes('trashed');
+      });
+    }
 
     let label = item.title?.rendered || item.title || 'Untitled';
     label = decodeHtmlEntities(label);
@@ -538,13 +566,21 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
       label = 'Home';
     }
 
+    const childrenDropdown = children.map(c => {
+      return {
+        label: getServiceShortLabel(c),
+        href: getRelativeUrl(c.link)
+      };
+    });
+
+    childrenDropdown.sort((a, b) => 
+      a.label.localeCompare(b.label, 'en', { sensitivity: 'base', numeric: true })
+    );
+
     breadcrumbs.push({
       label: label,
       href: isLast ? undefined : getRelativeUrl(item.link),
-      dropdown: children.map(c => ({
-        label: c.title?.rendered || c.title,
-        href: getRelativeUrl(c.link)
-      }))
+      dropdown: childrenDropdown
     });
   }
 

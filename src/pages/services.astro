@@ -1,9 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import LeadFormDrawer from '../components/LeadFormDrawer.astro';
-import { getServices } from '../lib/wordpress';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { getServices, getPages, getPageById, buildBreadcrumbs } from '../lib/wordpress';
 
-const allServices = await getServices();
+const [servicesPage, pages, allServices] = await Promise.all([
+    getPageById(11),
+    getPages(),
+    getServices()
+]);
+const allItems = [...pages, ...allServices];
+const breadcrumbs = buildBreadcrumbs(servicesPage, allItems);
 
 // Canonical list and order of Primary Service Index Pages
 const canonicalParentSlugs = [
@@ -15,9 +22,6 @@ const canonicalParentSlugs = [
     'indoor-air-quality',
     'energy-management',
     'facility-assessments',
-    'chiller-plants',
-    'boiler-plants',
-    'cooling-towers',
     'building-envelope',
     'planning-bond-advisory-services'
 ];
@@ -43,9 +47,6 @@ const serviceFallbacks: Record<string, string> = {
     'indoor-air-quality': '/images/indoor-air-quality.jpg',
     'energy-management': '/images/automation.jpg',
     'facility-assessments': '/images/facility-assessments.jpg',
-    'chiller-plants': '/images/chiller-plants.jpg',
-    'boiler-plants': '/images/boiler-plants.jpg',
-    'cooling-towers': '/images/cooling-towers.jpg',
     'building-envelope': '/images/building-envelope.jpg',
     'planning-bond-advisory-services': '/images/planning-bond-advisory.jpg'
 };
@@ -78,9 +79,6 @@ function getExploreButtonText(slug: string, titleText: string) {
         'indoor-air-quality': 'Explore IAQ Services',
         'energy-management': 'Explore Energy Management Services',
         'facility-assessments': 'Explore Facility Assessments',
-        'chiller-plants': 'Explore Chiller Plant Services',
-        'boiler-plants': 'Explore Boiler Plant Services',
-        'cooling-towers': 'Explore Cooling Tower Services',
         'building-envelope': 'Explore Building Envelope Services',
         'planning-bond-advisory-services': 'Explore Planning & Bond Services'
     };
@@ -89,6 +87,8 @@ function getExploreButtonText(slug: string, titleText: string) {
 ---
 
 <Layout wpPostId={11}>
+    <!-- Breadcrumb Bar -->
+    <Breadcrumb items={breadcrumbs} />
     <section class="db-page-hero" style="background-image: linear-gradient(rgba(14, 27, 43, 0.7), rgba(14, 27, 43, 0.8)), url('/images/E3-background-layered-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080-1920x1080.jpg'); padding: 4rem 2rem;">
         <div class="db-page-hero__container">
             <h1 class="db-page-hero__title" style="margin-bottom: 1rem;">Our Turnkey Services</h1>
