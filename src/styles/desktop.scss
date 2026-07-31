@@ -552,23 +552,6 @@
       .db-feature__image-col {
         flex: 0 0 45%;
         max-width: 45%;
-        clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-        &:hover {
-          box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
-
-          .db-feature__image {
-            transform: scale(1.04);
-          }
-        }
-      }
-
-      .db-feature__container--reverse {
-        .db-feature__image-wrapper,
-        .db-feature__image-col {
-          clip-path: polygon(0% 0%, 93% 0%, 100% 100%, 0% 100%);
-        }
       }
     }
   }
