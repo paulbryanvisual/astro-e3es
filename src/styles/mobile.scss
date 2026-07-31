@@ -1115,8 +1115,12 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     margin-right: calc(50% - 50vw);
     max-width: 100vw;
     box-sizing: border-box;
-    padding: 3rem 2rem;
+    padding: 3rem 3rem;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        padding: 2.5rem 2.5rem;
+    }
 
     .wp-block-columns {
         display: flex;
@@ -1214,8 +1218,19 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     line-height: 1.6;
 }
 
-.db-feature__content .wp-block-buttons {
+.db-feature__content .wp-block-buttons,
+.db-feature .wp-block-buttons {
     margin-top: 1.5rem;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    justify-content: flex-start !important;
+}
+
+.db-feature__content .wp-block-button,
+.db-feature .wp-block-button {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    justify-content: flex-start !important;
 }
 
 .db-feature__content ul {
@@ -1339,13 +1354,15 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     
     min-width: 44px;
     min-height: 44px;
-    padding: 0.5rem 1rem !important;
+    padding: 0.5rem 1rem 0.5rem 0 !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
     border: none !important;
     background-color: transparent !important;
     color: #ffffff !important;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start !important;
     font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
@@ -1525,7 +1542,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 2rem;
+    padding: 3rem 0;
     text-align: left !important;
 
     * {

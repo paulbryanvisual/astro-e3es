@@ -216,7 +216,10 @@
 
       // Section background/padding on section.db-feature (from mobile.scss)
       .wp-block-e3es-two-column {
-        padding: 3rem 2rem !important;
+        padding: 3rem 3rem !important;
+        @media (max-width: 768px) {
+          padding: 2.5rem 2.5rem !important;
+        }
       }
 
       // Flex columns side-by-side
@@ -376,10 +379,22 @@
         text-decoration: none !important;
         display: inline-flex !important;
         align-items: center !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        justify-content: flex-start !important;
 
         &:hover {
           color: var(--color-primary-green, #7DA044) !important;
         }
+      }
+
+      .db-feature__content .wp-block-buttons,
+      .db-feature .wp-block-buttons,
+      .db-feature__content .wp-block-button,
+      .db-feature .wp-block-button {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        justify-content: flex-start !important;
       }
 
       // Reverse layout: skew the opposite way and apply mirrored clip-path
@@ -559,6 +574,17 @@
       .db-feature__image-col {
         flex: 0 0 45%;
         max-width: 45%;
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .db-feature--skewed,
+    .db-feature {
+      padding: 3rem 3rem;
+
+      @media (max-width: 768px) {
+        padding: 2.5rem 2.5rem;
       }
     }
   }
