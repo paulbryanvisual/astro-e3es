@@ -479,6 +479,27 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     });
   }
 
+const shortServiceNames: Record<string, string> = {
+  'roofing': 'Roofing',
+  'building-envelope': 'Building Envelope',
+  'facility-assessments': 'Facility Assessments',
+  'lighting': 'LED Lighting',
+  'electrical': 'Electrical',
+  'energy-management': 'Energy Management',
+  'hvac': 'HVAC & Controls',
+  'indoor-air-quality': 'Indoor Air Quality',
+  'planning-bond-advisory-services': 'Planning & Bond Services',
+  'water': 'Water & Wastewater'
+};
+
+function getServiceShortLabel(c: any): string {
+  if (c.slug && shortServiceNames[c.slug]) {
+    return shortServiceNames[c.slug];
+  }
+  const raw = c.title?.rendered || c.title || 'Untitled';
+  return decodeHtmlEntities(raw);
+}
+
   if (path.length > 0 && path[0].type === 'services') {
     const excludedSlugs = ['chiller-plants', 'boiler-plants', 'cooling-towers'];
     const rootServices = allItems.filter(item => {
@@ -487,9 +508,8 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     });
 
     const rootDropdown = rootServices.map(c => {
-      const rawTitle = c.title?.rendered || c.title || 'Untitled';
       return {
-        label: decodeHtmlEntities(rawTitle),
+        label: getServiceShortLabel(c),
         href: getRelativeUrl(c.link)
       };
     });
@@ -532,9 +552,8 @@ export function buildBreadcrumbs(currentItem: any, allItems: any[]) {
     }
 
     const childrenDropdown = children.map(c => {
-      const rawTitle = c.title?.rendered || c.title || 'Untitled';
       return {
-        label: decodeHtmlEntities(rawTitle),
+        label: getServiceShortLabel(c),
         href: getRelativeUrl(c.link)
       };
     });
