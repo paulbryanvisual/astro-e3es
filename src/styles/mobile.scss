@@ -1124,12 +1124,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     margin-right: calc(50% - 50vw);
     max-width: 100vw;
     box-sizing: border-box;
-    padding: 3rem 3rem;
+    padding: 3rem 0;
     overflow: hidden;
-
-    @media (max-width: 768px) {
-        padding: 2.5rem 2.5rem;
-    }
 
     .wp-block-columns {
         display: flex;
@@ -1164,10 +1160,16 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 .db-feature__container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2.5rem; /* 40px left/right horizontal padding */
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     gap: 6rem;
+
+    @media (max-width: 768px) {
+        padding: 0 1.5rem; /* 24px left/right padding on mobile */
+    }
 }
 
 .db-feature__container--reverse {
@@ -4719,11 +4721,17 @@ main > .db-feature,
       }
 
       // Style list blocks (ul/ol with .wp-block-list class) as slanted E3 cards
-      .wp-block-list {
+      ul.wp-block-list:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *),
+      ol.wp-block-list:not(:is(.wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature) *) {
         list-style: none !important;
-        padding-left: 2rem !important;
-        margin-left: 0 !important;
-        margin: 2.5rem auto !important;
+        max-width: 850px !important;
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 2.5rem !important;
+        margin-bottom: 2.5rem !important;
+        padding-left: 0 !important; // Align card left edge with paragraph text
+        padding-right: 0 !important;
         display: grid !important;
         gap: 1.5rem !important;
         grid-template-columns: 1fr !important;
@@ -4772,8 +4780,13 @@ main > .db-feature,
         // Revert in editor when "Normal Bullets" block style is selected
         &.is-style-normal-bullets {
           display: block !important;
-          padding-left: 2.5rem !important;
-          margin: 1.5rem auto !important;
+          max-width: 850px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          margin-top: 1.5rem !important;
+          margin-bottom: 1.5rem !important;
+          padding-left: 1.5rem !important; // Bullet hangs at left margin; text aligns with paragraph text
+          padding-right: 1.5rem !important;
 
           li {
             position: static !important;
