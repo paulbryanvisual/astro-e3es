@@ -4070,21 +4070,10 @@ main > .db-feature,
         margin-top: 0 !important;
         margin-bottom: 1rem !important;
       }
-      &[data-type="e3es/comparison-table"],
-      &[data-type="e3es/two-column"],
-      &[data-type="e3es/two-column-cover"],
-      &[data-type="e3es/faq-section"],
-      &[data-type="e3es/core-pillars"],
-      &[data-type="e3es/intro-banner"] {
+      &[data-type^="e3es/"] {
         margin-bottom: 3.5rem !important;
         
-        & + &[data-type="e3es/comparison-table"],
-        & + &[data-type="e3es/two-column"],
-        & + &[data-type="e3es/two-column-cover"],
-        & + &[data-type="e3es/faq-section"],
-        & + &[data-type="e3es/core-pillars"],
-        & + &[data-type="e3es/intro-banner"] {
-          margin-top: 0 !important;
+        &:has(+ &[data-type^="e3es/"]) {
           margin-bottom: 0 !important;
         }
       }
@@ -5032,9 +5021,8 @@ main > .wp-block-e3es-full-width-testimonial {
     > :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background) {
       margin-bottom: 3.5rem !important; // Add standard bottom margin to push standard page elements (like headings/paragraphs) down
       
-      & + :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background) {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important; // Reset bottom margin of the first block if followed by another background block
+      &:has(+ :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background)) {
+        margin-bottom: 0 !important; // Reset bottom margin of the first block ONLY if it is immediately followed by another background block
       }
     }
 
