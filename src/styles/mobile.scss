@@ -4737,7 +4737,7 @@ main > .db-feature,
 
       p, .wp-block-paragraph,
       .wp-block[data-type="core/paragraph"] p {
-        font-size: 1.05rem !important;
+        font-size: 1rem !important;
         line-height: 1.8 !important;
         color: var(--color-text-main) !important;
         margin-bottom: 1.75rem !important;
@@ -5805,6 +5805,11 @@ p,
 p.wp-block-paragraph {
   max-width: 850px !important;
   text-wrap: pretty;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-main);
+  text-align: left;
+  margin-bottom: 1.75rem;
 }
 
 // Keep headings aligned with paragraphs on standard content layouts
