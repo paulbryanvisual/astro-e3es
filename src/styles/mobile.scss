@@ -4073,7 +4073,7 @@ main > .db-feature,
       &[data-type^="e3es/"] {
         margin-bottom: 3.5rem !important;
         
-        &:has(+ &[data-type^="e3es/"]) {
+        &:has(+ [data-type^="e3es/"]) {
           margin-bottom: 0 !important;
         }
       }
