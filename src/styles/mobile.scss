@@ -1,7 +1,7 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-:root {
+:root, .editor-styles-wrapper {
     --color-primary-green: #7DA044;
     --color-primary-dark: #215734;
     --color-tertiary: #e48a15;
@@ -1139,7 +1139,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 
 .db-feature--white {
     background-color: var(--color-bg-white);
-    color: var(--color-text-main);
+    color: var(--color-primary-dark);
 }
 
 .db-feature--grey {
@@ -1217,6 +1217,7 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     margin-bottom: 0;
     font-weight: 700;
     line-height: 1.1;
+    color: var(--color-primary-dark);
 }
 
 
@@ -2107,6 +2108,35 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     font-size: 2.5rem;
     color: var(--color-primary-dark);
     margin-bottom: 3rem;
+}
+.comparison-title {
+  text-align: left !important;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  color: var(--color-primary-dark) !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.02em !important;
+}
+.comparison-title::after {
+  content: "" !important;
+  display: block !important;
+  width: 48px !important;
+  height: 4px !important;
+  background: var(--color-primary-green) !important;
+  border-radius: 0 !important;
+  margin: 0.75rem 0 0 0 !important;
+}
+
+.comparison-description {
+  text-align: left !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+  color: var(--color-text-main) !important;
+  margin-top: 0 !important;
+  margin-bottom: 3rem !important;
+  max-width: 850px !important;
 }
 .comparison-table {
     width: 100%;
@@ -4022,7 +4052,8 @@ main > .db-feature,
     padding: 0 !important;
     margin: 0 !important;
 
-    > .wp-block {
+    & > .wp-block,
+    & > .block-editor-block-list__layout > .wp-block {
       max-width: 1200px !important;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
@@ -4032,9 +4063,25 @@ main > .db-feature,
       padding-right: 32px !important;
       box-sizing: border-box !important;
 
-      &[data-type="e3es/intro-banner"],
-      &[data-type="e3es/project"],
-      &[data-type="e3es/faq-section"] {
+      &.wp-block-heading:is(h2, :has(h2)) {
+        margin-top: 3.5rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+      &.wp-block-heading:is(h3, :has(h3)) {
+        margin-top: 2.5rem !important;
+        margin-bottom: 1rem !important;
+      }
+      &[class*="wp-block-e3es-"] {
+        margin-bottom: 3.5rem !important;
+        
+        &:has(+ [class*="wp-block-e3es-"]) {
+          margin-bottom: 0 !important;
+        }
+      }
+
+      &.wp-block-e3es-intro-banner,
+      &.wp-block-e3es-project,
+      &.wp-block-e3es-faq-section {
         max-width: none !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
@@ -4675,24 +4722,14 @@ main > .db-feature,
       // Material-inspired heading sizes & weights in editor for parity
       h2, .wp-block-heading h2,
       .wp-block[data-type="core/heading"] h2 {
-        font-size: 1.75rem !important; // Mobile h2
-        font-weight: 800 !important;
+        font-size: 2rem !important; // Match Astro published h2 size
+        font-weight: 700 !important; // Match Astro published h2 weight
         color: var(--color-primary-dark) !important;
-        margin-top: 3.5rem !important;
+        margin-top: 0 !important;
         margin-bottom: 1.5rem !important;
         line-height: 1.3 !important;
         letter-spacing: -0.02em !important;
         text-align: left !important;
-
-        &::after {
-          content: '' !important;
-          display: block !important;
-          width: 48px !important;
-          height: 4px !important;
-          background: var(--color-primary-green) !important;
-          border-radius: 0 !important;
-          margin: 0.75rem 0 0 0 !important;
-        }
       }
 
       h3, .wp-block-heading h3,
@@ -4700,7 +4737,7 @@ main > .db-feature,
         font-size: 1.35rem !important; // Mobile h3
         font-weight: 700 !important;
         color: var(--color-primary-green) !important;
-        margin-top: 2.5rem !important;
+        margin-top: 0 !important;
         margin-bottom: 1rem !important;
         line-height: 1.4 !important;
         text-align: left !important;
@@ -4708,7 +4745,7 @@ main > .db-feature,
 
       p, .wp-block-paragraph,
       .wp-block[data-type="core/paragraph"] p {
-        font-size: 1.05rem !important;
+        font-size: 1rem !important;
         line-height: 1.8 !important;
         color: var(--color-text-main) !important;
         margin-bottom: 1.75rem !important;
@@ -4846,9 +4883,6 @@ main > .db-feature,
         .wp-block[data-type="core/heading"] h2,
         .wp-block[data-type="core/heading"] h3 {
           color: var(--color-bg-white) !important;
-          &::after {
-            background: var(--color-bg-white) !important;
-          }
         }
 
         p, .wp-block-paragraph,
@@ -4975,11 +5009,12 @@ main > .wp-block-e3es-full-width-testimonial {
       margin-bottom: 0 !important;
     }
 
-    // Prevent white gaps between adjacent full-width background blocks
+    // Prevent white gaps between adjacent full-width background blocks, while allowing bottom margin to push down standard white-bg elements
     > :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background) {
-      margin-bottom: 0 !important;
-      & + :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background) {
-        margin-top: 0 !important;
+      margin-bottom: 3.5rem !important; // Add standard bottom margin to push standard page elements (like headings/paragraphs) down
+      
+      &:has(+ :is(.db-feature, .wp-block-e3es-two-column, .wp-block-e3es-two-column-cover, .db-feature--grey, .db-feature--green, .faq-section, .cta-banner, .wp-block-e3es-intro-banner, .wp-block-e3es-comparison-table, .wp-block-e3es-core-pillars, .db-pillars, .alignfull, .map-section, .design-build__pillars, .has-background)) {
+        margin-bottom: 0 !important; // Reset bottom margin of the first block ONLY if it is immediately followed by another background block
       }
     }
 
@@ -5776,6 +5811,17 @@ p,
 p.wp-block-paragraph {
   max-width: 850px !important;
   text-wrap: pretty;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-main);
+  text-align: left;
+  margin-bottom: 1.75rem;
+}
+
+// Force white paragraph text inside dark background sections on the live site
+:is(.cta-banner, .db-feature--green, .wp-block-cover, .db-page-hero, .wp-block-e3es-intro-banner, .wp-block-e3es-two-column-cover, .wp-block-e3es-full-width-testimonial) :is(p, .wp-block-paragraph) {
+  color: var(--color-bg-white) !important;
+  opacity: 0.9;
 }
 
 // Keep headings aligned with paragraphs on standard content layouts
