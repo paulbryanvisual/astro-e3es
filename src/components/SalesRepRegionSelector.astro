@@ -507,9 +507,14 @@
 
   /* Prevent double padding/margins when nested inside custom element host elements */
   :is(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region) > .sales-rep-selector {
-    padding: 0;
+    padding: 0 20px;
     margin: 0 auto;
     max-width: 100%;
+    box-sizing: border-box;
+
+    @include responsive-up($breakpoint-lg) {
+      padding: 0 40px;
+    }
   }
 
   /* BEM Block Grid/Flex Layout: sales-rep-selector */
@@ -522,7 +527,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 400px;
       align-items: flex-start;
-      gap: 40px;
+      gap: 50px;
     }
 
     &__map-col {
