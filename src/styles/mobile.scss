@@ -4063,11 +4063,11 @@ main > .db-feature,
       padding-right: 32px !important;
       box-sizing: border-box !important;
 
-      &.wp-block-heading:has(h2) {
+      &.wp-block-heading:is(h2, :has(h2)) {
         margin-top: 3.5rem !important;
         margin-bottom: 1.5rem !important;
       }
-      &.wp-block-heading:has(h3) {
+      &.wp-block-heading:is(h3, :has(h3)) {
         margin-top: 2.5rem !important;
         margin-bottom: 1rem !important;
       }
