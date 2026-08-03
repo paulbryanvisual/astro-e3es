@@ -5838,6 +5838,12 @@ p.wp-block-paragraph {
   margin-bottom: 1.75rem;
 }
 
+// Force white paragraph text inside dark background sections on the live site
+:is(.cta-banner, .db-feature--green, .wp-block-cover, .db-page-hero, .wp-block-e3es-intro-banner, .wp-block-e3es-two-column-cover, .wp-block-e3es-full-width-testimonial) :is(p, .wp-block-paragraph) {
+  color: var(--color-bg-white) !important;
+  opacity: 0.9;
+}
+
 // Keep headings aligned with paragraphs on standard content layouts
 main > :is(h1, h2, h3, h4, h5, h6),
 .client-content-wrapper > :is(h1, h2, h3, h4, h5, h6),
