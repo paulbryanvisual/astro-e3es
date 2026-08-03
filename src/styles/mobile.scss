@@ -4063,38 +4063,29 @@ main > .db-feature,
       padding-right: 32px !important;
       box-sizing: border-box !important;
 
-      &[data-type="core/heading"]:has(h2) {
-        margin-top: 0 !important;
+      &.wp-block-heading:has(h2) {
+        margin-top: 3.5rem !important;
         margin-bottom: 1.5rem !important;
       }
-      &[data-type="core/heading"]:has(h3) {
-        margin-top: 0 !important;
+      &.wp-block-heading:has(h3) {
+        margin-top: 2.5rem !important;
         margin-bottom: 1rem !important;
       }
-      &[data-type^="e3es/"] {
+      &[class*="wp-block-e3es-"] {
         margin-bottom: 3.5rem !important;
         
-        &:has(+ [data-type^="e3es/"]) {
+        &:has(+ [class*="wp-block-e3es-"]) {
           margin-bottom: 0 !important;
         }
       }
 
-      &[data-type="e3es/intro-banner"],
-      &[data-type="e3es/project"],
-      &[data-type="e3es/faq-section"] {
+      &.wp-block-e3es-intro-banner,
+      &.wp-block-e3es-project,
+      &.wp-block-e3es-faq-section {
         max-width: none !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
         width: 100% !important;
-      }
-
-      &[data-type="core/heading"]:has(h2) {
-        margin-top: 3.5rem !important;
-        margin-bottom: 1.5rem !important;
-      }
-      &[data-type="core/heading"]:has(h3) {
-        margin-top: 2.5rem !important;
-        margin-bottom: 1rem !important;
       }
 
       &.alignleft,
