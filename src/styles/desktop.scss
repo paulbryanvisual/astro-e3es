@@ -550,7 +550,7 @@
       .db-feature > .wp-block-columns {
         max-width: 1440px;
         margin: 0 auto;
-        padding: 0 3rem; /* 48px left/right padding on desktop */
+        padding: 0 3rem; /* Enforces 48px horizontal padding across desktop viewports */
         box-sizing: border-box;
       }
 
@@ -559,23 +559,49 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 4rem;
+        gap: 3rem; /* Reduced from 4rem to prevent flex overflow */
       }
 
       .db-feature__container--reverse {
         flex-direction: row-reverse;
       }
 
+      /* Text area shrinks at a faster rate */
       .db-feature__content,
       .db-feature__content-col {
-        flex: 0 0 55%;
-        max-width: 55%;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      /* Photo area maintains steady width and shrinks slower */
+      .db-feature__image-wrapper,
+      .db-feature__image-col {
+        flex: 0 0 calc(45% - 1.5rem);
+        max-width: 45%;
+        min-width: 380px;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    .db-feature--skewed,
+    .db-feature {
+      .db-feature__container,
+      .db-feature > .wp-block-columns {
+        padding: 0 3rem;
+        gap: 2.5rem;
+      }
+
+      .db-feature__content,
+      .db-feature__content-col {
+        flex: 1 1 auto; /* Text area contracts faster */
       }
 
       .db-feature__image-wrapper,
       .db-feature__image-col {
-        flex: 0 0 45%;
+        flex: 0 0 420px; /* Photo area contracts slower */
         max-width: 45%;
+        min-width: 360px;
       }
     }
   }
