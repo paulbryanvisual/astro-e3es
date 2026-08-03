@@ -435,7 +435,7 @@
         if (bioEl) {
           const repBio = rep.quote || rep.bio;
           if (repBio) {
-            bioEl.textContent = repBio.replace(/<\/?p[^>]*>/g, '').trim();
+            bioEl.innerHTML = repBio.replace(/<\/?p[^>]*>/g, '').trim();
             bioEl.style.display = 'block';
           } else {
             bioEl.style.display = 'none';
