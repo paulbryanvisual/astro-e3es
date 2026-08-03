@@ -552,6 +552,15 @@
       text-align: center;
       border: 2px dashed var(--color-border-dark, #767676);
       color: var(--color-text-main, #1a1a1a);
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      height: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
 
       @include responsive-up($breakpoint-lg) {
         padding: 80px 60px;
@@ -583,8 +592,14 @@
       padding: 40px 32px;
       border-radius: 0;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      width: 100%;
       max-width: 400px;
       margin: 0 auto;
+      height: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
 
       @include responsive-up($breakpoint-lg) {
         padding: 50px 40px;
@@ -682,6 +697,9 @@
       border-radius: 0;
       cursor: pointer;
       transition: all 0.2s ease;
+      margin-top: auto;
+      align-self: center;
+      width: 100%;
 
       &:hover {
         background-color: var(--color-primary, #215734);
