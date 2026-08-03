@@ -4741,8 +4741,8 @@ main > .db-feature,
       // Material-inspired heading sizes & weights in editor for parity
       h2, .wp-block-heading h2,
       .wp-block[data-type="core/heading"] h2 {
-        font-size: 2rem !important;
-        font-weight: 700 !important;
+        font-size: 2rem !important; // Match Astro published h2 size
+        font-weight: 700 !important; // Match Astro published h2 weight
         color: var(--color-primary-dark) !important;
         margin-top: 0 !important;
         margin-bottom: 1.5rem !important;
