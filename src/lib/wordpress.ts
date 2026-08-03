@@ -341,7 +341,11 @@ export function processWordPressHtml(html: string, slug?: string): string {
       const wrapperRegex = /<div class="db-video-wrapper">([\s\S]*?)<\/div>/i;
       const match = processedHtml.match(wrapperRegex);
 
-      if (match) {
+      const isVideoExcluded = processedHtml.includes('<!-- wp-block-excluded: e3es/video-embed') || processedHtml.includes('<!-- wp-block-excluded: e3es/video-embed');
+
+      if (isVideoExcluded) {
+        // Excluded intentionally! Skip fallback injection.
+      } else if (match) {
         if (!match[1].includes('<iframe')) {
           processedHtml = processedHtml.replace(
             match[0],
@@ -381,7 +385,8 @@ export function processWordPressHtml(html: string, slug?: string): string {
     if (partnershipParagraphs[slug]) {
       const pText = partnershipParagraphs[slug];
       const signature = 'E3 Entegral Solutions partnered with';
-      if (!processedHtml.includes(signature)) {
+      const isParagraphExcluded = processedHtml.includes('<!-- wp-block-excluded: core/paragraph: E3 Entegral Solutions partnered with') || processedHtml.includes('<!-- wp-block-excluded: core/paragraph: E3 Entegral Solutions partnered');
+      if (!processedHtml.includes(signature) && !isParagraphExcluded) {
         processedHtml = `<!-- wp:paragraph -->\n<p>${pText}</p>\n<!-- /wp:paragraph -->\n\n` + processedHtml;
       }
     }
@@ -425,6 +430,13 @@ export function processWordPressHtml(html: string, slug?: string): string {
 
   // Force all absolute WordPress resource URLs (local or staging) to route through same-origin relative proxy path
   processedHtml = processedHtml.replace(/https?:\/\/[^\/]+\/wp-(content|includes)/gi, '/wp-$1');
+
+  // Strip out any placeholder comments left behind by the excluded blocks filter
+  processedHtml = processedHtml.replace(/<!-- wp-block-excluded:[\s\S]*?-->/g, '');
+
+  // Strip empty containers to prevent layout shifting
+  processedHtml = processedHtml.replace(/<div class="[^"]*(?:wp-block-group|wp-block-column|db-video-wrapper)[^"]*">\s*<\/div>/gi, '');
+
   return processedHtml;
 }
 
