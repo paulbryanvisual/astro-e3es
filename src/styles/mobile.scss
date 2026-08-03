@@ -1,7 +1,7 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-:root {
+:root, .editor-styles-wrapper {
     --color-primary-green: #7DA044;
     --color-primary-dark: #215734;
     --color-tertiary: #e48a15;
@@ -2107,6 +2107,35 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
     font-size: 2.5rem;
     color: var(--color-primary-dark);
     margin-bottom: 3rem;
+}
+.comparison-title {
+  text-align: left !important;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  color: var(--color-primary-dark) !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.02em !important;
+}
+.comparison-title::after {
+  content: "" !important;
+  display: block !important;
+  width: 48px !important;
+  height: 4px !important;
+  background: var(--color-primary-green) !important;
+  border-radius: 0 !important;
+  margin: 0.75rem 0 0 0 !important;
+}
+
+.comparison-description {
+  text-align: left !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+  color: var(--color-text-main) !important;
+  margin-top: 0 !important;
+  margin-bottom: 3rem !important;
+  max-width: 850px !important;
 }
 .comparison-table {
     width: 100%;
