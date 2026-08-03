@@ -4052,7 +4052,8 @@ main > .db-feature,
     padding: 0 !important;
     margin: 0 !important;
 
-    > .wp-block {
+    & > .wp-block,
+    & > .block-editor-block-list__layout > .wp-block {
       max-width: 1200px !important;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
