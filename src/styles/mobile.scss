@@ -4071,6 +4071,15 @@ main > .db-feature,
         width: 100% !important;
       }
 
+      &[data-type="core/heading"]:has(h2) {
+        margin-top: 3.5rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+      &[data-type="core/heading"]:has(h3) {
+        margin-top: 2.5rem !important;
+        margin-bottom: 1rem !important;
+      }
+
       &.alignleft,
       &[data-align="left"] {
         float: left !important;
@@ -4705,8 +4714,8 @@ main > .db-feature,
       // Material-inspired heading sizes & weights in editor for parity
       h2, .wp-block-heading h2,
       .wp-block[data-type="core/heading"] h2 {
-        font-size: 1.75rem !important; // Mobile h2
-        font-weight: 800 !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
         color: var(--color-primary-dark) !important;
         margin-top: 3.5rem !important;
         margin-bottom: 1.5rem !important;
