@@ -337,4 +337,18 @@
 - Astro: `src/lib/wordpress.ts`
 - WordPress: `wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php`
 
+## 2026-08-04T16:52:00-05:00: LocalWP Symlink Ban & Bulk Actions Implementation
+**Architectural Decisions Made:**
+- **Permanent Symlink Ban:** Enforced a permanent ban on using symlinks for WordPress plugin/theme directories in LocalWP, as they break `plugins_url()` resolution and are ignored during Flywheel deployments.
+- **Live Sync Workflow:** Implemented a new standard workflow using a background Node.js file watcher (`sync-wp.js`) to physically copy/rsync files on save.
+- **Concurrent Dev Execution:** Modified the Astro `npm run dev` script to run the WordPress sync script concurrently via standard bash (`&`), acting as a single unified development command.
+- **Bulk Action Script Fixes:** Refactored the `bulk-actions-buttons.js` script to use jQuery event delegation to handle cloned DOM elements in the WP Admin list tables correctly.
 
+**New Dependencies Added:**
+- None (Used native Node.js `fs.watch` and `child_process.exec` for `rsync`)
+
+**Core Files Modified:**
+- `astro-e3es/package.json` (Added `sync:wp` script)
+- `E3/website/scripts/sync-wp.js` (Created live-sync script)
+- `E3/website/wordpress-plugins/e3es-headless-helper/scripts/bulk-actions-buttons.js` (Event delegation fixes)
+- `E3/website/wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php` (Restored native `plugins_url`)
