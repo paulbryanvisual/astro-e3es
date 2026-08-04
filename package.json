@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:staging": "PUBLIC_ENV=staging astro build",
+    "build:staging": "PUBLIC_ENV=staging astro build && node patch-wrangler.js",
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types"
