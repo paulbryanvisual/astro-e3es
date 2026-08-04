@@ -17,22 +17,31 @@ const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
 const fetchCache = new Map<string, any>();
 
-async function wpFetch(urlPath: string, retries = 3) {
+async function wpFetch(urlPath: string, retries = 3, allowCache = false) {
   if (fetchCache.has(urlPath)) {
     return fetchCache.get(urlPath).clone();
   }
   const separator = urlPath.includes('?') ? '&' : '?';
-  const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
+  const url = allowCache 
+    ? `${WP_URL}${urlPath}` 
+    : `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
   
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      const response = await fetch(url, { 
-        cache: 'no-store',
+      const fetchOptions: any = {
+        cache: allowCache ? 'force-cache' : 'no-store',
         headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           'Accept': 'application/json'
         }
-      });
+      };
+      
+      // Tell Cloudflare Workers edge cache to hold this for 1 hour
+      if (allowCache) {
+        fetchOptions.cf = { cacheTtl: 3600, cacheEverything: true };
+      }
+
+      const response = await fetch(url, fetchOptions);
       if (response.ok) {
         fetchCache.set(urlPath, response.clone());
         return response;
@@ -158,7 +167,7 @@ export async function getHierarchy() {
     let page = 1;
     let hasMore = true;
     while (hasMore) {
-      const response = await wpFetch(`/${type}?per_page=100&page=${page}&_fields=${fields}`);
+      const response = await wpFetch(`/${type}?per_page=100&page=${page}&_fields=${fields}`, 3, true);
       if (!response.ok) break;
       const items = await response.json();
       if (items.length === 0) break;
@@ -267,15 +276,9 @@ export function processWordPressHtml(html: string, slug?: string): string {
     processedHtml = processedHtml.replace(mapRegex, getTexasMapSvg());
   }
 
-  // 1. Rewrite relative paths to absolute WordPress server paths
-  processedHtml = processedHtml
-    .replace(/(url\(["']?)\/images\//gi, `$1${WP_BASE_URL}/images/`)
-    .replace(/(url\(["']?)\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
-    .replace(/(src=["'])\/images\//gi, `$1${WP_BASE_URL}/images/`)
-    .replace(/(src=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
-    .replace(/(srcset=["'])\/images\//gi, `$1${WP_BASE_URL}/images/`)
-    .replace(/(srcset=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`)
-    .replace(/(href=["'])\/wp-content\//gi, `$1${WP_BASE_URL}/wp-content/`);
+  // 1. Rewrite absolute WordPress server paths to relative paths so they route through our Cloudflare proxy
+  const absoluteWpUrlRegex = new RegExp(`(src=["']|srcset=["']|href=["']|url\\(["']?)${WP_BASE_URL.replace(/\\/g, '\\\\/').replace(/\//g, '\\/')}`, 'gi');
+  processedHtml = processedHtml.replace(absoluteWpUrlRegex, '$1');
 
   // Rewrite absolute WordPress site links & staging links in content to relative paths
   const absoluteUrlRegex = new RegExp(`href=["']${WP_BASE_URL.replace(/\//g, '\\/')}(\\/[^"']*)?["']`, 'gi');
