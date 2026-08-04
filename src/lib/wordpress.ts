@@ -15,18 +15,17 @@ const WP_URL = import.meta.env.PUBLIC_WP_URL || (import.meta.env.PROD
 
 const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
-const fetchCache = new Map<string, any>();
+const fetchCache = new Map<string, { data: string, expires: number }>();
 
 async function wpFetch(urlPath: string, retries = 3, allowCache = false) {
   if (fetchCache.has(urlPath)) {
     const cached = fetchCache.get(urlPath);
-    if (typeof cached === 'string') {
-      return new Response(cached, {
+    if (cached && typeof cached === 'object' && cached.expires > Date.now()) {
+      return new Response(cached.data, {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
     } else {
-      // Purge old Response objects that might have survived from previous isolates
       fetchCache.delete(urlPath);
     }
   }
@@ -53,7 +52,7 @@ async function wpFetch(urlPath: string, retries = 3, allowCache = false) {
       const response = await fetch(url, fetchOptions);
       if (response.ok) {
         const text = await response.text();
-        fetchCache.set(urlPath, text);
+        fetchCache.set(urlPath, { data: text, expires: Date.now() + 5000 });
         return new Response(text, {
           status: 200,
           headers: response.headers
@@ -180,7 +179,7 @@ export async function getHierarchy() {
     let page = 1;
     let hasMore = true;
     while (hasMore) {
-      const response = await wpFetch(`/${type}?per_page=100&page=${page}&_fields=${fields}`, 3, true);
+      const response = await wpFetch(`/${type}?per_page=100&page=${page}&_fields=${fields}`, 3, false);
       if (!response.ok) break;
       const items = await response.json();
       if (items.length === 0) break;
