@@ -152,14 +152,35 @@
   - The contact page interactive map is embedded via a WordPress Custom HTML block to ensure backend-to-frontend layout consistency.
   - Interactive elements (`[data-region]`, `[data-office]`) use BEM selectors (`.contact-map__region`, `.contact-map__pin`) styled in `mobile.scss`.
   - Client-side coordinates (`x, y` inside the SVG viewbox space) are scaled dynamically using `map.getBoundingClientRect()` and the SVG `viewBox` coordinates (`941.76 x 907.17`) to display tooltips precisely over the offices on hover, touch, or focus.
-  - Accessibility focus outlines (`:focus-visible`) and aria labels/hidden controls are implemented to ensure WCAG 2.1 compliance for screen readers and keyboard users.
-
 ## Visual Editor & Theme Style Synchronization
 - **Backend Spacing Match (Gutenberg Sibling Layout)**: Sibling block elements in the Gutenberg editor are wrapped in block containers (`.wp-block`). To synchronize the editor backend visual layout with the frontend's 64px (4rem) spacing when an intro-banner is followed directly by a heading or paragraph block, sibling rules targeting `.editor-styles-wrapper .wp-block[data-type="e3es/intro-banner"] + :is(.wp-block[data-type="core/heading"], .wp-block[data-type="core/paragraph"])` are loaded via `editor-styles.css` to offset layout disparities.
 - **Auto Vimeo Embed Formatting**: To resolve Vimeo loading blockages, the E3 Video Embed block onChange handler and backend dynamic HTML parser utilize a pattern match format to automatically translate standard page links (`https://vimeo.com/<id>`) into correct embed player URLs (`https://player.vimeo.com/video/<id>?...`) inside Gutenberg before database serialization.
 
-## Staging SSR and Production Static Environments
-- **Conditional Environment Builds**: The Astro project is configured to toggle between Server-Side Rendering (SSR) for staging and Static Site Generation (SSG) for production based on the environment variable `PUBLIC_ENV === 'staging'`.
+## Staging SSR and Production
+
+### Staging Environment (`e3es-staging.e3entegralsolutions.workers.dev`)
+The staging environment runs on Cloudflare Workers in SSR (Server-Side Rendering) mode.
+
+### Instant Staging Preview Loader
+Because the staging environment runs in SSR mode, requesting a page requires the Cloudflare Worker to wake up, fetch data from the Flywheel WordPress API, and build the page. This can take several seconds and previously caused users to experience a blank white screen or 500 timeouts.
+
+To provide instant feedback, we created an Instant Preview Loader at `src/pages/preview.astro`.
+1. **The Route:** `/preview?url=/some-path`
+2. **Behavior:** This page does **no server-side fetching**. It returns a 200 OK HTML loading screen instantly.
+3. **Redirection:** The page uses client-side JavaScript (`window.location.replace(targetUrl)`) to command the browser to load the heavy SSR page in the background while the user watches the loading spinner.
+
+### WordPress Admin Buttons
+In the WordPress Admin backend, custom code injects "View Staging" and "View Production" buttons into the toolbar. 
+The "View Staging" button is configured to redirect users through the instant loader:
+```html
+<a id="e3-btn-view-staging" 
+   target="_blank" 
+   rel="noopener" 
+   title="View page on Staging site" 
+   href="https://e3es-staging.e3entegralsolutions.workers.dev/preview?url=/[POST_PATH]/" 
+   style="...">🧪 View Staging</a>
+```
+
 - **Staging SSR Mode (Cloudflare Workers)**: When built with `PUBLIC_ENV=staging`, Astro sets `output: 'server'` and applies the `@astrojs/cloudflare` adapter. The staging site (`staging.e3es.com`) is deployed as a standalone **Cloudflare Worker** via GitHub Actions, bypassing Cloudflare Pages. This ensures full Astro 6 SSR compatibility and allows edits made on the staging WordPress site (`descriptive-goldfish.flywheelstaging.com`) to be previewed instantly upon refreshing the page without triggering slow deployment rebuilds.
   - **Dynamic Route Fallbacks**: Because Astro ignores `getStaticPaths()` at runtime in SSR mode, detail route templates (`[...slug].astro`, `clients/[slug].astro`, `blog/[slug].astro`) are configured with runtime fallbacks. If `Astro.props` is empty, they extract slug parameters and fetch content directly from the WordPress API at request time, outputting a 404 response if the content does not exist.
   - **Wrangler CI/CD Configuration**: Staging deployments are orchestrated entirely through GitHub Actions (`deploy.yml`). The action runs `npm run build:staging`, reads the generated `dist/server/wrangler.json` manifest, and deploys it natively to the `e3es-staging` Worker.
