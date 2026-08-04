@@ -71,14 +71,46 @@ if (!page) {
   // Remove any trailing slash before splitting
   const trimmedSlug = slug.replace(/\/$/, '');
   const finalSlug = trimmedSlug.split('/').pop() || trimmedSlug;
-  
-  if (slug.startsWith('services/')) {
-    page = await getServiceBySlug(finalSlug);
-  } else {
-    page = await getPageBySlug(finalSlug);
-    if (!page) {
+  try {
+    if (slug.startsWith('services/')) {
       page = await getServiceBySlug(finalSlug);
+    } else {
+      page = await getPageBySlug(finalSlug);
+      if (!page) {
+        page = await getServiceBySlug(finalSlug);
+      }
     }
+  } catch (err: any) {
+    console.error(`SSR Fetch Error for slug ${finalSlug}:`, err);
+    return new Response(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Staging Environment Waking Up...</title>
+        <style>
+          body { font-family: system-ui, sans-serif; text-align: center; padding: 4rem; color: #333; }
+          .container { max-width: 500px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+          h1 { font-size: 1.5rem; color: #d32f2f; }
+          p { margin: 1rem 0; line-height: 1.5; color: #555; }
+          button { background: #0056b3; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+          button:hover { background: #004494; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>Backend Server Timeout</h1>
+          <p>The WordPress Staging server took too long to respond or is currently waking up. Please wait 10 seconds and try again.</p>
+          <p><small>${err.message || 'Unknown error'}</small></p>
+          <button onclick="window.location.reload()">Refresh Page</button>
+        </div>
+      </body>
+      </html>
+    `, { 
+      status: 503,
+      headers: { 'Content-Type': 'text/html' }
+    });
   }
 }
 
