@@ -19,10 +19,16 @@ const fetchCache = new Map<string, any>();
 
 async function wpFetch(urlPath: string, retries = 3, allowCache = false) {
   if (fetchCache.has(urlPath)) {
-    return new Response(fetchCache.get(urlPath), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    const cached = fetchCache.get(urlPath);
+    if (typeof cached === 'string') {
+      return new Response(cached, {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    } else {
+      // Purge old Response objects that might have survived from previous isolates
+      fetchCache.delete(urlPath);
+    }
   }
   const separator = urlPath.includes('?') ? '&' : '?';
   const url = allowCache 
