@@ -130,6 +130,50 @@ export async function getPageById(id: number) {
   return response.json();
 }
 
+export async function getHierarchy() {
+  const fields = 'id,slug,title,link,parent,meta,type';
+  
+  const fetchType = async (type: string) => {
+    let allItems: any[] = [];
+    let page = 1;
+    let hasMore = true;
+    while (hasMore) {
+      const response = await wpFetch(`/${type}?per_page=100&page=${page}&_fields=${fields}`);
+      if (!response.ok) break;
+      const items = await response.json();
+      if (items.length === 0) break;
+      allItems = allItems.concat(items);
+      if (items.length < 100) hasMore = false;
+      else page++;
+    }
+    return allItems;
+  };
+
+  const [pages, services] = await Promise.all([fetchType('pages'), fetchType('services')]);
+  return [...pages, ...services];
+}
+
+export async function getClientHierarchy() {
+  const fields = 'id,slug,title,link,meta,type,_links,_embedded';
+  const response1 = await wpFetch(`/clients?_embed=1&per_page=100&page=1&_fields=${fields}`);
+  if (!response1.ok) {
+    throw new Error('Failed to fetch clients hierarchy page 1');
+  }
+  const page1 = await response1.json();
+
+  let page2: any[] = [];
+  try {
+    const response2 = await wpFetch(`/clients?_embed=1&per_page=100&page=2&_fields=${fields}`);
+    if (response2.ok) {
+      page2 = await response2.json();
+    }
+  } catch (e) {
+    // Ignore if page 2 fails or is empty
+  }
+
+  return [...page1, ...page2];
+}
+
 export async function getClients() {
   const response1 = await wpFetch('/clients?_embed&per_page=100&page=1');
   if (!response1.ok) {
