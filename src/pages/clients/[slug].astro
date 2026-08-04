@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getClients, processWordPressHtml, decodeHtmlEntities, getClientBySlug } from '../../lib/wordpress';
+import { getClients, processWordPressHtml, decodeHtmlEntities, getClientBySlug, getClientHierarchy } from '../../lib/wordpress';
 import { Image } from 'astro:assets';
 
 // Static imports for client logos
@@ -41,7 +41,7 @@ if (!client) {
 }
 
 if (!allClients) {
-  allClients = await getClients();
+  allClients = await getClientHierarchy();
 }
 
 const rawOptimizedContent = processWordPressHtml(client.content.rendered, slug);

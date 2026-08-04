@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import { getPages, getServices, processWordPressHtml, buildBreadcrumbs, getPageBySlug, getServiceBySlug } from '../lib/wordpress';
+import { getPages, getServices, processWordPressHtml, buildBreadcrumbs, getPageBySlug, getServiceBySlug, getHierarchy } from '../lib/wordpress';
 
 export async function getStaticPaths() {
   const [pages, services] = await Promise.all([getPages(), getServices()]);
@@ -84,8 +84,7 @@ if (!page) {
 }
 
 if (!allItems) {
-  const [pages, services] = await Promise.all([getPages(), getServices()]);
-  allItems = [...pages, ...services];
+  allItems = await getHierarchy();
 }
 
 const optimizedContent = processWordPressHtml(page.content.rendered, page.slug);
