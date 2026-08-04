@@ -1,7 +1,7 @@
 {
 	"compatibility_date": "2026-06-02",
 	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "astro-e3es-worker",
+	"name": "e3es-staging",
 	"observability": {
 		"enabled": true
 	}
