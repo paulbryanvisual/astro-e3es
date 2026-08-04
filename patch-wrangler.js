@@ -36,6 +36,14 @@ if (fs.existsSync(wranglerJsonPath)) {
     fs.unlinkSync(wranglerJsonPath);
     console.log('✅ [patch-wrangler] Deleted generated wrangler.json to bypass Cloudflare Pages strict validation');
 
+    // Also delete the .wrangler directory because Astro's adapter creates a redirect in .wrangler/deploy/config.json
+    // that points to the deleted wrangler.json, which causes a "does not exist" crash!
+    const wranglerCacheDir = path.join(process.cwd(), '.wrangler');
+    if (fs.existsSync(wranglerCacheDir)) {
+      fs.rmSync(wranglerCacheDir, { recursive: true, force: true });
+      console.log('✅ [patch-wrangler] Deleted .wrangler cache directory to clear stale redirects');
+    }
+
   } catch (error) {
     console.error('❌ [patch-wrangler] Failed to patch wrangler.json:', error);
   }
