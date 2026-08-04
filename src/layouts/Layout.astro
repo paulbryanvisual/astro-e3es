@@ -38,6 +38,29 @@ const { description = "E3 Entegral Solutions provides design-build energy effici
         {wpPostId && <meta name="wp-post-id" content={wpPostId} />}
 		<title>E3 Entegral Solutions</title>
         <slot name="head" />
+        <script is:inline>
+            // Intercept internal links on Staging and route them through the loading screen
+            document.addEventListener('DOMContentLoaded', () => {
+                if (window.location.hostname.includes('workers.dev') || window.location.hostname.includes('localhost')) {
+                    document.body.addEventListener('click', (e) => {
+                        const link = e.target.closest('a');
+                        if (!link) return;
+                        
+                        const href = link.getAttribute('href');
+                        if (!href || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) return;
+                        
+                        try {
+                            const url = new URL(link.href);
+                            if (url.hostname === window.location.hostname && !url.pathname.startsWith('/preview')) {
+                                e.preventDefault();
+                                const targetPath = url.pathname + url.search + url.hash;
+                                window.location.href = '/preview?url=' + encodeURIComponent(targetPath);
+                            }
+                        } catch (err) {}
+                    });
+                }
+            });
+        </script>
 	</head>
 	<body>
         <Header />
