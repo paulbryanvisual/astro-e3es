@@ -17,31 +17,37 @@ const WP_BASE_URL = WP_URL.replace('/wp-json/wp/v2', '');
 
 const fetchCache = new Map<string, any>();
 
-async function wpFetch(urlPath: string) {
+async function wpFetch(urlPath: string, retries = 3) {
   if (fetchCache.has(urlPath)) {
     return fetchCache.get(urlPath).clone();
   }
   const separator = urlPath.includes('?') ? '&' : '?';
   const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
-  try {
-    const response = await fetch(url, { 
-      cache: 'no-store',
-      headers: {
-        'User-Agent': 'Cloudflare-Worker-Astro-SSR/1.0',
-        'Accept': 'application/json'
+  
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(url, { 
+        cache: 'no-store',
+        headers: {
+          'User-Agent': 'Cloudflare-Worker-Astro-SSR/1.0',
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        fetchCache.set(urlPath, response.clone());
+        return response;
+      } else {
+        console.error(`WordPress API Error [${response.status}] on ${urlPath}: ${response.statusText}`);
+        if (attempt === retries) throw new Error(`WordPress API Error: ${response.status} ${response.statusText}`);
       }
-    });
-    if (response.ok) {
-      fetchCache.set(urlPath, response.clone());
-    } else {
-      console.error(`WordPress API Error [${response.status}] on ${urlPath}: ${response.statusText}`);
-      throw new Error(`WordPress API Error: ${response.status} ${response.statusText}`);
+    } catch (error) {
+      console.error(`Network fetch exception to WordPress API on ${urlPath} (Attempt ${attempt}):`, error);
+      if (attempt === retries) throw error;
+      // Wait 200ms before retrying
+      await new Promise(resolve => setTimeout(resolve, 200));
     }
-    return response;
-  } catch (error) {
-    console.error(`Network fetch exception to WordPress API on ${urlPath}:`, error);
-    throw error;
   }
+  throw new Error("Failed to fetch after retries");
 }
 
 export async function getPosts() {
