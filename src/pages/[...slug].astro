@@ -68,7 +68,9 @@ let { page, allItems } = Astro.props;
 
 if (!page) {
   const slug = Astro.params.slug || '';
-  const finalSlug = slug.split('/').pop() || slug;
+  // Remove any trailing slash before splitting
+  const trimmedSlug = slug.replace(/\/$/, '');
+  const finalSlug = trimmedSlug.split('/').pop() || trimmedSlug;
   
   if (slug.startsWith('services/')) {
     page = await getServiceBySlug(finalSlug);
