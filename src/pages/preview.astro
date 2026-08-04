@@ -68,7 +68,12 @@ export const prerender = false; // We still want it dynamic so we don't cache pa
   <script>
     // Get the target URL from the query string
     const params = new URLSearchParams(window.location.search);
-    const targetUrl = params.get('url');
+    let targetUrl = params.get('url');
+
+    // If the url parameter is present but empty (e.g., ?url=), assume it is the homepage.
+    if (targetUrl === "") {
+        targetUrl = "/";
+    }
 
     if (targetUrl) {
       // Normalize URL: ensure it starts with a single slash
