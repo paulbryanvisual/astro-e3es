@@ -23,11 +23,25 @@ async function wpFetch(urlPath: string) {
   }
   const separator = urlPath.includes('?') ? '&' : '?';
   const url = `${WP_URL}${urlPath}${separator}t=${Date.now()}&cb=${cacheBuster}`;
-  const response = await fetch(url, { cache: 'no-store' });
-  if (response.ok) {
-    fetchCache.set(urlPath, response.clone());
+  try {
+    const response = await fetch(url, { 
+      cache: 'no-store',
+      headers: {
+        'User-Agent': 'Cloudflare-Worker-Astro-SSR/1.0',
+        'Accept': 'application/json'
+      }
+    });
+    if (response.ok) {
+      fetchCache.set(urlPath, response.clone());
+    } else {
+      console.error(`WordPress API Error [${response.status}] on ${urlPath}: ${response.statusText}`);
+      throw new Error(`WordPress API Error: ${response.status} ${response.statusText}`);
+    }
+    return response;
+  } catch (error) {
+    console.error(`Network fetch exception to WordPress API on ${urlPath}:`, error);
+    throw error;
   }
-  return response;
 }
 
 export async function getPosts() {
