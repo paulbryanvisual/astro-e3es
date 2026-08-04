@@ -25,13 +25,16 @@ if (fs.existsSync(wranglerJsonPath)) {
       delete config.previews.kv_namespaces;
     }
 
-    fs.writeFileSync(wranglerJsonPath, JSON.stringify(config, null, 2), 'utf8');
-
     // Create the _worker.js wrapper required by Cloudflare Pages since Astro 6 only outputs Workers format
     const workerWrapperPath = path.join(process.cwd(), 'dist', '_worker.js');
     const workerCode = `import entry from "./server/entry.mjs";\nexport default entry;`;
     fs.writeFileSync(workerWrapperPath, workerCode, 'utf8');
     console.log('✅ [patch-wrangler] Created _worker.js wrapper for Cloudflare Pages SSR compatibility');
+
+    // Delete the generated wrangler.json completely so Cloudflare Pages CI/CD does not try to parse it
+    // and crash due to Worker-specific keys (like 'main', 'rules', 'assets').
+    fs.unlinkSync(wranglerJsonPath);
+    console.log('✅ [patch-wrangler] Deleted generated wrangler.json to bypass Cloudflare Pages strict validation');
 
   } catch (error) {
     console.error('❌ [patch-wrangler] Failed to patch wrangler.json:', error);
