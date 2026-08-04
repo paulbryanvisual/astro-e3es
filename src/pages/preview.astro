@@ -71,15 +71,21 @@ export const prerender = false; // We still want it dynamic so we don't cache pa
     const targetUrl = params.get('url');
 
     if (targetUrl) {
-      // Validate it starts with a slash to prevent open redirect vulnerabilities
-      if (targetUrl.startsWith('/')) {
-        document.getElementById('target-display').innerText = `Building page: ${targetUrl}\nThis can take a few seconds on the staging environment.`;
+      // Normalize URL: ensure it starts with a single slash
+      let safeUrl = targetUrl;
+      if (!safeUrl.startsWith('/')) {
+        safeUrl = '/' + safeUrl;
+      }
+
+      // Validate it doesn't start with double slashes (e.g. //evil.com) to prevent open redirects
+      if (safeUrl.startsWith('//')) {
+        document.getElementById('target-display').innerText = 'Invalid target URL specified (cannot be absolute).';
+        document.querySelector('.spinner').style.display = 'none';
+      } else {
+        document.getElementById('target-display').innerText = `Building page: ${safeUrl}\nThis can take a few seconds on the staging environment.`;
         // Redirect the browser to the actual page. 
         // The browser will show this loading screen until the new page finishes downloading.
-        window.location.replace(targetUrl);
-      } else {
-        document.getElementById('target-display').innerText = 'Invalid target URL specified.';
-        document.querySelector('.spinner').style.display = 'none';
+        window.location.replace(safeUrl);
       }
     } else {
       document.getElementById('target-display').innerText = 'No target URL specified. Please use the WordPress admin buttons.';
