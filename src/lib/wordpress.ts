@@ -19,7 +19,10 @@ const fetchCache = new Map<string, any>();
 
 async function wpFetch(urlPath: string, retries = 3, allowCache = false) {
   if (fetchCache.has(urlPath)) {
-    return fetchCache.get(urlPath).clone();
+    return new Response(fetchCache.get(urlPath), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
   const separator = urlPath.includes('?') ? '&' : '?';
   const url = allowCache 
@@ -43,8 +46,12 @@ async function wpFetch(urlPath: string, retries = 3, allowCache = false) {
 
       const response = await fetch(url, fetchOptions);
       if (response.ok) {
-        fetchCache.set(urlPath, response.clone());
-        return response;
+        const text = await response.text();
+        fetchCache.set(urlPath, text);
+        return new Response(text, {
+          status: 200,
+          headers: response.headers
+        });
       } else {
         console.error(`WordPress API Error [${response.status}] on ${urlPath}: ${response.statusText}`);
         if (attempt === retries) throw new Error(`WordPress API Error: ${response.status} ${response.statusText}`);
