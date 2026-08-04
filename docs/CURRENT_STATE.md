@@ -1,5 +1,17 @@
 # Current State
 
+## [2026-08-03] Migration of Staging SSR to Official Cloudflare Workers
+- **Branch**: `task/migrate-to-cloudflare-workers-20260803` (merged to `main`)
+- **Target Files**:
+  - `package.json`
+  - `wrangler.jsonc`
+  - `.github/workflows/deploy.yml`
+- **Summary**:
+  1. **Official Worker Architecture**: Replaced the Cloudflare Pages deployment architecture for Staging with a standalone Cloudflare Worker (`e3es-staging`), aligning with Astro 6 and `@astrojs/cloudflare` v13's dropped support for Pages SSR.
+  2. **GitHub Actions CI/CD**: Updated `deploy.yml` to trigger `npm run build:staging`, generate the official `dist/server/wrangler.json` manifest, and deploy to Cloudflare Workers using `wrangler-action@v3`.
+  3. **Wrangler Configuration Update**: Stripped invalid Cloudflare Pages properties (`pages_build_output_dir`) from `wrangler.jsonc` and named the project `e3es-staging`.
+  4. **Hack Deletion**: Completely removed the legacy `patch-wrangler.js` script, as the deployment now natively uses Astro's officially supported Worker output configuration.
+
 ## [2026-08-03] Staging SSR Dynamic Route Fallback and Cloudflare Pages Wrangler Parser Alignment
 - **Branch**: `fix/staging-ssr-404-routes-1785880000` (merged to `main`)
 - **Target Files**:
