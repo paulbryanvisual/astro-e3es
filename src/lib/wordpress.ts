@@ -113,6 +113,15 @@ export async function getPageBySlug(slug: string) {
   return pages.length > 0 ? pages[0] : null;
 }
 
+export async function getClientBySlug(slug: string) {
+  const response = await wpFetch(`/clients?slug=${slug}&_embed`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch client: ${slug}`);
+  }
+  const clients = await response.json();
+  return clients.length > 0 ? clients[0] : null;
+}
+
 export async function getPageById(id: number) {
   const response = await wpFetch(`/pages/${id}?_embed`);
   if (!response.ok) {
