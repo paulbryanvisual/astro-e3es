@@ -1,5 +1,18 @@
 # Current State
 
+## [2026-08-03] Staging SSR Dynamic Route Fallback and Cloudflare Pages Wrangler Parser Alignment
+- **Branch**: `fix/staging-ssr-404-routes-1785880000` (merged to `main`)
+- **Target Files**:
+  - `src/lib/wordpress.ts`
+  - `src/pages/[...slug].astro`
+  - `src/pages/clients/[slug].astro`
+  - `src/pages/blog/[slug].astro`
+  - `wrangler.jsonc`
+- **Summary**:
+  1. **Dynamic Runtime Routing Fallback**: Implemented request-time dynamic fetching fallback in SSR mode for all detail routing components (`[...slug].astro`, `clients/[slug].astro`, and `blog/[slug].astro`). When `Astro.props` is empty (as `getStaticPaths()` is ignored in server output mode), the routes resolve parameters (`Astro.params.slug`) at runtime by calling `getPageBySlug()`, `getServiceBySlug()`, `getClientBySlug()`, or `getPostBySlug()` respectively. Returns a proper `new Response(..., { status: 404 })` if the document is not found.
+  2. **Wrangler Pages Configuration Fix**: Added `"pages_build_output_dir": "./dist"` to the root `wrangler.jsonc` file. This prevents Cloudflare Pages from marking the Wrangler config file as invalid during deployment, enabling proper initialization of Pages Functions (the SSR worker) instead of falling back to a static assets deployment.
+  3. **Database Client Fetching Helper**: Added `getClientBySlug()` inside `src/lib/wordpress.ts` to fetch custom post type client details by slug dynamically.
+
 ## [2026-07-30] Staging SSR and Production Static Conditional Deployment
 - **Target Files**:
   - `astro.config.mjs`
