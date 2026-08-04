@@ -1,5 +1,13 @@
 # Current State
 
+## [2026-08-04] Fix Cloudflare Production Deployment Error
+- **Branch**: `fix/remove-prerender-false-preview-20260804` (merged to `main`)
+- **Target Files**:
+  - `src/pages/preview.astro`
+- **Summary**:
+  1. **Removed `prerender = false`**: Removed the `export const prerender = false;` directive from `preview.astro`. This directive forces Astro into SSR mode for that route, which conflicts with the Cloudflare production environment that is explicitly configured without a server adapter (`adapter: undefined` and `output: 'static'`).
+  2. **Static Compilation Integrity**: Verified that `preview.astro` operates correctly as a static file, as it only relies on client-side JavaScript to read query parameters (`window.location.search`) and perform redirects. This change restored the ability to run `npm run build` cleanly for purely static production builds.
+
 ## [2026-08-03] Migration of Staging SSR to Official Cloudflare Workers
 - **Branch**: `task/migrate-to-cloudflare-workers-20260803` (merged to `main`)
 - **Target Files**:
