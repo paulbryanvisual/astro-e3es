@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getClients, processWordPressHtml, decodeHtmlEntities } from '../../lib/wordpress';
+import { getClients, processWordPressHtml, decodeHtmlEntities, getClientBySlug } from '../../lib/wordpress';
 import { Image } from 'astro:assets';
 
 // Static imports for client logos
@@ -30,7 +30,19 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const { client, allClients } = Astro.props;
+let { client, allClients } = Astro.props;
+
+if (!client && slug) {
+  client = await getClientBySlug(slug);
+}
+
+if (!client) {
+  return new Response('Client Not Found', { status: 404 });
+}
+
+if (!allClients) {
+  allClients = await getClients();
+}
 
 const rawOptimizedContent = processWordPressHtml(client.content.rendered, slug);
 const hasBannerBlock = rawOptimizedContent.includes('wp-block-e3es-intro-banner');

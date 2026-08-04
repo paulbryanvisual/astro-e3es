@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import { getPages, getServices, processWordPressHtml, buildBreadcrumbs } from '../lib/wordpress';
+import { getPages, getServices, processWordPressHtml, buildBreadcrumbs, getPageBySlug, getServiceBySlug } from '../lib/wordpress';
 
 export async function getStaticPaths() {
   const [pages, services] = await Promise.all([getPages(), getServices()]);
@@ -64,7 +64,30 @@ export async function getStaticPaths() {
   return [...pagePaths, ...servicePaths];
 }
 
-const { page, allItems } = Astro.props;
+let { page, allItems } = Astro.props;
+
+if (!page) {
+  const slug = Astro.params.slug || '';
+  if (slug.startsWith('services/')) {
+    const serviceSlug = slug.replace('services/', '');
+    page = await getServiceBySlug(serviceSlug);
+  } else {
+    page = await getPageBySlug(slug);
+    if (!page) {
+      page = await getServiceBySlug(slug);
+    }
+  }
+}
+
+if (!page) {
+  return new Response('Page Not Found', { status: 404 });
+}
+
+if (!allItems) {
+  const [pages, services] = await Promise.all([getPages(), getServices()]);
+  allItems = [...pages, ...services];
+}
+
 const optimizedContent = processWordPressHtml(page.content.rendered, page.slug);
 const breadcrumbs = buildBreadcrumbs(page, allItems);
 
