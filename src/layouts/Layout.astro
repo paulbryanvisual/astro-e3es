@@ -42,22 +42,28 @@ const { description = "E3 Entegral Solutions provides design-build energy effici
             // Intercept internal links on Staging and route them through the loading screen
             document.addEventListener('DOMContentLoaded', () => {
                 if (window.location.hostname.includes('workers.dev') || window.location.hostname.includes('localhost')) {
-                    document.body.addEventListener('click', (e) => {
-                        const link = e.target.closest('a');
-                        if (!link) return;
-                        
-                        const href = link.getAttribute('href');
-                        if (!href || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) return;
-                        
-                        try {
-                            const url = new URL(link.href);
-                            if (url.hostname === window.location.hostname && !url.pathname.startsWith('/preview')) {
-                                e.preventDefault();
-                                const targetPath = url.pathname + url.search + url.hash;
-                                window.location.href = '/preview?url=' + encodeURIComponent(targetPath);
-                            }
-                        } catch (err) {}
-                    });
+                    const rewriteLinks = () => {
+                        document.querySelectorAll('a').forEach(link => {
+                            const href = link.getAttribute('href');
+                            if (!href || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) return;
+                            
+                            try {
+                                const url = new URL(link.href);
+                                // If it's an internal link and not already pointing to preview
+                                if (url.hostname === window.location.hostname && !url.pathname.startsWith('/preview')) {
+                                    const targetPath = url.pathname + url.search + url.hash;
+                                    // Rewrite the actual href attribute so "Open in new tab" and hover tooltips work
+                                    link.href = '/preview?url=' + encodeURIComponent(targetPath);
+                                }
+                            } catch (err) {}
+                        });
+                    };
+                    
+                    // Run on initial load
+                    rewriteLinks();
+                    
+                    // Run again if new elements are added to the DOM (like Astro view transitions or dynamic components)
+                    document.addEventListener('astro:page-load', rewriteLinks);
                 }
             });
         </script>
