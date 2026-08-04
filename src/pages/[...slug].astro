@@ -68,13 +68,14 @@ let { page, allItems } = Astro.props;
 
 if (!page) {
   const slug = Astro.params.slug || '';
+  const finalSlug = slug.split('/').pop() || slug;
+  
   if (slug.startsWith('services/')) {
-    const serviceSlug = slug.replace('services/', '');
-    page = await getServiceBySlug(serviceSlug);
+    page = await getServiceBySlug(finalSlug);
   } else {
-    page = await getPageBySlug(slug);
+    page = await getPageBySlug(finalSlug);
     if (!page) {
-      page = await getServiceBySlug(slug);
+      page = await getServiceBySlug(finalSlug);
     }
   }
 }
