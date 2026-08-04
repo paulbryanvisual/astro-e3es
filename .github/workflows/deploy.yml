@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build site
-        run: npm run build
+        run: npm run build:staging
         env:
           PUBLIC_WP_URL: ${{ secrets.WP_API_URL }}
 
@@ -32,4 +32,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: deploy -c dist/server/wrangler.json
