@@ -103,8 +103,22 @@ if (!page) {
           <h1>Backend Server Timeout</h1>
           <p>The WordPress Staging server took too long to respond or is currently waking up. Please wait 10 seconds and try again.</p>
           <p><small>${err.message || 'Unknown error'}</small></p>
-          <button onclick="window.location.reload()">Refresh Page</button>
+          <button id="refreshBtn" onclick="window.location.reload()" disabled>Refresh Page in 10s</button>
         </div>
+        <script>
+          let seconds = 10;
+          const btn = document.getElementById('refreshBtn');
+          const interval = setInterval(() => {
+            seconds--;
+            if (seconds > 0) {
+              btn.innerText = 'Refresh Page in ' + seconds + 's';
+            } else {
+              clearInterval(interval);
+              btn.innerText = 'Refreshing...';
+              window.location.reload();
+            }
+          }, 1000);
+        </script>
       </body>
       </html>
     `, { 
