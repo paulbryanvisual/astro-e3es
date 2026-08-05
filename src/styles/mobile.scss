@@ -3825,8 +3825,8 @@ main:has(.db-page-hero + .wp-block-e3es-project-toc) .db-page-hero {
 }
 
 /* Client Content Layout Constraints */
-main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content):not(.db-feature):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.texas-region-selector-ui):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui)),
-.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.db-feature):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.texas-region-selector-ui):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui)) {
+main > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.services-page__container):not(.clients-page__content):not(.db-feature):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.texas-region-selector-ui):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui)):not(.client-map-callout):not(.wp-block-e3es-client-map-callout),
+.client-content-wrapper > *:not(.wp-block-e3es-intro-banner):not(.project-section):not(.wp-block-e3es-faq-section):not(.wp-block-e3es-cta-banner):not(.cta-banner):not(.db-feature):not(e3-sales-rep-selector):not(e3-texas-region-selector):not(.wp-block-e3es-sales-rep-region):not(.sales-rep-selector):not(.texas-region-selector-ui):not(.map-section):not(:has(e3-sales-rep-selector, e3-texas-region-selector, .wp-block-e3es-sales-rep-region, .sales-rep-selector, .texas-region-selector-ui)):not(.client-map-callout):not(.wp-block-e3es-client-map-callout) {
   max-width: 1200px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -6424,4 +6424,49 @@ footer.footer,
 .rep-contact-card button:focus-visible {
     outline: 3px solid #005fcc;
     outline-offset: 3px;
+}
+
+/* Client Map Callout */
+.client-map-callout {
+    display: block;
+    width: 100%;
+    max-width: 1400px;
+    margin: 80px auto;
+    position: relative;
+    padding: 0 20px;
+}
+
+.client-map-callout__container {
+    background-color: #3e5e11;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 40px 40px 80px;
+    gap: 40px;
+    color: white;
+}
+
+.client-map-callout__content {
+    flex: 1;
+}
+
+.client-map-callout__content h1,
+.client-map-callout__content h2,
+.client-map-callout__content h3,
+.client-map-callout__content p,
+.client-map-callout__content .wp-block-heading,
+.client-map-callout__content .wp-block-paragraph {
+    color: white !important;
+}
+
+.client-map-callout__map {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.client-map-graphic {
+    display: block;
+    width: 100%;
+    height: auto;
 }

@@ -48,6 +48,25 @@
       }
     }
 
+    // Editor override for Map Callout to be full width
+    .wp-block[data-type="e3es/client-map-callout"] {
+      width: 100% !important;
+      max-width: none !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow: visible !important;
+
+      .client-map-callout__content h1,
+      .client-map-callout__content h2,
+      .client-map-callout__content h3,
+      .client-map-callout__content p,
+      .client-map-callout__content .wp-block-heading,
+      .client-map-callout__content .wp-block-paragraph,
+      .client-map-callout__content .block-editor-rich-text__editable {
+        color: white !important;
+      }
+    }
+
     .wp-block[data-type="e3es/verticals-hero-option"] {
       flex: 1 !important;
       height: 100% !important;
@@ -773,6 +792,25 @@
     pointer-events: none !important;
     display: none !important;
     transform: translate(-50%, -50%) scale(0.8) !important;
+  }
+}
+
+@include responsive-up($breakpoint-md) {
+  /* Client Map Callout (Desktop) */
+  .client-map-callout__container {
+      flex-direction: row;
+      align-items: center;
+  }
+
+  .client-map-callout__content {
+      flex: 1;
+  }
+
+  .client-map-callout__map {
+      flex: 1;
+      /* Map overlaps top and bottom by 100px */
+      margin-top: -100px;
+      margin-bottom: -100px;
   }
 }
 
