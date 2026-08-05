@@ -774,24 +774,23 @@
     display: none !important;
     transform: translate(-50%, -50%) scale(0.8) !important;
   }
-}
 
+  /* Client Map Callout (Desktop) */
+  .client-map-callout__container {
+      flex-direction: row;
+      align-items: center;
+  }
 
-/* Client Map Callout (Desktop) */
-.client-map-callout__container {
-    flex-direction: row;
-    align-items: center;
-}
+  .client-map-callout__content {
+      flex: 1;
+      padding-right: 40px;
+  }
 
-.client-map-callout__content {
-    flex: 1;
-    padding-right: 40px;
-}
-
-.client-map-callout__map {
-    flex: 1;
-    /* Map overlaps top and bottom by 100px */
-    margin-top: -100px;
-    margin-bottom: -100px;
+  .client-map-callout__map {
+      flex: 1;
+      /* Map overlaps top and bottom by 100px */
+      margin-top: -100px;
+      margin-bottom: -100px;
+  }
 }
 
