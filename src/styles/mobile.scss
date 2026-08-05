@@ -6437,11 +6437,11 @@ footer.footer,
 }
 
 .client-map-callout__container {
-    background-color: var(--color-primary-green, #5c8a1e);
+    background-color: #3e5e11;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: 40px 40px 40px 80px;
     gap: 40px;
     color: white;
 }
