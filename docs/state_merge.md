@@ -352,3 +352,7 @@
 - `E3/website/scripts/sync-wp.js` (Created live-sync script)
 - `E3/website/wordpress-plugins/e3es-headless-helper/scripts/bulk-actions-buttons.js` (Event delegation fixes)
 - `E3/website/wordpress-plugins/e3es-headless-helper/e3es-headless-helper.php` (Restored native `plugins_url`)
+
+## Merge: Client Map Callout Layout & Editor Overrides (2026-08-05)
+- **Modified Files**: `src/pages/index.astro`, `src/styles/mobile.scss`, `src/styles/desktop.scss`
+- **Decisions**: Reverted `index.astro` to its hardcoded layout but added regex parsing logic to specifically extract and render ONLY the `.client-map-callout` block HTML dynamically at the bottom. Applied edge-to-edge dark green background, 50-100px map spill over layout boundaries, and correctly scoped Gutenberg visual editor CSS overrides to ensure full width block rendering and white text inside the editor.
