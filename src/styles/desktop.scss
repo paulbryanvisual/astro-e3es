@@ -774,7 +774,9 @@
     display: none !important;
     transform: translate(-50%, -50%) scale(0.8) !important;
   }
+}
 
+@include responsive-up($breakpoint-md) {
   /* Client Map Callout (Desktop) */
   .client-map-callout__container {
       flex-direction: row;
