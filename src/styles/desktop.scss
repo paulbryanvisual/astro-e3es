@@ -55,6 +55,16 @@
       margin-left: 0 !important;
       margin-right: 0 !important;
       overflow: visible !important;
+
+      .client-map-callout__content h1,
+      .client-map-callout__content h2,
+      .client-map-callout__content h3,
+      .client-map-callout__content p,
+      .client-map-callout__content .wp-block-heading,
+      .client-map-callout__content .wp-block-paragraph,
+      .client-map-callout__content .block-editor-rich-text__editable {
+        color: white !important;
+      }
     }
 
     .wp-block[data-type="e3es/verticals-hero-option"] {
