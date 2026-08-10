@@ -12,7 +12,8 @@
     "build:staging": "PUBLIC_ENV=staging astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-types": "wrangler types"
+    "generate-types": "wrangler types",
+    "sync:editor-styles": "node sync-styles.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
